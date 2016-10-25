@@ -26,7 +26,7 @@
 					Attitude and Behaviors: Now retired, Bill has an outstanding attitude towards life, loves to fish and camp. Once a month he gets toghether with other retired members of the armed forces at Cabezon Wounded Warrior Haven for some real life war games. As Bill puts it: "You can take Bill out of the marines, but you will never take the marine out of Bill"
 				</p>
 				<p>
-					Frustrations and Needs:  Like a large percentage of military veterans, Bill suffers from PTSD and other injuries, too many to list.  Bill is a member of the local VFW and even though this has been the primary way he interacts with friends, he is sick and tired of the non-stop beer drinking. Bill wishes there was a better way to stay in touch with friends that served with him.
+					Frustrations and Needs:  Like a large percentage of military veterans, Bill suffers from PTSD and other injuries, too many to list. Bill's has tried several different medicine to help with his anxiety and PTSD. Bill is afraid of becoming dependent on some of the medication he has been prescribed. Bill spoke with him medical docotor who suggsested medican cannabas for his symptoms. Bill has gone through all of the required steps to get his medical cannabas card. However bill is not sure where to go to begin his treatment. Bills friend suggested Cannadueces web page and application to help find the best dispensary for Bill.
 				</p>
 				<p>
 					Goals: Bill has heard from several friends how medical cannabis has improved their life by decreasing to a minimum all the effects of ptsd with no side effects. Bill wants to become a patient of the NMMCP and wants a step by step guide on how to acomplish such goal.
