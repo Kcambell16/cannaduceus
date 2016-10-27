@@ -10,8 +10,7 @@
 		</p>
 
 		<h2>System Goals</h2>
-		<p>
-
+		<p> By using Cannaduceus users will have access to all information regarding medical cannabis at their fingertip. They will be able to gps locate all dispensaries in state, as well as find a wealth of information on the site/ app. Users will
 		</p>
 
 		<h1>Persona</h1>
