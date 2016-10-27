@@ -16,21 +16,28 @@
 				</p>
 
 				<p>
-					Profession: Bill is a hard core retired marine looking to stay in touch with all current or former Devil Doc's based on common duty stations.
+					Profession: Bill Stoner is retired marine who just separated from the military secondary to a diagnosis of PTSD.
 				</p>
 
 				<p>
-					Technology: Extremely technologically challenged, Was a marine who's career time was totally spent in an infantry unit. Served five back to back tours in Iraq and two more in Afghanistan. Owns a Motorola Razor flip phone and has no interest in ever owning a smart phone.
+					Technology: Owns a refurbished 13" MacBook Air and a Motorola Razor flip phone
 				</p>
 				<p>
-					Attitude and Behaviors: Now retired, Bill has an outstanding attitude towards life, loves to fish and camp. Once a month he gets toghether with other retired members of the armed forces at Cabezon Wounded Warrior Haven for some real life war games. As Bill puts it: "You can take Bill out of the marines, but you will never take the marine out of Bill"
+					Attitude and Behaviors: Bill is a faithfull christian who attends church every Sunday. He loves to fish and camp. Not only is Bill is having a hard time dealing with all the signs and simptoms of PTSD, he is having a worse time with the side effects of all the psych medications he is on.
 				</p>
 				<p>
-					Frustrations and Needs:  Like a large percentage of military veterans, Bill suffers from PTSD and other injuries, too many to list.  Bill is a member of the local VFW and even though this has been the primary way he interacts with friends, he is sick and tired of the non-stop beer drinking. Bill wishes there was a better way to stay in touch with friends that served with him.
+					Frustrations: Dealing with the daily events that triger flashbacks, anxiety attacks and "episodes".
 				</p>
 				<p>
 					Goals: Bill has heard from several friends how medical cannabis has improved their life by decreasing to a minimum all the effects of ptsd with no side effects. Bill wants to become a patient of the NMMCP and wants a step by step guide on how to acomplish such goal.
 				</p>
+
+			<p>Use Story: Bill wants a "user friendly" site that will familiarize him with the medical cannabis program regulations. He also wants education on the different types of marihuana and marihuana products and the routes of administration. Bill wants to be able to begin the application process at this site.
+			</p>
+
+			<p>
+				Use Case: Bill is enjoying a day of fishing when a helicopter flies obove him, the sound of the rotors triger an anxiety attack which is followed by a flashback. This is a prolonged episode that leaves Bill emotionally and physically drained and still in a state of anxiety that will not subside.  Fishing day ruined, Bill returns home to his computer, googles "medical cannabis" and the cannaduceus site is listed first on the page. A few seconds after clicking
+			</p>
 
 		</section>
 		</body>
