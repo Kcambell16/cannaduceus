@@ -29,7 +29,7 @@
 
 	<h2>Use Case</h2>
 
-	<p>Betty is sitting in on a company meeting, when her chronic pain begains to act up. After the meeting she decides that shes tired of feeling so much pain she, pulls out her iphone7s and unlocks it navigates to the app store, taps on search and types medical marijuana New Mexico a list of apps pop up she sees the cannaduceus app, clicks on the app reads the reviews they all seem positve. So she downloads the app, when the app is done downloading she opens it up sees the navigation bar with medical card info, reviews, locations of dispensers, news, she taps on the medical card info tap and reads all the info regarding getting your medical card. Then she taps on the tab for locations types in her area code and sees that there is sevral dispensaries near her. </p>
+	<p>Betty is sitting in on a company meeting, when her chronic pain begins to act up. After the meeting she decides that shes tired of feeling so much pain she, pulls out her iphone7s and unlocks it navigates to the app store, taps on search and types medical marijuana New Mexico a list of apps pop up she sees the cannaduceus app, clicks on the app reads the reviews they all seem positive. So she downloads the app, when the app is done downloading she opens it up sees the navigation bar with medical card info, reviews, locations of dispensers, news, she taps on the medical card info tap and reads all the info regarding getting your medical card. Then she taps on the tab for locations types in her area code and sees that there is several dispensaries near her. </p>
 			</body>
 
 
