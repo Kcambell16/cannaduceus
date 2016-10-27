@@ -9,7 +9,7 @@
 
 		<h2>Mary Jane Verde</h2>
 
-		<h2>Devil Bill</h2>
+		<h2>Bill</h2>
 
 		<h2>Betty Baker</h2>
 
