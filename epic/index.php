@@ -14,6 +14,25 @@
 		</p>
 
 		<h1>Persona</h1>
+<<<<<<< HEAD
+		<h3>Name: Betty Baker</h3>
+		<ol>
+		<li>Age: 47</li>
+		<li>Profession: Lawyer</li>
+		<li>Technology: iphone 7s plus, 2012 macbook pro, ipod</li>
+		<li>Attitude: Attitude: Eastcoast attitude very straight forward blunt always in a rush. She hate for her time to wasted 			and she will accept nothing but professionalism . shes new to the area but not to medical marijuana, once she finds a 			dispensary she will be a loyal customer</li>
+		<li>Needs/Frustration: chronic pain being new to the area not knowing where to go</li>
+		</ol>
+
+			<h3>Name: Bill Stoner</h3>
+		<ol>
+			<li>Age: 50</li>
+			<li>Profession: Retired Marine Veterian</li>
+			<li>Technology:Motorla Flip Phone, has Acer ADS560 computer</li>
+			<li>Attitude: Now retired, Bill has an outstanding attitude towards life, loves to fish and camp. Once a month he gets 				toghether with other retired members of the armed forces at Cabezon Wounded Warrior Haven for some real life war 				games. As Bill puts it: "You can take Bill out of the marines, but you will never take the marine out of Bill"</li>
+		</ol>
+=======
+>>>>>>> origin/master
 
 		<h1>Use Case</h1>
 
