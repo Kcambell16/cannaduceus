@@ -14,25 +14,31 @@
 		</p>
 
 		<h1>Persona</h1>
-<<<<<<< HEAD
-		<h3>Name: Betty Baker</h3>
+		<h3>Betty Baker</h3>
 		<ol>
 		<li>Age: 47</li>
 		<li>Profession: Lawyer</li>
 		<li>Technology: iphone 7s plus, 2012 macbook pro, ipod</li>
 		<li>Attitude: Attitude: Eastcoast attitude very straight forward blunt always in a rush. She hate for her time to wasted 			and she will accept nothing but professionalism . shes new to the area but not to medical marijuana, once she finds a 			dispensary she will be a loyal customer</li>
-		<li>Needs/Frustration: chronic pain being new to the area not knowing where to go</li>
+		<li>Needs/Frustration: Chronic pain being new to the area not knowing where to go</li>
 		</ol>
 
-			<h3>Name: Bill Stoner</h3>
+			<h3>Bill Stoner</h3>
 		<ol>
 			<li>Age: 50</li>
 			<li>Profession: Retired Marine Veterian</li>
 			<li>Technology:Motorla Flip Phone, has Acer ADS560 computer</li>
 			<li>Attitude: Now retired, Bill has an outstanding attitude towards life, loves to fish and camp. Once a month he gets 				toghether with other retired members of the armed forces at Cabezon Wounded Warrior Haven for some real life war 				games. As Bill puts it: "You can take Bill out of the marines, but you will never take the marine out of Bill"</li>
+			<li>Needs/Frustration: </li>
 		</ol>
-=======
->>>>>>> origin/master
+		<h3>MaryJane Verde</h3>
+		<ol>
+			<li>Age: 27 </li>
+			<li>Profession: Kindergarten Teacher</li>
+			<li>Technology: iphone 6s user, LTE, PC user</li>
+			<li>Attitude: Mild mannered teacher with a husband and three year old daughter.  She feels like her life just started and she's already staring death in the face.  Even in this she perseveers and tries to make the best of every day for her daughter.  She receives chemo therapy once a week and it really takes a toil on her.  She uses cannabis for relief and to help her nasuea and lack of appetite.  It also helps her sleep and have more energy to take care of her daughter.</li>
+			<li>Needs/Frustration: Mary Jane needs to be able to use her smart phone to locate the nearest dispensary. Because she doesn't want to travel all over town searching when she is in pain.  She wants to find one close to her house and another close to work as her main ones.  She is hoping to use medical cannabus to help with the symptoms chemo therapy gives her and also increase her appetite so she is able to keep her strength and keep up with her active 3 year old.</li>
+		</ol>
 
 		<h1>Use Case</h1>
 
