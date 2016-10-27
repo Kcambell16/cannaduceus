@@ -9,7 +9,7 @@
 		<section>
 				<h2>Persona</h2>
 				<p>
-					Name: Devil Bill
+					Name: Bill Stoner
 				</p>
 				<p>
 					Age: 50
