@@ -10,7 +10,7 @@
 		</p>
 
 		<h2>System Goals</h2>
-		<p> By using Cannaduceus users will have access to all information regarding medical cannabis at their fingertip. They will be able to gps locate all dispensaries in state, as well as find a wealth of information on the site/ app. Users will be able to review different dispensaries sharing thier expereince. Users will also have access to local medical cannabis events. There will be a section that keeps patients up to date with all local laws and legislature pretaining to medical cannabis. And lastly for the users over all experience there will be a section that will highlight differnt products avail such as edible and concentrated oils; as well as
+		<p> By using Cannaduceus users will have access to all information regarding medical cannabis at their fingertip. They will be able to gps locate all dispensaries in state, as well as find a wealth of information on the site/ app. Users will be able to review different dispensaries sharing their expereince. Users will also have access to local medical cannabis events. There will be a section that keeps patients up to date with all local laws and legislature pretaining to medical cannabis. And lastly for the users over all experience there will be a section that will highlight differnt products avail such as edible and concentrated oils; as well as
 		</p>
 
 		<h1>Persona</h1>
