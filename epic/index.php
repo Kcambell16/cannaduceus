@@ -5,13 +5,19 @@
 		<title>Title</title>
 	</head>
 	<body>
-		<h1>personas</h1>
+		<h2>Executive Summary</h2>
+		<p>
 
-		<h2>Mary Jane Verde</h2>
+		</p>
 
-		<h2>Bill</h2>
+		<h2>System Goals</h2>
+		<p>
 
-		<h2>Betty Baker</h2>
+		</p>
+
+		<h1>Persona</h1>
+
+		<h1>Use Case</h1>
 
 	</body>
 </html>
