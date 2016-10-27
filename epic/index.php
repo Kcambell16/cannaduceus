@@ -1,7 +1,17 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Kcampbell
- * Date: 10/27/16
- * Time: 11:55 AM
- */
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Title</title>
+	</head>
+	<body>
+		<h1>personas</h1>
+
+		<h2>Mary Jane Verde</h2>
+
+		<h2>Devil Bill</h2>
+
+		<h2>Betty Baker</h2>
+
+	</body>
+</html>
