@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8"/>
 
-		<title>Devil Bill</title>
+		<title>Bill Stoner</title>
 	</head>
 	<body>
 		<section>
@@ -23,13 +23,13 @@
 					Technology: Extremely technologically challenged, Was a marine who's career time was totally spent in an infantry unit. Served five back to back tours in Iraq and two more in Afghanistan. Owns a Motorola Razor flip phone and has no interest in ever owning a smart phone.
 				</p>
 				<p>
-					Attitude and Behaviors: Now retired, Bill has an outstanding attitude towards life, loves to fish and camp. Once a month he gets toghether with other retired members of the armed forces at Cabezon Wounded Warrior Haven for some real life war games. As Bill puts it: "You can take Bill out of the marines, but you will never take the marine out of Bill"
+					Attitude and Behaviors: Now retired, Bill has an outstanding attitude towards life, loves to fish and camp. Once a month he gets together with other retired members of the armed forces at Cabezon Wounded Warrior Haven for some real life war games. As Bill puts it: "You can take Bill out of the marines, but you will never take the marine out of Bill"
 				</p>
 				<p>
 					Frustrations and Needs:  Like a large percentage of military veterans, Bill suffers from PTSD and other injuries, too many to list.  Bill is a member of the local VFW and even though this has been the primary way he interacts with friends, he is sick and tired of the non-stop beer drinking. Bill wishes there was a better way to stay in touch with friends that served with him.
 				</p>
 				<p>
-					Goals: Bill has heard from several friends how medical cannabis has improved their life by decreasing to a minimum all the effects of ptsd with no side effects. Bill wants to become a patient of the NMMCP and wants a step by step guide on how to acomplish such goal.
+					Goals: Bill has heard from several friends how medical cannabis has improved their life by decreasing to a minimum all the effects of ptsd with no side effects. Bill wants to become a patient of the NMMCP and wants a step by step guide on how to accomplish such goal.
 				</p>
 
 		</section>
