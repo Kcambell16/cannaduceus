@@ -51,10 +51,10 @@
 		<h1>Use Case</h1>
 		<p>MaryJane Verde is in the battle of her life. She has very specific needs. Because she has cancer she will more than likely be a mobile user.</p>
 		<ol>
-			<li> MaryJane is new to the idea of medical cannabis, when she spoke with her doctor about alternative options and introduced to the idea of medical cannabis she immediately looked for an application that would provide information on local dispensaries</li>
-			<li> When she searches through the app store on her iphone she is hoping to find an app that will help her find local dispensaries </li>
-			<li> The Cannaduces app shows and has very good reviews so she downloads the app</li>
-			<li> Once she download she is promoted to sign-up as a user or use app as a guest; she choose to use app as a guest so she can fully check the app out</li>
+			<li> MaryJane is new to the idea of medical cannabis, when she spoke with her doctor about alternative options and introduced to the idea of medical cannabis she immediately looked for the mobile website that would provide information on local dispensaries</li>
+			<li> When she searches through browser on her iphone she is hoping to find a mobile friendly website that will help her find local dispensaries </li>
+			<li> The Cannaduces app shows and has very good reviews she finds the Cannaduces app</li>
+			<li> While viewing the mobile website she is promoted to sign-up as a user or use app as a guest; she choose to use app as a guest so she can fully check the app out</li>
 			<li> MaryJane sees that the application has a GPS feature that will give her the location of all the dispensaries within 5, 10, 20 mile radius of her current location</li>
 			<li> Mary Jane looks up all of the dispensaries in her neighborhood and the reviews from other medical cannabis users</li>
 			<li> MaryJane finds the app very easy to use and intutive</li>
