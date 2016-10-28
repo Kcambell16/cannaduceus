@@ -26,6 +26,7 @@
 		<li>Technology: iphone 7s plus, 2012 macbook pro, ipod</li>
 		<li>Attitude: Attitude: Eastcoast attitude very straight forward blunt always in a rush. She hate for her time to wasted 			and she will accept nothing but professionalism . shes new to the area but not to medical marijuana, once she finds a 			dispensary she will be a loyal customer</li>
 		<li>Needs/Frustration: Chronic pain being new to the area not knowing where to go</li>
+			<li>Goals:</li>
 		</ol>
 
 			<h3>Bill Stoner</h3>
@@ -44,10 +45,20 @@
 			<li>Technology: iphone 6s user, LTE, PC user</li>
 			<li>Attitude: Mild mannered teacher with a husband and three year old daughter.  She feels like her life just started and she's already staring death in the face.  Even in this she perseveers and tries to make the best of every day for her daughter.  She receives chemo therapy once a week and it really takes a toil on her.  She uses cannabis for relief and to help her nasuea and lack of appetite.  It also helps her sleep and have more energy to take care of her daughter.</li>
 			<li>Needs/Frustration: Mary Jane needs to be able to use her smart phone to locate the nearest dispensary. Because she doesn't want to travel all over town searching when she is in pain.  She wants to find one close to her house and another close to work as her main ones.  She is hoping to use medical cannabus to help with the symptoms chemo therapy gives her and also increase her appetite so she is able to keep her strength and keep up with her active 3 year old.</li>
-			<li>Goals: .</li>
+			<li>Goals:Mary Jane needs to be able to use her smart phone to locate the nearest dispensary. Because she doesn't want to travel all over town searching when she is in pain.  She wants to find one close to her house and another close to work as her main ones.  She is hoping to use medical cannabus to help with the symptoms chemo therapy gives her and also increase her appetite so she is able to keep her strength and keep up with her active 3 year old. </li>
 		</ol>
 
 		<h1>Use Case</h1>
+		<li>MaryJane Verde is in the battle of her life. She has very specific needs. Because she has cancer she will more than likely be a mobile user.</li>
+		<ol>
+			<li> MaryJane is new to the idea of medical cannabis, when she spoke with her doctor about alternative options and introduced to the idea of medical cannabis she immediately looked for an application that would provide information on local dispensaries</li>
+			<li> When she searches through the app strore on her iphone she is hoping to find an app that will help her find local dispensaries </li>
+			<li> The Cannaduces app shows and has very good reviews so she downloads the app</li>
+			<li> Once she download she is promted to sign-up as a user or use app as a guest; she choose to use app as a guest so she can fully check the app out</li>
+			<li> MaryJane sees that the application has a GPS feature that will give her the location of all the dispensaries within 5, 10, 20 mile radius of her current location</li>
+			<li> Mary Jane looks up all of the dispensaries in her neighborhood and the reviews from other medical cannabis users</li>
+			<li></li>
+		</ol>
 
 	</body>
 </html>
