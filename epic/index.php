@@ -61,7 +61,10 @@
 			<li> MaryJane later sees the Cannaduces app has several other features she finds useful</li>
 			<li> She browses through the information section and learns information about different strains of medical cannabis</li>
 			<li> She is concerned how she wil consume medical cannabis without having to answer many questions from an inquisitive 3 year old; she finds out she can get all the benefits of the medical cannabis in the form of edibles and even concentrate oils</li>
+			<li> MaryJane has decided to sign up for the application because she sees there are rewards points that can be earned when signing up for app and she knows while she is in chemo therapy she wil be a loyal user.</li>
 		</ol>
+		<p> Bill Stoner is not very tech savvy and his tolerance for frustration is very low, so any technology he uses needs to be very user friendly and simple to navigate.</p>
+		`
 
 	</body>
 </html>
