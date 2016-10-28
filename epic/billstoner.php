@@ -36,7 +36,7 @@
 			</p>
 
 			<p>
-				Use Case: Bill is enjoying a day of fishing when a helicopter flies obove him, the sound of the rotors triger an anxiety attack which is followed by a flashback. This is a prolonged episode that leaves Bill emotionally and physically drained and still in a state of anxiety that will not subside.  Fishing day ruined, Bill returns home to his computer, googles "medical cannabis" and the cannaduceus site is listed first on the page. A few seconds after clicking the link the cannaduceus page loads and the first element that catches Bill's eyes is the "veteran friendly" logo. Bill navigates thru the site with ease, gets all the information he needs and even fills out the new patient application available to him on the site.
+				Use Case: Bill is enjoying a day of fishing when a helicopter flies obove him, the sound of the rotors triger an anxiety attack which is followed by a flashback. This is a prolonged episode that leaves Bill emotionally and physically drained and still in a state of anxiety that will not subside.  Fishing day ruined, Bill returns home to his computer, googles "medical cannabis" and the cannaduceus site is listed first on the page. A few seconds after clicking the link the cannaduceus page loads and the first element that catches Bill's eyes is the "veteran friendly" logo. Bill navigates thru the site with ease, gets all the information he needs and even fills out the new patient application available to him on the site, chooses the option to print at home and takes to his psychiatrist for approval.
 			</p>
 
 		</section>
