@@ -33,5 +33,4 @@
 			</body>
 
 
-<!-saknd/a ->
 </html>
