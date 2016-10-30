@@ -64,6 +64,20 @@
 			<li> MaryJane has decided to sign up for the application because she sees there are rewards points that can be earned when signing up for app and she knows while she is in chemo therapy she wil be a loyal user.</li>
 		</ol>
 		<p> Bill Stoner is not very tech savvy and his tolerance for frustration is very low, so any technology he uses needs to be very user friendly and simple to navigate.</p>
+		<ol>
+			<li> Bill Stoner has a very basic computer and he is new to using electronics in general, but he has learned to access the internet and and is curious what is available for local medical cannibis users. </li>
+			<li> Bill Stoner has gone to google and searched for websites on medical cannabis in his area Albuquerque, NM and he discovers Cannadueces.</li>
+			<li> Bill navigates to the website and istantly feel relief becuase usally when he is on a website he become very frustrated because he can never figure out where to go.</li>
+			<li> Bill can quickly see all the areas on the screen he can click and navigate to.</li>
+			<li> Bill has a local dispensary but he is curious about the other locations so he clicks on the section that helps him locate dispensaries in his area. To his suprise he was instanstly prommpted to enter his information</li>
+			<li> after bill slowly pecked his information into the browser he noticed the enter highlighted enter once all information was complete. He clicks enter and another page pops up with his local dispensaries within a 20 mile radius.</li>
+			<li> At this point Bill is pretty proud of himself because he was finally starting to get a hang of this computer stuff.</li>
+			<li> Bill begins to navigate other tabs he found the most interest in the community tab. This is where he was able to find out all the things going on in the medical cannabis community and he even found other ways to connect to other vets like him. This made him very happy he had been looking for ways to find/ connect with other Vets.</li>
+			<li> Bill noticed there was an community even happening that same afternoon he was looking for something to do to keep in active.</li>
+			<li> Bill even took the time to review his local dispensarie which made him very happy. He loves the workers and htey know him very well so he jumped at the opporutnity to rave about some of his favorite people.</li>
+			<li> Bill took a piece of paper out and wrote down the locations and he was even able to get driving directions directly from google to the location of the event.</li>
+			<li> After this experience Bill doesn't feel so out of the loop.</li>
+		</ol>
 		`
 
 	</body>
