@@ -26,7 +26,7 @@
 		<li>Technology: iphone 7s plus, 2012 macbook pro, ipod</li>
 		<li>Attitude: Attitude: East-coast attitude very straight forward blunt always in a rush. She hate for her time to wasted 			and she will accept nothing but professionalism . shes new to the area but not to medical marijuana, once she finds a 			dispensary she will be a loyal customer</li>
 		<li>Needs/Frustration: Chronic pain being new to the area not knowing where to go</li>
-			<li>Goals:</li>
+			<li>Goals: Betty Baker is looking for a app to show her where to go. To help her on her journy to get a medical card in New Mexico, and be able to see the dispensaries near her and what they have.</li>
 		</ol>
 
 			<h3>Bill Stoner</h3>
