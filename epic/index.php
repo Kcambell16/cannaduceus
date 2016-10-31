@@ -48,8 +48,8 @@
 			<li>Goals:Mary Jane needs to be able to use her smart phone to locate the nearest dispensary. Because she doesn't want to travel all over town searching when she is in pain.  She wants to find one close to her house and another close to work as her main ones.  She is hoping to use medical cannabis to help with the symptoms chemo therapy gives her and also increase her appetite so she is able to keep her strength and keep up with her active 3 year old. </li>
 		</ol>
 
-		<h1>Use Case</h1>
-		<p>MaryJane Verde is in the battle of her life. She has very specific needs. Because she has cancer she will more than likely be a mobile user.</p>
+		<h3> User Story</h3>
+		<ol> As a User MaryJane wants to find the closest dispensary to her home</ol>
 		<ol>
 			<li> MaryJane is new to the idea of medical cannabis, when she spoke with her doctor about alternative options and introduced to the idea of medical cannabis she immediately looked for the mobile website that would provide information on local dispensaries</li>
 			<li> When she searches through browser on her iphone she is hoping to find a mobile friendly website that will help her find local dispensaries </li>
@@ -63,7 +63,11 @@
 			<li> She is concerned how she wil consume medical cannabis without having to answer many questions from an inquisitive 3 year old; she finds out she can get all the benefits of the medical cannabis in the form of edibles and even concentrate oils</li>
 			<li> MaryJane has decided to sign up for the application because she sees there are rewards points that can be earned when signing up for app and she knows while she is in chemo therapy she wil be a loyal user.</li>
 		</ol>
+		<h4>Use Case</h4>
+		<p>MaryJane Verde is in the battle of her life. She has very specific needs. Because she has cancer she will more than likely be a mobile user.</p>
+
 		<p> Bill Stoner is not very tech savvy and his tolerance for frustration is very low, so any technology he uses needs to be very user friendly and simple to navigate.</p>
+
 		<ol>
 			<li> Bill Stoner has a very basic computer and he is new to using electronics in general, but he has learned to access the internet and and is curious what is available for local medical cannibis users. </li>
 			<li> Bill Stoner has gone to google and searched for websites on medical cannabis in his area Albuquerque, NM and he discovers Cannaduceus.</li>
@@ -78,7 +82,11 @@
 			<li> Bill took a piece of paper out and wrote down the locations and he was even able to get driving directions directly from google to the location of the event.</li>
 			<li> After this experience Bill doesn't feel so out of the loop.</li>
 		</ol>
+		<h4> Use Story</h4>
+		<ol> As a user Bill Stoner want to find what event are happening in the community</ol>
+
 		<p> Betty Baker is a woman who is constantly on the move and she knows what she wants and usally how to get it. But Betty is new to Albuquerque, NM, and though she loves it here the stress from all the changes shes has made in the past 3 months has lead to her fibromyalgia acting up and her being in constant pain. She has been prescribed medical cannabis when she was being treated in New York and was lucky enough get her prescription and card switched to New Mexico.</p>
+
 		<ol>
 			<li>Betty is sitting in on a company meeting, when her fibromyalgia begins to act up. After the meeting she decides that shes tired of feeling so much pain she, pulls out her iphone7s and unlocks and googles medical cannabis. She is prompted to visit a website Cannaduceus</li>
 			<li> What Betty finds is very mobile friendly.</li>
@@ -88,8 +96,9 @@
 			<li> Betty is very big on customer experience and she is in pain so wants to make sure the dispensary she visit will provide her with the best experience</li>
 			<li> Betty skims through the website and find the perfect dispensary at at central location between home and work and also has high marks</li>
 			<li> Betty also find interest in the info tab, she was able to find information on local legislative and laws so she woud be able to compare to the state she came from.</li>
-
 		</ol>
+		<h4> User Story</h4>
+		<ol> Betty uses site to look at reviews of local dispensaries to find ensure the best experience</ol>
 		`
 
 	</body>
