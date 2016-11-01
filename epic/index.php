@@ -68,7 +68,7 @@
 		<!-- MaryJane use case-->
 
 		<h4>Use Case</h4>
-		<p>MaryJane Verde is new to the medial cannabis community and wants to learn more about medical cannabis</p>
+		<p>MaryJane Verde is new to the medical cannabis community and wants to learn more about medical cannabis</p>
 
 		<!-- Bill Stoner-->
 
@@ -91,7 +91,7 @@
 		<!-- Bill Stoner use casw-->
 
 		<h4> Use Case</h4>
-		<ol> As a user Bill Stoner want to find what event are happening in the community</ol>
+		<ol> As a user Bill Stoner wants to find information on local events that are happening in the community</ol>
 
 		<!--Betty Baker -->
 
@@ -110,7 +110,7 @@
 		<!-- Betty Baker use case-->
 
 		<h4> Use Case</h4>
-		<ol> Betty uses site to look at reviews of local dispensaries to find ensure the best experience</ol>
+		<ol> Betty uses the site to read reviews of local dispensaries to ensure the best experience when visiting.</ol>
 		`
 
 	</body>
