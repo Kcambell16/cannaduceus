@@ -22,7 +22,7 @@
 
 				<li>userId (primary key)</li>
 				<li>userName</li>
-				<li>email</li>
+				<li>userEmail</li>
 				<li>userHash</li>
 				<li>userSalt</li>
 
@@ -32,19 +32,19 @@
 
 			<ul>
 				<li>dispesaryId(primary key)</li>
-				<li>name</li>
-				<li>address</li>
-				<li>e-mail</li>
-				<li>phone #</li>
-				<li>url</li>
+				<li>dispensaryName</li>
+				<li>dispesaryAddress</li>
+				<li>dispensaryE-mail</li>
+				<li>dispesaryPhone #</li>
+				<li>dispesarUrl</li>
 			</ul>
 
 			<h2>dispensaryReview(weak)</h2>
 
 			<ul>
 				<li>dispensaryReviewId</li>
-				<li>reviewTxt</li>
-				<li>dateTime</li>
+				<li>dispensaryReviewTxt</li>
+				<li>dispensaryDateTime</li>
 			</ul>
 
 			<h2>dispensaryLeafRating</h2>
@@ -59,18 +59,17 @@
 			<h2>Strain</h2>
 
 			<ul>
-				<li>StrainId(primary key)</li>
-				<li>email</li>
-				<li>Id</li>
-				<li>name</li>
+				<li>strainId(primary key)</li>
+				<li>strainEmail</li>
+				<li>strainName</li>
 			</ul>
 
 			<h2>StrainReview(weak)</h2>
 			<ul>
 
 				<li>strainReviewId(weak)</li>
-				<li>dateTime</li>
-				<li>reviewTxt</li>
+				<li>strainReviewDateTime</li>
+				<li>strainReviewTxt</li>
 
 			</ul>
 
@@ -78,18 +77,21 @@
 
 			<ul>
 
-				<li>userId</li>
-				<li>strainId</li>
+				<li>strainFavoriteuserId</li>
+				<li>strainFavoritestrainId</li>
 
 			</ul>
 
 			<h2>strainLeafRating(weak)</h2>
 			<ul>
 
-				<li>strainId</li>
-				<li>userId</li>
 				<li>strainLeafRatingId</li>
+				<li>strainLeafRatingstrainId</li>
+				<li>strainLeafRatinguserId</li>
+
+
 			</ul>
+
 
 
 
