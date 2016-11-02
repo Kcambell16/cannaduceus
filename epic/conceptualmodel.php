@@ -9,7 +9,13 @@
 			<h1>Conceptual Model</h1>
 		</header>
 		<main>
-
+			<h2>Attributes and Entities</h2>
+			<h4>User</h4>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
 
 
 
