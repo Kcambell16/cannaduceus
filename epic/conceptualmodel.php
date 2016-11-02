@@ -34,7 +34,7 @@
 				<li>dispensaryId(primary key)</li>
 				<li>dispensaryName</li>
 				<li>dispensaryAddress</li>
-				<li>dispensaryE-mail</li>
+				<li>dispensaryEmail</li>
 				<li>dispensaryPhone #</li>
 				<li>dispensaryUrl</li>
 				<li>dispensaryAttention</li>
