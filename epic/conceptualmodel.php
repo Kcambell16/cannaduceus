@@ -19,11 +19,13 @@
 			<h4>User</h4>
 
 			<ul>
+
+				<li>userId (primary key</li>
+				<li>userName</li>
 				<li>email</li>
-				<li>id</li>
-				<li>name</li>
 				<li>userHash</li>
 				<li>userSalt</li>
+
 			</ul>
 
 			<h2>Dispensary</h2>
