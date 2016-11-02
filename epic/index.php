@@ -177,7 +177,7 @@
 
 			<li>User: Bill Stoner- Goal: Want to write a review on dispensaries he has visited.</li>
 
-			<li>User: Betty Baker - Goal: Wants to read customer review on dispensary. </li>
+			<li>User: Betty Baker - Goal: Wants to read customer review on dispensaries. </li>
 
 			<li>User: Bill Stoner - Goal: Wants access to laws and legislative.</li>
 
