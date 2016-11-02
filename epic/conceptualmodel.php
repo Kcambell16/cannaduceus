@@ -116,7 +116,7 @@
 				<li>many reviews can have many ratings (m to n)</li>
 				<li>many users can review many strains (m to n)</li>
 				<li>many users can favorite strains (m to n)</li>
-				<li></li>
+
 
 			</ul>
 
