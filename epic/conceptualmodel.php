@@ -51,7 +51,7 @@
 			<ul>
 				<li>dispensaryReviewId</li>
 				<li>dispensaryReviewTxt</li>
-				<li>dispensaryDateTime</li>
+				<li>dispensaryReviewDateTime</li>
 			</ul>
 
 			<h2>dispensaryLeafRating</h2>
