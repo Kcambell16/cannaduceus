@@ -15,8 +15,23 @@
 				<li>email</li>
 				<li>id</li>
 				<li>name</li>
+				<li>userHash</li>
+				<li>userSalt</li>
 			</ul>
-
+			<h2>Dispensary</h2>
+			<ul>
+				<li>Id</li>
+				<li>name</li>
+				<li>address</li>
+				<li>e-mail</li>
+				<li>phone #</li>
+			</ul>
+			<h2>Strain</h2>
+			<ul>
+				<li>email</li>
+				<li>Id</li>
+				<li>name</li>
+			</ul>
 
 
 
