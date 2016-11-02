@@ -12,9 +12,9 @@
 			<h2>Attributes and Entities</h2>
 			<h4>User</h4>
 			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
+				<li>email</li>
+				<li>id</li>
+				<li>name</li>
 			</ul>
 
 
