@@ -71,8 +71,8 @@
 				<li>strainId(primary key)</li>
 				<li>strainRating</li>
 				<li>strainName</li>
-				<li>strainTHC</li>
-				<li>strainCBD</li>
+				<li>strainThc</li>
+				<li>strainCbd</li>
 				<li>strainDescription</li>
 			</ul>
 
