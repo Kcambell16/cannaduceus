@@ -51,14 +51,15 @@
 
 			<ul>
 				<li>dispenaryLeafratingId</li>
-				<li>dispesaryId(primary key)</li>
 				<li>userId</li>
 			</ul>
+
+
 
 			<h2>Strain</h2>
 
 			<ul>
-				<il>StrainId(primary key)</il>
+				<li>StrainId(primary key)</li>
 				<li>email</li>
 				<li>Id</li>
 				<li>name</li>
@@ -73,7 +74,22 @@
 
 			</ul>
 
-			<h2></h2>
+			<h2>strainFavorite(weak)</h2>
+
+			<ul>
+
+				<li>userId</li>
+				<li>strainId</li>
+
+			</ul>
+
+			<h2>strainLeafRating(weak)</h2>
+			<ul>
+
+				<li>strainId</li>
+				<li>userId</li>
+				<li>strainLeafRatingId</li>
+			</ul>
 
 
 
