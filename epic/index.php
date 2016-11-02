@@ -180,7 +180,7 @@
 			<li>User: Betty Baker - Goal: Wants to read customer review on dispensaries. </li>
 
 			<li>User: Bill Stoner - Goal: Wants access to laws and legislative.</li>
-
+;
 			<li>User: MaryJane Verde- Goal: To choose Favorite dispensary.</li>
 
 			<li>User: Betty Baker - Goal: To write a review on different stains used.</li>
