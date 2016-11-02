@@ -36,7 +36,7 @@
 				<li>dispesaryAddress</li>
 				<li>dispensaryE-mail</li>
 				<li>dispesaryPhone #</li>
-				<li>dispesarUrl</li>
+				<li>dispesaryUrl</li>
 			</ul>
 
 			<h2>dispensaryReview(weak)</h2>
@@ -92,6 +92,15 @@
 
 			</ul>
 
+			<h2>Relations</h2>
+
+			<ul>
+
+				<li></li>
+				<li></li>
+				<li></li>
+
+			</ul>
 
 
 
