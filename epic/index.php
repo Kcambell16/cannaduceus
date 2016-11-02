@@ -171,23 +171,25 @@
 
 		<ul>
 
-			<li>User: Betty Baker - Goal: To locate the closest dispensary</li>
+			<li>User: Betty Baker - Goal: To locate the closest dispensary.</li>
 
-			<li>User: Bill Stoner - Goal: Wants to connect with other medical Cannabis users</li>
+			<li>User: MaryJane Verde- Goal: Wants to leaf rate strain. </li>
 
-			<li>User: MaryJane Verde- Goal: Wants to review strain information. </li>
+			<li>User: Bill Stoner- Goal: Want to write a review on dispensaries he has visited.</li>
 
-			<li>User: Betty Baker - Goal: Wants to read customer review on dispensary </li>
+			<li>User: Betty Baker - Goal: Wants to read customer review on dispensary. </li>
 
-			<li>User: Bill Stoner - Goal: Wants access to laws and legislative</li>
+			<li>User: Bill Stoner - Goal: Wants access to laws and legislative.</li>
 
-			<li>User: MaryJane Verde- Goal: To choose Favorite dispensary</li>
+			<li>User: MaryJane Verde- Goal: To choose Favorite dispensary.</li>
 
-			<li>User: Betty Baker - Goal: To write a review different stains used</li>
+			<li>User: Betty Baker - Goal: To write a write review different stains used.</li>
 
-			<li>User: Bill Stoner -  Goal: To find Community events</li>
+			<li>User: Bill Stoner -  Goal: To find Community events.</li>
 
-			<li>User: MaryJane Verde - Goal: To rate dispensary</li>
+			<li>User: MaryJane Verde - Goal: To rate dispensary.</li>
+
+			<li>USer: Betty Baker - Goal: Want to favorite strain</li>
 
 		</ul>
 		`
