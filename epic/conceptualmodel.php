@@ -21,8 +21,8 @@
 			<ul>
 
 				<li>userId (primary key)</li>
-				<li>userName</li>
-				<li>userEmail</li>
+				<li>userName(unique)</li>
+				<li>userEmail(unique)</li>
 				<li>userHash</li>
 				<li>userSalt</li>
 
@@ -31,12 +31,19 @@
 			<h2>Dispensary</h2>
 
 			<ul>
-				<li>dispesaryId(primary key)</li>
+				<li>dispensaryId(primary key)</li>
 				<li>dispensaryName</li>
-				<li>dispesaryAddress</li>
+				<li>dispensaryAddress</li>
 				<li>dispensaryE-mail</li>
-				<li>dispesaryPhone #</li>
-				<li>dispesaryUrl</li>
+				<li>dispensaryPhone #</li>
+				<li>dispensaryUrl</li>
+				<li>dispensaryAttention</li>
+				<li>dispensaryStreet1</li>
+				<li>dispensaryStreet2</li>
+				<li>dispensaryCity</li>
+				<li>dispensaryZipCode</li>
+				<li>dispensaryPhoneNumber</li>
+				<li>dispensaryCord</li>
 			</ul>
 
 			<h2>dispensaryReview(weak)</h2>
@@ -50,8 +57,10 @@
 			<h2>dispensaryLeafRating</h2>
 
 			<ul>
-				<li>dispensaryLeafratingId</li>
+				<li>dispensaryLeafRatingId</li>
 				<li>dispensaryUserId</li>
+				<li>dispensaryLeafRatingRating</li>
+				<li>dispensaryLeafRatingDispensaryId</li>
 			</ul>
 
 
@@ -60,8 +69,11 @@
 
 			<ul>
 				<li>strainId(primary key)</li>
-				<li>strainEmail</li>
+				<li>strainRating</li>
 				<li>strainName</li>
+				<li>strainTHC</li>
+				<li>strainCBD</li>
+				<li>strainDescription</li>
 			</ul>
 
 			<h2>StrainReview(weak)</h2>
@@ -77,8 +89,8 @@
 
 			<ul>
 
-				<li>strainFavoriteuserId</li>
-				<li>strainFavoritestrainId</li>
+				<li>strainFavoriteUserId</li>
+				<li>strainFavoriteStrainId</li>
 
 			</ul>
 
@@ -86,8 +98,11 @@
 			<ul>
 
 				<li>strainLeafRatingId</li>
-				<li>strainLeafRatingstrainId</li>
-				<li>strainLeafRatinguserId</li>
+				<li>strainLeafRatingStrainId</li>
+				<li>strainLeafRatingUserId</li>
+				<li>strainLeafRatingRating</li>
+				<li>strainLeafRatingStrainId</li>
+
 
 
 			</ul>
