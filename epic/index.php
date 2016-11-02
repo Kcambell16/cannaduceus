@@ -183,13 +183,19 @@
 
 			<li>User: MaryJane Verde- Goal: To choose Favorite dispensary.</li>
 
-			<li>User: Betty Baker - Goal: To write a write review different stains used.</li>
+			<li>User: Betty Baker - Goal: To write a review on different stains used.</li>
 
-			<li>User: Bill Stoner -  Goal: To find Community events.</li>
+			<li>User: MaryJane Verde - Goal: To leaf rate dispensary.</li>
 
-			<li>User: MaryJane Verde - Goal: To rate dispensary.</li>
+			<li>User: Betty Baker - Goal: Want to favorite a strain</li>
 
-			<li>USer: Betty Baker - Goal: Want to favorite strain</li>
+			<li>User: Bill Stoner - Goal: Want to access dispensary information</li>
+
+			<li>User: MaryJane Verde - Goal: Wants to click on address and automatically get directions to dispensary</li>
+
+			<li>User: Betty Baker - Goal: Wants to click on phone number and call</li>
+
+			<li>User: Betty Baker - Goal : Want to click on dispensaries website and go direclty to URL</li>
 
 		</ul>
 		`
