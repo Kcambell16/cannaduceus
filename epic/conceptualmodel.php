@@ -20,7 +20,7 @@
 
 			<ul>
 
-				<li>userId (primary key</li>
+				<li>userId (primary key)</li>
 				<li>userName</li>
 				<li>email</li>
 				<li>userHash</li>
@@ -31,7 +31,7 @@
 			<h2>Dispensary</h2>
 
 			<ul>
-				<li>Id</li>
+				<li>dispesaryId(primary key)</li>
 				<li>name</li>
 				<li>address</li>
 				<li>e-mail</li>
@@ -51,18 +51,30 @@
 
 			<ul>
 				<li>dispenaryLeafratingId</li>
-				<li>dispesaryId</li>
+				<li>dispesaryId(primary key)</li>
 				<li>userId</li>
 			</ul>
 
 			<h2>Strain</h2>
+
 			<ul>
+				<il>StrainId(primary key)</il>
 				<li>email</li>
 				<li>Id</li>
 				<li>name</li>
 			</ul>
 
-			<h2>strain</h2>
+			<h2>StrainReview(weak)</h2>
+			<ul>
+
+				<li>strainReviewId(weak)</li>
+				<li>dateTime</li>
+				<li>reviewTxt</li>
+
+			</ul>
+
+			<h2></h2>
+
 
 
 
