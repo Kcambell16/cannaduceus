@@ -96,9 +96,9 @@
 
 			<ul>
 
-				<li></li>
-				<li></li>
-				<li></li>
+				<li>one user can write many reviews (1 to n)</li>
+				<li>many users can rate many reviews (m to n)</li>
+				<li>many reviews can have many ratings (m to n)</li>
 
 			</ul>
 
