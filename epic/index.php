@@ -171,17 +171,17 @@
 
 		<ul>
 
-			<li>User: Betty Baker - Goal:</li>
+			<li>User: Betty Baker - Goal: Betty to locate the closest dispensary</li>
 
-			<li>User: Bill Stoner - Goal</li>
+			<li>User: Bill Stoner - Goal: Bill want to connect with other medical Cannabis users</li>
 
-			<li>User: Mary Jane - Goal</li>
+			<li>User: MaryJane Verde- Goal: MaryJane wants to review strain information. </li>
 
-			<li>User:</li>
+			<li>User: Betty Baker - Goal: Betty want to read customer review on dispensary </li>
 
-			<li>User:</li>
+			<li>User: Bill Stoner - Goal: Bill wants access to laws and legislative</li>
 
-			<li>User:</li>
+			<li>User: MaryJane Verde- Goal: </li>
 
 			<li>User:</li>
 
