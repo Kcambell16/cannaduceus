@@ -21,11 +21,10 @@
 			<ul>
 
 				<li>profileId (primary key)</li>
-				<li>profileUserName(unique)</li>
+				<li>profileName(unique)</li>
 				<li>profileEmail(unique)</li>
 				<li>profileHash</li>
 				<li>profileSalt</li>
-				<li>profileActivation</li>
 
 			</ul>
 
@@ -59,17 +58,23 @@
 			<h2>dispensaryLeafRating</h2>
 
 			<ul>
-				<li>dispensaryLeafRatingId</li>
-				<li>dispensaryLeafRatingProfileId</li>
 				<li>dispensaryLeafRatingRating</li>
 				<li>dispensaryLeafRatingDispensaryId</li>
+				<li>dispensaryLeafRatingProfileId</li>
 			</ul>
 
 			<h2>dispensaryFavorite</h2>
 
 			<ul>
-				<li>dispensaryFavoriteUserId</li>
+				<li>dispensaryFavoriteProfileId</li>
 				<li>dispensaryFavoriteDispensaryId</li>
+			</ul>
+
+			<h2>StrainLeafRating</h2>
+			<ul>
+			<li>strainLeafRatingStrainId</li>
+			<li>strainLeafRatingUserId</li>
+			<li>strainLeadRatingRating</li>
 			</ul>
 
 
@@ -111,12 +116,13 @@
 			<ul>
 
 				<li>many profile can write many dispensary reviews (m to n)</li>
-				<li>many profile can write many strains reviews (m to n)</li>
-				<li>many profile can favorite strains (m to n)</li>
-				<li>many profile can rate many strains (m to n)</li>
 				<li>many profiles can favorite many dispensaries (m to n)</li>
-				<li>many profiles can rate dispensary</li>
-				<li></li>
+				<li>many profiles can rate many dispensary (m to n) </li>
+				<li>many profile can write many strains reviews (m to n)</li>
+				<li>many profile can favorite many strains (m to n)</li>
+				<li>many profile can rate many strains (m to n)</li>
+
+
 
 
 			</ul>
