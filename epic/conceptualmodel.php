@@ -34,40 +34,35 @@
 
 			<ul>
 				<li>dispensaryId(primary key)</li>
-				<li>dispensaryName</li>
+				<li>dispensaryAttention</li>
+				<li>dispensaryCity</li>
 				<li>dispensaryEmail</li>
+				<li>dispensaryFavorite</li>
+				<li>dispensaryName</li>
 				<li>dispensaryName</li>
 				<li>dispensaryPhone </li>
-				<li>dispensaryUrl</li>
-				<li>dispensaryAttention</li>
 				<li>dispensaryStreet1</li>
 				<li>dispensaryStreet2</li>
-				<li>dispensaryCity</li>
+				<li>dispensaryUrl</li>
 				<li>dispensaryZipCode</li>
-				<li>dispensaryPhoneNumber</li>
-				<li>dispensaryFavorite</li>
 			</ul>
 
 			<h2>dispensaryReview(weak)</h2>
 
 			<ul>
-				<li>dispensaryReviewId</li>
-				<li>dispensaryReviewTxt</li>
+				<li>dispensaryReviewId(primary)</li>
+				<li>dispensaryReviewProfileId(foreign key)</li>
+				<li>dispensaryReviewDispensaryId(foreign key)</li>
 				<li>dispensaryReviewDateTime</li>
-				<li>dispensaryReviewProfileId</li>
-<<<<<<< Updated upstream
-				<li>dispensaryReviewDispensaryId</li>
-=======
 				<li>dispensaryReviewTxt</li>
->>>>>>> Stashed changes
 			</ul>
 
 			<h2>dispensaryLeafRating</h2>
 
 			<ul>
+				<li>dispensaryLeafRatingDispensaryId(foreign key)</li>
+				<li>dispensaryLeafRatingProfileId(foreign key)</li>
 				<li>dispensaryLeafRatingRating</li>
-				<li>dispensaryLeafRatingDispensaryId</li>
-				<li>dispensaryLeafRatingProfileId</li>
 			</ul>
 
 			<h2>dispensaryFavorite</h2>
@@ -78,9 +73,10 @@
 			</ul>
 
 			<h2>StrainLeafRating</h2>
+
 			<ul>
-			<li>strainLeafRatingStrainId</li>
-			<li>strainLeafRatingUserId</li>
+			<li>strainLeafRatingStrainId(foreign key)</li>
+			<li>strainLeafRatingUserId(foreign key)</li>
 			<li>strainLeadRatingRating</li>
 			</ul>
 
@@ -91,8 +87,6 @@
 
 			<ul>
 				<li>strainId(primary key)</li>
-				<li>strainName</li>
-				<li>strainThc</li>
 				<li>strainCbd</li>
 				<li>strainDescription</li>
 				<li>strainName</li>
@@ -101,18 +95,14 @@
 			</ul>
 
 			<h2>StrainReview(weak)</h2>
+			<!-- not sure if primary key or if it remains weak -->
 			<ul>
-
-				<li>strainReviewId(weak)</li>
+				<li>strainReviewId(primary?)</li>
 				<li>strainReviewProfileId(foreign key)</li>
 				<li>strainReviewStrainId(foreign key)</li>
 				<li>strainReviewDateTime</li>
 				<li>strainReviewTxt</li>
-<<<<<<< Updated upstream
-				<li>strainReviewProfileId</li>
 				<li>strainReviewStrainId</li>
-=======
->>>>>>> Stashed changes
 
 			</ul>
 
@@ -120,8 +110,8 @@
 
 			<ul>
 
-				<li>strainFavoriteProfileId</li>
-				<li>strainFavoriteStrainId</li>
+				<li>strainFavoriteProfileId(foreign key)</li>
+				<li>strainFavoriteStrainId(foreign key)</li>
 
 				</ul>
 
