@@ -94,20 +94,7 @@
 				<li>strainFavoriteUserId</li>
 				<li>strainFavoriteStrainId</li>
 
-			</ul>
-
-			<h2>strainLeafRating(weak)</h2>
-			<ul>
-
-				<li>strainLeafRatingId</li>
-				<li>strainLeafRatingStrainId</li>
-				<li>strainLeafRatingUserId</li>
-				<li>strainLeafRatingRating</li>
-
-
-
-
-			</ul>
+				</ul>
 
 			<h2>Relations</h2>
 
