@@ -58,14 +58,15 @@
 			<h2>dispensaryLeafRating</h2>
 
 			<ul>
+				<li>dispensaryLeafRatingId</li>
 				<li>dispensaryLeafRatingRating</li>
 				<li>dispensaryLeafRatingDispensaryId</li>
+				<li>dispensaryLeafRatingProfileId</li>
 			</ul>
 
 			<h2>dispensaryFavorite</h2>
 
 			<ul>
-				<li>dispensaryFavoriteId</li>
 				<li>dispensaryFavoriteUserId</li>
 				<li>dispensaryFavoriteDispensaryId</li>
 			</ul>
