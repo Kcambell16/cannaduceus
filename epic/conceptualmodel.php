@@ -16,15 +16,15 @@
 
 			<h2>Attributes and Entities</h2>
 
-			<h4>User</h4>
+			<h4>Profile</h4>
 
 			<ul>
 
-				<li>userId (primary key)</li>
-				<li>userName(unique)</li>
-				<li>userEmail(unique)</li>
-				<li>userHash</li>
-				<li>userSalt</li>
+				<li>profileId (primary key)</li>
+				<li>profileName(unique)</li>
+				<li>profileEmail(unique)</li>
+				<li>profileHash</li>
+				<li>profileSalt</li>
 
 			</ul>
 
