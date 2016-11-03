@@ -21,10 +21,11 @@
 			<ul>
 
 				<li>profileId (primary key)</li>
-				<li>profileName(unique)</li>
+				<li>profileUserName(unique)</li>
 				<li>profileEmail(unique)</li>
 				<li>profileHash</li>
 				<li>profileSalt</li>
+				<li>profileActivation</li>
 
 			</ul>
 
