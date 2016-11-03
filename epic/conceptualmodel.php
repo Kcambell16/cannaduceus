@@ -52,7 +52,7 @@
 				<li>dispensaryReviewId</li>
 				<li>dispensaryReviewTxt</li>
 				<li>dispensaryReviewDateTime</li>
-				<li>dispensaryReviewUserId</li>
+				<li>dispensaryReviewProfileId</li>
 				<li>dispensaryReviewDispensaryId</li>
 			</ul>
 
@@ -92,7 +92,7 @@
 				<li>strainReviewId(weak)</li>
 				<li>strainReviewDateTime</li>
 				<li>strainReviewTxt</li>
-				<li>strainReviewUserId</li>
+				<li>strainReviewProfileId</li>
 				<li>strainReviewStrainId</li>
 
 			</ul>
@@ -101,7 +101,7 @@
 
 			<ul>
 
-				<li>strainFavoriteUserId</li>
+				<li>strainFavoriteProfileId</li>
 				<li>strainFavoriteStrainId</li>
 
 				</ul>
@@ -110,11 +110,13 @@
 
 			<ul>
 
-				<li>one user can write many reviews (1 to n)</li>
-				<li>many users can rate many reviews (m to n)</li>
-				<li>many reviews can have many ratings (m to n)</li>
-				<li>many users can review many strains (m to n)</li>
-				<li>many users can favorite strains (m to n)</li>
+				<li>many profile can write many dispensary reviews (m to n)</li>
+				<li>many profile can write many strains reviews (m to n)</li>
+				<li>many profile can favorite strains (m to n)</li>
+				<li>many profile can rate many strains (m to n)</li>
+				<li>many profiles can favorite many dispensaries (m to n)</li>
+				<li>many profiles can rate dispensary</li>
+				<li></li>
 
 
 			</ul>
