@@ -127,7 +127,6 @@
 				<li>many profile can rate many strains (m to n)</li>
 				<li>many profiles can favorite many dispensaries (m to n)</li>
 				<li>many profiles can rate dispensary</li>
-				<li></li>
 
 
 			</ul>
