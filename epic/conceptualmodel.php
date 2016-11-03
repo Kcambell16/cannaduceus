@@ -21,10 +21,12 @@
 			<ul>
 
 				<li>profileId (primary key)</li>
-				<li>profileName(unique)</li>
+				<li>profileUserName(unique)</li>
 				<li>profileEmail(unique)</li>
+				<li>profileUserName(unique)</li>
 				<li>profileHash</li>
 				<li>profileSalt</li>
+				<li>profileActivation</li>
 
 			</ul>
 
@@ -34,6 +36,7 @@
 				<li>dispensaryId(primary key)</li>
 				<li>dispensaryName</li>
 				<li>dispensaryEmail</li>
+				<li>dispensaryName</li>
 				<li>dispensaryPhone </li>
 				<li>dispensaryUrl</li>
 				<li>dispensaryAttention</li>
@@ -52,7 +55,11 @@
 				<li>dispensaryReviewTxt</li>
 				<li>dispensaryReviewDateTime</li>
 				<li>dispensaryReviewProfileId</li>
+<<<<<<< Updated upstream
 				<li>dispensaryReviewDispensaryId</li>
+=======
+				<li>dispensaryReviewTxt</li>
+>>>>>>> Stashed changes
 			</ul>
 
 			<h2>dispensaryLeafRating</h2>
@@ -66,8 +73,8 @@
 			<h2>dispensaryFavorite</h2>
 
 			<ul>
-				<li>dispensaryFavoriteProfileId</li>
-				<li>dispensaryFavoriteDispensaryId</li>
+				<li>dispensaryFavoriteProfileId(primary)</li>
+				<li>dispensaryFavoriteDispensaryId(foreign key)</li>
 			</ul>
 
 			<h2>StrainLeafRating</h2>
@@ -88,6 +95,8 @@
 				<li>strainThc</li>
 				<li>strainCbd</li>
 				<li>strainDescription</li>
+				<li>strainName</li>
+				<li>strainThc</li>
 				<li>strainType</li>
 			</ul>
 
@@ -95,10 +104,15 @@
 			<ul>
 
 				<li>strainReviewId(weak)</li>
+				<li>strainReviewProfileId(foreign key)</li>
+				<li>strainReviewStrainId(foreign key)</li>
 				<li>strainReviewDateTime</li>
 				<li>strainReviewTxt</li>
+<<<<<<< Updated upstream
 				<li>strainReviewProfileId</li>
 				<li>strainReviewStrainId</li>
+=======
+>>>>>>> Stashed changes
 
 			</ul>
 
@@ -119,10 +133,11 @@
 				<li>many profiles can favorite many dispensaries (m to n)</li>
 				<li>many profiles can rate many dispensary (m to n) </li>
 				<li>many profile can write many strains reviews (m to n)</li>
-				<li>many profile can favorite many strains (m to n)</li>
+				<li>many profile can favorite strains (m to n)</li>
 				<li>many profile can rate many strains (m to n)</li>
-
-
+				<li>many profiles can favorite many dispensaries (m to n)</li>
+				<li>many profiles can rate dispensary</li>
+				<li></li>
 
 
 			</ul>
