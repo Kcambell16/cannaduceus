@@ -71,8 +71,11 @@ class Profile {
 			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
 		} Catch(\RangeException $range) {
 			// rethrow the exception to caller
-			throw(new\ RangeException($range->getMessage(), 0, range));
-		} Catch(\TypeError $typeError);
+			throw(new \RangeException($range->getMessage(), 0, range));
+		} Catch(\TypeError $typeError){
+			// rethrow the exception to the caller
+			throw(new \TypeError($typeError->getMessage(), 0, $typeError));
+		}
 	}
 }
 // making sure commit works
