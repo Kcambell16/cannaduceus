@@ -40,6 +40,7 @@ CREATE TABLE dispensary
 	dispensaryEmail VARCHAR(128) NOT NULL,
 	dispensaryPhone VARCHAR(32) NOT NULL,
 	dispensaryUrl VARCHAR(128)
+		-- whats up with this
 	INDEX (dispensaryName),
 	INDEX (dispensaryAttention),
 	INDEX (dispensaryStreet1),
