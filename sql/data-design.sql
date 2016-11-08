@@ -39,18 +39,7 @@ CREATE TABLE dispensary
 	dispensaryZipCode VARCHAR(32) NOT NULL,
 	dispensaryEmail VARCHAR(128) NOT NULL,
 	dispensaryPhone VARCHAR(32) NOT NULL,
-	dispensaryUrl VARCHAR(128)
-		-- whats up with this
-	INDEX (dispensaryName),
-	INDEX (dispensaryAttention),
-	INDEX (dispensaryStreet1),
-	INDEX (dispensaryStreet2),
-	INDEX (dispensaryCity),
-	INDEX (dispensaryState),
-	INDEX (dispensaryZipCode),
-	INDEX (dispensaryEmail),
-	INDEX (dispensaryPhone),
-	INDEX (dispensaryUrl),
+	dispensaryUrl VARCHAR(128),
 	PRIMARY KEY (dispensaryId)
 );
 
@@ -95,52 +84,28 @@ CREATE TABLE dispensaryleafrating
 	INDEX (dispensaryLeafRatingProfileId),
 	FOREIGN KEY (dispensaryLeafRatingProfileId) REFERENCES profile (profileId),
 	FOREIGN KEY (dispensaryLeafRatingRating) REFERENCES dispensary (dispensaryId),
-	PRIMARY KEY (dispensaryLeafRatingProfileId, dispensaryLeafRatingDispensaryId)
+	PRIMARY KEY (dispensaryLeafRatingProfileId, dispensaryRatingDispensaryId)
 );
 
 CREATE TABLE dispensaryfavorite
 (
-
-	dispensaryFavoriteProfileId INT UNSIGNED NOT NULL,
+	dispensaryProfileId INT UNSIGNED NOT NULL,
 	dispensaryFavoriteDispensaryId INT UNSIGNED NOT NULL,
-	FOREIGN KEY (dispensaryFavoriteProfileId) REFERENCES profile (profileId),
-	FOREIGN KEY (dispensaryFavoriteDispensaryId) REFERENCES dispensary (dispensaryId),
-	PRIMARY KEY (dispensaryFavoriteProfileId, dispensaryFavoriteDispensaryId)
+	-- do we need to index anything here?
+	FOREIGN KEY (dispensaryLeafRatingProfileId) REFERENCES profile (profileId),
+	FOREIGN KEY (dispensaryLeafRatingRating) REFERENCES rating (ratingId),
+	PRIMARY KEY (dispensaryLeafRatingProfileId, dispensaryRatingRating)
 );
 
 CREATE TABLE strainreview
 (
 	strainReviewId INT UNSIGNED NOT NULL,
 	strainReviewProfileId INT UNSIGNED NOT NULL,
-	strainReviewStrainId INT UNSIGNED NOT NULL,
-	strainReviewDateTime INT UNSIGNED NOT NULL,
-	strainReviewTxt VARCHAR(256) NOT NULL,
-	INDEX (strainReviewProfileId),
-	INDEX (strainReviewStrainId),
-	INDEX (strainReviewDateTime),
-	INDEX (strainReviewTxt),
-	FOREIGN KEY (strainReviewProfileId) REFERENCES profile (profileId),
-	FOREIGN KEY (strainReviewStrainId) REFERENCES strain (strainId),
-	PRIMARY KEY (strainReviewStrainId, strainReviewProfileId)
 );
 
 CREATE TABLE strainleafrating
 (
-	strainLeafRatingStrainId INT UNSIGNED NOT NULL,
-	strainLeafRatingUserId INT UNSIGNED NOT NULL,
-	strainLeafRatingRating INT UNSIGNED NOT NULL,
-	INDEX (strainLeafRatingStrainId),
-	INDEX (strainLeafRatingUserId),
-	FOREIGN KEY (strainLeafRatingStrainId) REFERENCES profile (profileId),
-	FOREIGN KEY (strainLeafRatingRating) REFERENCES strain (strainId),
-	PRIMARY KEY (strainLeafRatingStrainId, strainLeafRatingUserId)
+
 );
 
 	CREATE TABLE strainfavorite
-(
-		strainFavoriteProfileId INT UNSIGNED NOT NULL,
-		strainFavoriteStrainId INT UNSIGNED NOT NULL,
-		FOREIGN KEY (strainFavoriteProfileId) REFERENCES profile (profileId),
-		FOREIGN KEY (strainFavoriteStrainId) REFERENCES strain (strainId),
-		PRIMARY KEY (strainFavoriteProfileId, strainFavoritestrainId)
-);

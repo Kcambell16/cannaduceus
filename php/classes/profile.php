@@ -57,22 +57,22 @@ class Profile {
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newProfileId = null, string $newProfileUserName, string $newProfileEmail, string $newProfileHash, $newProfileSalt, $newProfileActivation,) {
+	public function __construct(int $newProfileId = null, string $newProfileUserName, string $newProfileEmail, string $newProfileHash, $newProfileSalt, $newProfileActivation) {
 
 		try {
 			$this->setProfileId($newProfileId);
-			$this->setProfileUserName($newProfileUserNameId);
+			$this->setProfileUserName($newProfileUserName);
 			$this->setProfileEmail($newProfileEmail);
 			$this->setProfileHash($newProfileHash);
 			$this->setProfileSalt($newProfileSalt);
 			$this->setProfileActivation($newProfileActivation);
-		} Catch(\InvalidArgumentException $InvalidArgumentException) {
+		} Catch(\invalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the caller
 			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
 		} Catch(\RangeException $range) {
 			// rethrow the exception to caller
 			throw(new\ RangeException($range->getMessage(), 0, range));
-		} Catch(\TypeError $typeError)
+		} Catch(\TypeError $typeError);
 	}
 }
 
