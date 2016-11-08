@@ -97,15 +97,20 @@ class Dispensary {
 	 * @param string $dispensaryStreet address of dispensary
 	 * @param string $dispensaryStreet1 cross streets of dispensary for google plugin
 	 * @param string $dispensaryUrl web address of dispensary
-	 * @param string $dispensaryZipCode zip code of dispensary
+	 * @param int $dispensaryZipCode zip code of dispensary
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 */
-
-
-
+	/**
+	 * @return string
+	 */
+	public function __construct(int $newDispensaryId = null, string $newDispensaryAttention, string $newDispensaryCity, string $newDispensaryEmail, int $newDispensaryFavorite, string $newDispensaryName, int $newDispensaryPhone, string $newDispensaryStreet, string $newDispensaryStreet1, string $newDispensaryUrl, string $newDispensaryZipCode, int $newDispensaryZipCode) {
+		try {
+			$this->setDispensaryId
+	}
+	}
 
 
 }
