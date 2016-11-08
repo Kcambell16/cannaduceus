@@ -47,13 +47,13 @@ class Dispensary {
 	 * favorites for dispensary give by users
 	 * @var int $dispensaryFavorite
 	 **/
-	private $dispensaryFavorite
+	private $dispensaryFavorite;
 
 	/**
 	 * actual name of dispensary
 	 * @var string $dispensaryName
 	 **/
-	private $dispensaryName
+	private $dispensaryName;
 
 		/**
 		 * actual name of dispensary
