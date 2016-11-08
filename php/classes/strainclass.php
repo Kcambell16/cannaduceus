@@ -25,36 +25,36 @@ class Strain {
 	private $strainName;
 
 	/**
-	 *address of the strain selling the catalog of lots;
-	 * @var string $strainAddress
+	 *type of strain indica, sativa, or hybrid;
+	 * @var string $strainName
 	 **/
-	private $strainAddress;
+	private $strainType;
 
 	/**
-	 *buyer premium is the price on top of the selling price that the winner owes the "strain" who sold the lots;
-	 * @var int $strainBuyerPremium
+	 *strain THC content;
+	 * @var int $strainThc
 	 **/
-	private $strainBuyerPremium;
+	private $strainThc;
 
 	/**
-	 *shipping policy is the shipping standards followed by the "strain"
-	 * @var string $strainShippingPolicy
+	 *strain CBD content;
+	 * @var string $strainCbd
 	 **/
-	private $strainShippingPolicy;
+	private $strainCbd;
 
 	/**
-	 *payment policy is the standard payment policy followed by the "strain" and is agreed to be followed by the user
-	 * @var string $strainPaymentPolicy
+	 *strain Description gives info about the strain
+	 * @var string $strainDescription
 	 **/
-	private $strainPaymentPolicy;
+	private $strainDescription;
 
 	/** Constructor for new strain
 	 *
 	 * @param int | null $newstrainId id of this strain or null if a new strain
-	 * @param string $newstrainLogo the image file of the strain logo
-	 * @param int | null $newstrainBuyerPremium buyer premium amount or null if a new strain
-	 * @param string $newstrainAddress string of strain address
-	 * @param string $newstrainShippingPolicy string of strain shipping policy
+	 * @param string $newstrainName the name of the strain
+	 * @param string $newstrainType Sativa, Indica, Hybrid or null if a new strain
+	 * @param string $newstrainThc string of strain THC content
+	 * @param string $newstrainCbd string of strain shipping policy
 	 * @param string $newstrainPaymentPolicy string of strain payment policy
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
