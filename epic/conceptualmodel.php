@@ -38,10 +38,9 @@
 				<li>dispensaryEmail</li>
 				<li>dispensaryFavorite</li>
 				<li>dispensaryName</li>
-				<li>dispensaryName</li>
 				<li>dispensaryPhone </li>
+				<li>dispensaryStreet</li>
 				<li>dispensaryStreet1</li>
-				<li>dispensaryStreet2</li>
 				<li>dispensaryUrl</li>
 				<li>dispensaryZipCode</li>
 			</ul>
