@@ -106,9 +106,18 @@ class Dispensary {
 	/**
 	 * @return string
 	 */
-	public function __construct(int $newDispensaryId = null, string $newDispensaryAttention, string $newDispensaryCity, string $newDispensaryEmail, int $newDispensaryFavorite, string $newDispensaryName, int $newDispensaryPhone, string $newDispensaryStreet, string $newDispensaryStreet1, string $newDispensaryUrl, string $newDispensaryZipCode, int $newDispensaryZipCode) {
+	public function __construct(int $newDispensaryId = null, string $newDispensaryAttention, string $newDispensaryCity, string $newDispensaryEmail, int $newDispensaryFavorite, string $newDispensaryName, int $newDispensaryPhone, string $newDispensaryStreet, string $newDispensaryStreet1, string $newDispensaryUrl, int $newDispensaryZipCode) {
 		try {
-			$this->setDispensaryId
+			$this->setDispensaryId($newDispensaryId);
+			$this->dispensaryAttention($newDispensaryAttention);
+			$this->dispensaryCity($newDispensaryCity);
+			$this->dispensaryEmail($newDispensaryEmail);
+			$this->dispensaryFavorite($newDispensaryFavorite);
+			$this->dispensaryName($newDispensaryName);
+			$this->dispensaryPhone($newDispensaryPhone);
+			$this->dispensaryStreet($newDispensaryStreet);
+			$this->dispensaryStreet1($newDispensaryStreet1);
+
 	}
 	}
 
