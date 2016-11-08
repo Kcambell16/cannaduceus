@@ -1,35 +1,72 @@
 <?php
+namespace Edu\Cnm\nsanchez121\cannaduceus;
 /**
- * this is going to be the cross section for Amazon reviews
+ * this is going to be the cross section for profile info
  *
- *this Review can be considered a small example of what servies like Amazon use
- * @author Nathan A Sanchez
- * @v   ;yv;   ersion 1.0.0
+ *this is just one profile out of the many that will be made.
+ * @author Nathan A Sanchez (nsanchez121@cnm.edu)
+ * @version 1.0.0
  **/
 
 class Profile {
 
 	/**
-	 * id for for this profile; this is the primary key
+	 * id for the profile; this is the primary key
 	 * @var int $profileId
-	 */
+	 **/
 	private $profileId;
 	/**
-	 * id of the that sent this ; this is a foreign key
-	 * @var int $ProfileId
+	 *name of the profile;
+	 * @var int $stingName
 	 **/
 	private $profileUserName;
 	/**
-	 * actual name
-	 * @var string $
+	 * email for the profile
+	 * @var int $stringEmail
 	 **/
-	private $reviewContent;
+	private $profileEmail;
 	/**
-	 * date time this Review was sent, in PHP DateTime object
-	 * @var \DateTime $reviewDate
-	 */
-	private $reviewDate;
+	 * this is the hash for the profile
+	 * @var int $stingHash
+	 * ask dylan about how to do this better
+	 **/
+	private $profileHash;
+	/**
+	 * this is the salt for the profile
+	 * @var int $stingSalt
+	 **/
+	private $profileSalt;
+	/**
+	 * this is the activation for the profile
+	 * @var int $stingactivation
+	 **/
+	private $profileActivation;
+/**
+ * Constructor for the new profile
+ *
+ * @param int | null $newProfileId Id of this profile or null if new profile
+ *
+ *
+ */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+	?>
 
 
 
