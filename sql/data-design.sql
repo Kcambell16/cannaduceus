@@ -1,8 +1,13 @@
 -- drop table statements go here
-DROP TABLE IS EXISTS
-DROP TABLE IS EXISTS
-DROP TABLE IS EXISTS
-DROP TABLE IS EXISTS
+DROP TABLE IF EXISTS strainfavorite;
+DROP TABLE IF EXISTS strainleafrating;
+DROP TABLE IF EXISTS strainreview;
+DROP TABLE IF EXISTS dispensaryfavorite;
+DROP TABLE IF EXISTS dispensaryleafrating;
+DROP TABLE IF EXISTS dispensaryreview;
+DROP TABLE IF EXISTS strain;
+DROP TABLE IF EXISTS dispensary;
+DROP TABLE IF EXISTS profile;
 
 CREATE TABLE profile
 (
@@ -98,11 +103,19 @@ CREATE TABLE dispensaryfavorite
 	dispensaryFavoriteDispensaryId INT UNSIGNED NOT NULL,
 	-- do we need to index anything here?
 	FOREIGN KEY (dispensaryLeafRatingProfileId) REFERENCES profile (profileId),
-	FOREIGN KEY (dispensaryLeafRatingRating) REFERENCES rating (r),
+	FOREIGN KEY (dispensaryLeafRatingRating) REFERENCES rating (ratingId),
 	PRIMARY KEY (dispensaryLeafRatingProfileId, dispensaryRatingRating)
+);
+
+CREATE TABLE strainreview
+(
+	strainReviewId INT UNSIGNED NOT NULL,
+	strainReviewProfileId INT UNSIGNED NOT NULL,
 );
 
 CREATE TABLE strainleafrating
 (
 
-)
+);
+
+	CREATE TABLE strainfavorite
