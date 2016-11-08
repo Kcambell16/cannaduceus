@@ -39,6 +39,7 @@
 				<li>dispensaryFavorite</li>
 				<li>dispensaryName</li>
 				<li>dispensaryPhone </li>
+				<li>dispensaryStreet</li>
 				<li>dispensaryStreet1</li>
 				<li>dispensaryUrl</li>
 				<li>dispensaryZipCode</li>

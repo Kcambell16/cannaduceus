@@ -56,8 +56,36 @@ class Dispensary {
 	private $dispensaryName;
 
 		/**
-		 * actual name of dispensary
-		 * @var int $dispensaryName
+		 * phone number of specific dispensary
+		 * @var int $dispensaryPhone
 		 **/
+		private $dispensaryPhone;
+
+	/**
+	 * actual street address for dispensary
+	 * @var string $dispensaryStreet
+	 **/
+	private $dispensaryStreet;
+
+	/**
+	 * cross streets for dispensary
+	 * @var string $dispensaryStreet1
+	 **/
+	private $dispensaryStreet1;
+
+	/**
+	 * actual URL/ web address for dispensary
+	 * @var string $dispensaryUrl
+	 **/private $dispensaryUrl;
+
+		/**
+		 * actual zip code for dispensary
+		 * @var int $dispensaryZipCode
+		 **/
+		private $dispensaryZipCode;
+
+
+
+
 
 }
