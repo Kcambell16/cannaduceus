@@ -39,17 +39,7 @@ CREATE TABLE dispensary
 	dispensaryZipCode VARCHAR(32) NOT NULL,
 	dispensaryEmail VARCHAR(128) NOT NULL,
 	dispensaryPhone VARCHAR(32) NOT NULL,
-	dispensaryUrl VARCHAR(128)
-	INDEX (dispensaryName),
-	INDEX (dispensaryAttention),
-	INDEX (dispensaryStreet1),
-	INDEX (dispensaryStreet2),
-	INDEX (dispensaryCity),
-	INDEX (dispensaryState),
-	INDEX (dispensaryZipCode),
-	INDEX (dispensaryEmail),
-	INDEX (dispensaryPhone),
-	INDEX (dispensaryUrl),
+	dispensaryUrl VARCHAR(128),
 	PRIMARY KEY (dispensaryId)
 );
 
@@ -74,7 +64,7 @@ CREATE TABLE dispensaryreview
 	dispensaryReviewId INT UNSIGNED NOT NULL,
 	dispensaryReviewProfileId INT UNSIGNED NOT NULL,
 	dispensaryReviewDispensaryId INT UNSIGNED NOT NULL,
-	dispensaryReviewDateTime INT INSIGNED NOT NULL,
+	dispensaryReviewDateTime INT UNSIGNED NOT NULL,
 	dispensaryReviewTxt VARCHAR(256) NOT NULL,
 	INDEX (dispensaryReviewProfileId),
 	INDEX (dispensaryReviewDispensaryId),

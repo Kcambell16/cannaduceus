@@ -41,28 +41,41 @@ class Profile {
 	 * @var $stingactivation
 	 **/
 	private $profileActivation;
-/**
- * Constructor for the new profile
- *
- * @param int | null $newProfileId Id of this profile or null if new profile
- * @param string $newProfileUserName the name of the profile
- * @param string $newProfileEmail the email for the profile
- * @param string $profileHash the hash for the profile (again not sure if this is the way to handle hash/salt ask dylan)
- * @param string $profileActivation the activation for the profile
- * @param string $profileSalt the salt for the profile
- * @throws \InvalidArgumentException if data types are not valid
- * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
- * @throws \TypeError if data types violate type hints
- * @throws \Exception if some other exception occurs
- */
-	public function __construct(int $newProfileId = null, string $newProfileUserName, string $newProfileEmail,  ) {
+
+	/**
+	 * Constructor for the new profile
+	 *
+	 * @param int | null $newProfileId Id of this profile or null if new profile
+	 * @param string $newProfileUserName the name of the profile
+	 * @param string $newProfileEmail the email for the profile
+	 * @param string $profileHash the hash for the profile (again not sure if this is the way to handle hash/salt ask dylan)
+	 * @param string $profileActivation the activation for the profile
+	 * @param string $profileSalt the salt for the profile
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 * @throws \TypeError if data types violate type hints
+	 * @throws \Exception if some other exception occurs
+	 */
+
+	public function __construct(int $newProfileId = null, string $newProfileUserName, string $newProfileEmail, string $newProfileHash, $newProfileSalt, $newProfileActivation) {
+
+		try {
+			$this->setProfileId($newProfileId);
+			$this->setProfileUserName($newProfileUserName);
+			$this->setProfileEmail($newProfileEmail);
+			$this->setProfileHash($newProfileHash);
+			$this->setProfileSalt($newProfileSalt);
+			$this->setProfileActivation($newProfileActivation);
+		} Catch(\invalidArgumentException $invalidArgumentException) {
+			// rethrow the exception to the caller
+			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
+		} Catch(\RangeException $range) {
+			// rethrow the exception to caller
+			throw(new\ RangeException($range->getMessage(), 0, range));
+		} Catch(\TypeError $typeError);
 	}
-
-
 }
-
-	?>
-
+// making sure commit works
 
 
 
