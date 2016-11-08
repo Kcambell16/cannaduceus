@@ -84,6 +84,18 @@ class Dispensary {
 		 **/
 		private $dispensaryZipCode;
 
+	/**
+	 * constructor for dispensary
+	 *
+	 * @param int|null $dispensaryId id of this Dispensay or null if a dispensary
+	 * @param int $newTweetProfileId id of the Profile that sent this Tweet
+	 * @param string $newTweetContent string containing actual tweet data
+	 * @param \DateTime|string|null $newTweetDate date and time Tweet was sent or null if set to current date and time
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 * @throws \TypeError if data types violate type hints
+	 * @throws \Exception if some other exception occurs
+	 */
 
 
 
