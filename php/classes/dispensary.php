@@ -89,13 +89,21 @@ class Dispensary {
 	 *
 	 * @param int|null $dispensaryId id of this Dispensay or null if a dispensary
 	 * @param string $dispensaryAttention where dispensary is addressed
-	 * @param string dispensaryCity string actual city of dispensary
-	 * @param \DateTime|string|null $newTweetDate date and time Tweet was sent or null if set to current date and time
+	 * @param string $dispensaryCity string actual city of dispensary
+	 * @param string $dispensaryEmail string email of dispensary
+	 * @param int $dispensaryFavorite rating of dispensary by user
+	 * @param string $dispensaryName name of dispensary
+	 * @param int $dispensaryPhone number of dispensary
+	 * @param string $dispensaryStreet address of dispensary
+	 * @param string $dispensaryStreet1 cross streets of dispensary for google plugin
+	 * @param string $dispensaryUrl web address of dispensary
+	 * @param string $dispensaryZipCode zip code of dispensary
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 */
+
 
 
 
