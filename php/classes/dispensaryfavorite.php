@@ -23,7 +23,7 @@ class DispensaryFavorite {
 	 *
 	 * @var int $dispensaryFavoritesDispensaryId
 	 */
-	private $dispensaryFavoritedispensaryId;
+	private $dispensaryFavoriteDispensaryId;
 
 	/** Constructor for the new dispensaryFavorite
 	 *
@@ -67,6 +67,43 @@ class DispensaryFavorite {
 	 * @param int $newDispensaryFavoriteId new value of dispensaryFavoriteProfile Id
 	 * @throws \UnexpectedValueException if $newDispensaryFavoriteProfileId is not an integer
 	 */
+	/**
+	 * @param int $dispensaryFavoriteProfileId
+	 */
+	public function setDispensaryFavoriteProfileId($dispensaryFavoriteId){
+		$newDispensaryFavoriteProfileId = filter_var($newDispensaryFavoriteProfileId, FILTER_VALIDATE_INT);
+		if($newDispensaryFavoriteProfileId === false){
+			throw(new \UnexpectedValueException("dispensary Favorite Profile Id is not a vaild interger"));
+		}
+
+		//Convert and store the dispensaryFavoriteProfileId
+		$this->dispensaryFavoriteProfileId = $newDispensaryFavoriteProfileId;
+	}
+
+	/**
+	 * accessor method for dispensaryFavoriteDispensaryId
+	 *
+	 * @return int|null value of dispensaryFavoriteDispensaryId
+	 */
+	public function getDispensaryFavoriteDispensaryId(): int {
+		return $this->dispensaryFavoriteDispensaryId;
+	}
+
+	/**
+	 * mutator method for dispensaryFavoriteDispensaryId
+	 *
+	 * @param int $newDispensaryFavoriteDispensaryId new value of dispensaryFavoriteDispensaryId
+	 * @throws \UnexpectedValueException if $newDispensaryFavoriteDispensaryId is not an integer
+	 */
+	public function setDispensaryFavoriteDispensaryId($dispensaryFavoriteDispensaryId) {
+		$newDispensaryFavoriteDispensaryId = filter_var($newDispensaryFavoriteDispensaryId, FILTER_VAILIDATE_INT);
+		if($newDispensaryFavoriteDispensaryId === false) {
+			throw(new \UnexpectedValueException("Dispensary Favorite Dispensary Id not a vaild integer"));
+		}
+		//Convert and store the dispensaryFavoriteDispensaryId
+		$this->dispensaryFavoriteDispensaryId = $dispensaryFavoriteDispensaryId;
+	}
+
 
 
 

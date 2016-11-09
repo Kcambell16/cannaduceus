@@ -355,4 +355,37 @@ public function getDispensaryStreet() {
 		// store the dispensary street
 		$this->dispensaryStreet = $newDispensaryStreet;
 	}
+
+	/**
+ *accessor method for dispensary street1
+ *
+ * @return string value of dispensary street1
+ **/
+public function getDispensaryStreet1() {
+	return($this->dispensaryStreet1);
+}
+
+/**
+ * mutator method for dispensary street1
+ *
+ * @param string $newDispensaryStreet1 new value of dispensary street
+ * @throws \InvalidArgumentException if $newDispensaryStreet1 is not a string or insecure
+ * @throws \RangeException if $newDispensaryStreet1 is > 140 characters
+ * @throws \TypeError if $newDispensaryStreet1 is not a string
+ **/
+public function setDispensaryStreet1(string $newDispensaryStreet1) {
+	//verify the street is secure
+	$newDispensaryStreet1 = trim($newDispensaryStreet1);
+	$newDispensaryStreet1 = filter_var($newDispensaryStreet1, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	if(empty($newDispensaryStreet1) === true) {
+		throw(new \RangeException("dispensary street1 is empty or insecure"));
+	}
+	// verify the dispensary street1 will fit in the database
+	if(strlen($newDispensaryStreet1) >140) {
+		throw(new \RangeException("dispensary street1 too large"));
+	}
+
+	// store the dispensary street1
+	$this->dispensaryStreet1 = $newDispensaryStreet1;
+}
 }
