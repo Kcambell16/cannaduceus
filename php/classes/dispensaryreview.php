@@ -135,3 +135,51 @@ class DispensaryReview{
 			$this->dispensaryReviewDispensaryId = $newDispensaryReviewDispensaryId;
 
 }
+
+			/**
+ 			* accessor method for dispensary review date
+			 *
+ 			* @return \DateTime value of dispensary review date
+ 			**/
+	public function getDispensaryReviewDate() {
+		return($this->dispensaryReviewDate);
+	}
+
+			/**
+	 		* mutator method for dispensary review date
+			 *
+	 		* @param \DateTime|string|null $newDispensaryReviewDate dispensary review date as 			a DateTime object or string (or null to load the current time)
+	 		* @throws \InvalidArgumentException if $newDispensaryReviewDate is not a valid 			object or string
+	 * @throws \RangeException if $newDispensaryReviewDate is a date that does not exist
+	 **/
+	public function setDispensaryReviewDate($newDispensaryReviewDate = null) {
+		// base case: if the date is null, use the current date and time
+		if($newDispensaryReviewDate === null) {
+			$this->dispensaryReviewDate = new \DateTime();
+			return;
+		}
+
+		// store the dispensary review date
+		try {
+			$newDispensaryReviewDate = self::validateDateTime($newDispensaryReviewDate);
+		} catch(\InvalidArgumentException $invalidArgument) {
+			throw(new \InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
+		} catch(\RangeException $range) {
+			throw(new \RangeException($range->getMessage(), 0, $range));
+		}
+		$this->dispensaryReviewDate = $newDispensaryReviewDate;
+	}
+
+		/**
+		 *
+		 * Accesor method for dispensaryReviewText
+		 * @return int|null value of dispensary review text
+		 **/
+
+	public function getDispensaryReviewText() {
+		return ($this->dispensaryReviewText);
+	}
+
+
+
+

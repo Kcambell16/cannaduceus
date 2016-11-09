@@ -37,7 +37,7 @@
 				<li>dispensaryCity</li>
 				<li>dispensaryEmail</li>
 				<li>dispensaryName</li>
-				<li>dispensaryPhone </li>
+				<li>dispensaryPhone</li>
 				<li>dispensaryStreet</li>
 				<li>dispensaryStreet1</li>
 				<li>dispensaryUrl</li>

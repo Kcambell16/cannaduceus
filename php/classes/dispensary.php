@@ -261,7 +261,44 @@ $this->dispensaryCity = $newDispensaryCity;
 		$this->dispensaryEmail = $newDispensaryEmail;
 	}
 
-	/** accessor method for dispensary favorite
+	/** accessor method for dispensary name
 	 *
-	 * @return
+	 * @return string value of dispensary name
 	 **/
+	public function getDispensaryName() {
+		return($this->dispensaryName);
+	}
+
+	/**
+	 * mutator method for dispensary name
+	 *
+	 * @param string $newDispensaryName new value of dispensary name
+	 * @throws \InvalidArgumentException if $newDispensaryName is not a string or insecure
+	 * @throws \RangeException if $newDispensaryName is > 140 characters
+	 * @throws \TypeError if $newDispensaryName is not a string
+	 **/
+	public function setDispensaryName(string $newDispensaryName) {
+		//verify the dispensary name is secure
+		$newDispensaryName = trim($newDispensaryName);
+		$newDispensaryName = filter_var($newDispensaryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newDispensaryName) === true) {
+			throw(new \InvalidArgumentException("dispensary name is empty or insecure"));
+		}
+		//verify the dispensary email will fit in the database
+		if(strlen($newDispensaryName) > 140) {
+			throw(new \RangeException("dispensary email too large"));
+		}
+
+		//store dispensary name
+		$this->dispensaryName = $newDispensaryName;
+	}
+}
+
+/**
+ *accessor method for dispensary phone
+ *
+ * @return int|null value of dispensary phone
+ **/
+public function getDispensaryPhone() {
+	return($this->)
+}
