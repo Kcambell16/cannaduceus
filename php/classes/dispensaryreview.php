@@ -37,6 +37,18 @@ class DispensaryReview{
 
 	// CONSTRUCTOR GOES HERE LATER
 
+		/**
+		 * DispensaryReview constructor.
+		 * @param int|null $newDispensaryReviewId Id of this dispensary review or null if new dispensary review
+		 * @param string $newDutyStationName string contains actual duty station name
+		 * @param string $newDutyStationLocation string contains actual duty station location
+		 * @param string $newDutyStationImage string contains actual duty station image
+		 * @throws \InvalidArgumentException if data types are not valid
+		 * @throws \RangeException if data values are out of bounds (e.g. strings too long, negative integers)
+		 * @throws \TypeError if data violates type hints
+		 * @throws \Exception if any other exception occurs
+		 **/
+
 	/**
 	 * Accesor method for dispensaryReviewId
 	 *
