@@ -166,7 +166,29 @@ class Profile {
 		$this->profileEmail = string($newProfileEmail);
 	}
 
+	/**
+	 * accessor method for Profile Hash
+	 *
+	 * @return int for Profile Hash
+	 */
+	public function getProfileHash() {
+		return $this->getProfileHash;
+	}
+	/**
+	 * mutator method for Profile Hash
+	 *
+	 * @param string $newProfileHash new string of Profile Hash
+	 * @throws \UnexpectedValueException if $newProfileHash is not string
+	 */
+	public function setProfileHash($newProfileHash) {
+		$newProfileHash = filter_input($newProfileHash, FILTER_SANITIZE_STRING);
+		if($newProfileHash === false)	{
+			throw(new \UnexpectedValueException("Hash Invalid"));
+		}
 
+		//Convert and store the Profile Hash
+		$this->profileHash = string($newProfileHash);
+	}
 
 	}
 
