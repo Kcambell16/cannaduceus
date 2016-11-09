@@ -54,18 +54,18 @@ class DispensaryReview{
 	 * @thows \TypeError if $newDispensaryReviewId is not an integer
 	 **/
 
-	public function setDutyStationId(int $newDutyStationId = null) {
-		// base case: if the duty station id is null, this is a new duty station without a mySQL assigned id (yet)
-		if($newDutyStationId === null) {
-			$this->dutyStationId = null;
+	public function setDispensaryReviewId(int $newDispensaryReviewId = null) {
+		// base case: if the dispensary review id is null, this is a new dispensary review without a mySQL assigned id (yet)
+		if($newDispensaryReviewIdId === null) {
+			$this->dispensaryReviewId = null;
 			return;
 		}
 
-		// verify the duty station id is positive
-		if($newDutyStationId <= 0) {
-			throw(new \RangeException("duty station id is not positive"));
+		// verify the dispensary review id is positive
+		if($newDispensaryId <= 0) {
+			throw(new \RangeException("dispensary review id is not positive"));
 		}
-		// convert and store the duty station id
-		$this->dutyStationId = $newDutyStationId;
+		// convert and store the dispensary review id
+		$this->dispensaryReviewId = $newDispensaryReviewId;
 
 	}
