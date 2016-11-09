@@ -10,7 +10,7 @@ namespace Edu\Cnm\jmontoya306\cannaduceus;
  *
  **/
 
-class strainFavorite {
+class StrainFavorite{
 
 	/**
 	 * id for the StrainFavoriteProfileId; this is one of the foreign keys used to make a primary key
