@@ -93,10 +93,38 @@ class Profile {
 	 * mutator method for Profile Id
 	 *
 	 * @param int $newProfileId new value of Profile Id
-	 * @throws \UnexpectedValueException if $newProfileId is not an integer
+	 * @throws /UnexpectedValueException if $newProfileId is not an integer
+	 */
+	public function setProfileId($newProfileId) {
+		$newProfileId = filter_var($newProfileId, FILTER_VALIDATE_INT);
+		if($newProfileId === false) {
+			throw(new \UnexpectedValueException("Profile Id is not a vaild integer"));
+		}
+
+
+		//Convert and store the profile Id
+		$this->ProfileId = intval($newProfileId);
+	}
+
+
+	/**
+	 * accessor method for Profile UserName
+	 *
+	 * @return string of Profile UserName
+	 */
+	public function getProfileUserName() {
+		return $this->profileUserName;
+	}
+
+	/**
+	 * mutator method for Profile UserName
+	 *
+	 * @param string $newProfileUserName new binary of Profile UserName
+	 * @throws /UnexpectedValueException if $newProfileUserName is not a binary
 	 */
 
 }
+
 
 
 
