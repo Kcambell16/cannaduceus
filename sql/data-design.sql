@@ -21,9 +21,6 @@ CREATE TABLE profile
 	UNIQUE (profileEmail),
 	INDEX (profileUserName),
 	INDEX (profileEmail),
-	INDEX (profileHash),
-	INDEX (profileSalt),
-	INDEX (profileActivation),
 	PRIMARY KEY (profileId)
 );
 
@@ -31,11 +28,11 @@ CREATE TABLE dispensary
 (
 	dispensaryId INT UNSIGNED AUTO_INCREMENT NOT NULL,
 	dispensaryName VARCHAR(32) NOT NULL,
-	dispensaryAttention VARCHAR(32) NOT NULL,
+	dispensaryAttention VARCHAR(32),
 	dispensaryStreet1 VARCHAR(32) NOT NULL,
-	dispensaryStreet2 VARCHAR(32) NOT NULL,
+	dispensaryStreet2 VARCHAR(32),
 	dispensaryCity VARCHAR(32) NOT NULL,
-	dispensaryState VARCHAR(32),
+	dispensaryState VARCHAR(32) NOT NULL ,
 	dispensaryZipCode VARCHAR(32) NOT NULL,
 	dispensaryEmail VARCHAR(128) NOT NULL,
 	dispensaryPhone VARCHAR(32) NOT NULL,
@@ -51,11 +48,6 @@ CREATE TABLE strain
 	strainType VARCHAR(32) NOT NULL,
 	strainThc VARCHAR(32) NOT NULL,
 	strainCbd VARCHAR(32) NOT NULL,
-	INDEX (strainName),
-	INDEX (strainDescription),
-	INDEX (strainType),
-	INDEX (strainThc),
-	INDEX (strainCbd),
 	PRIMARY KEY (strainId)
 );
 
@@ -68,8 +60,6 @@ CREATE TABLE dispensaryreview
 	dispensaryReviewTxt VARCHAR(256) NOT NULL,
 	INDEX (dispensaryReviewProfileId),
 	INDEX (dispensaryReviewDispensaryId),
-	INDEX (dispensaryReviewDateTime),
-	INDEX (dispensaryReviewTxt),
 	FOREIGN KEY (dispensaryReviewProfileId) REFERENCES profile (profileId),
 	FOREIGN KEY (dispensaryReviewDispensaryId) REFERENCES dispensary (dispensaryId),
 	PRIMARY KEY (dispensaryReviewDispensaryId, dispensaryReviewProfileId)
@@ -93,22 +83,23 @@ CREATE TABLE dispensaryfavorite
 	dispensaryFavoriteDispensaryId INT UNSIGNED NOT NULL,
 	INDEX (dispensaryFavoriteProfileId),
 	INDEX (dispensaryFavoriteDispensaryId),
-	FOREIGN KEY (dispensaryFavoriteProfileId), REFERENCES profile (profileId),
-	FOREIGN KEY (dispensaryFavoriteDispensaryId), REFERENCES dispensary (dispensaryId),
+	FOREIGN KEY (dispensaryFavoriteProfileId) REFERENCES profile (profileId),
+	FOREIGN KEY (dispensaryFavoriteDispensaryId) REFERENCES dispensary (dispensaryId),
 	PRIMARY KEY (dispensaryFavoriteProfileId, dispensaryFavoriteDispensaryId)
 );
 
-CREATE TABLE strainreview
+CREATE TABLE strainReview
 (
 	strainReviewId INT UNSIGNED NOT NULL,
 	strainReviewProfileId INT UNSIGNED NOT NULL,
 	strainReviewStrainId INT UNSIGNED NOT NULL,
-	strainReviewDateTime VARCHAR(32)
+	strainReviewDateTime VARCHAR(32),
 	strainReviewTxt VARCHAR (256)
+
 
 );
 
-CREATE TABLE strainleafrating
+CREATE TABLE strainLeafRating
 (
 	strainLeafRatingStrainId INT UNSIGNED NOT NULL,
 	strainLeafRatingProfileId INT UNSIGNED NOT NULL,
@@ -120,7 +111,7 @@ CREATE TABLE strainleafrating
 	PRIMARY KEY (strainLeafRatingProfileId, strainLeafRatingRating)
 );
 
-	CREATE TABLE strainfavorite
-	(
+CREATE TABLE strainfavorite
+(
 
-	)
+)
