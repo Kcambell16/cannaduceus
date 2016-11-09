@@ -195,15 +195,15 @@ class Profile {
 	 *
 	 * @return int for Profile Salt
 	 */
-	public function getProfileSalt($newProfileSalt) {
-		return $this->ProfileSalt;
+	public function getProfileSalt() {
+		return $this->getProfileSalt;
 	}
 
 	/**
 	 * mutator method for Profile Salt
 	 *
-	 * @param string $newProfileHash new string for Profile Salt
-	 * @throws \UnexpectedValueException if $newProfileHash is not a string
+	 * @param string $newProfileSalt new string for Profile Salt
+	 * @throws \UnexpectedValueException if $newProfileSalt is not a string
 	 */
 	public function setProfileSalt($newProfileSalt) {
 		$newProfileSalt = filter_input($newProfileSalt, FILTER_SANITIZE_STRING);
@@ -211,7 +211,7 @@ class Profile {
 			throw(new \UnexpectedValueException("Profile Salt Invaild"));
 		}
 		//Convert and store the Profile Salt
-		$this->ProfileSalt = string($newProfileSalt);
+		$this->profileSalt = string($newProfileSalt);
 	}
 	/**
 	 * accessor method for Profile Activation
@@ -219,7 +219,7 @@ class Profile {
 	 * @return string for Profile Activation
 	 */
 	public function getProfileActivation() {
-		return $this->ProfileActivation;
+		return $this->profileActivation;
 	}
 	/**
 	 * mutator method for Profile Activation
@@ -234,6 +234,7 @@ class Profile {
 		}
 
 		//Convert and store the Profile Activation
+		$this->profileActivation = string($newProfileActivation);
 	}
 
 }
