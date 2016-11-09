@@ -80,8 +80,16 @@ class Profile {
 			throw(new \Exception($exception->getMessage(), 0, $exception));
 		}
 	}
+	/**
+	 * accessor method for Profile Id
+	 *
+	 * @return int|null value of Profile Id
+	 */
+	public function  getProfileId(){
+		return $this->profileId;
+	}
 }
-// making sure commit works
+
 
 
 
