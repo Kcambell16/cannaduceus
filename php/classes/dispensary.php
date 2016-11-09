@@ -131,5 +131,75 @@ class Dispensary {
 		}
 	}
 
+	/**
+	 * accessor method for dispensary id
+	 *
+	 * @return  int/null value of dispensary id
+	 **/
+	public function getDispensaryId() {
+		return($this->dispensaryId);
+	}
+	/**
+	 * mutator method for dispensary id
+	 *
+	 * @param int/null $newDispensaryId new value of dispensary id
+	 * @throws \RangeException if $newDispenaryId is not positive
+	 * @throws \TypeError if $newDispensaryId is not an interger
+	 **/
+	public function setDispensaryId(int $newDispensaryId = null){
+		// base case: if the dispensary id is null, this new dispensary without a mySQL assigned id (yet) if($newDispensaryId === null) {
+				$this->dispensaryId = null;
+				return;
 
+	//verify the dispensary id is positive
+	if($newDispensaryId <= 0) {
+	throw(new \RangeException("dispensary id is not positive"));
+}
+
+	//convert and store the dispensary id
+	$this->dispensaryId = $newDispensaryId;
+}
+
+/**
+ * accessor method for the dispensary attention
+ *
+ * @return string value of the dispensary attention
+ **/
+public function getDispensaryAttention() {
+	return($this->dispensaryAttention);
+}
+
+/**
+ * mutator method for dispensary attention
+ *
+ * @param string $newdispensaryAttention new vlaue of dispensary attention
+ * @throws \InvalidArgumentExceptionif $newdispensaryAttention is not a string or insecure
+ * @throws \RangeException if $newdispensaryAttention is > 140 characters
+ * @throws \TypeError if $newdispensaryAttention is not a string
+ **/
+public function setDispensaryAttention(string $newDispensaryAttention) {
+	// verify the diespensary attention is secure
+	$newDispensaryAttention = trim($newDispensaryAttention);
+	$newDispensaryAttention = filter_var($newDispensaryAttention, FILTER_SANITIZE_STRING,FILTER_FLAG_NO_ENCODE_QUOTES);
+	if(empty($newDispensaryAttention) === true) {
+	throw(new \InvalidArgumentException("dispensary attention is emprt or insecure"));
+	}
+	// verify the dispensary attention will fit in the database
+	if(strlen($newDispensaryAttention) > 140) {
+	throw(new \RangeException("dispensary attention too large"));
+	}
+	//store the dispensary attention
+	$this->dispensaryAttention = $newDispensaryAttention;
+}
+/** accessor method for dispensary city
+ *
+ * @return string value of dispensary city
+ **/
+public function getDispensaryCity(): string {
+	return $this->dispensaryCity;
+}
+
+/**
+ * mutator method for dispensary city
+ */
 }
