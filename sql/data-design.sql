@@ -50,7 +50,7 @@ CREATE TABLE strain
 	strainDescription VARCHAR(128) NOT NULL,
 	strainType VARCHAR(32) NOT NULL,
 	strainThc VARCHAR(32) NOT NULL,
-	strainCbd VARCHAR(32),
+	strainCbd VARCHAR(32) NOT NULL,
 	INDEX (strainName),
 	INDEX (strainDescription),
 	INDEX (strainType),
@@ -84,28 +84,43 @@ CREATE TABLE dispensaryleafrating
 	INDEX (dispensaryLeafRatingProfileId),
 	FOREIGN KEY (dispensaryLeafRatingProfileId) REFERENCES profile (profileId),
 	FOREIGN KEY (dispensaryLeafRatingRating) REFERENCES dispensary (dispensaryId),
-	PRIMARY KEY (dispensaryLeafRatingProfileId, dispensaryRatingDispensaryId)
+	PRIMARY KEY (dispensaryLeafRatingProfileId, dispensaryLeafRatingDispensaryId)
 );
 
 CREATE TABLE dispensaryfavorite
 (
-	dispensaryProfileId INT UNSIGNED NOT NULL,
+	dispensaryFavoriteProfileId INT UNSIGNED NOT NULL,
 	dispensaryFavoriteDispensaryId INT UNSIGNED NOT NULL,
-	-- do we need to index anything here?
-	FOREIGN KEY (dispensaryLeafRatingProfileId) REFERENCES profile (profileId),
-	FOREIGN KEY (dispensaryLeafRatingRating) REFERENCES rating (ratingId),
-	PRIMARY KEY (dispensaryLeafRatingProfileId, dispensaryRatingRating)
+	INDEX (dispensaryFavoriteProfileId),
+	INDEX (dispensaryFavoriteDispensaryId),
+	FOREIGN KEY (dispensaryFavoriteProfileId), REFERENCES profile (profileId),
+	FOREIGN KEY (dispensaryFavoriteDispensaryId), REFERENCES dispensary (dispensaryId),
+	PRIMARY KEY (dispensaryFavoriteProfileId, dispensaryFavoriteDispensaryId)
 );
 
 CREATE TABLE strainreview
 (
 	strainReviewId INT UNSIGNED NOT NULL,
 	strainReviewProfileId INT UNSIGNED NOT NULL,
+	strainReviewStrainId INT UNSIGNED NOT NULL,
+	strainReviewDateTime VARCHAR(32)
+	strainReviewTxt VARCHAR (256)
+
 );
 
 CREATE TABLE strainleafrating
 (
-
+	strainLeafRatingStrainId INT UNSIGNED NOT NULL,
+	strainLeafRatingProfileId INT UNSIGNED NOT NULL,
+	strainLeafRatingRating INT UNSIGNED NOT NULL,
+	INDEX (strainLeafRatingStrainId),
+	INDEX (strainLeafRatingProfileId),
+	FOREIGN KEY (strainLeafRatingProfileId) REFERENCES profile (profileId),
+	FOREIGN KEY (strainLeafRatingRating) REFERENCES  (),
+	PRIMARY KEY (strainLeafRatingProfileId, strainLeafRatingRating)
 );
 
 	CREATE TABLE strainfavorite
+	(
+
+	)
