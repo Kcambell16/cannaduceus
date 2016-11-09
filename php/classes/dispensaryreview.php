@@ -42,7 +42,7 @@ class DispensaryReview{
 	 *
 	 * @return int|null value of dispensary review id
 	 **/
-	public function getDispensaryReiewId() {
+	public function getDispensaryReviewId() {
 		return($this->dispensaryReviewId);
 	}
 
@@ -56,16 +56,49 @@ class DispensaryReview{
 
 	public function setDispensaryReviewId(int $newDispensaryReviewId = null) {
 		// base case: if the dispensary review id is null, this is a new dispensary review without a mySQL assigned id (yet)
-		if($newDispensaryReviewIdId === null) {
+		if($newDispensaryReviewId === null) {
 			$this->dispensaryReviewId = null;
 			return;
 		}
 
 		// verify the dispensary review id is positive
-		if($newDispensaryId <= 0) {
+		if($newDispensaryReviewId <= 0) {
 			throw(new \RangeException("dispensary review id is not positive"));
 		}
 		// convert and store the dispensary review id
 		$this->dispensaryReviewId = $newDispensaryReviewId;
+
+	}
+
+		/**
+		 * Accesor method for dispensaryReviewProfileId
+		 *
+		 * @return int|null value of dispensary review profile id
+		 **/
+	public function getDispensaryReviewProfileId() {
+		return($this->dispensaryReviewProfileId);
+	}
+
+	/**
+	 * mutator method for dispensary review profile id
+	 *
+	 * @param int|null $newDispensaryReviewProfileId new value of dispensary review profile id
+	 * @throws \RangeException if $newDispensaryReviewProfileId is not positive
+	 * @throws \TypeError if $newDispensaryReviewProfileId is not an integer
+	 **/
+
+	public function setDispensaryReviewProfileId(int $newDispensaryReviewProfileId = null) {
+		// base case: if the dispensary review profile id is null, this is a new dispensary review profile id without a mySQL assigned id (yet)
+		if($newDispensaryReviewProfileId === null) {
+			$this->dispensaryReviewProfileId = null;
+			return;
+		}
+
+		// verify the dispensary review profile id is positive
+		if($newDispensaryReviewProfileId <= 0) {
+			throw(new \RangeException("dispensary review profile id is not positive"));
+		}
+		// convert and store the duty station id
+		$this->dispensaryReviewProfileId = $newDispensaryReviewProfileId;
 
 	}
