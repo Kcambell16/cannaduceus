@@ -37,6 +37,18 @@ class DispensaryReview{
 
 	// CONSTRUCTOR GOES HERE LATER
 
+		/**
+		 * DispensaryReview constructor.
+		 * @param int|null $newDispensaryReviewId Id of this dispensary review or null if new dispensary review
+		 * @param string $newDutyStationName string contains actual duty station name
+		 * @param string $newDutyStationLocation string contains actual duty station location
+		 * @param string $newDutyStationImage string contains actual duty station image
+		 * @throws \InvalidArgumentException if data types are not valid
+		 * @throws \RangeException if data values are out of bounds (e.g. strings too long, negative integers)
+		 * @throws \TypeError if data violates type hints
+		 * @throws \Exception if any other exception occurs
+		 **/
+
 	/**
 	 * Accesor method for dispensaryReviewId
 	 *
@@ -172,14 +184,37 @@ class DispensaryReview{
 
 		/**
 		 *
-		 * Accesor method for dispensaryReviewText
-		 * @return int|null value of dispensary review text
+		 * Accesor method for dispensaryReviewTxt
+		 * @return string value of dispensary review txt
 		 **/
 
-	public function getDispensaryReviewText() {
-		return ($this->dispensaryReviewText);
+	public function getDispensaryReviewTxt() {
+		return ($this->dispensaryReviewTxt);
 	}
 
+	/**
+	 * Mutator method for dispensary review txt
+	 *
+	 * @param string $newDispensaryReviewTxt new value of dispensary review txt
+	 * @throws \InvalidArgumentException if $newDispensaryReviewTxt is not a string or insecure
+	 * @throws \RangeException if $newDispensaryReviewTxt is > 256 characters
+	 * @throws \TypeError if $newDutyStationName is not a string
+	 **/
+	public function setDispensaryReviewTxt(string $newDispensaryReviewTxt) {
+		// verify the dispensary review txt is secure
+		$newDispensaryReviewTxt = trim($newDispensaryReviewTxt);
+		$newDispensaryReviewTxt = filter_var($newDispensaryReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newDispensaryReviewTxt) === true) {
+			throw(new \InvalidArgumentException("dispensary review txt is empty or insecure"));
+		}
 
+		//verify the dispensary review txt will fit in the database
+		if(strlen($newDispensaryReviewTxt) > 256) {
+			throw(new \RangeException("dispensary review txt too large"));
+		}
+
+		// store the name content
+		$this->dispensaryReviewTxt = $newDispensaryReviewTxt;
+	}
 
 
