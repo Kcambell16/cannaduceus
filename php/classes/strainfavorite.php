@@ -69,14 +69,15 @@ class StrainFavorite{
 	 * @param int $newStrainFavoriteProfileId new value of strainFavoriteProfile Id
 	 * @throws \UnexpectedValueException if $newStrainFavoriteProfileId is not an integer
 	 */
-	public function setStrainFavoriteProfileId( $strainFavoriteProfileId) {
-		$newStrainFavoriteProfileId = filter_var($newStrainFavoriteProfileId, FILTER_VALIDATE_INT);
-		if($newStrainFavoriteProfileId === false) {
-			throw(new \UnexpectedValueException("Strain Favorite Profile Id is not a valid integer"));
+	public function setStrainFavoriteProfileId(int $newStrainFavoriteProfileId) {
+
+
+		if($newStrainFavoriteProfileId <= 0) {
+			throw(new \RangeException("Strain Favorite Profile Id is not a positive integer"));
 		}
 
 		//Convert and store the strainFavoriteProfileId
-		$this->strainFavoriteProfileId = $strainFavoriteProfileId;
+		$this->strainFavoriteProfileId = $newStrainFavoriteProfileId;
 	}
 
 	/**
@@ -94,13 +95,13 @@ class StrainFavorite{
 	 * @param int $newStrainFavoriteStrainId new value of strainFavoriteStrain Id
 	 * @throws \UnexpectedValueException if $newStrainFavoriteStrainId is not an integer
 	 */
-	public function setStrainFavoriteStrainId( $strainFavoriteStrainId) {
-		$newStrainFavoriteStrainId = filter_var($newStrainFavoriteStrainId, FILTER_VALIDATE_INT);
-		if($newStrainFavoriteStrainId === false) {
-			throw(new \UnexpectedValueException("Strain Favorite Strain Id is not a valid integer"));
+	public function setStrainFavoriteStrainId(int $newStrainFavoriteStrainId) {
+
+		if($newStrainFavoriteStrainId <= 0) {
+			throw(new \RangeException("Strain Favorite Strain Id is not a positive integer"));
 		}
 
 		//Convert and store the strainFavoriteStrainId
-		$this->strainFavoriteStrainId = $strainFavoriteStrainId;
+		$this->strainFavoriteStrainId = $newStrainFavoriteStrainId;
 	}
 }
