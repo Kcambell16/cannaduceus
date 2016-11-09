@@ -292,7 +292,6 @@ $this->dispensaryCity = $newDispensaryCity;
 		//store dispensary name
 		$this->dispensaryName = $newDispensaryName;
 	}
-}
 
 /**
  *accessor method for dispensary phone
@@ -300,5 +299,60 @@ $this->dispensaryCity = $newDispensaryCity;
  * @return int|null value of dispensary phone
  **/
 public function getDispensaryPhone() {
-	return($this->)
+	return($this->dispensaryPhone);
+}
+/**
+ * mutator method for dispensary phone
+ *
+ * @param int/null $newDispensaryPhone new value of dispensary phone
+ * @throws \RangeException if $newDispenaryPhone is not positive
+ * @throws \TypeError if $newDispensaryPhone is not an interger
+ **/
+public function setDispensaryPhone(int $newDispensaryPhone = null) {
+	// base case: if the dispensary phone, this is a new dispensary phone without a mySQL assigned id (yet)
+	if($newDispensaryPhone === null) {
+		$this->dispensaryPhone = null;
+		return;
+	}
+
+	//verify the dispensary phone is positive
+	if($newDispensaryPhone <= 0) {
+		throw(new \RangeException("dispensary phone is not positive"));
+	}
+
+	// convert and store the dispensary phone
+	$this->dispensaryPhone = $newDispensaryPhone;
+}
+/**
+ * accessor method for dispensary street
+ *
+ * @return string value of dispensary street
+ **/
+public function getDispensaryStreet() {
+	return($this->dispensaryStreet);
+}
+
+/**
+ * mutator method for dispensary street
+ *
+ * @param string $newDispensaryStreet new value of dispensary street
+ * @throws \InvalidArgumentException if $newDispensaryStreet is not a string or insecure
+ * @throws \RangeException if $newDispensaryStreet is > 140 characters
+ * @throws \TypeError if $newDispensaryStreet is not a string
+ **/
+	public function setDispensaryStreet(string $newDispensaryStreet) {
+		//verify the street is secure
+		$newDispensaryStreet = trim($newDispensaryStreet);
+		$newDispensaryStreet = filter_var($newDispensaryStreet, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newDispensaryStreet) === true) {
+			throw(new \RangeException("dispensary street is empty or insecure"));
+		}
+		// verify the dispensary street will fit in the database
+		if(strlen($newDispensaryStreet) >140) {
+			throw(new \RangeException("dispensary street too large"));
+		}
+
+		// store the dispensary street
+		$this->dispensaryStreet = $newDispensaryStreet;
+	}
 }

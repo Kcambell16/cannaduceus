@@ -54,9 +54,19 @@ class DispensaryFavorite {
 		}
 	}
 
+	/**
+	 * accessor method for the dispensaryFavoriteProfileId
+	 *
+	 * @return int|null value of dispensaryFavoriteProfileId
+	 */
+	public function getDispensaryFavoriteProfileId(): int {
+	}
 
-
-
+	/**
+	 * mutator method for dispensaryFavoriteId
+	 * @param int $newDispensaryFavoriteId new value of dispensaryFavoriteProfile Id
+	 * @throws \UnexpectedValueException if $newDispensaryFavoriteProfileId is not an integer
+	 */
 
 
 
