@@ -8,7 +8,7 @@
  */
 
 
-class DispensaryReview{
+class DispensaryReview {
 	/**
 	 * id for this dispensary review; this is the primary key
 	 * @var int $dispensaryReviewId
@@ -33,44 +33,44 @@ class DispensaryReview{
 	 * This is the review content
 	 * @var $dispensaryReviewTxt
 	 **/
-	private $dispensaryReviewTxt
+	private $dispensaryReviewTxt;
 
 	// CONSTRUCTOR GOES HERE LATER
 
-		/**
-		 * DispensaryReview constructor.
-		 * @param int|null $newDispensaryReviewId Id of this dispensary review or null if new dispensary review
-		 * @param int|null $newDispensaryReviewProfileId Id of this dispensary review profile or null if new dispensary review profile
-		 * @param int|null $newDispensaryReviewDispensaryId Id of this dispensary review dispensary or null if new dispensary review dispensary
-		 * @param string $newDispensaryReviewDate string contains actual dispensary review date
-		 * @param string $newDispensaryReviewTxt string contains actual dispensary review txt
-		 * @throws \InvalidArgumentException if data types are not valid
-		 * @throws \RangeException if data values are out of bounds (e.g. strings too long, negative integers)
-		 * @throws \TypeError if data violates type hints
-		 * @throws \Exception if any other exception occurs
-		 **/
+	/**
+	 * DispensaryReview constructor.
+	 * @param int|null $newDispensaryReviewId Id of this dispensary review or null if new dispensary review
+	 * @param int|null $newDispensaryReviewProfileId Id of this dispensary review profile or null if new dispensary review profile
+	 * @param int|null $newDispensaryReviewDispensaryId Id of this dispensary review dispensary or null if new dispensary review dispensary
+	 * @param string $newDispensaryReviewDate string contains actual dispensary review date
+	 * @param string $newDispensaryReviewTxt string contains actual dispensary review txt
+	 * @throws \InvalidArgumentException if data types are not valid
+	 * @throws \RangeException if data values are out of bounds (e.g. strings too long, negative integers)
+	 * @throws \TypeError if data violates type hints
+	 * @throws \Exception if any other exception occurs
+	 **/
 
-			public function __construct(int $newDispensaryReviewId = null, int $newDispensaryReviewProfileId, int $newDispensaryReviewDispensaryId, string $newDispensaryReviewDate, string $newDispensaryReviewTxt) {
-				try {
-					$this->setDispensaryReviewIdId($newDispensaryReviewId);
-					$this->setDispensaryReviewProfileId($newDispensaryReviewProfileId);
-					$this->setDispensaryReviewDispensaryId($newDispensaryReviewDispensaryId);
-					$this->setDispensaryReviewDate($newDispensaryReviewDate);
-					$this->setDispensaryReviewTxt($newDispensaryReviewTxt);
-				} catch(\InvalidArgumentException $invalidArgument) {
-					// rethrow the exception to the caller
-					throw (new \InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
-				} catch(\RangeException $rangeException) {
-					// rethrow the exception to the caller
-					throw (new \RangeException($rangeException->getMessage(), 0, $rangeException));
-				} catch(\TypeError $typeError) {
-					// rethrow the exception to the caller
-					throw (new \TypeError($typeError->getMessage(), 0, $typeError));
-				} catch(\Exception $exception) {
-					// rethrow the exception to the caller
-					throw (new \Exception($exception->getMessage(), 0, $exception));
-				}
-			}
+	public function __construct(int $newDispensaryReviewId = null, int $newDispensaryReviewProfileId, int $newDispensaryReviewDispensaryId, string $newDispensaryReviewDate, string $newDispensaryReviewTxt) {
+		try {
+			$this->setDispensaryReviewIdId($newDispensaryReviewId);
+			$this->setDispensaryReviewProfileId($newDispensaryReviewProfileId);
+			$this->setDispensaryReviewDispensaryId($newDispensaryReviewDispensaryId);
+			$this->setDispensaryReviewDate($newDispensaryReviewDate);
+			$this->setDispensaryReviewTxt($newDispensaryReviewTxt);
+		} catch(\InvalidArgumentException $invalidArgument) {
+			// rethrow the exception to the caller
+			throw (new \InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
+		} catch(\RangeException $rangeException) {
+			// rethrow the exception to the caller
+			throw (new \RangeException($rangeException->getMessage(), 0, $rangeException));
+		} catch(\TypeError $typeError) {
+			// rethrow the exception to the caller
+			throw (new \TypeError($typeError->getMessage(), 0, $typeError));
+		} catch(\Exception $exception) {
+			// rethrow the exception to the caller
+			throw (new \Exception($exception->getMessage(), 0, $exception));
+		}
+	}
 
 	/**
 	 * Accesor method for dispensaryReviewId
@@ -78,7 +78,7 @@ class DispensaryReview{
 	 * @return int|null value of dispensary review id
 	 **/
 	public function getDispensaryReviewId() {
-		return($this->dispensaryReviewId);
+		return ($this->dispensaryReviewId);
 	}
 
 	/**
@@ -105,13 +105,13 @@ class DispensaryReview{
 
 	}
 
-		/**
-		 * Accesor method for dispensaryReviewProfileId
-		 *
-		 * @return int|null value of dispensary review profile id
-		 **/
+	/**
+	 * Accesor method for dispensaryReviewProfileId
+	 *
+	 * @return int|null value of dispensary review profile id
+	 **/
 	public function getDispensaryReviewProfileId() {
-		return($this->dispensaryReviewProfileId);
+		return ($this->dispensaryReviewProfileId);
 	}
 
 	/**
@@ -138,24 +138,24 @@ class DispensaryReview{
 
 	}
 
-			/**
-			 * Accesor method for dispensaryReviewDispensaryId
-			 *
-			 * @return int|null value of dispensary review dispensary id
-			 **/
+	/**
+	 * Accesor method for dispensaryReviewDispensaryId
+	 *
+	 * @return int|null value of dispensary review dispensary id
+	 **/
 	public function getDispensaryReviewDispensaryId() {
-		return($this->dispensaryReviewDispensaryId);
+		return ($this->dispensaryReviewDispensaryId);
 	}
 
-		/**
-		 * mutator method for dispensary review dispensary id
-		 *
-		 * @param int|null $newDispensaryReviewDispensaryId new value of dispensary review dispensary id
-		 * @throws \RangeException if $newDispensaryReviewDispensaryId is not positive
-		 * @throws \TypeError if $newDispensaryReviewDispensaryId is not an integer
-		 **/
+	/**
+	 * mutator method for dispensary review dispensary id
+	 *
+	 * @param int|null $newDispensaryReviewDispensaryId new value of dispensary review dispensary id
+	 * @throws \RangeException if $newDispensaryReviewDispensaryId is not positive
+	 * @throws \TypeError if $newDispensaryReviewDispensaryId is not an integer
+	 **/
 
-		public function setDispensaryReviewDispensaryId(int $newDispensaryReviewDispensaryId = null) {
+	public function setDispensaryReviewDispensaryId(int $newDispensaryReviewDispensaryId = null) {
 		// base case: if the dispensary review dispensary id is null, this is a new dispensary review dispensary id without a mySQL assigned id (yet)
 		if($newDispensaryReviewDispensaryId === null) {
 			$this->dispensaryReviewProfileId = null;
@@ -163,28 +163,28 @@ class DispensaryReview{
 		}
 
 		// verify the dispensary review dispensary id is positive
-		if ($newDispensaryReviewDispensaryId <= 0) {
+		if($newDispensaryReviewDispensaryId <= 0) {
 			throw(new \RangeException("dispensary review dispensary id is not positive"));
 		}
 		// convert and store the dispensary review dispensary id
-			$this->dispensaryReviewDispensaryId = $newDispensaryReviewDispensaryId;
+		$this->dispensaryReviewDispensaryId = $newDispensaryReviewDispensaryId;
 
-}
-
-			/**
- 			* accessor method for dispensary review date
-			 *
- 			* @return \DateTime value of dispensary review date
- 			**/
-	public function getDispensaryReviewDate() {
-		return($this->dispensaryReviewDate);
 	}
 
-			/**
-	 		* mutator method for dispensary review date
-			 *
-	 		* @param \DateTime|string|null $newDispensaryReviewDate dispensary review date as 			a DateTime object or string (or null to load the current time)
-	 		* @throws \InvalidArgumentException if $newDispensaryReviewDate is not a valid 			object or string
+	/**
+	 * accessor method for dispensary review date
+	 *
+	 * @return \DateTime value of dispensary review date
+	 **/
+	public function getDispensaryReviewDate() {
+		return ($this->dispensaryReviewDate);
+	}
+
+	/**
+	 * mutator method for dispensary review date
+	 *
+	 * @param \DateTime|string|null $newDispensaryReviewDate dispensary review date as         a DateTime object or string (or null to load the current time)
+	 * @throws \InvalidArgumentException if $newDispensaryReviewDate is not a valid         object or string
 	 * @throws \RangeException if $newDispensaryReviewDate is a date that does not exist
 	 **/
 	public function setDispensaryReviewDate($newDispensaryReviewDate = null) {
@@ -205,11 +205,11 @@ class DispensaryReview{
 		$this->dispensaryReviewDate = $newDispensaryReviewDate;
 	}
 
-		/**
-		 *
-		 * Accesor method for dispensaryReviewTxt
-		 * @return string value of dispensary review txt
-		 **/
+	/**
+	 *
+	 * Accesor method for dispensaryReviewTxt
+	 * @return string value of dispensary review txt
+	 **/
 
 	public function getDispensaryReviewTxt() {
 		return ($this->dispensaryReviewTxt);
@@ -239,5 +239,5 @@ class DispensaryReview{
 		// store the name content
 		$this->dispensaryReviewTxt = $newDispensaryReviewTxt;
 	}
-
+}
 
