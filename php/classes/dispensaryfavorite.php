@@ -38,7 +38,7 @@ class DispensaryFavorite {
 	public function __construct(int $newDispensaryFavoriteId = null, int $newDispensaryFavoriteDispensaryId) {
 		try {
 			$this->dispensaryFavoriteProfileId($newDispensaryFavoriteId);
-			$this->dispensaryFavoritedispensaryId($newDispensaryFavoriteDispensaryId);
+			$this->dispensaryFavoriteDispensaryId($newDispensaryFavoriteDispensaryId);
 		}Catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the calller
 			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
@@ -70,7 +70,7 @@ class DispensaryFavorite {
 	/**
 	 * @param int $dispensaryFavoriteProfileId
 	 */
-	public function setDispensaryFavoriteProfileId($dispensaryFavoriteId){
+	public function setDispensaryFavoriteProfileId($dispensaryFavoriteId, $newDispensaryFavoriteProfileId){
 		$newDispensaryFavoriteProfileId = filter_var($newDispensaryFavoriteProfileId, FILTER_VALIDATE_INT);
 		if($newDispensaryFavoriteProfileId === false){
 			throw(new \UnexpectedValueException("dispensary Favorite Profile Id is not a vaild interger"));
@@ -95,7 +95,7 @@ class DispensaryFavorite {
 	 * @param int $newDispensaryFavoriteDispensaryId new value of dispensaryFavoriteDispensaryId
 	 * @throws \UnexpectedValueException if $newDispensaryFavoriteDispensaryId is not an integer
 	 */
-	public function setDispensaryFavoriteDispensaryId($dispensaryFavoriteDispensaryId) {
+	public function setDispensaryFavoriteDispensaryId($dispensaryFavoriteDispensaryId, $newDispensaryFavoriteDispensaryId) {
 		$newDispensaryFavoriteDispensaryId = filter_var($newDispensaryFavoriteDispensaryId, FILTER_VAILIDATE_INT);
 		if($newDispensaryFavoriteDispensaryId === false) {
 			throw(new \UnexpectedValueException("Dispensary Favorite Dispensary Id not a vaild integer"));
