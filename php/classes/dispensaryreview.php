@@ -36,3 +36,36 @@ class DispensaryReview{
 	private $dispensaryReviewTxt
 
 	// CONSTRUCTOR GOES HERE LATER
+
+	/**
+	 * Accesor method for dispensaryReviewId
+	 *
+	 * @return int|null value of dispensary review id
+	 **/
+	public function getDispensaryReiewId() {
+		return($this->dispensaryReviewId);
+	}
+
+	/**
+	 * mutator method for dispensary review id
+	 *
+	 * @param int|null $newDispensaryReviewId new value of dispensary review id
+	 * @throws \RangeException if $newDispensaryReviewId is not positive
+	 * @thows \TypeError if $newDispensaryReviewId is not an integer
+	 **/
+
+	public function setDutyStationId(int $newDutyStationId = null) {
+		// base case: if the duty station id is null, this is a new duty station without a mySQL assigned id (yet)
+		if($newDutyStationId === null) {
+			$this->dutyStationId = null;
+			return;
+		}
+
+		// verify the duty station id is positive
+		if($newDutyStationId <= 0) {
+			throw(new \RangeException("duty station id is not positive"));
+		}
+		// convert and store the duty station id
+		$this->dutyStationId = $newDutyStationId;
+
+	}
