@@ -135,3 +135,37 @@ class DispensaryReview{
 			$this->dispensaryReviewDispensaryId = $newDispensaryReviewDispensaryId;
 
 }
+
+/**
+ * accessor method for dispensary review date time
+ *
+ * @return \DateTime value of dispensary review date time
+ **/
+	public function getDispensaryReviewDateTime() {
+		return($this->dispensaryReviewDateTime);
+	}
+
+	/**
+	 * mutator method for tweet date
+	 *
+	 * @param \DateTime|string|null $newTweetDate tweet date as a DateTime object or string (or null to load the current time)
+	 * @throws \InvalidArgumentException if $newTweetDate is not a valid object or string
+	 * @throws \RangeException if $newTweetDate is a date that does not exist
+	 **/
+	public function setTweetDate($newTweetDate = null) {
+		// base case: if the date is null, use the current date and time
+		if($newTweetDate === null) {
+			$this->tweetDate = new \DateTime();
+			return;
+		}
+
+		// store the tweet date
+		try {
+			$newTweetDate = self::validateDateTime($newTweetDate);
+		} catch(\InvalidArgumentException $invalidArgument) {
+			throw(new \InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
+		} catch(\RangeException $range) {
+			throw(new \RangeException($range->getMessage(), 0, $range));
+		}
+		$this->tweetDate = $newTweetDate;
+	}
