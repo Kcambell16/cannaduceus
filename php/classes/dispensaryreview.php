@@ -49,6 +49,27 @@ class DispensaryReview{
 		 * @throws \Exception if any other exception occurs
 		 **/
 
+			public function __construct(int $newDispensaryReviewId = null, int $newDispensaryReviewProfileId, int $newDispensaryReview, string $newDutyStationImage) {
+				try {
+					$this->setDutyStationId($newDutyStationId);
+					$this->setDutyStationName($newDutyStationName);
+					$this->setDutyStationLocation($newDutyStationLocation);
+					$this->setDutyStationImage($newDutyStationImage);
+				} catch(\InvalidArgumentException $invalidArgument) {
+					// rethrow the exception to the caller
+					throw (new \InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
+				} catch(\RangeException $rangeException) {
+					// rethrow the exception to the caller
+					throw (new \RangeException($rangeException->getMessage(), 0, $rangeException));
+				} catch(\TypeError $typeError) {
+					// rethrow the exception to the caller
+					throw (new \TypeError($typeError->getMessage(), 0, $typeError));
+				} catch(\Exception $exception) {
+					// rethrow the exception to the caller
+					throw (new \Exception($exception->getMessage(), 0, $exception));
+				}
+			}
+
 	/**
 	 * Accesor method for dispensaryReviewId
 	 *
