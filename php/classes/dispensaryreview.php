@@ -137,35 +137,35 @@ class DispensaryReview{
 }
 
 /**
- * accessor method for dispensary review date time
+ * accessor method for dispensary review date
  *
- * @return \DateTime value of dispensary review date time
+ * @return \DateTime value of dispensary review date
  **/
-	public function getDispensaryReviewDateTime() {
-		return($this->dispensaryReviewDateTime);
+	public function getDispensaryReviewDate() {
+		return($this->dispensaryReviewDate);
 	}
 
 	/**
-	 * mutator method for tweet date
+	 * mutator method for dispensary review date
 	 *
-	 * @param \DateTime|string|null $newTweetDate tweet date as a DateTime object or string (or null to load the current time)
-	 * @throws \InvalidArgumentException if $newTweetDate is not a valid object or string
-	 * @throws \RangeException if $newTweetDate is a date that does not exist
+	 * @param \DateTime|string|null $newDispensaryReviewDate dispensary review date as a DateTime object or string (or null to load the current time)
+	 * @throws \InvalidArgumentException if $newDispensaryReviewDate is not a valid object or string
+	 * @throws \RangeException if $newDispensaryReviewDate is a date that does not exist
 	 **/
-	public function setTweetDate($newTweetDate = null) {
+	public function setDispensaryReviewDate($newDispensaryReviewDate = null) {
 		// base case: if the date is null, use the current date and time
-		if($newTweetDate === null) {
-			$this->tweetDate = new \DateTime();
+		if($newDispensaryReviewDate === null) {
+			$this->dispensaryReviewDate = new \DateTime();
 			return;
 		}
 
-		// store the tweet date
+		// store the dispensary review date
 		try {
-			$newTweetDate = self::validateDateTime($newTweetDate);
+			$newDispensaryReviewDate = self::validateDateTime($newDispensaryReviewDate);
 		} catch(\InvalidArgumentException $invalidArgument) {
 			throw(new \InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
 		} catch(\RangeException $range) {
 			throw(new \RangeException($range->getMessage(), 0, $range));
 		}
-		$this->tweetDate = $newTweetDate;
+		$this->dispensaryReviewDate = $newDispensaryReviewDate;
 	}
