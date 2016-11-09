@@ -43,18 +43,20 @@ class DispensaryReview{
 		 * @param int|null $newDispensaryReviewProfileId Id of this dispensary review profile or null if new dispensary review profile
 		 * @param int|null $newDispensaryReviewDispensaryId Id of this dispensary review dispensary or null if new dispensary review dispensary
 		 * @param string $newDispensaryReviewDate string contains actual dispensary review date
+		 * @param string $newDispensaryReviewTxt string contains actual dispensary review txt
 		 * @throws \InvalidArgumentException if data types are not valid
 		 * @throws \RangeException if data values are out of bounds (e.g. strings too long, negative integers)
 		 * @throws \TypeError if data violates type hints
 		 * @throws \Exception if any other exception occurs
 		 **/
 
-			public function __construct(int $newDispensaryReviewId = null, int $newDispensaryReviewProfileId, int $newDispensaryReview, string $newDutyStationImage) {
+			public function __construct(int $newDispensaryReviewId = null, int $newDispensaryReviewProfileId, int $newDispensaryReviewDispensaryId, string $newDispensaryReviewDate, string $newDispensaryReviewTxt) {
 				try {
-					$this->setDutyStationId($newDutyStationId);
-					$this->setDutyStationName($newDutyStationName);
-					$this->setDutyStationLocation($newDutyStationLocation);
-					$this->setDutyStationImage($newDutyStationImage);
+					$this->setDispensaryReviewIdId($newDispensaryReviewId);
+					$this->setDispensaryReviewProfileId($newDispensaryReviewProfileId);
+					$this->setDispensaryReviewDispensaryId($newDispensaryReviewDispensaryId);
+					$this->setDispensaryReviewDate($newDispensaryReviewDate);
+					$this->setDispensaryReviewTxt($newDispensaryReviewTxt);
 				} catch(\InvalidArgumentException $invalidArgument) {
 					// rethrow the exception to the caller
 					throw (new \InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
