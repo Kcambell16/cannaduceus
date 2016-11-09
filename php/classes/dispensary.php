@@ -201,5 +201,104 @@ public function getDispensaryCity(): string {
 
 /**
  * mutator method for dispensary city
- */
+ *
+ * @param string $newdispensaryCity new vlaue of dispensary city
+ * @throws \InvalidArgumentException if $newDispensaryCity is not a string or insecure
+ * @throws \RangeException if $newDispensaryCity is > 140 characters
+ * @throws \TypeError if $newDispensaryCity is not a string
+ **/
+	public function setDispensaryCity(string $newDispensaryCity) {
+		//verify the city content is secure
+		$newDispensaryCity = trim($newDispensaryCity);
+		$newDispensaryCity = filter_var($newDispensaryCity, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newDispensaryCity) === true) {
+			throw(new \InvalidArgumentException("dispensary city is empty or insecure"));
+		}
+	//verify the dispensary city will fit in the database
+	if(strlen($newDispensaryCity) > 50) {
+	throw(new \RangeException("dispensary city too large"));
+}
+
+//store the dispensary city
+$this->dispensaryCity = $newDispensaryCity;
+	}
+
+	/** accessor method for dispensary email
+	 *
+	 * @return string value of dispensary email
+	 **/
+	public function getDispensaryEmail(): string {
+		return $this->dispensaryEmail;
+	}
+
+	/**
+	 * mutator method for dispensary email
+	 *
+	 * @param string $newDispensaryEmail new value of dispensary email
+	 * @throws \InvalidArgumentException if $newDispensaryEmail is not a string or insecure
+	 * @throws \RangeException if $newDispensaryEmail is > 250 characters
+	 * @throws \TypeError if $newDispensaryEmail is not a string
+	 **/
+	public function setDispensaryEmail(string $newDispensaryEmail) {
+		//verify the dispensary email is secure
+		$newDispensaryEmail = trim($newDispensaryEmail);
+		$newDispensaryEmail = filter_var($newDispensaryEmail,FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newDispensaryEmail) === true) {
+			throw(new \InvalidArgumentException("dispensary email is empty or insecure"));
+		}
+		//verify the dispensary email is secure
+		$newDispensaryEmail = trim($newDispensaryEmail);
+		$newDispensaryEmail = filter_var($newDispensaryEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newDispensaryEmail) === true) {
+			throw(new \InvalidArgumentException("dispensary email is empty or insecure"));
+		}
+		//verify the dispensary email will fit in the database
+		if(strlen($newDispensaryEmail) > 250) {
+			throw(new \RangeException("dispensary email too large"));
+		}
+
+		//store the email
+		$this->dispensaryEmail = $newDispensaryEmail;
+	}
+
+	/** accessor method for dispensary name
+	 *
+	 * @return string value of dispensary name
+	 **/
+	public function getDispensaryName() {
+		return($this->dispensaryName);
+	}
+
+	/**
+	 * mutator method for dispensary name
+	 *
+	 * @param string $newDispensaryName new value of dispensary name
+	 * @throws \InvalidArgumentException if $newDispensaryName is not a string or insecure
+	 * @throws \RangeException if $newDispensaryName is > 140 characters
+	 * @throws \TypeError if $newDispensaryName is not a string
+	 **/
+	public function setDispensaryName(string $newDispensaryName) {
+		//verify the dispensary name is secure
+		$newDispensaryName = trim($newDispensaryName);
+		$newDispensaryName = filter_var($newDispensaryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newDispensaryName) === true) {
+			throw(new \InvalidArgumentException("dispensary name is empty or insecure"));
+		}
+		//verify the dispensary email will fit in the database
+		if(strlen($newDispensaryName) > 140) {
+			throw(new \RangeException("dispensary email too large"));
+		}
+
+		//store dispensary name
+		$this->dispensaryName = $newDispensaryName;
+	}
+}
+
+/**
+ *accessor method for dispensary phone
+ *
+ * @return int|null value of dispensary phone
+ **/
+public function getDispensaryPhone() {
+	return($this->)
 }

@@ -76,7 +76,7 @@ class StrainReview {
 	 * mutator method for strainReview id
 	 *
 	 * @param int $newStrainReviewId new value of strainReview Id
-	 * @throws UnexpectedValueException if $newStrainReviewId is not an integer
+	 * @throws \UnexpectedValueException if $newStrainReviewId is not an integer
 	 */
 	public function setStrainReviewId($newStrainReviewId) {
 		$newStrainReviewId = filter_var($newStrainReviewId, FILTER_VALIDATE_INT);
