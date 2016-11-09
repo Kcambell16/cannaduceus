@@ -102,3 +102,12 @@ class DispensaryReview{
 		$this->dispensaryReviewProfileId = $newDispensaryReviewProfileId;
 
 	}
+
+			/**
+			 * Accesor method for dispensaryReviewDispensaryId
+			 *
+			 * @return int|null value of dispensary review dispensary id
+			 **/
+	public function getDispensaryReviewDispensaryId() {
+		return($this->dispensaryReviewDispensaryId);
+	}
