@@ -1,6 +1,6 @@
 <?php
 namespace Edu\Cnm\nsanchez121\cannaduceus;
-use MongoDB\Driver\Exception\UnexpectedValueException;
+
 
 /**
  * this is going to be the cross section for profile info
@@ -190,7 +190,56 @@ class Profile {
 		$this->profileHash = string($newProfileHash);
 	}
 
+	/**
+	 * accessor method for Profile Salt
+	 *
+	 * @return int for Profile Salt
+	 */
+	public function getProfileSalt() {
+		return $this->getProfileSalt;
 	}
+
+	/**
+	 * mutator method for Profile Salt
+	 *
+	 * @param string $newProfileSalt new string for Profile Salt
+	 * @throws \UnexpectedValueException if $newProfileSalt is not a string
+	 */
+	public function setProfileSalt($newProfileSalt) {
+		$newProfileSalt = filter_input($newProfileSalt, FILTER_SANITIZE_STRING);
+		if($newProfileSalt === false)	{
+			throw(new \UnexpectedValueException("Profile Salt Invaild"));
+		}
+		//Convert and store the Profile Salt
+		$this->profileSalt = string($newProfileSalt);
+	}
+	/**
+	 * accessor method for Profile Activation
+	 *
+	 * @return string for Profile Activation
+	 */
+	public function getProfileActivation() {
+		return $this->profileActivation;
+	}
+	/**
+	 * mutator method for Profile Activation
+	 *
+	 * @param string $newProfileActivation new string of Profile Activation
+	 * @throws \UnexpectedValueException if $newProfileActivation is not string
+	 */
+	public function setProfileActivation($newProfileActivation) {
+		$newProfileActivation = filter_input($newProfileActivation, FILTER_SANITIZE_STRING);
+		if($newProfileActivation === false)	{
+			throw(new \UnexpectedValueException("Profile Activation Invalid"));
+		}
+
+		//Convert and store the Profile Activation
+		$this->profileActivation = string($newProfileActivation);
+	}
+
+}
+
+
 
 
 

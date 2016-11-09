@@ -98,7 +98,7 @@ class DispensaryReview{
 		if($newDispensaryReviewProfileId <= 0) {
 			throw(new \RangeException("dispensary review profile id is not positive"));
 		}
-		// convert and store the duty station id
+		// convert and store the dispensary review profile id
 		$this->dispensaryReviewProfileId = $newDispensaryReviewProfileId;
 
 	}
@@ -111,3 +111,27 @@ class DispensaryReview{
 	public function getDispensaryReviewDispensaryId() {
 		return($this->dispensaryReviewDispensaryId);
 	}
+
+		/**
+		 * mutator method for dispensary review dispensary id
+		 *
+		 * @param int|null $newDispensaryReviewDispensaryId new value of dispensary review dispensary id
+		 * @throws \RangeException if $newDispensaryReviewDispensaryId is not positive
+		 * @throws \TypeError if $newDispensaryReviewDispensaryId is not an integer
+		 **/
+
+		public function setDispensaryReviewDispensaryId(int $newDispensaryReviewDispensaryId = null) {
+		// base case: if the dispensary review dispensary id is null, this is a new dispensary review dispensary id without a mySQL assigned id (yet)
+		if($newDispensaryReviewDispensaryId === null) {
+			$this->dispensaryReviewProfileId = null;
+			return;
+		}
+
+		// verify the dispensary review dispensary id is positive
+		if ($newDispensaryReviewDispensaryId <= 0) {
+			throw(new \RangeException("dispensary review dispensary id is not positive"));
+		}
+		// convert and store the dispensary review dispensary id
+			$this->dispensaryReviewDispensaryId = $newDispensaryReviewDispensaryId;
+
+}
