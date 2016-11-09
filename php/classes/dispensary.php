@@ -293,3 +293,12 @@ $this->dispensaryCity = $newDispensaryCity;
 		$this->dispensaryName = $newDispensaryName;
 	}
 }
+
+/**
+ *accessor method for dispensary phone
+ *
+ * @return int|null value of dispensary phone
+ **/
+public function getDispensaryPhone() {
+	return($this->)
+}
