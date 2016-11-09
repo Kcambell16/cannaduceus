@@ -446,5 +446,4 @@ public function setDispensaryUrl(string $newDispensaryUrl) {
 		// convert and store the dispensary zip code
 		$this->dispensaryZipCode = $newDispensaryZipCode;
 	}
-
 	}
