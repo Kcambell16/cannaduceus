@@ -26,9 +26,9 @@ class DispensaryReview{
 	private $dispensaryReviewDispensaryId;
 	/**
 	 * This is the date and time stamp
-	 * @var $dispensaryReviewDateTime
+	 * @var $dispensaryReviewDate
 	 **/
-	private $dispensaryReviewDateTime;
+	private $dispensaryReviewDate;
 	/**
 	 * This is the review content
 	 * @var $dispensaryReviewTxt
@@ -40,9 +40,9 @@ class DispensaryReview{
 		/**
 		 * DispensaryReview constructor.
 		 * @param int|null $newDispensaryReviewId Id of this dispensary review or null if new dispensary review
-		 * @param string $newDutyStationName string contains actual duty station name
-		 * @param string $newDutyStationLocation string contains actual duty station location
-		 * @param string $newDutyStationImage string contains actual duty station image
+		 * @param int|null $newDispensaryReviewProfileId Id of this dispensary review profile or null if new dispensary review profile
+		 * @param int|null $newDispensaryReviewDispensaryId Id of this dispensary review dispensary or null if new dispensary review dispensary
+		 * @param string $newDispensaryReviewDate string contains actual dispensary review date
 		 * @throws \InvalidArgumentException if data types are not valid
 		 * @throws \RangeException if data values are out of bounds (e.g. strings too long, negative integers)
 		 * @throws \TypeError if data violates type hints
