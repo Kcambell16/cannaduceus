@@ -74,17 +74,17 @@ class dispensaryLeafRating {
 	/**
 	 * mutator method for dispensaryLeafRatingRating
 	 *
-	 * @param int $newdispensaryLeafRatingRating new value of dispensaryLeafRatingRating
-	 * @throws UnexpectedValueException if $newdispensaryLeafRatingRating is not an integer
+	 * @param int $newDispensaryLeafRatingRating new value of dispensaryLeafRatingRating
+	 * @throws \UnexpectedValueException if $newDispensaryLeafRatingRating is not an integer
 	 */
-	public function setdispensaryLeafRatingRating($newdispensaryLeafRatingRating) {
-		$newdispensaryLeafRatingRating = filter_input($newdispensaryLeafRatingRating, FILTER_VALIDATE_INT);
-		if($newdispensaryLeafRatingRating === false) {
-			throw(new UnexpectedValueException("dispensary Leaf Rating is not a valid integer"));
+	public function setdispensaryLeafRatingRating($newDispensaryLeafRatingRating) {
+
+		if($newDispensaryLeafRatingRating <0 || 5) {
+			throw(new \UnexpectedValueException("Dispensary Leaf Rating is not a valid integer"));
 		}
 
 		//Convert and store the dispensaryLeafRating rating
-		$this->dispensaryLeafRatingRating = string($newdispensaryLeafRatingRating);
+		$this->dispensaryLeafRatingRating = int($newDispensaryLeafRatingRating);
 	}
 
 
@@ -98,19 +98,19 @@ class dispensaryLeafRating {
 	}
 
 	/**
-	 * mutator method for dispensaryLeafRatingdispensaryId
+	 * mutator method for dispensaryLeafRatingDispensaryId
 	 *
-	 * @param int $newdispensaryLeafRatingdispensaryId new var of dispensaryLeafRatingdispensaryId
-	 * @throws UnexpectedValueException if $newdispensaryLeafRatingdispensaryId is not a int
+	 * @param int $newDispensaryLeafRatingDispensaryId new var of dispensaryLeafRatingDispensaryId
+	 * @throws \UnexpectedValueException if $newDispensaryLeafRatingDispensaryId is not a int
 	 */
-	public function setdispensaryLeafRatingdispensaryId($newdispensaryLeafRatingdispensaryId) {
-		$newdispensaryLeafRatingdispensaryId = filter_input($newdispensaryLeafRatingdispensaryId, FILTER_SANITIZE_STRING);
-		if($newdispensaryLeafRatingdispensaryId === false) {
-			throw(new UnexpectedValueException("dispensary Leaf Rating dispensary Id not valid"));
+	public function setdispensaryLeafRatingDispensaryId($newDispensaryLeafRatingDispensaryId) {
+		$newDispensaryLeafRatingDispensaryId = filter_input($newDispensaryLeafRatingDispensaryId, FILTER_SANITIZE_STRING);
+		if($newDispensaryLeafRatingDispensaryId === false) {
+			throw(new \UnexpectedValueException("dispensary Leaf Rating dispensary Id not valid"));
 		}
 
 		//Convert and store the dispensary name
-		$this->dispensaryLeafRatingdispensaryId = string($newdispensaryLeafRatingdispensaryId);
+		$this->dispensaryLeafRatingDispensaryId = ($newDispensaryLeafRatingDispensaryId);
 	}
 
 
@@ -126,17 +126,17 @@ class dispensaryLeafRating {
 	/**
 	 * mutator method for dispensaryLeafRatingProfileId
 	 *
-	 * @param int $newdispensaryLeafRatingProfileId new dispensaryLeafRatingProfileId
-	 * @throws UnexpectedValueException if $newdispensaryLeafRatingProfileId is not an int
+	 * @param int $newDispensaryLeafRatingProfileId new dispensaryLeafRatingProfileId
+	 * @throws \UnexpectedValueException if $newDispensaryLeafRatingProfileId is not an int
 	 */
-	public function setdispensaryLeafRatingProfileId($newdispensaryLeafRatingProfileId) {
-		$newdispensaryLeafRatingProfileId = filter_input($newdispensaryLeafRatingProfileId, FILTER_SANITIZE_STRING);
-		if($newdispensaryLeafRatingProfileId === false) {
-			throw(new UnexpectedValueException("dispensary Leaf Rating Profile Id Invalid"));
+	public function setdispensaryLeafRatingProfileId($newDispensaryLeafRatingProfileId) {
+		$newDispensaryLeafRatingProfileId = filter_input($newDispensaryLeafRatingProfileId, FILTER_SANITIZE_STRING);
+		if($newDispensaryLeafRatingProfileId === false) {
+			throw(new \UnexpectedValueException("dispensary Leaf Rating Profile Id Invalid"));
 		}
 
 		//Convert and store the dispensaryLeafRatingProfileId
-		$this->dispensaryLeafRatingProfileId = string($newdispensaryLeafRatingProfileId);
+		$this->dispensaryLeafRatingProfileId = string($newDispensaryLeafRatingProfileId);
 	}
 
 }
