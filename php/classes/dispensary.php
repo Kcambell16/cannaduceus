@@ -388,4 +388,63 @@ public function setDispensaryStreet1(string $newDispensaryStreet1) {
 	// store the dispensary street1
 	$this->dispensaryStreet1 = $newDispensaryStreet1;
 }
+
+/**
+ * accessor method for dispensary Url
+ *
+ * @return string value of dispensary Url
+ **/
+public function getDispensaryUrl() {
+	return($this->dispensaryUrl);
 }
+
+/**
+ * mutator method for dispensary Url
+ * @param string $newDispensaryUrl new value of dispensary url
+ * @throws \InvalidArgumentException if $newDispensaryUrl is not a string or insecure
+ * @throws \RangeException if $newDispensaryUrl is > 140 characters
+ * @throws \TypeError if $newDispensaryUrl is not a string
+ **/
+public function setDispensaryUrl(string $newDispensaryUrl) {
+	//verify the dispensary url is secure
+	$newDispensaryUrl = trim($newDispensaryUrl);
+	$newDispensaryUrl = filter_var($newDispensaryUrl, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	if(empty($newDispensaryUrl) === true) {
+		throw(new \InvalidArgumentException("dispensary url is empty or insecure"));
+	}
+	//verify the dispensary url will fit in the database
+	if(strlen($newDispensaryUrl) > 140) {
+		throw(new \RangeException("dispensary url content too large"));
+	}
+	//store the dispensary url
+	$this->dispensaryUrl = $newDispensaryUrl;
+}
+/** accessor method for dispensary zip code
+ *
+ * @return int|null value of dispensary zip code
+ **/
+	public function getDispensaryZipCode() {
+		return($this->dispensaryZipCode);
+	}
+
+	/**
+	 * mutator method for dispensary zip code
+	 * @param int/null $newDispensaryZipCode new value of dispensary zip code
+	 * @throws \RangeException if $newDispenaryZipCode is not positive
+	 * @throws \TypeError if $newDispensaryZipCode is not an interger
+	 */
+	public function setDispensaryZipCode(int $newDispensaryZipCode = null) {
+		// base case: if the zip code is null, this is a new dispensary without a mySQL assigned id (yet)
+		if($newDispensaryZipCode === null){
+			$this->dispensaryZipCode = null;
+			return;
+		}
+		// verify the dispensary zip code is positive
+		if($newDispensaryZipCode <= 0) {
+			throw(new \RangeException("dispensary zip code is not positive"));
+		}
+		// convert and store the dispensary zip code
+		$this->dispensaryZipCode = $newDispensaryZipCode;
+	}
+
+	}
