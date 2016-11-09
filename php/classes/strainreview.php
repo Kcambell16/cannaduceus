@@ -31,11 +31,11 @@ class StrainReview {
 	private $StrainReviewText;
 
 
-	/** Constructor for new StrainReview
+	/** Constructor for new strainReview
 	 *
-	 * @param int | null $newStrainReviewId id of this StrainReview or null if a new StrainReview
+	 * @param int | null $newStrainReviewId id of this strainReview or null if a new strainReview
 	 * @param string $newStrainReviewDateTime the DateTime of the StrainReview
-	 * @param string $newStrainReviewText Sativa, Indica, Hybrid or null if a new StrainReview
+	 * @param string $newStrainReviewText text of the strainReview or null if a new strainReview
 	 * @throws \InvalidArgumentException if data Texts are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TextError if data Texts violate Text hints
@@ -47,7 +47,7 @@ class StrainReview {
 			$this->setStrainReviewId($newStrainReviewId);
 			$this->setStrainReviewDateTime($newStrainReviewDateTime);
 			$this->setStrainReviewText($newStrainReviewText);
-			($newStrainReviewDescription);
+			($newStrainReviewText);
 		} Catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the caller
 			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
@@ -72,9 +72,9 @@ class StrainReview {
 	}
 
 	/**
-	 * mutator method for StrainReview id
+	 * mutator method for strainReview id
 	 *
-	 * @param int $newStrainReviewId new value of StrainReview Id
+	 * @param int $newStrainReviewId new value of strainReview Id
 	 * @throws UnexpectedValueException if $newStrainReviewId is not an integer
 	 */
 	public function setStrainReviewId($newStrainReviewId) {
@@ -89,9 +89,9 @@ class StrainReview {
 
 
 	/**
-	 * accessor method for StrainReview DateTime
+	 * accessor method for strainReview DateTime
 	 *
-	 * @return string of StrainReview DateTime
+	 * @return string of strainReview DateTime
 	 */
 	public function getStrainReviewDateTime() {
 		return $this->StrainReviewDateTime;
