@@ -62,7 +62,7 @@ class Strain {
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newStrainId = null, string $newStrainName, int $newStrainType, string $newStrainThc, string $newStrainCbd, string $newStrainDescription) {
+	public function __construct(int $newStrainId = null, string $newStrainName, string $newStrainType, string $newStrainThc, string $newStrainCbd, string $newStrainDescription) {
 		try {
 			$this->setStrainId($newStrainId);
 			$this->setStrainName($newStrainName);
@@ -97,12 +97,12 @@ class Strain {
 	 * mutator method for strain id
 	 *
 	 * @param int $newStrainId new value of Strain Id
-	 * @throws UnexpectedValueException if $newStrainId is not an integer
+	 * @throws \UnexpectedValueException if $newStrainId is not an integer
 	 */
-	public function setStrainId($newStrainId) {
+	public function setStrainId(int $newStrainId) {
 		$newStrainId = filter_var($newStrainId, FILTER_VALIDATE_INT);
-		if($newStrainId === false)	{
-			throw(new UnexpectedValueException("strain Id is not a valid integer"));
+		if($newStrainId <=0)	{
+			throw(new \UnexpectedValueException("Strain Id is not a valid integer"));
 		}
 
 		//Convert and store the strain id
@@ -122,17 +122,17 @@ class Strain {
 	/**
 	 * mutator method for strain name
 	 *
-	 * @param string $newStrainName new binary of strain name
-	 * @throws UnexpectedValueException if $newStrainName is not a binary
+	 * @param string $newStrainName new strain name
+	 * @throws \UnexpectedValueException if $newStrainName is not a strain
 	 */
 	public function setStrainName($newStrainName) {
 		$newStrainName = filter_input($newStrainName, FILTER_SANITIZE_STRING);
 		if($newStrainName === false)	{
-			throw(new UnexpectedValueException("Strain Name not valid"));
+			throw(new \UnexpectedValueException("Strain Name not valid"));
 		}
 
 		//Convert and store the strain name
-		$this->strainName = string($newStrainName);
+		$this->strainName = ($newStrainName);
 	}
 
 
@@ -149,12 +149,12 @@ class Strain {
 	 * mutator method for strain type
 	 *
 	 * @param string $newStrainType new string of strain type
-	 * @throws UnexpectedValueException if $newStrainType is not a string
+	 * @throws \UnexpectedValueException if $newStrainType is not a string
 	 */
 	public function setStrainType($newStrainType) {
 		$newStrainType = filter_input($newStrainType, FILTER_SANITIZE_STRING);
 		if($newStrainType === false)	{
-			throw(new UnexpectedValueException("Strain Type Invalid"));
+			throw(new \UnexpectedValueException("Strain Type Invalid"));
 		}
 
 		//Convert and store the strain type
@@ -173,12 +173,12 @@ class Strain {
 	 * mutator method for strain THC
 	 *
 	 * @param int $newStrainThc new value of strain buyer premium
-	 * @throws UnexpectedValueException if $newStrainThc is not an integer
+	 * @throws \UnexpectedValueException if $newStrainThc is not an integer
 	 */
-	public function setStrainThc($newStrainThc) {
-		$newStrainThc = filter_var($newStrainThc, FILTER_VALIDATE_INT);
+	public function setStrainThc(string $newStrainThc) {
+		$newStrainThc = filter_var($newStrainThc, FILTER_SANITIZE_STRING);
 		if($newStrainThc === false)	{
-			throw(new UnexpectedValueException("Strain THC is not a valid integer"));
+			throw(new \UnexpectedValueException("Strain THC is not a valid integer"));
 		}
 
 		//Convert and store the strain buyer premium
@@ -198,12 +198,12 @@ class Strain {
 	 * mutator method for strain Cbd
 	 *
 	 * @param string $newStrainCbd new string of strain Cbd
-	 * @throws UnexpectedValueException if $newStrainCbd is not a string
+	 * @throws \UnexpectedValueException if $newStrainCbd is not a string
 	 */
-	public function setStrainCbd($newStrainCbd) {
+	public function setStrainCbd(string $newStrainCbd) {
 		$newStrainCbd = filter_input($newStrainCbd, FILTER_SANITIZE_STRING);
 		if($newStrainCbd === false) {
-			throw(new UnexpectedValueException("Strain Cbd Invalid"));
+			throw(new \UnexpectedValueException("Strain Cbd Invalid"));
 		}
 
 		//Convert and store the strain Cbd
@@ -223,12 +223,12 @@ class Strain {
 	 * mutator method for strain description
 	 *
 	 * @param string $newStrainDescription new string of strain payment
-	 * @throws UnexpectedValueException if $newStrainDescription is not a string
+	 * @throws \UnexpectedValueException if $newStrainDescription is not a string
 	 */
 	public function setStrainDescription($newStrainDescription) {
 		$newStrainDescription = filter_input($newStrainDescription, FILTER_SANITIZE_STRING);
 		if($newStrainDescription === false) {
-			throw(new UnexpectedValueException("Strain Description Invalid"));
+			throw(new \UnexpectedValueException("Strain Description Invalid"));
 		}
 
 		//Convert and store the strain description
