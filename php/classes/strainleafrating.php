@@ -26,7 +26,7 @@ class strainLeafRating {
 
 	/**
 	 *profile Id from the profile class;
-	 * @var string $strainType
+	 * @var int $strainLeafRatingProfileId
 	 **/
 	private $strainLeafRatingProfileId;
 
