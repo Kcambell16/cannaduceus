@@ -1,5 +1,7 @@
 <?php
 namespace Edu\Cnm\nsanchez121\cannaduceus;
+use MongoDB\Driver\Exception\UnexpectedValueException;
+
 /**
  * this is going to be the cross section for profile info
  *
@@ -80,12 +82,13 @@ class Profile {
 			throw(new \Exception($exception->getMessage(), 0, $exception));
 		}
 	}
+
 	/**
 	 * accessor method for Profile Id
 	 *
 	 * @return int|null value of Profile Id
 	 */
-	public function  getProfileId() {
+	public function getProfileId() {
 		return $this->profileId;
 	}
 
@@ -123,10 +126,49 @@ class Profile {
 	 * @throws /UnexpectedValueException if $newProfileUserName is not a binary
 	 */
 
-}
+
+	public function setProfileUserName($newProfileUserName) {
+		$newProfileUserName = filter_input($newProfileUserName, FILTER_SANITIZE_STRING);
+		if($newProfileUserName === false) {
+			throw(new \UnexpectedValueException("Profile UserName not vaild"));
+		}
+
+
+		//Convert and store the Profile UserName
+		$this->profileUserName = string($newProfileUserName);
+	}
+
+
+	/**
+	 * accessor method for Profile Email
+	 *
+	 * @return string for Profile Email
+	 */
+	public function getProfileEmail() {
+		return $this->ProfileEmail;
+	}
+
+	/**
+	 * mutator method for Profile Email
+	 *
+	 * @param string $newProfileEmail new sting of Profile Email
+	 * @throws \UnexpectedValueException if $newProfileEmail is not a string
+	 */
+
+	public function setProfileEmail($newProfileEmail) {
+		$newProfileEmail = filter_input($newProfileEmail, FILTER_SANITIZE_STRING);
+		if($newProfileEmail === false)	{
+			throw(new \UnexpectedValueException("Profile Email Invalid"));
+		}
+
+
+		//Convert and store the Profile
+		$this->profileEmail = string($newProfileEmail);
+	}
 
 
 
+	}
 
 
 

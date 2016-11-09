@@ -38,7 +38,7 @@ class StrainReview {
 	 * @param string $newStrainReviewText text of the strainReview or null if a new strainReview
 	 * @throws \InvalidArgumentException if data Texts are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
-	 * @throws \TextError if data Texts violate Text hints
+	 * @throws \TypeError if data Texts violate Text hints
 	 * @throws \Exception if some other exception occurs
 	 */
 
@@ -62,13 +62,14 @@ class StrainReview {
 			throw(new \Exception($exception->getMessage(), 0, $exception));
 		}
 	}
+
 	/**
-	 * accessor method for StrainReview id
+	 * accessor method for strainReview id
 	 *
-	 * @return int|null value of StrainReview id
+	 * @return int|null value of strainReview id
 	 */
 	public function getStrainReviewId() {
-		return $this->StrainReviewId;
+		return $this->strainReviewId;
 	}
 
 	/**
@@ -79,12 +80,12 @@ class StrainReview {
 	 */
 	public function setStrainReviewId($newStrainReviewId) {
 		$newStrainReviewId = filter_var($newStrainReviewId, FILTER_VALIDATE_INT);
-		if($newStrainReviewId === false)	{
+		if($newStrainReviewId === false) {
 			throw(new UnexpectedValueException("StrainReview Id is not a valid integer"));
 		}
 
-		//Convert and store the StrainReview id
-		$this->StrainReviewId = intval($newStrainReviewId);
+		//Convert and store the strainReview id
+		$this->strainReviewId = intval($newStrainReviewId);
 	}
 
 
@@ -94,18 +95,18 @@ class StrainReview {
 	 * @return string of strainReview DateTime
 	 */
 	public function getStrainReviewDateTime() {
-		return $this->StrainReviewDateTime;
+		return $this->strainReviewDateTime;
 	}
 
 	/**
-	 * mutator method for StrainReview DateTime
+	 * mutator method for strainReview DateTime
 	 *
-	 * @param string $newStrainReviewDateTime new binary of StrainReview DateTime
+	 * @param string $newStrainReviewDateTime new binary of strainReview DateTime
 	 * @throws UnexpectedValueException if $newStrainReviewDateTime is not a binary
 	 */
 	public function setStrainReviewDateTime($newStrainReviewDateTime) {
 		$newStrainReviewDateTime = filter_input($newStrainReviewDateTime, FILTER_SANITIZE_STRING);
-		if($newStrainReviewDateTime === false)	{
+		if($newStrainReviewDateTime === false) {
 			throw(new UnexpectedValueException("StrainReview DateTime not valid"));
 		}
 
@@ -115,101 +116,27 @@ class StrainReview {
 
 
 	/**
-	 * accessor method for StrainReview type
+	 * accessor method for StrainReview Text
 	 *
-	 * @return string for StrainReview type
+	 * @return string for StrainReview Text
 	 */
-	public function getStrainReviewType() {
-		return $this->StrainReviewType;
+	public function getStrainReviewText() {
+		return $this->strainReviewText;
 	}
 
 	/**
-	 * mutator method for StrainReview type
+	 * mutator method for StrainReview Text
 	 *
-	 * @param string $newStrainReviewType new string of StrainReview type
-	 * @throws UnexpectedValueException if $newStrainReviewType is not a string
+	 * @param string $newStrainReviewText new string of StrainReview type
+	 * @throws UnexpectedValueException if $newStrainReviewText is not a string
 	 */
-	public function setStrainReviewType($newStrainReviewType) {
-		$newStrainReviewType = filter_input($newStrainReviewType, FILTER_SANITIZE_STRING);
-		if($newStrainReviewType === false)	{
-			throw(new UnexpectedValueException("StrainReview Type Invalid"));
+	public function setStrainReviewText($newStrainReviewText) {
+		$newStrainReviewText = filter_input($newStrainReviewText, FILTER_SANITIZE_STRING);
+		if($newStrainReviewText === false) {
+			throw(new UnexpectedValueException("StrainReview Text Invalid"));
 		}
 
-		//Convert and store the StrainReview type
-		$this->StrainReviewType = string($newStrainReviewType);
-	}
-
-	/**
-	 * accessor method for StrainReview THC
-	 *
-	 * @return int for StrainReview THC
-	public function getStrainReviewThc() {
-	return $this->StrainReviewThc;
-	}
-
-	/**
-	 * mutator method for StrainReview THC
-	 *
-	 * @param int $newStrainReviewThc new value of StrainReview buyer premium
-	 * @throws UnexpectedValueException if $newStrainReviewThc is not an integer
-	 */
-	public function setStrainReviewThc($newStrainReviewThc) {
-		$newStrainReviewThc = filter_var($newStrainReviewThc, FILTER_VALIDATE_INT);
-		if($newStrainReviewThc === false)	{
-			throw(new UnexpectedValueException("StrainReview THC is not a valid integer"));
-		}
-
-		//Convert and store the StrainReview buyer premium
-		$this->StrainReviewThc = intval($newStrainReviewThc);
-	}
-
-	/**
-	 * accessor method for StrainReview Cbd
-	 *
-	 * @return string for StrainReview Cbd
-	 */
-	public function getStrainReviewCbd() {
-		return $this->StrainReviewCbd;
-	}
-
-	/**
-	 * mutator method for StrainReview Cbd
-	 *
-	 * @param string $newStrainReviewCbd new string of StrainReview Cbd
-	 * @throws UnexpectedValueException if $newStrainReviewCbd is not a string
-	 */
-	public function setStrainReviewCbd($newStrainReviewCbd) {
-		$newStrainReviewCbd = filter_input($newStrainReviewCbd, FILTER_SANITIZE_STRING);
-		if($newStrainReviewCbd === false) {
-			throw(new UnexpectedValueException("StrainReview Cbd Invalid"));
-		}
-
-		//Convert and store the StrainReview Cbd
-		return $this->StrainReviewCbd;
-	}
-
-	/**
-	 * accessor method for StrainReview description
-	 *
-	 * @return string for StrainReview description
-	 */
-	public function getStrainReviewDescription() {
-		return $this->StrainReviewDescription;
-	}
-
-	/**
-	 * mutator method for StrainReview description
-	 *
-	 * @param string $newStrainReviewDescription new string of StrainReview payment
-	 * @throws UnexpectedValueException if $newStrainReviewDescription is not a string
-	 */
-	public function setStrainReviewDescription($newStrainReviewDescription) {
-		$newStrainReviewDescription = filter_input($newStrainReviewDescription, FILTER_SANITIZE_STRING);
-		if($newStrainReviewDescription === false) {
-			throw(new UnexpectedValueException("StrainReview Description Invalid"));
-		}
-
-		//Convert and store the StrainReview description
-		return $this->StrainReviewDescription;
+		//Convert and store the StrainReview text
+		$this->StrainReviewText = string($newStrainReviewText);
 	}
 }
