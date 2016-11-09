@@ -36,9 +36,9 @@ class StrainReview {
 	 * @param int | null $newStrainReviewId id of this strainReview or null if a new strainReview
 	 * @param string $newStrainReviewDateTime the DateTime of the StrainReview
 	 * @param string $newStrainReviewText text of the strainReview or null if a new strainReview
-	 * @throws \InvalidArgumentException if data Texts are not valid
+	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
-	 * @throws \TypeError if data Texts violate Text hints
+	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 */
 
