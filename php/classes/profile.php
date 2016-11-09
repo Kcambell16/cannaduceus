@@ -85,10 +85,19 @@ class Profile {
 	 *
 	 * @return int|null value of Profile Id
 	 */
-	public function  getProfileId(){
+	public function  getProfileId() {
 		return $this->profileId;
 	}
+
+	/**
+	 * mutator method for Profile Id
+	 *
+	 * @param int $newProfileId new value of Profile Id
+	 * @throws \UnexpectedValueException if $newProfileId is not an integer
+	 */
+
 }
+
 
 
 
