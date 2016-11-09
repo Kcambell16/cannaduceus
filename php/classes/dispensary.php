@@ -117,8 +117,18 @@ class Dispensary {
 			$this->dispensaryPhone($newDispensaryPhone);
 			$this->dispensaryStreet($newDispensaryStreet);
 			$this->dispensaryStreet1($newDispensaryStreet1);
+		} catch(\InvalidArgumentException $invalidArgumentException) {
+			// rethrow the exception to the caller
+			throw(new \InvalidArgumentException($invalidArgumentException->getCode(), 0, $invalidArgumentException));
+		} catch(\RangeException $range) {
+			//rethrow the exception to the caller
+			throw(new \RangeException($range->getCode(), 0, $range));
+		} catch(\TypeError $typeError){
+			//rethrow the exception to the caller
+			throw(new \TypeError($typeError->getCode(), 0, $typeError));
+		}	catch(\TypeError $typeError) {
 
-	}
+		}
 	}
 
 
