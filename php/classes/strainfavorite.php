@@ -58,9 +58,7 @@ class strainFavorite {
 	 *
 	 * @return int|null value of strainFavoriteProfileId
 	 */
-	/**
-	 * @return int
-	 */
+
 	public function getStrainFavoriteProfileId(): int {
 		return $this->strainFavoriteProfileId;
 	}
@@ -68,11 +66,8 @@ class strainFavorite {
 	/**
 	 * mutator method for strainFavoriteProfileId
 	 *
-	 * @param int $newStrainFavoriteStrainId new value of strainFavoriteStrain Id
-	 * @throws \UnexpectedValueException if $newStrainFavoriteStrainId is not an integer
-	 */
-	/**
-	 * @param int $strainFavoriteProfileId
+	 * @param int $newStrainFavoriteProfileId new value of strainFavoriteProfile Id
+	 * @throws \UnexpectedValueException if $newStrainFavoriteProfileId is not an integer
 	 */
 	public function setStrainFavoriteProfileId( $strainFavoriteProfileId) {
 		$newStrainFavoriteProfileId = filter_var($newStrainFavoriteProfileId, FILTER_VALIDATE_INT);
@@ -89,9 +84,6 @@ class strainFavorite {
 	 *
 	 * @return int|null value of strainFavoriteStrainId
 	 */
-	/**
-	 * @return int
-	 */
 	public function getStrainFavoriteStrainId(): int {
 		return $this->strainFavoriteStrainId;
 	}
@@ -102,16 +94,13 @@ class strainFavorite {
 	 * @param int $newStrainFavoriteStrainId new value of strainFavoriteStrain Id
 	 * @throws \UnexpectedValueException if $newStrainFavoriteStrainId is not an integer
 	 */
-	/**
-	 * @param int $strainFavoriteProfileId
-	 */
-	public function setStrainFavoriteProfileId( $strainFavoriteProfileId) {
-		$newStrainFavoriteProfileId = filter_var($newStrainFavoriteProfileId, FILTER_VALIDATE_INT);
-		if($newStrainFavoriteProfileId === false) {
-			throw(new \UnexpectedValueException("Strain Favorite Profile Id is not a valid integer"));
+	public function setStrainFavoriteStrainId( $strainFavoriteStrainId) {
+		$newStrainFavoriteStrainId = filter_var($newStrainFavoriteStrainId, FILTER_VALIDATE_INT);
+		if($newStrainFavoriteStrainId === false) {
+			throw(new \UnexpectedValueException("Strain Favorite Strain Id is not a valid integer"));
 		}
 
-		//Convert and store the strainFavoriteProfileId
-		$this->strainFavoriteProfileId = $strainFavoriteProfileId;
+		//Convert and store the strainFavoriteStrainId
+		$this->strainFavoriteStrainId = $strainFavoriteStrainId;
 	}
 }
