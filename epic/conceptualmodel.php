@@ -36,7 +36,6 @@
 				<li>dispensaryAttention</li>
 				<li>dispensaryCity</li>
 				<li>dispensaryEmail</li>
-				<li>dispensaryFavorite</li>
 				<li>dispensaryName</li>
 				<li>dispensaryPhone </li>
 				<li>dispensaryStreet</li>
