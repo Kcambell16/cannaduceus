@@ -32,13 +32,13 @@ class Strain {
 
 	/**
 	 *strain THC content;
-	 * @var int $strainThc
+	 * @var float $strainThc
 	 **/
 	private $strainThc;
 
 	/**
 	 *strain CBD content;
-	 * @var string $strainCbd
+	 * @var float $strainCbd
 	 **/
 	private $strainCbd;
 
@@ -53,8 +53,8 @@ class Strain {
 	 * @param int | null $newStrainId id of this strain or null if a new strain
 	 * @param string $newStrainName the name of the strain
 	 * @param string $newStrainType Sativa, Indica, Hybrid or null if a new strain
-	 * @param string $newStrainThc string of strain THC content
-	 * @param string $newStrainCbd string of strain CBD content
+	 * @param float $newStrainThc string of strain THC content
+	 * @param float $newStrainCbd string of strain CBD content
 	 * @param string $newStrainDescription string of strain description
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
@@ -62,7 +62,7 @@ class Strain {
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newStrainId = null, string $newStrainName, string $newStrainType, string $newStrainThc, string $newStrainCbd, string $newStrainDescription) {
+	public function __construct(int $newStrainId = null, string $newStrainName, string $newStrainType, float $newStrainThc, float $newStrainCbd, string $newStrainDescription) {
 		try {
 			$this->setStrainId($newStrainId);
 			$this->setStrainName($newStrainName);
@@ -164,7 +164,7 @@ class Strain {
 	/**
 	 * accessor method for strain THC
 	 *
-	 * @return int for strain THC
+	 * @return float for strain THC
 	public function getStrainThc() {
 		return $this->strainThc;
 	}
@@ -172,10 +172,10 @@ class Strain {
 	/**
 	 * mutator method for strain THC
 	 *
-	 * @param int $newStrainThc new value of strain buyer premium
-	 * @throws \UnexpectedValueException if $newStrainThc is not an integer
+	 * @param float $newStrainThc new value of strain buyer premium
+	 * @throws \UnexpectedValueException if $newStrainThc is not a float
 	 */
-	public function setStrainThc(string $newStrainThc) {
+	public function setStrainThc(float $newStrainThc) {
 		$newStrainThc = filter_var($newStrainThc, FILTER_SANITIZE_STRING);
 		if($newStrainThc === false)	{
 			throw(new \UnexpectedValueException("Strain THC is not a valid integer"));
@@ -188,7 +188,7 @@ class Strain {
 	/**
 	 * accessor method for strain Cbd
 	 *
-	 * @return string for strain Cbd
+	 * @return float for strain Cbd
 	 */
 	public function getStrainCbd() {
 		return $this->strainCbd;
@@ -197,7 +197,7 @@ class Strain {
 	/**
 	 * mutator method for strain Cbd
 	 *
-	 * @param string $newStrainCbd new string of strain Cbd
+	 * @param float $newStrainCbd new string of strain Cbd
 	 * @throws \UnexpectedValueException if $newStrainCbd is not a string
 	 */
 	public function setStrainCbd(string $newStrainCbd) {
