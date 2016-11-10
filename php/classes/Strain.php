@@ -165,6 +165,7 @@ class Strain {
 	 * accessor method for strain THC
 	 *
 	 * @return float for strain THC
+	 */
 	public function getStrainThc() {
 		return $this->strainThc;
 	}
