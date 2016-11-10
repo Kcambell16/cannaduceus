@@ -19,28 +19,27 @@ class Profile {
 	private $profileId;
 	/**
 	 *name of the profile;
-	 * @var int $stingUserName
+	 * @var string $profileUserName
 	 **/
 	private $profileUserName;
 	/**
 	 * email for the profile
-	 * @var int $stringEmail
+	 * @var string $profileEmail
 	 **/
 	private $profileEmail;
 	/**
 	 * this is the hash for the profile
-	 * @var $stingHash
-	 * ask dylan about how to do this better
+	 * @var string $profileHash
 	 **/
 	private $profileHash;
 	/**
 	 * this is the salt for the profile
-	 * @var $stingSalt
+	 * @var string $profileSalt
 	 **/
 	private $profileSalt;
 	/**
 	 * this is the activation for the profile
-	 * @var $stingactivation
+	 * @var string $profileActivation
 	 **/
 	private $profileActivation;
 
@@ -50,7 +49,7 @@ class Profile {
 	 * @param int | null $newProfileId Id of this profile or null if new profile
 	 * @param string $newProfileUserName the name of the profile
 	 * @param string $newProfileEmail the email for the profile
-	 * @param string $profileHash the hash for the profile (again not sure if this is the way to handle hash/salt ask dylan)
+	 * @param string $profileHash the hash for the profile
 	 * @param string $profileActivation the activation for the profile
 	 * @param string $profileSalt the salt for the profile
 	 * @throws \InvalidArgumentException if data types are not valid
@@ -68,12 +67,12 @@ class Profile {
 			$this->setProfileHash($newProfileHash);
 			$this->setProfileSalt($newProfileSalt);
 			$this->setProfileActivation($newProfileActivation);
-		} Catch(\invalidArgumentException $invalidArgumentException) {
+		} Catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the caller
 			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
 		} Catch(\RangeException $range) {
 			// rethrow the exception to caller
-			throw(new \RangeException($range->getMessage(), 0, range));
+			throw(new \RangeException($range->getMessage(), 0, $range));
 		} Catch(\TypeError $typeError) {
 			// rethrow the exception to the caller
 			throw(new \TypeError($typeError->getMessage(), 0, $typeError));
@@ -95,11 +94,12 @@ class Profile {
 	/**
 	 * mutator method for Profile Id
 	 *
-	 * @param int $newProfileId new value of Profile Id
-	 * @throws /UnexpectedValueException if $newProfileId is not an integer
+	 * @param int|null $newProfileId new value of Profile Id
+	 * @throws \RangeException if $newProfileId is not positive
+	 * @throws \TypeError if $newProfileId is not an integer
 	 */
-	public function setProfileId($newProfileId) {
-		$newProfileId = filter_var($newProfileId, FILTER_VALIDATE_INT);
+	public function setProfileId( int $newProfileId) {
+		$newProfileId = filter_var($newProfileId);
 		if($newProfileId === false) {
 			throw(new \UnexpectedValueException("Profile Id is not a vaild integer"));
 		}
@@ -127,7 +127,7 @@ class Profile {
 	 */
 
 
-	public function setProfileUserName($newProfileUserName) {
+	public function setProfileUserName( string $newProfileUserName) {
 		$newProfileUserName = filter_input($newProfileUserName, FILTER_SANITIZE_STRING);
 		if($newProfileUserName === false) {
 			throw(new \UnexpectedValueException("Profile UserName not vaild"));
@@ -135,7 +135,7 @@ class Profile {
 
 
 		//Convert and store the Profile UserName
-		$this->profileUserName = string($newProfileUserName);
+		$this->profileUserName = $newProfileUserName;
 	}
 
 
@@ -145,7 +145,7 @@ class Profile {
 	 * @return string for Profile Email
 	 */
 	public function getProfileEmail() {
-		return $this->ProfileEmail;
+		return $this->profileEmail;
 	}
 
 	/**
@@ -155,7 +155,7 @@ class Profile {
 	 * @throws \UnexpectedValueException if $newProfileEmail is not a string
 	 */
 
-	public function setProfileEmail($newProfileEmail) {
+	public function setProfileEmail( string $newProfileEmail) {
 		$newProfileEmail = filter_input($newProfileEmail, FILTER_SANITIZE_STRING);
 		if($newProfileEmail === false)	{
 			throw(new \UnexpectedValueException("Profile Email Invalid"));
@@ -163,7 +163,7 @@ class Profile {
 
 
 		//Convert and store the Profile
-		$this->profileEmail = string($newProfileEmail);
+		$this->profileEmail = $newProfileEmail;
 	}
 
 	/**
@@ -172,7 +172,7 @@ class Profile {
 	 * @return int for Profile Hash
 	 */
 	public function getProfileHash() {
-		return $this->getProfileHash;
+		return $this->profileHash;
 	}
 	/**
 	 * mutator method for Profile Hash
@@ -180,14 +180,19 @@ class Profile {
 	 * @param string $newProfileHash new string of Profile Hash
 	 * @throws \UnexpectedValueException if $newProfileHash is not string
 	 */
-	public function setProfileHash($newProfileHash) {
-		$newProfileHash = filter_input($newProfileHash, FILTER_SANITIZE_STRING);
-		if($newProfileHash === false)	{
+	public function setProfileHash(string $newProfileHash) {
+		// verify the profile hash content
+		$newProfileHash = trim($newProfileHash);
+		$newProfileHash = strtolower($newProfileHash);
+		if(ctype_xdigit($newProfileHash) === false)	{
 			throw(new \UnexpectedValueException("Hash Invalid"));
 		}
-
+		// verify the profile hash content will fit in the database
+		if(strlen($newProfileHash) !== 128) {
+			throw(new \RangeException("hash content incorrect"));
+		}
 		//Convert and store the Profile Hash
-		$this->profileHash = string($newProfileHash);
+		$this->profileHash = $newProfileHash;
 	}
 
 	/**
@@ -196,7 +201,7 @@ class Profile {
 	 * @return int for Profile Salt
 	 */
 	public function getProfileSalt() {
-		return $this->getProfileSalt;
+		return $this->profileSalt;
 	}
 
 	/**
@@ -211,7 +216,7 @@ class Profile {
 			throw(new \UnexpectedValueException("Profile Salt Invaild"));
 		}
 		//Convert and store the Profile Salt
-		$this->profileSalt = string($newProfileSalt);
+		$this->profileSalt = $newProfileSalt;
 	}
 	/**
 	 * accessor method for Profile Activation
@@ -234,7 +239,7 @@ class Profile {
 		}
 
 		//Convert and store the Profile Activation
-		$this->profileActivation = string($newProfileActivation);
+		$this->profileActivation = $newProfileActivation;
 	}
 
 }
