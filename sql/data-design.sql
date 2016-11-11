@@ -127,7 +127,3 @@ CREATE TABLE strainfavorite
 	PRIMARY KEY (strainFavoriteProfileId, strainFavoriteStrainId)
 
 );
-
-
-
--- notes
