@@ -45,8 +45,14 @@ abstract class DataDesignTest extends \PHPUnit_Extensions_Database_TestCase {
 		// add all the tables for the project here
 		// THESE TABLES *MUST* BE LISTED IN THE SAME ORDER THEY WERE CREATED!!!!
 		$dataset->addTable("profile");
-		$dataset->addTable("tweet");
-		$dataset->addTable("favorite");
+		$dataset->addTable("dispensary");
+		$dataset->addTable("strain");
+		$dataset->addTable("dispensaryReview");
+		$dataset->addTable("dispensaryLeafRating");
+		$dataset->addTable("dispensaryfavorite");
+		$dataset->addTable("strainReview");
+		$dataset->addTable("strainLeafRating");
+		$dataset->addTable("strainfavorite");
 		return($dataset);
 	}
 
