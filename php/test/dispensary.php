@@ -23,6 +23,9 @@ require_once (dirname(__DIR__) . "/public_html/php/classes/autoload.php");
  * @author Kelly Campbell <kcampbell16@cnm.edu>
  */
 
-class dispensary {
+class Dispensary extends CannaduceusTest{
+	/**
+	 *
+	 */
 
 }
