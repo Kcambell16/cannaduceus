@@ -26,4 +26,28 @@ require_once (dirname(__DIR__) . "/public_html/php/classes/autoload.php");
 * @author Kelly Campbell <kcampbell16@cnm.edu>
 **/
 
-class StrainTest extends DataDesignTest
+class StrainTest extends CannaduceusTest {
+	/**
+	* strain name
+	 * @var string $VALID_STRAINNAME
+	**/
+	protected $VALID_STRAINNAME = "PHPUnit test passing";
+	/**
+	 * strain description
+	 * @var string $VALID_STRAINDESCRIPTION
+	 **/
+	protected $VALID_STRAINDESCRIPTION = "PHPUnit test passing";
+	/**
+	 * strain type content
+	 * @var string $VALID_STRAINTYPE
+	 **/
+	protected $VALID_STRAINTYPE = "PHPUnit testing passing";
+	/**
+	 * strain thc content
+	 * @var thc thc
+	 **/
+	protected $VALID_STRAINTHC = ""
+	/**
+	 *
+	 */
+}
