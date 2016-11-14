@@ -6,7 +6,7 @@
  * Time: 1:15 PM
  */
 
-namespace Edu\Cnm\kcampbell16\cannaduceus;
+namespace Edu\Cnm\Cannaduceus;
 /**
  * Cross section of cannaduceus dispensary class
  *
@@ -16,8 +16,9 @@ namespace Edu\Cnm\kcampbell16\cannaduceus;
  *
  **/
 
+require_once ("autoload.php");
 
-class Dispensary {
+class Dispensary implements \JsonSerializable {
 
 	/**
 	 * id for the strain; this is the primary key

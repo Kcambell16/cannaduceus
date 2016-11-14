@@ -1,5 +1,5 @@
 <?php
-namespace Edu\Cnm\nsanchez121\cannaduceus;
+namespace Edu\Cnm\Cannaduceus;
 
 
 /**
