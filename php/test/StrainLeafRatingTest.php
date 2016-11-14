@@ -2,7 +2,7 @@
 
 // grab the project test parameters
 require_once("CannaduceusTest.php");
-require_once(dirname(__DIR__) . "/php/classes/StrainLeafRating.php");
+require_once(dirname(__DIR__) . "/classes/StrainLeafRating.php");
 
 //class being tested
 //require_once(dirname(__DIR__). "/php/classes/StrainLeafRating.php");
