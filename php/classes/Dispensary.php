@@ -447,7 +447,11 @@ public function setDispensaryUrl(string $newDispensaryUrl) {
  * @throws \PDOException when mySQL related errors occur
  * @throws \TypeError if $pdo is not a PDO connection object
  **/
-public function insert(\PDO $PDO){
+public
+/**
+ * @param \PDO $PDO
+ */
+function insert(\PDO $PDO){
 	\\ enforce dispensary id is null (i.e. dont insert a dispenary that already exsist)
 	if($this->dispensaryId !== null) {
 		throw(new \PDOException("not a new dispensary"));
@@ -457,6 +461,9 @@ public function insert(\PDO $PDO){
 	$statement = $pdo->prepare($query);
 
 	// bind the member variables to the place holders in the template
-	$parameters = ["dispensaryProfileId" => $this->dispensaryId, "dispensaryName" => $this->dispensaryName, "dispensaryAttention" => $this->dispensaryAttention, "dispensaryStreet1" => $this->dispensaryStreet1, "dispensaryStreet2" => $this->dispensaryStreet2, "dispensaryCity" $this->dispensaryCity, "dispensaryState" $this->dispensaryState, "dispensaryZipCode" $this->dispensaryZipCode, "dispensaryEmail" $this->dispensaryEmail, "dispensaryPhone" $this->dispensaryPhone]
+	$parameters = ["dispensaryProfileId" => $this->dispensaryId, "dispensaryName" => $this->dispensaryName, "dispensaryAttention" => $this->dispensaryAttention, "dispensaryStreet1" => $this->dispensaryStreet1, "dispensaryStreet2" => $this->dispensaryStreet2, "dispensaryCity" $this->dispensaryCity, "dispensaryState" $this->dispensaryState, "dispensaryZipCode" $this->dispensaryZipCode, "dispensaryEmail" $this->dispensaryEmail, "dispensaryPhone" $this->dispensaryPhone];
+	$statement->execute($parameters);
 
+	// update the null dispensary Id with what mysql just gave us
+	$this->dispensaryId = invital($pdo->lastInsertId());
 }
