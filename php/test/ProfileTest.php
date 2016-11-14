@@ -9,7 +9,7 @@ use Edu\Cnm\Cannaduceus\{Profile};
 require_once ("CannaduceusTest.php");
 
 //grabs the class being tested
-require_once (dirname(__DIR__) . "../php/classes/autoload.php");
+require_once (dirname(__DIR__) . "./classes/autoload.php");
 
 /**
  * Full PHPUnit test for the Profile class
