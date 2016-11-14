@@ -210,10 +210,12 @@ class Profile {
 	 * @param string $newProfileSalt new string for Profile Salt
 	 * @throws \UnexpectedValueException if $newProfileSalt is not a string
 	 */
-	public function setProfileSalt($newProfileSalt) {
-		$newProfileSalt = filter_input($newProfileSalt, FILTER_SANITIZE_STRING);
-		if($newProfileSalt === false)	{
-			throw(new \UnexpectedValueException("Profile Salt Invaild"));
+	public function setProfileSalt(string $newProfileSalt) {
+		// verify the profile salt content
+		$newProfileSalt = trim($newProfileSalt);
+		$newProfileSalt = strtolower($newProfileSalt);
+		if(ctype_xdigit($newProfileSalt)=== false)	{
+			throw(new \UnexpectedValueException("salt content incorrect"));
 		}
 		//Convert and store the Profile Salt
 		$this->profileSalt = $newProfileSalt;
@@ -232,10 +234,12 @@ class Profile {
 	 * @param string $newProfileActivation new string of Profile Activation
 	 * @throws \UnexpectedValueException if $newProfileActivation is not string
 	 */
-	public function setProfileActivation($newProfileActivation) {
-		$newProfileActivation = filter_input($newProfileActivation, FILTER_SANITIZE_STRING);
-		if($newProfileActivation === false)	{
-			throw(new \UnexpectedValueException("Profile Activation Invalid"));
+	public function setProfileActivation(string $newProfileActivation) {
+		// verify the profile activation content
+		$newProfileActivation = trim($newProfileActivation);
+		$newProfileActivation = strtolower($newProfileActivation);
+		if(ctype_xdigit($newProfileActivation) === false)	{
+			throw(new \UnexpectedValueException("activation content incorrect"));
 		}
 
 		//Convert and store the Profile Activation
