@@ -1,29 +1,40 @@
 <?php
 /**
- * Class Autoloader
- * stolen from Skyler
- * sin verguenza
+ * PSR-4 Compliant Autoloader
  *
- * @author James Montoya
- */
-spl_autoload_register("Autoloader::classLoader");
-class Autoloader {
+ * This will dynamically load classes by resolving the prefix and class name. This is the method that frameworks
+ * such as Laravel and Composer automatically resolve class names and load them. To use it, simply set the
+ * configurable parameters inside the closure. This example is taken from PHP-FIG, referenced below.
+ *
+ * @param string $class fully qualified class name to load
+ * @see http://www.php-fig.org/psr/psr-4/examples/ PSR-4 Example Autoloader
+ **/
+spl_autoload_register(function($class) {
 	/**
-	 * This function autoloads classes if they exist
-	 *
-	 * @param string $className name of class to load
-	 * @return bool false if classes can not be loaded
+	 * CONFIGURABLE PARAMETERS
+	 * prefix: the prefix for all the classes (i.e., the namespace)
+	 * baseDir: the base directory for all classes (default = current directory)
 	 **/
-	public static function classLoader($className) {
-		$className[0] = strtolower($className[0]);
-		$className = preg_replace_callback("/([A-Z])/", function($matches) {
-			return("-" . strtolower($matches[0]));
-		}, $className);
-		$classFile = __DIR__ . "autoload.php/" . $className . ".php";
-		if(is_readable($classFile) === true && require_once($classFile)) {
-			return(true);
-		} else {
-			return(false);
-		}
+	$prefix = "Edu\\Cnm\\Dmcdonald21\\DataDesign";
+	$baseDir = __DIR__;
+
+	// does the class use the namespace prefix?
+	$len = strlen($prefix);
+	if (strncmp($prefix, $class, $len) !== 0) {
+		// no, move to the next registered autoloader
+		return;
 	}
-}
+
+	// get the relative class name
+	$className = substr($class, $len);
+
+	// replace the namespace prefix with the base directory, replace namespace
+	// separators with directory separators in the relative class name, append
+	// with .php
+	$file = $baseDir . str_replace("\\", "/", $className) . ".php";
+
+	// if the file exists, require it
+	if(file_exists($file)) {
+		require_once($file);
+	}
+});
