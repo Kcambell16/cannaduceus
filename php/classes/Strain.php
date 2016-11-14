@@ -10,7 +10,7 @@ namespace Edu\Cnm\jmontoya306\cannaduceus;
  *
  **/
 
-class Strain {
+class Strain implements \JsonSerializable {
 
 	/**
 	 * id for the strain; this is the primary key
