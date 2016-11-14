@@ -1,8 +1,8 @@
 <?php
-namespace Edu\Cnm\nsanchez121\Cannaduceus\Test;
+namespace Edu\Cnm\Cannaduceus\Test;
 
 use Edu\Cnm\Cannaduceus\Test\CannaduceusTest;
-use Edu\Cnm\nsanchez121\Cannaduceus\{Dispensary, review};
+use Edu\Cnm\Cannaduceus\{Dispensary, review};
 
 // grab the test parameters
 require_once("DispensaryFavoriteTest.php");
@@ -30,7 +30,12 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	 */
 	protected $VAILD_FAVORITEDISPENSARY2 = "PHPUnit test still passing";
 	/**
-	 *
-	 *
+	 * Profile that created the Favorite; this is foreign key relations
+	 * @var
+	 */
+	protected $profile = null;
+
+	/**
+	 * create dependent objects before running each test
 	 */
 }

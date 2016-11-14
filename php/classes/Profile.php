@@ -1,7 +1,7 @@
 <?php
 namespace Edu\Cnm\Cannaduceus;
 
-
+require_once("autoload.php");
 /**
  * this is going to be the cross section for profile info
  *
@@ -10,7 +10,7 @@ namespace Edu\Cnm\Cannaduceus;
  * @version 1.0.0
  **/
 
-class Profile {
+class Profile implements \JsonSerializable {
 
 	/**
 	 * id for the profile; this is the primary key
@@ -245,6 +245,93 @@ class Profile {
 		//Convert and store the Profile Activation
 		$this->profileActivation = $newProfileActivation;
 	}
+
+	/**
+	 * inserts this Profile into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is ot a PDO connection object
+	 */
+	public function insert(\PDO $pdo) {
+		// enforce the profileId is null (i.e., don't insert a profile that already exists)
+		if($this->profileId !== null) {
+			throw(new\PDOException("not a new profile"));
+		}
+
+		// create query template
+		$query = "INSERT INTO profile(profileUserName, profileEmail, profileHash, profileSalt, profileActivation) VALUES(:profileName, :profileEmail, :profileHash, :profileSalt, :profileActivation)";
+
+
+		//prepare is used as an extra means of security
+		$statement = $pdo->prepare($query);
+
+		//bind the member variables to the place holder slots in the template. putting these into an array
+		$parameters = ["profileUserName" => $this->profileUserName, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileSalt" => $this->profileSalt, "profileActivation" => $this->profileActivation];
+
+
+		//execute the command held in $statement
+		$statement->execute($parameters);
+
+		//update the null profileId. Ask mySQL for the primary key value it assigned to this entry
+		$this->profileId = intval($pdo->lastInsertId());
+	}
+
+	/**
+	 * deletes this profile from the mySQL database
+	 * @param \PDO $pdo Pdo connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+	public function delete(\PDO $pdo) {
+		//first check to make sure the profileId isn't null, cant delete something that hasn't been entered into SQL yet
+		if($this->profileId === null){
+			throw(new \PDOException("The profile you selected does not exist"));
+		}
+
+
+		//create the query template
+		$query = "DELETE FROM profile WHERE profileId = :profileId";
+		$statement = $pdo->prepare($query);
+
+		//bind parameters and execute the function
+		$parameters = ["profileId" => $this->profileId];
+	}
+	/**
+	 * PDO statement to update this profile in mySQL
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+
+	public function update(\PDO $pdo) {
+		//ensure that this profile is not null (hasn't been entered into SQL). can't update something that doesn't exist
+		if($this->profileId === null){
+			throw(new \PDOException("Can't update a profile that doesn't exist"));
+		}
+
+		//create a query template
+		$query = "UPDATE profile SET profileUserName = :profileUserName, profileEmail = :profileEmail, profileSalt = :profileSalt, profileHash = :profileHash, profileActivation = :profileActivation";
+		// prepare statement
+		$statement = $pdo->prepare($query);
+
+		//bind the variables to the template and execute the SQL command
+		$parameters = ["profileUserName" => $this->ProfileUserName, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileSalt" => $this->profileSalt, "profileActivation" => $this->profileActivation];
+		//execute
+		$statement->execute($parameters);
+	}
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 */
+	public function  jsonSerialize() {
+		$fields = get_object_vars($this);
+		unsent($fields["profileHash"]);
+		unsent($fields["profileSalt"]);
+		return ($fields);
+	}
+
 
 }
 
