@@ -59,5 +59,4 @@ class StrainTest extends CannaduceusTest {
 	// create and insert a Strain to own the test Strain
 $this->strain = new Strain("@phpunit", "test@phpunit.de", "+12125551212");
 $this->strain = insert($this->getPDO());
-//
 }

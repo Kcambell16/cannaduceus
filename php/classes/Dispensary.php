@@ -6,7 +6,7 @@
  * Time: 1:15 PM
  */
 
-namespace Edu\Cnm\kcampbell16\cannaduceus;
+namespace Edu\Cnm\Cannaduceus;
 /**
  * Cross section of cannaduceus dispensary class
  *
