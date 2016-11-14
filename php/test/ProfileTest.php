@@ -264,4 +264,3 @@ class Profile extends CannaduceusTest{
 		$this->assertEquals($pdoProfile->getProfileAccess(), $this->);
 		$this->assertEquals($pdoProfile->getPROFILEACTIVATION(), $this->VALID_PROFILEACTIVATION);
 	}
-}
