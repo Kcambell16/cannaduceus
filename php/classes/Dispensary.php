@@ -103,10 +103,8 @@ class Dispensary implements \JsonSerializable {
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
-	 */
-	/**
-	 * @return string
-	 */
+	 **/
+
 	public function __construct(int $newDispensaryId = null, string $newDispensaryAttention, string $newDispensaryCity, string $newDispensaryEmail, int $newDispensaryFavorite, string $newDispensaryName, int $newDispensaryPhone, string $newDispensaryStreet, string $newDispensaryStreet1, string $newDispensaryUrl, int $newDispensaryZipCode) {
 		try {
 			$this->setDispensaryId($newDispensaryId);
