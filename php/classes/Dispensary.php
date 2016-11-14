@@ -16,8 +16,9 @@ namespace Edu\Cnm\Cannaduceus;
  *
  **/
 
+require_once ("autoload.php");
 
-class Dispensary {
+class Dispensary implements \JsonSerializable {
 
 	/**
 	 * id for the strain; this is the primary key
