@@ -9,6 +9,7 @@
 namespace Edu\Cnm\Cannaduceus\Test;
 
 use Edu\Cnm\Cannaduceus\{Dispensary};
+use Edu\Cnm\jmontoya306\cannaduceus\Strain;
 
 //grabs the project parameters
 require_once ("CannaduceusTest.php");
@@ -46,8 +47,17 @@ class StrainTest extends CannaduceusTest {
 	 * strain thc content
 	 * @var thc thc
 	 **/
-	protected $VALID_STRAINTHC = ""
+	protected $VALID_STRAINTHC = "PHPUnit testing passing";
 	/**
-	 *
-	 */
+	 * strain Cbd content
+	 * @var string $VALID_STRAINCBD
+	 **/
+	public final function setUp() {
+		//run the default setUp() method first
+		parent::setUp();
+	}}
+	// create and insert a Strain to own the test Strain
+$this->strain = new Strain("@phpunit", "test@phpunit.de", "+12125551212");
+$this->strain = insert($this->getPDO());
+//
 }
