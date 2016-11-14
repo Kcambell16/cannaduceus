@@ -20,7 +20,17 @@ require_once(dirname(__DIR__) . "/classes/DispensaryFavorite.php");
  */
 class DispensaryFavoriteTest extends CannaduceusTest {
 	/**
-	 * dispensary of the favorite
-	 * @var string $VALID_
+	 * the favorite dispensary
+	 * @var string $VALID_DISPENSARYFAVORITE
+	 */
+	protected $VALID_FAVORITEDISPENSARY = "PHPUnit test passing";
+	/**
+	 * content of the updated Favorite
+	 * @var string $VALID_DISPENSARYFAVORITE2
+	 */
+	protected $VAILD_FAVORITEDISPENSARY2 = "PHPUnit test still passing";
+	/**
+	 *
+	 *
 	 */
 }
