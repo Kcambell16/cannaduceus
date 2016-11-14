@@ -7,7 +7,7 @@ use Edu\Cnm\nsanchez121\Cannaduceus\{Dispensary, review};
 // grab the test parameters
 require_once("DispensaryFavoriteTest.php");
 
-require_once(dirname(__DIR__) . "/classes/DispensaryFavorite.php");
+require_once(dirname(__DIR__) . "/classes/autoload.php");
 
 /**
  * Full PHPUnit test for the dispensary favorite class
