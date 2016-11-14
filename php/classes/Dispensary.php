@@ -45,12 +45,6 @@ class Dispensary implements \JsonSerializable {
 	private $dispensaryEmail;
 
 	/**
-	 * favorites for dispensary give by users
-	 * @var int $dispensaryFavorite
-	 **/
-	private $dispensaryFavorite;
-
-	/**
 	 * actual name of dispensary
 	 * @var string $dispensaryName
 	 **/
@@ -446,3 +440,23 @@ public function setDispensaryUrl(string $newDispensaryUrl) {
 		$this->dispensaryZipCode = $newDispensaryZipCode;
 	}
 	}
+/**
+ * inserts this Dispensary into mySQL
+ *
+ * @param \PDO $pdo PDO connection object
+ * @throws \PDOException when mySQL related errors occur
+ * @throws \TypeError if $pdo is not a PDO connection object
+ **/
+public function insert(\PDO $PDO){
+	\\ enforce dispensary id is null (i.e. dont insert a dispenary that already exsist)
+	if($this->dispensaryId !== null) {
+		throw(new \PDOException("not a new dispensary"));
+	}
+	// create query template
+	$query = "INSERT INTO Dispensary(dispensaryId, dispensaryName, dispensaryAttention, dispensaryStreet1, dispensaryStreet2, dispensaryCity, dispensaryState, dispensaryZipCode, dispensaryEmail, dispensaryPhone, dispensaryUrl) VALUES (:dispensaryId, :dispensaryName, :dispensaryAttention, :dispensaryStreet1, :dispensaryStreet2, :dispensaryCity, :dispensaryState, :dispensaryZipCode, :dispensaryEmail, :dispensaryPhone, :dispensaryUrl)";
+	$statement = $pdo->prepare($query);
+
+	// bind the member variables to the place holders in the template
+	$parameters = ["dispensaryProfileId" => $this->dispensaryId, "dispensaryName" => $this->dispensaryName, "dispensaryAttention" => $this->dispensaryAttention, "dispensaryStreet1" => $this->dispensaryStreet1, "dispensaryStreet2" => $this->dispensaryStreet2, "dispensaryCity" $this->dispensaryCity, "dispensaryState" $this->dispensaryState, "dispensaryZipCode" $this->dispensaryZipCode, "dispensaryEmail" $this->dispensaryEmail, "dispensaryPhone" $this->dispensaryPhone]
+
+}
