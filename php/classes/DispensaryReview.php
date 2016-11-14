@@ -1,4 +1,40 @@
 <?php
+
+namespace Edu\Cnm\hlozano2\DataDesign;
+
+require_once("autoload.php");
+
+/**
+ * Small Cross Section of a Dispensary Review
+ *
+ *
+ * @author Hector Lozano <hlozano2@cnm.edu>
+ * @version 3.0.0
+ **/
+class DispensayReview implements \JsonSerializable {
+	use ValidateDate;
+	/**
+	 * id for this DispensaryReview; this is the primary key
+	 * @var int $dispensaryReviewId
+	 **/
+	private $tweetId;
+	/**
+	 * id of the Profile that sent this Tweet; this is a foreign key
+	 * @var int $tweetProfileId
+	 **/
+	private $tweetProfileId;
+	/**
+	 * actual textual content of this Tweet
+	 * @var string $tweetContent
+	 **/
+	private $tweetContent;
+	/**
+	 * date and time this Tweet was sent, in a PHP DateTime object
+	 * @var \DateTime $tweetDate
+	 **/
+	private $tweetDate;
+
+
 /**
  * List of review per individual dispensary.
  *
@@ -238,6 +274,17 @@ class DispensaryReview {
 
 		// store the name content
 		$this->dispensaryReviewTxt = $newDispensaryReviewTxt;
+	}
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+		$fields["tweetDate"] = $this->tweetDate->getTimestamp() * 1000;
+		return($fields);
 	}
 }
 
