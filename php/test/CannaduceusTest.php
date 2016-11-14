@@ -20,7 +20,7 @@ require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
  *
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
  **/
-abstract class DataDesignTest extends \PHPUnit_Extensions_Database_TestCase {
+abstract class CannaduceusTest extends \PHPUnit_Extensions_Database_TestCase {
 	/**
 	 * invalid id to use for an INT UNSIGNED field (maximum allowed INT UNSIGNED in mySQL) + 1
 	 * @see https://dev.mysql.com/doc/refman/5.6/en/integer-types.html mySQL Integer Types
@@ -45,8 +45,14 @@ abstract class DataDesignTest extends \PHPUnit_Extensions_Database_TestCase {
 		// add all the tables for the project here
 		// THESE TABLES *MUST* BE LISTED IN THE SAME ORDER THEY WERE CREATED!!!!
 		$dataset->addTable("profile");
-		$dataset->addTable("tweet");
-		$dataset->addTable("favorite");
+		$dataset->addTable("dispensary");
+		$dataset->addTable("strain");
+		$dataset->addTable("dispensaryReview");
+		$dataset->addTable("dispensaryLeafRating");
+		$dataset->addTable("dispensaryfavorite");
+		$dataset->addTable("strainReview");
+		$dataset->addTable("strainLeafRating");
+		$dataset->addTable("strainfavorite");
 		return($dataset);
 	}
 

@@ -51,7 +51,7 @@ CREATE TABLE strain
 	PRIMARY KEY (strainId)
 );
 
-CREATE TABLE dispensaryreview
+CREATE TABLE dispensaryReview
 (
 	dispensaryReviewId INT UNSIGNED NOT NULL,
 	dispensaryReviewProfileId INT UNSIGNED NOT NULL,
@@ -65,7 +65,7 @@ CREATE TABLE dispensaryreview
 	PRIMARY KEY (dispensaryReviewDispensaryId, dispensaryReviewProfileId)
 );
 
-CREATE TABLE dispensaryleafrating
+CREATE TABLE dispensaryLeafRating
 (
 	dispensaryLeafRatingDispensaryId INT UNSIGNED NOT NULL,
 	dispensaryLeafRatingProfileId INT UNSIGNED NOT NULL,
@@ -94,7 +94,12 @@ CREATE TABLE strainReview
 	strainReviewProfileId INT UNSIGNED NOT NULL,
 	strainReviewStrainId INT UNSIGNED NOT NULL,
 	strainReviewDateTime VARCHAR(32),
-	strainReviewTxt VARCHAR (256)
+	strainReviewTxt VARCHAR (256),
+	INDEX (strainReviewProfileId),
+	INDEX (strainReviewStrainId),
+	FOREIGN KEY (strainReviewProfileId) REFERENCES profile (profileId),
+	FOREIGN KEY (strainReviewStrainId) REFERENCES strain (strainId),
+	PRIMARY KEY (strainReviewProfileId, strainReviewStrainId)
 
 
 );
@@ -107,11 +112,18 @@ CREATE TABLE strainLeafRating
 	INDEX (strainLeafRatingStrainId),
 	INDEX (strainLeafRatingProfileId),
 	FOREIGN KEY (strainLeafRatingProfileId) REFERENCES profile (profileId),
-	FOREIGN KEY (strainLeafRatingRating) REFERENCES  (),
+	FOREIGN KEY (strainLeafRatingStrainId) REFERENCES  strain (strainId),
 	PRIMARY KEY (strainLeafRatingProfileId, strainLeafRatingRating)
 );
 
 CREATE TABLE strainfavorite
 (
+	strainFavoriteProfileId INT UNSIGNED NOT NULL,
+	strainFavoriteStrainId INT UNSIGNED NOT NULL,
+	INDEX (strainFavoriteProfileId),
+	INDEX (strainFavoriteStrainId),
+	FOREIGN KEY (strainFavoriteProfileId) REFERENCES profile (profileId),
+	FOREIGN KEY (strainFavoriteStrainId) REFERENCES strain (strainId),
+	PRIMARY KEY (strainFavoriteProfileId, strainFavoriteStrainId)
 
-)
+);
