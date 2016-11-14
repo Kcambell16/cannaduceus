@@ -9,7 +9,7 @@ require_once("autoload.php");
  *
  *
  * @author Hector Lozano <hlozano2@cnm.edu>
- * @version 3.0.0
+ * @version 4.2.0
  **/
 class DispensayReview implements \JsonSerializable {
 	use ValidateDate;
