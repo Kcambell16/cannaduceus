@@ -19,7 +19,7 @@ class Autoloader {
 		$className = preg_replace_callback("/([A-Z])/", function($matches) {
 			return("-" . strtolower($matches[0]));
 		}, $className);
-		$classFile = __DIR__ . "/" . $className . ".php";
+		$classFile = __DIR__ . "autoload.php/" . $className . ".php";
 		if(is_readable($classFile) === true && require_once($classFile)) {
 			return(true);
 		} else {
