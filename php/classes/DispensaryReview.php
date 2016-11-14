@@ -11,28 +11,34 @@ require_once("autoload.php");
  * @author Hector Lozano <hlozano2@cnm.edu>
  * @version 4.2.0
  **/
+
 class DispensayReview implements \JsonSerializable {
 	use ValidateDate;
 	/**
 	 * id for this DispensaryReview; this is the primary key
 	 * @var int $dispensaryReviewId
 	 **/
-	private $tweetId;
+	private $dispensaryReviewId;
 	/**
-	 * id of the Profile that sent this Tweet; this is a foreign key
-	 * @var int $tweetProfileId
+	 * id of the Profile that reviewed this dispensary; this is a foreign key
+	 * @var int $dispensaryReviewId
 	 **/
-	private $tweetProfileId;
+	private $dispensaryReviewProfileId;
 	/**
-	 * actual textual content of this Tweet
-	 * @var string $tweetContent
+	 * dispensary being reviewed by a specific profile
+	 * @var string $dispensaryReviewDispensaryId
 	 **/
-	private $tweetContent;
+	private $dispensaryReviewDispensaryId;
 	/**
-	 * date and time this Tweet was sent, in a PHP DateTime object
+	 * date and time this Review was sent, in a PHP DateTime object
 	 * @var \DateTime $tweetDate
 	 **/
-	private $tweetDate;
+	private $dispensaryReviewDate;
+	/**
+	 * actual textual review for this dispensary
+	 * @var string $tweetContent
+	 **/
+	private $dispensaryReviewTxt;
 
 
 /**
