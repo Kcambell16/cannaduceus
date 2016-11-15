@@ -393,6 +393,16 @@ class DispensayReview implements \JsonSerializable {
 		return($dispensaryReviews);
 	}
 
+	/**
+	 * gets the DidpensaryReview by content
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $dispensaryReviewTxt dispensary review content to search for
+	 * @return \SplFixedArray SplFixedArray of Tweets found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+
 
 	/**
 	 * formats the state variables for JSON serialization
