@@ -81,6 +81,12 @@ class Dispensary implements \JsonSerializable {
 	private $dispensaryZipCode;
 
 	/**
+	 * actual state of dispensary
+	 * @var string $dispensaryState
+	 **/
+	private $dispensaryState;
+
+	/**
 	 * constructor for dispensary
 	 *
 	 * @param int|null $dispensaryId id of this Dispensay or null if a dispensary
