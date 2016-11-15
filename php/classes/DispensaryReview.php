@@ -344,17 +344,54 @@ class DispensayReview implements \JsonSerializable {
 		while(($row = $statement->fetch()) !== false) {
 			try {
 				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
-				$dispensaryReviews[$tweets->key()] = $tweet;
-				$tweets->next();
+				$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
+				$dispensaryReviewss->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return($tweets);
+		return($dispensaryReviews);
 	}
 
+	/**
+	 * gets the DispensaryReview by DispensaryReviewDispensaryId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param int $dispensaryReviewDispensaryId profile id to search by
+	 * @return \SplFixedArray SplFixedArray of DispensaryReviews found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getDispensaryReviewByDispensaryReviewDispensaryId(\PDO $pdo, int $dispensaryReviewDispensaryId) {
+		// sanitize the profile id before searching
+		if($dispensaryReviewProfileId <= 0) {
+			throw(new \RangeException("dispensary review profile id must be positive"));
+		}
 
+		// create query template
+		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewProfileId = :dispensaryReviewProfileId";
+		$statement = $pdo->prepare($query);
+
+		// bind the dispensary review profile id to the place holder in the template
+		$parameters = ["dispensaryReviewProfileId" => $dispensaryReviewProfileId];
+		$statement->execute($parameters);
+
+		// build an array of dispensary reviews
+		$dispensaryReviews = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
+				$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
+				$dispensaryReviewss->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($dispensaryReviews);
+	}
 
 
 	/**
