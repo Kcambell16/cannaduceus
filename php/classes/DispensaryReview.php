@@ -402,6 +402,38 @@ class DispensayReview implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
+	public static function getDispensaryReviewByDispensaryReviewTxt(\PDO $pdo, string $dispensaryReviewTxt) {
+		// sanitize the description before searching
+		$dispensaryReviewTxt = trim($dispensaryReviewTxt);
+		$dispensaryReviewTxt = filter_var($dispensaryReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($dispensaryReviewTxt) === true) {
+			throw(new \PDOException("dispensary review text is invalid"));
+		}
+
+		// create query template
+		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewTxt LIKE :dispensaryReviewTxt";
+		$statement = $pdo->prepare($query);
+
+		// bind the tweet content to the place holder in the template
+		$dispensaryReviewTxt = "%$dispensaryReviewTxt%";
+		$parameters = ["dispensaryReviewTxt" => $dispensaryReviewTxt];
+		$statement->execute($parameters);
+
+		// build an array of dispensary reviews
+		$dispensaryReviews = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
+				$s[$dispensaryReviews->key()] = $dispensaryReview;
+				$dispensaryReviews->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($tweets);
+	}
 
 
 	/**
