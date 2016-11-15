@@ -265,7 +265,6 @@ class DispensayReview implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
-
 	public function insert(\PDO $pdo) {
 
 		// create query template
@@ -294,13 +293,21 @@ class DispensayReview implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
-
 	public function update(\PDO $pdo) {
-
 
 		// enforce the dispensaryReviewId is not null (i.e., don't update a dispensary review that hasn't been inserted)
 		if($this->dispensaryReviewId === null) {
 			throw(new \PDOException("unable to update a dispensary review that does not exist"));
+		}
+
+		// create query template
+		$query = "UPDATE dispensaryReview SET dispensaryReviewProfileId = :dispensaryReviewProfileId, dispensaryReviewDispensaryId = :dispensaryReviewDispensaryId, dispensaryReviewDateTime = :dispensaryReviewDateTime WHERE dispensaryReviewId = :dispensaryReviewId";
+		$statement = $pdo->prepare($query);
+
+		$formattedDateTime = $this->dispensaryReviewDateTime->format("Y-m-d H:i:s");
+		$parameters = ["dispensaryReviewProfileId" => $this->dispensaryReviewProfileId, "dispensaryReviewDispensaryId" => $this->dispensaryReviewDispensaryId,
+			            "dispensaryReviewDateTime" => $formattedDateTime, "dispensaryReviewTxt" => $this->$this->dispensaryReviewTxt];
+		$statement->execute($parameters);
 	}
 
 
