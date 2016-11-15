@@ -295,7 +295,13 @@ class DispensayReview implements \JsonSerializable {
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
 
+	public function update(\PDO $pdo) {
 
+
+		// enforce the dispensaryReviewId is not null (i.e., don't update a dispensary review that hasn't been inserted)
+		if($this->dispensaryReviewId === null) {
+			throw(new \PDOException("unable to update a dispensary review that does not exist"));
+	}
 
 
 
