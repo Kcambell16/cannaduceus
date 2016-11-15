@@ -41,14 +41,6 @@ class DispensayReview implements \JsonSerializable {
 	private $dispensaryReviewTxt;
 
 
-/**
- * List of review per individual dispensary.
- *
- *
- * @author <hlozano2@cnm.edu>
- * @version 1.0.0
- */
-
 
 
 
@@ -141,7 +133,7 @@ class DispensayReview implements \JsonSerializable {
 
 	public function setDispensaryReviewProfileId(int $newDispensaryReviewProfileId = null) {
 		// base case: if the dispensary review profile id is null, this is a new dispensary review profile id without a mySQL assigned id (yet)
-		if($newDispensaryReviewProfileId === null) {
+		if($newDispensaryReviewProfileId === null) { // here hector
 			$this->dispensaryReviewProfileId = null;
 			return;
 		}
@@ -283,57 +275,6 @@ class DispensayReview implements \JsonSerializable {
 		$this->dispensaryReviewId = intval($pdo->lastInsertId());
 
 	} // insert
-
-
-
-	/**
-	 * updates this DispensaryReview in mySQL
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError if $pdo is not a PDO connection object
-	 **/
-	public function update(\PDO $pdo) {
-
-		// enforce the dispensaryReviewId is not null (i.e., don't update a dispensary review that hasn't been inserted)
-		if($this->dispensaryReviewId === null) {
-			throw(new \PDOException("unable to update a dispensary review that does not exist"));
-		}
-
-		// create query template
-		$query = "UPDATE dispensaryReview SET dispensaryReviewProfileId = :dispensaryReviewProfileId, dispensaryReviewDispensaryId = :dispensaryReviewDispensaryId, dispensaryReviewDateTime = :dispensaryReviewDateTime WHERE dispensaryReviewId = :dispensaryReviewId";
-		$statement = $pdo->prepare($query);
-
-		$formattedDateTime = $this->dispensaryReviewDateTime->format("Y-m-d H:i:s");
-		$parameters = ["dispensaryReviewProfileId" => $this->dispensaryReviewProfileId, "dispensaryReviewDispensaryId" => $this->dispensaryReviewDispensaryId,
-			            "dispensaryReviewDateTime" => $formattedDateTime, "dispensaryReviewTxt" => $this->$this->dispensaryReviewTxt];
-		$statement->execute($parameters);
-	}
-
-	/**
-	 * deletes this DispensaryReview from mySQL
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError if $pdo is not a PDO connection object
-	 **/
-	public function delete(\PDO $pdo) {
-		// enforce the dispensaryReviewId is not null (i.e., don't delete a dispensary review that hasn't been inserted)
-		if($this->dispensaryReviewId === null) {
-			throw(new \PDOException("unable to delete a dispensary review that does not exist"));
-		}
-
-		// create query template
-		$query = "DELETE FROM dispensaryReview WHERE dispensaryReviewId = :dispensaryReviewId";
-		$statement = $pdo->prepare($query);
-
-		// bind the member variables to the place holder in the template
-		$parameters = ["dispensaryReviewId" => $this->dispensaryReviewId];
-		$statement->execute($parameters);
-	}
-
-
-
 
 	/**
 	 * gets the DispensaryReview by content
