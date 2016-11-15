@@ -42,10 +42,10 @@ CREATE TABLE strain
 (
 	strainId INT UNSIGNED AUTO_INCREMENT NOT NULL,
 	strainName VARCHAR(32) NOT NULL,
-	strainDescription VARCHAR(255) NOT NULL,
 	strainType VARCHAR(16) NOT NULL,
 	strainThc DECIMAL(8,6) NOT NULL,
 	strainCbd DECIMAL(8,6) NOT NULL,
+	strainDescription VARCHAR(255) NOT NULL,
 	PRIMARY KEY (strainId)
 );
 
