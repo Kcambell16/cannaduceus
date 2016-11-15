@@ -345,7 +345,7 @@ class DispensayReview implements \JsonSerializable {
 			try {
 				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
 				$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
-				$dispensaryReviewss->next();
+				$dispensaryReviews->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
@@ -355,7 +355,7 @@ class DispensayReview implements \JsonSerializable {
 	}
 
 	/**
-	 * gets the DispensaryReview by DispensaryReviewDispensaryId
+	 * gets the DispensaryReview by DispensaryId
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param int $dispensaryReviewDispensaryId profile id to search by
@@ -365,16 +365,16 @@ class DispensayReview implements \JsonSerializable {
 	 **/
 	public static function getDispensaryReviewByDispensaryReviewDispensaryId(\PDO $pdo, int $dispensaryReviewDispensaryId) {
 		// sanitize the profile id before searching
-		if($dispensaryReviewProfileId <= 0) {
-			throw(new \RangeException("dispensary review profile id must be positive"));
+		if($dispensaryReviewDispensaryId <= 0) {
+			throw(new \RangeException("dispensary review dispensary id must be positive"));
 		}
 
 		// create query template
-		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewProfileId = :dispensaryReviewProfileId";
+		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewDispensaryId = :dispensaryReviewDispensaryId";
 		$statement = $pdo->prepare($query);
 
 		// bind the dispensary review profile id to the place holder in the template
-		$parameters = ["dispensaryReviewProfileId" => $dispensaryReviewProfileId];
+		$parameters = ["dispensaryReviewDispensaryId" => $dispensaryReviewDispensaryId];
 		$statement->execute($parameters);
 
 		// build an array of dispensary reviews
@@ -384,7 +384,7 @@ class DispensayReview implements \JsonSerializable {
 			try {
 				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
 				$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
-				$dispensaryReviewss->next();
+				$dispensaryReviews->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
