@@ -313,8 +313,22 @@ class DispensayReview implements \JsonSerializable {
 		}
 		return($dispensaryReview);
 
-
 	}
+
+	/**
+	 * gets the DispensaryReview by profile id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param int $dispensaryReviewProfileId profile id to search by
+	 * @return \SplFixedArray SplFixedArray of DispensaryReviews found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getTweetByTweetProfileId(\PDO $pdo, int $tweetProfileId) {
+		// sanitize the profile id before searching
+		if($tweetProfileId <= 0) {
+			throw(new \RangeException("tweet profile id must be positive"));
+		}
 
 
 
