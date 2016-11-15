@@ -340,17 +340,7 @@ class Profile implements \JsonSerializable {
 		$statement->execute($parameters);
 	}
 
-	/**
-	 * formats the state variables for JSON serialization
-	 *
-	 * @return array resulting state variables to serialize
-	 */
-	public function jsonSerialize() {
-		$fields = get_object_vars($this);
-		unset($fields["profileHash"]);
-		unset($fields["profileSalt"]);
-		return ($fields);
-	}
+
 
 	/**
 	 * @param \PDO $pdo
@@ -427,9 +417,131 @@ class Profile implements \JsonSerializable {
 	} // getProfileEmailByProfileId
 
 
+	/**
+	 * @param \PDO $pdo
+	 * @param int $profileHash
+	 * @return Profile|null
+	 */
+
+	public static function getProfileHashByProfileId(\PDO $pdo, int $profileHash) {
+
+		$profileHash = filter_var($profileHash);
+		if($profileHash === false) {
+			throw(new \InvalidArgumentException("profile Id is not an integer."));
+		}
+		if($profileHash <= 0) {
+			throw(new \RangeException("Profile id is not positive"));
+		}
+
+		// prepare query
+		$query = "SELECT profileHash, profileId, profileUserName, profileEmail, profileSalt, profileActivation FROM profile WHERE profileId = :profileId";
+
+		$statement = $pdo->prepare($query);
+		$parameters = array("profileHash" => $profileHash);
+		$statement->execute($parameters);
+
+		// setup results from query
+		try {
+			$profile = null;
+			$statement->setFetchMode(\PDO:: FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$profile = new Profile( $row["profileHash"], $row["profileId"], $row["profileUserName"], $row["profileEmail"], $row["profileSalt"], $row["profileActivation"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($profile);
+	} // getProfileHashByProfileId
 
 
+	/**
+	 * @param \PDO $pdo
+	 * @param int $profileSalt
+	 * @return Profile|null
+	 */
 
+	public static function getProfileSaltByProfileId(\PDO $pdo, int $profileSalt) {
+
+		$profileSalt = filter_var($profileSalt);
+		if($profileSalt === false) {
+			throw(new \InvalidArgumentException("profile Id is not an integer."));
+		}
+		if($profileSalt <= 0) {
+			throw(new \RangeException("Profile id is not positive"));
+		}
+
+		// prepare query
+		$query = "SELECT profileSalt, profileId, profileUserName, profileEmail, profileHash, profileActivation FROM profile WHERE profileId = :profileId";
+
+		$statement = $pdo->prepare($query);
+		$parameters = array("profileSalt" => $profileSalt);
+		$statement->execute($parameters);
+
+		// setup results from query
+		try {
+			$profile = null;
+			$statement->setFetchMode(\PDO:: FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$profile = new Profile( $row["profileSalt"], $row["profileId"], $row["profileUserName"], $row["profileEmail"], $row["profileHash"], $row["profileActivation"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($profile);
+	} // getProfileSaltByProfileId
+
+
+	/**
+	 * @param \PDO $pdo
+	 * @param int $profileActivation
+	 * @return Profile|null
+	 */
+
+	public static function getProfileActivationByProfileId(\PDO $pdo, int $profileActivation) {
+
+		$profileActivation = filter_var($profileActivation);
+		if($profileActivation === false) {
+			throw(new \InvalidArgumentException("profile Id is not an integer."));
+		}
+		if($profileActivation <= 0) {
+			throw(new \RangeException("Profile id is not positive"));
+		}
+
+		// prepare query
+		$query = "SELECT profileActivation, profileId, profileUserName, profileEmail, profileHash, profileSalt FROM profile WHERE profileId = :profileId";
+
+		$statement = $pdo->prepare($query);
+		$parameters = array("profileActivation" => $profileActivation);
+		$statement->execute($parameters);
+
+		// setup results from query
+		try {
+			$profile = null;
+			$statement->setFetchMode(\PDO:: FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$profile = new Profile( $row["profileActivation"], $row["profileId"], $row["profileUserName"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($profile);
+	} // getProfileActivationByProfileId
+
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 */
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+		unset($fields["profileHash"]);
+		unset($fields["profileSalt"]);
+		return ($fields);
+	}
 
 
 

@@ -104,4 +104,55 @@ class StrainFavorite{
 		//Convert and store the strainFavoriteStrainId
 		$this->strainFavoriteStrainId = $newStrainFavoriteStrainId;
 	}
+
+	/**
+	 * This function retrieves a strain favorite by strain favorite profile ID
+	 * @param \PDO $pdo -- a PDO connection
+	 * @param  \int $strainFavoriteProfileId -- strain favorite profile ID to be retrieved
+	 * @throws \InvalidArgumentException when $strainFavoriteProfileId is not an integer
+	 * @throws \RangeException when $strainFavoriteProfileId is not a positive
+	 * @throws \PDOException
+	 * @return null | strainFavorite
+	 */
+
+	public static function getStrainFavoriteByStrainFavoriteProfileId(\PDO $pdo, $strainFavoriteProfileId) {
+		//  check validity of $strainId
+		$strainFavoriteProfileId = filter_var($strainFavoriteProfileId, FILTER_VALIDATE_INT);
+		if($strainFavoriteProfileId === false) {
+			throw(new \InvalidArgumentException("Favorite Strain Profile id is not an integer."));
+		}
+		if($strainFavoriteProfileId <= 0) {
+			throw(new \RangeException("Strain Favorite id is not positive."));
+		}
+		// prepare query
+		$query = "SELECT strainFavoriteProfileId
+					  FROM strain WHERE strainFavorite = :strainFavoriteProfileId, :strainFavoriteStrainId";
+		$statement = $pdo->prepare($query);
+		$parameters = array("strainFavoriteProfileId" => $strainFavoriteProfileId);
+		$statement->execute($parameters);
+		//  setup results from query
+		try {
+			$strainFavoriteProfileId = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$strainFavoriteProfileId = new strainFavorite ($row["$strainFavoriteProfileId"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($strainFavoriteProfileId);
+	}  // getStrainFavoriteByStrainId
+
+
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+		return($fields);
+	}
 }
