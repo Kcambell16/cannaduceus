@@ -31,9 +31,9 @@ class DispensayReview implements \JsonSerializable {
 	private $dispensaryReviewDispensaryId;
 	/**
 	 * date and time this Review was sent, in a PHP DateTime object
-	 * @var \DateTime $tweetDate
+	 * @var \DateTime $dispensaryReviewDate
 	 **/
-	private $dispensaryReviewDate;
+	private $dispensaryReviewDateTime;
 	/**
 	 * actual textual review for this dispensary
 	 * @var string $tweetContent
@@ -50,32 +50,7 @@ class DispensayReview implements \JsonSerializable {
  */
 
 
-class DispensaryReview {
-	/**
-	 * id for this dispensary review; this is the primary key
-	 * @var int $dispensaryReviewId
-	 **/
-	private $dispensaryReviewId;
-	/**
-	 * This is the id of the review left by specific profile and it's a unique atribute.
-	 * @var int $dispensaryReviewProfileId
-	 **/
-	private $dispensaryReviewProfileId;
-	/**
-	 * This is the id that identifies the dispensary a specific review was left for
-	 * @var $dispensaryReviewDispensaryId
-	 **/
-	private $dispensaryReviewDispensaryId;
-	/**
-	 * This is the date and time stamp
-	 * @var $dispensaryReviewDate
-	 **/
-	private $dispensaryReviewDate;
-	/**
-	 * This is the review content
-	 * @var $dispensaryReviewTxt
-	 **/
-	private $dispensaryReviewTxt;
+
 
 	// CONSTRUCTOR GOES HERE LATER
 
@@ -94,7 +69,7 @@ class DispensaryReview {
 
 	public function __construct(int $newDispensaryReviewId = null, int $newDispensaryReviewProfileId, int $newDispensaryReviewDispensaryId, string $newDispensaryReviewDate, string $newDispensaryReviewTxt) {
 		try {
-			$this->setDispensaryReviewIdId($newDispensaryReviewId);
+			$this->setDispensaryReviewId($newDispensaryReviewId);
 			$this->setDispensaryReviewProfileId($newDispensaryReviewProfileId);
 			$this->setDispensaryReviewDispensaryId($newDispensaryReviewDispensaryId);
 			$this->setDispensaryReviewDate($newDispensaryReviewDate);
@@ -218,33 +193,33 @@ class DispensaryReview {
 	 *
 	 * @return \DateTime value of dispensary review date
 	 **/
-	public function getDispensaryReviewDate() {
-		return ($this->dispensaryReviewDate);
+	public function getDispensaryReviewDateTime() {
+		return ($this->dispensaryReviewDateTime);
 	}
 
 	/**
 	 * mutator method for dispensary review date
 	 *
-	 * @param \DateTime|string|null $newDispensaryReviewDate dispensary review date as         a DateTime object or string (or null to load the current time)
-	 * @throws \InvalidArgumentException if $newDispensaryReviewDate is not a valid         object or string
-	 * @throws \RangeException if $newDispensaryReviewDate is a date that does not exist
+	 * @param \DateTime|string|null $newDispensaryReviewDateTime dispensary review date as a DateTime object or string (or null to load the current time)
+	 * @throws \InvalidArgumentException if $newDispensaryReviewDateTime is not a valid object or string
+	 * @throws \RangeException if $newDispensaryReviewDateTime is a date that does not exist
 	 **/
-	public function setDispensaryReviewDate($newDispensaryReviewDate = null) {
+	public function setDispensaryReviewDate($newDispensaryReviewDateTime = null) {
 		// base case: if the date is null, use the current date and time
-		if($newDispensaryReviewDate === null) {
-			$this->dispensaryReviewDate = new \DateTime();
+		if($newDispensaryReviewDateTime === null) {
+			$this->dispensaryReviewDateTime = new \DateTime();
 			return;
 		}
 
 		// store the dispensary review date
 		try {
-			$newDispensaryReviewDate = self::validateDateTime($newDispensaryReviewDate);
+			$newDispensaryReviewDateTime = self::validateDateTime($newDispensaryReviewDateTime);
 		} catch(\InvalidArgumentException $invalidArgument) {
 			throw(new \InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
 		} catch(\RangeException $range) {
 			throw(new \RangeException($range->getMessage(), 0, $range));
 		}
-		$this->dispensaryReviewDate = $newDispensaryReviewDate;
+		$this->dispensaryReviewDateTime = $newDispensaryReviewDateTime;
 	}
 
 	/**
@@ -282,6 +257,62 @@ class DispensaryReview {
 		$this->dispensaryReviewTxt = $newDispensaryReviewTxt;
 	}
 
+
+	/**
+	 * inserts this dispensaryReview into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) {
+
+		// create query template
+		$query = "INSERT INTO dispensaryReview(dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewDateTime, dispensaryReviewTxt)
+                       VALUES (:dispensaryReviewProfileId, :dispensaryReviewDispensaryId, :dispensaryReviewDateTime, :dispensaryReviewTxt)";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holders in the template
+		$formattedDateTime = $this->dispensaryReviewDateTime->format("Y-m-d H:i:s");
+		$parameters = ["dispensaryReviewProfileId" => $this->dispensaryReviewProfileId, "dispensaryReviewDispensaryId" => $this->dispensaryReviewDispensaryId,
+			            "dispensaryReviewDateTime" => $formattedDateTime, "dispensaryReviewTxt" => $this->$this->dispensaryReviewTxt];
+
+		$statement->execute($parameters);
+
+		// update the null tweetId with what mySQL just gave us
+		$this->dispensaryReviewId = intval($pdo->lastInsertId());
+
+	} // insert
+
+
+
+	/**
+	 * updates this DispensaryReview in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) {
+
+		// enforce the dispensaryReviewId is not null (i.e., don't update a dispensary review that hasn't been inserted)
+		if($this->dispensaryReviewId === null) {
+			throw(new \PDOException("unable to update a dispensary review that does not exist"));
+		}
+
+		// create query template
+		$query = "UPDATE dispensaryReview SET dispensaryReviewProfileId = :dispensaryReviewProfileId, dispensaryReviewDispensaryId = :dispensaryReviewDispensaryId, dispensaryReviewDateTime = :dispensaryReviewDateTime WHERE dispensaryReviewId = :dispensaryReviewId";
+		$statement = $pdo->prepare($query);
+
+		$formattedDateTime = $this->dispensaryReviewDateTime->format("Y-m-d H:i:s");
+		$parameters = ["dispensaryReviewProfileId" => $this->dispensaryReviewProfileId, "dispensaryReviewDispensaryId" => $this->dispensaryReviewDispensaryId,
+			            "dispensaryReviewDateTime" => $formattedDateTime, "dispensaryReviewTxt" => $this->$this->dispensaryReviewTxt];
+		$statement->execute($parameters);
+	}
+
+
+
+
 	/**
 	 * formats the state variables for JSON serialization
 	 *
@@ -289,8 +320,7 @@ class DispensaryReview {
 	 **/
 	public function jsonSerialize() {
 		$fields = get_object_vars($this);
-		$fields["tweetDate"] = $this->tweetDate->getTimestamp() * 1000;
 		return($fields);
 	}
-}
+}  // DispensaryReview
 
