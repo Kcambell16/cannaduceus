@@ -336,14 +336,15 @@ class DispensayReview implements \JsonSerializable {
 
 
 	/**
-	 * gets the DispensaryReview by content
+	 * gets the DispensaryReview by Id
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param string $tweetContent tweet content to search for
-	 * @return \SplFixedArray SplFixedArray of Tweets found
+	 * @param \int $dispensaryReviewId
+	 * @return DispensayReview|null DispensaryReview found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
+
 
 
 
