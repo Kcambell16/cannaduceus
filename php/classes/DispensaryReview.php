@@ -285,6 +285,36 @@ class DispensayReview implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
+	public static function getDispensaryReviewByDispensaryReviewId(\PDO $pdo, int $dispensaryReviewId) {
+		// sanitize the dispensaryReviewId before searching
+		if($dispensaryReviewId <= 0) {
+			throw(new \PDOException("dispensary review id is not positive"));
+		}
+
+		// create query template
+		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewId = :dispensaryReviewId";
+		$statement = $pdo->prepare($query);
+
+		// bind the dispensaryReview id to the place holder in the template
+		$parameters = ["dispensaryReviewId" => $dispensaryReviewId];
+		$statement->execute($parameters);
+
+		// grab the dispensaryReview from mySQL
+		try {
+			$dispensaryReview = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$dispensaryReview = new DispensayReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt]");
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($dispensaryReview);
+
+
+	}
 
 
 
