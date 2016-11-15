@@ -305,7 +305,7 @@ class DispensayReview implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$dispensaryReview = new DispensayReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt]");
+				$dispensaryReview = new DispensayReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt]"]);
 			}
 		} catch(\Exception $exception) {
 			// if the row couldn't be converted, rethrow it
@@ -343,7 +343,7 @@ class DispensayReview implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
+				$dispensaryReview = new DispensayReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
 				$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
 				$dispensaryReviews->next();
 			} catch(\Exception $exception) {
@@ -382,7 +382,7 @@ class DispensayReview implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
+				$dispensaryReview = new DispensayReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
 				$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
 				$dispensaryReviews->next();
 			} catch(\Exception $exception) {
@@ -394,7 +394,7 @@ class DispensayReview implements \JsonSerializable {
 	}
 
 	/**
-	 * gets the DidpensaryReview by content
+	 * gets the didpensaryReview by content
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param string $dispensaryReviewTxt dispensary review content to search for
@@ -424,7 +424,7 @@ class DispensayReview implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
+				$dispensaryReview = new DispensayReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
 				$s[$dispensaryReviews->key()] = $dispensaryReview;
 				$dispensaryReviews->next();
 			} catch(\Exception $exception) {
@@ -432,7 +432,7 @@ class DispensayReview implements \JsonSerializable {
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return($tweets);
+		return($dispensaryReviews);
 	}
 
 

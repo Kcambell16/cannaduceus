@@ -75,12 +75,12 @@ class strainLeafRating {
 	 * mutator method for strainLeafRatingRating
 	 *
 	 * @param int $newStrainLeafRatingRating new value of strainLeafRatingRating
-	 * @throws UnexpectedValueException if $newStrainLeafRatingRating is not an integer
+	 * @throws \UnexpectedValueException if $newStrainLeafRatingRating is not an integer
 	 */
 	public function setStrainLeafRatingRating($newStrainLeafRatingRating) {
 		$newStrainLeafRatingRating = filter_input($newStrainLeafRatingRating, FILTER_VALIDATE_INT);
 		if($newStrainLeafRatingRating === false) {
-			throw(new UnexpectedValueException("Strain Leaf Rating is not a valid integer"));
+			throw(new \UnexpectedValueException("Strain Leaf Rating is not a valid integer"));
 		}
 
 		//Convert and store the strainLeafRating rating

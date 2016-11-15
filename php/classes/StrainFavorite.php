@@ -155,7 +155,7 @@ class StrainFavorite implements \JsonSerializable {
 	}	//Delete
 
 	/**
-	 * Updates this Strain in mySQL
+	 * Updates this Strain in mySQL7
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
@@ -175,6 +175,7 @@ class StrainFavorite implements \JsonSerializable {
 		$parameteres = ["strainId" => $this->strainId, "strainName" => $this->strainName, "strainType" => $this->strainType, "strainThc" => $this->strainThc, "strainCbd" => $this->strainCbd, "strainDescription" => $this->strainDescription];
 		$statement->execute($parameteres);
 	}
+
 	/**
 	 * This function retrieves a strain favorite by strain favorite profile ID
 	 * @param \PDO $pdo -- a PDO connection
