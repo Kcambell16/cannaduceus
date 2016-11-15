@@ -310,6 +310,40 @@ class DispensayReview implements \JsonSerializable {
 		$statement->execute($parameters);
 	}
 
+	/**
+	 * deletes this DispensaryReview from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) {
+		// enforce the dispensaryReviewId is not null (i.e., don't delete a dispensary review that hasn't been inserted)
+		if($this->dispensaryReviewId === null) {
+			throw(new \PDOException("unable to delete a dispensary review that does not exist"));
+		}
+
+		// create query template
+		$query = "DELETE FROM dispensaryReview WHERE dispensaryReviewId = :dispensaryReviewId";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holder in the template
+		$parameters = ["dispensaryReviewId" => $this->dispensaryReviewId];
+		$statement->execute($parameters);
+	}
+
+
+
+
+	/**
+	 * gets the DispensaryReview by content
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $tweetContent tweet content to search for
+	 * @return \SplFixedArray SplFixedArray of Tweets found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
 
 
 
