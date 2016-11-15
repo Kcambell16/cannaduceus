@@ -1,16 +1,17 @@
 <?php
-namespace Edu\Cnm\nsanchez121\cannaduceus;
+namespace Edu\Cnm\cannaduceus;
 
+require_once ("autoload.php");
 /**
  * this is going to be a cross section for the dispensary favorite info
  *
  * this is just one of the dispensary favorites out of the many that will be favorited
  *
  * @author Nathan A Sanchez (nsanchez121@cnm.edu)
- *
+ * @version
  */
 
-class DispensaryFavorite {
+class DispensaryFavorite implements \JsonSerializable {
 
 	/**
 	 * id for the DispensaryFavoriteProfileId this is the foreign keys used to make a primary key
@@ -55,23 +56,30 @@ class DispensaryFavorite {
 	}
 
 	/**
-	 * accessor method for the dispensaryFavoriteProfileId
+	 * accessor method for the dispensary Favorite Profile Id
 	 *
-	 * @return int|null value of dispensaryFavoriteProfileId
+	 * @return int|null value of dispensary Favorite Profile Id
 	 */
 	public function getDispensaryFavoriteProfileId(): int {
+		return $this->dispensaryFavoriteProfileId;
 	}
 
 	/**
 	 * mutator method for dispensaryFavoriteId
-	 * @param int $newDispensaryFavoriteId new value of dispensaryFavoriteProfile Id
-	 * @throws \UnexpectedValueException if $newDispensaryFavoriteProfileId is not an integer
+	 * @param int $newDispensaryFavoriteProfileId
+	 * @internal param int|null $DispensaryFavoriteId new value of dispensary favorite
 	 */
-	/**
-	 * @param int $dispensaryFavoriteProfileId
-	 */
-	public function setDispensaryFavoriteProfileId($dispensaryFavoriteId, $newDispensaryFavoriteProfileId){
-		$newDispensaryFavoriteProfileId = filter_var($newDispensaryFavoriteProfileId, FILTER_VALIDATE_INT);
+
+
+	public function setDispensaryFavoriteProfileId(int $newDispensaryFavoriteProfileId) {
+
+		// base case: if the newDispensaryFavorite is null, this is a new favorite without a mySQL assigned to the ID
+		if($newDispensaryFavoriteProfileId === null) {
+			$this->dispensaryFavoriteProfileId = null;
+			return;
+		}
+
+		$newDispensaryFavoriteProfileId = filter_var($newDispensaryFavoriteProfileId);
 		if($newDispensaryFavoriteProfileId === false){
 			throw(new \UnexpectedValueException("dispensary Favorite Profile Id is not a vaild interger"));
 		}
@@ -104,7 +112,17 @@ class DispensaryFavorite {
 		$this->dispensaryFavoriteDispensaryId = $dispensaryFavoriteDispensaryId;
 	}
 
-
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 */
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+		unset($fields["profileHash"]);
+		unset($fields["profileSalt"]);
+		return ($fields);
+	}
 
 
 
