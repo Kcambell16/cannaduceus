@@ -25,16 +25,16 @@ CREATE TABLE profile
 CREATE TABLE dispensary
 (
 	dispensaryId INT UNSIGNED AUTO_INCREMENT NOT NULL,
-	dispensaryName VARCHAR(32) NOT NULL,
 	dispensaryAttention VARCHAR(32),
-	dispensaryStreet1 VARCHAR(48) NOT NULL,
-	dispensaryStreet2 VARCHAR(48),
 	dispensaryCity VARCHAR(48) NOT NULL,
-	dispensaryState CHAR(2) NOT NULL ,
-	dispensaryZipCode VARCHAR(10) NOT NULL,
-	dispensaryEmail VARCHAR(128) NOT NULL,
-	dispensaryPhone VARCHAR(32) NOT NULL,
+	dispensaryEmail VARCHAR(128),
+	dispensaryName VARCHAR(32) NOT NULL,
+	dispensaryPhone VARCHAR(32) NOT NULL ,
+	dispensaryStreet1 VARCHAR(48) NOT NULL,
+	dispensaryStreet2 VARCHAR(48) NOT NULL,
 	dispensaryUrl VARCHAR(128),
+	dispensaryZipCode VARCHAR(10) NOT NULL,
+	dispensaryState CHAR(2) NOT NULL,
 	PRIMARY KEY (dispensaryId)
 );
 
