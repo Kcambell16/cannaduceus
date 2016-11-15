@@ -10,7 +10,7 @@ namespace Edu\Cnm\jmontoya306\cannaduceus;
  *
  **/
 
-class StrainFavorite{
+class StrainFavorite implements \JsonSerializable {
 
 	/**
 	 * id for the StrainFavoriteProfileId; this is one of the foreign keys used to make a primary key
@@ -106,13 +106,83 @@ class StrainFavorite{
 	}
 
 	/**
+	 * inserts this strainFavorite into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) {
+		// enforce the strainFavoriteProfileId and strainFavoriteStrainId is null (i.e., don't insert a strainFavorite that already exists)
+		if($this->strainId !== null) {
+			throw(new \PDOException("not a new strain"));
+		}
+
+		// create query template
+		$query = "INSERT INTO strain(strainId, strainName, strainType, strainThc, strainCbd, strainDescription) VALUES(:strainId, :stainName, :strainType, :strainThc, :strainCbd, :strainDescription)";
+		$statement = $pdo->prepare($query);
+
+
+		// bind the member variables to the place holders in the template
+		$parameters = ["strainId" => $this->strainId, "strainName" => $this->strainName, "strainType" => $this->strainType, "strainThc" => $this->strainThc, "strainCbd" => $this->strainCbd, "strainDescription" => $this->strainDescription];
+		$statement->execute($parameters);
+
+		// udate null strainId with what mySQL just gave us
+		$this->strainId = intval($pdo->lastInsertId());
+
+	}   // insert
+
+	/**
+	 * deletes this strain from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+	public function delete(\PDO $pdo) {
+		//enforce the strainId is not null (i.e., don't delete a strain that hasn't been inserted)
+		if($this->strainId === null) {
+			throw(new \PDOException("unable to delete a strain that does not exist"));
+		}
+
+		//Create Query Template
+		$query = "DELETE FROM strain WHERE strainId = :strainId";
+		$statement = $pdo->prepare($query);
+
+		//Bind the member variables to the place holder in the template
+		$parameters = ["strainId" => $this->strainId];
+		$statement->execute($parameters);
+	}	//Delete
+
+	/**
+	 * Updates this Strain in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) {
+		//enforce the strainId is not null (i.e. don't update a strain that hasn't been inserted)
+		if($this->strainId === null)	{
+			throw(new \PDOException("unable to update strain that does not exist"));
+		}//update
+
+		// create query template
+		$query = "UPDATE strain SET strainId = :strainId, strainName = :strainName, strainType = :strainType, strainThc = :strainThc, strainCbd = :strainCbd, strainDescription = :strainDescription WHERE strainId = :strainId";
+		$statement = $pdo->prepare($query);
+
+		//bind the member variables to the place holders in the template
+		$parameteres = ["strainId" => $this->strainId, "strainName" => $this->strainName, "strainType" => $this->strainType, "strainThc" => $this->strainThc, "strainCbd" => $this->strainCbd, "strainDescription" => $this->strainDescription];
+		$statement->execute($parameteres);
+	}
+	/**
 	 * This function retrieves a strain favorite by strain favorite profile ID
 	 * @param \PDO $pdo -- a PDO connection
 	 * @param  \int $strainFavoriteProfileId -- strain favorite profile ID to be retrieved
 	 * @throws \InvalidArgumentException when $strainFavoriteProfileId is not an integer
 	 * @throws \RangeException when $strainFavoriteProfileId is not a positive
 	 * @throws \PDOException
-	 * @return null | strainFavorite
+	 * @return \SplFixedArray of all strainFavorites by profile id
 	 */
 
 	public static function getStrainFavoriteByStrainFavoriteProfileId(\PDO $pdo, $strainFavoriteProfileId) {
@@ -125,26 +195,112 @@ class StrainFavorite{
 			throw(new \RangeException("Strain Favorite id is not positive."));
 		}
 		// prepare query
-		$query = "SELECT strainFavoriteProfileId
-					  FROM strain WHERE strainFavorite = :strainFavoriteProfileId, :strainFavoriteStrainId";
+		$query = "SELECT strainFavoriteProfileId, strainFavoriteStrainId 
+					  FROM strainFavorite WHERE strainFavoriteProfileId = :strainFavoriteProfileId";
 		$statement = $pdo->prepare($query);
 		$parameters = array("strainFavoriteProfileId" => $strainFavoriteProfileId);
 		$statement->execute($parameters);
+
+		// create an SplFixedArray to hold all results
+		// look at getAllTweets example
+		$favorites = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$favorite = new StrainFavorite($row["strainFavoriteProfileId"], $row["strainFavoriteStrainId"]);
+				$favorites[$favorites->key()] = $favorite;
+				$favorites->next();
+			} catch(\Exception $exception) {
+				// throw exception here
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($favorites);
+
+	}  // getStrainFavoriteByStrainId
+
+	/**
+	 * This function retrieves a strain favorite by strain favorite strain ID
+	 * @param \PDO $pdo -- a PDO connection
+	 * @param  \int $strainFavoriteStrainId -- strain favorite strain ID to be retrieved
+	 * @throws \InvalidArgumentException when $strainFavoriteStrainId is not an integer
+	 * @throws \RangeException when $strainFavoriteStrainId is not a positive
+	 * @throws \PDOException
+	 * @return \SplFixedArray of all strainFavorites by strain id
+	 */
+
+	public static function getStrainFavoriteByStrainFavoriteStrainId(\PDO $pdo, $strainFavoriteStrainId) {
+		//  check validity of $strainId
+		$strainFavoriteStrainId = filter_var($strainFavoriteStrainId, FILTER_VALIDATE_INT);
+		if($strainFavoriteStrainId === false) {
+			throw(new \InvalidArgumentException("Favorite Strain Strain id is not an integer."));
+		}
+		if($strainFavoriteStrainId <= 0) {
+			throw(new \RangeException("Strain Favorite Strain id is not positive."));
+		}
+		// prepare query
+		$query = "SELECT strainFavoriteProfileId, strainFavoriteStrainId 
+					  FROM strainFavorite WHERE strainFavoriteStrainId = :strainFavoriteStrainId";
+		$statement = $pdo->prepare($query);
+		$parameters = array("strainFavoriteStrainId" => $strainFavoriteStrainId);
+		$statement->execute($parameters);
+
+		// create an SplFixedArray to hold all results
+		// look at getAllTweets example
+		$favorites = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$favorite = new StrainFavorite($row["strainFavoriteProfileId"], $row["strainFavoriteStrainId"]);
+				$favorites[$favorites->key()] = $favorite;
+				$favorites->next();
+			} catch(\Exception $exception) {
+				// throw exception here
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return ($favorites);
+	}
+
+	/**
+	 * This function retrieves a strain favorite by StrainFavoriteStrain ID and StrainFavoriteProfile ID
+	 *
+	 * @param \PDO $pdo -- a PDO connection
+	 * @param  \int $strainFavorite -- strain favorite to be retrieved
+	 * @throws \InvalidArgumentException when $strainFavorite is not an integer
+	 * @throws \RangeException when $strainFavorite is not positive
+	 * @throws \PDOException
+	 * @return null | strainFavorite
+	 */
+
+	public static function getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId(\PDO $pdo, $strainFavorite) {
+		//  check validity of $strainFavorite
+		$strainFavorite = filter_var($strainFavoriteStrainId, $strainFavoriteProfileId, FILTER_VALIDATE_INT);
+		if($strainFavorite === false) {
+			throw(new \InvalidArgumentException("Strain Favorite id is not an integer."));
+		}
+		if($strainFavorite <= 0) {
+			throw(new \RangeException("Strain Favorite is Invalid."));
+		}
+		// prepare query
+		$query = "SELECT strainFavoriteStrainId, strainFavoriteProfileId
+					  FROM strainFavorite WHERE (strainFavorite = :strainFavoriteStrainId, :strainFavoriteProfileId)";
+		$statement = $pdo->prepare($query);
+		$parameters = array("strainFavorite" => $strainFavorite);
+		$statement->execute($parameters);
 		//  setup results from query
 		try {
-			$strainFavoriteProfileId = null;
+			$strainFavorite = null;
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$strainFavoriteProfileId = new strainFavorite ($row["$strainFavoriteProfileId"]);
+				$strainFavorite = new strainFavorite($row["strainFavoriteStrainId"], $row["strainFavoriteProfileId"]);
 			}
 		} catch(\Exception $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($strainFavoriteProfileId);
-	}  // getStrainFavoriteByStrainId
-
-
+		return ($strainFavorite);
+	}  // getStrainByStrainId
 
 	/**
 	 * formats the state variables for JSON serialization
