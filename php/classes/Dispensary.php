@@ -166,7 +166,7 @@ public function getDispensaryAttention() {
  * mutator method for dispensary attention
  *
  * @param string $newdispensaryAttention new vlaue of dispensary attention
- * @throws \InvalidArgumentExceptionif $newdispensaryAttention is not a string or insecure
+ * @throws \InvalidArgumentException if $newdispensaryAttention is not a string or insecure
  * @throws \RangeException if $newdispensaryAttention is > 140 characters
  * @throws \TypeError if $newdispensaryAttention is not a string
  **/
@@ -439,7 +439,7 @@ public function setDispensaryUrl(string $newDispensaryUrl) {
 		// convert and store the dispensary zip code
 		$this->dispensaryZipCode = $newDispensaryZipCode;
 	}
-	}
+
 /**
  * inserts this Dispensary into mySQL
  *
@@ -447,12 +447,8 @@ public function setDispensaryUrl(string $newDispensaryUrl) {
  * @throws \PDOException when mySQL related errors occur
  * @throws \TypeError if $pdo is not a PDO connection object
  **/
-public
-/**
- * @param \PDO $PDO
- */
-function insert(\PDO $PDO){
-	\\ enforce dispensary id is null (i.e. dont insert a dispenary that already exsist)
+public function insert(\PDO $PDO){
+	\\ enforce dispensary id is null (i.e. "dont insert a dispenary that already exsist")
 	if($this->dispensaryId !== null) {
 		throw(new \PDOException("not a new dispensary"));
 	}
