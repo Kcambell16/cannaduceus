@@ -1,5 +1,5 @@
 <?php
-namespace Edu\Cnm\jmontoya306\cannaduceus;
+namespace Edu\Cnm\Cannaduceus;
 
 /**
  * Cross section of cannaduceus strain class
@@ -152,14 +152,14 @@ class Strain implements \JsonSerializable {
 	 * @param \string $newStrainType new string of strain type
 	 * @throws \UnexpectedValueException if $newStrainType is not a string
 	 */
-	public function setStrainType($newStrainType) {
+	public function setStrainType(string $newStrainType) {
 		$newStrainType = filter_input($newStrainType, FILTER_SANITIZE_STRING);
 		if($newStrainType === false) {
 			throw(new \UnexpectedValueException("Strain Type Invalid"));
 		}
 
 		//Convert and store the strain type
-		$this->strainType = string($newStrainType);
+		$this->strainType = $newStrainType;
 	}
 
 	/**
@@ -201,8 +201,9 @@ class Strain implements \JsonSerializable {
 	 *
 	 * @param \float $newStrainCbd new string of strain Cbd
 	 * @throws \UnexpectedValueException if $newStrainCbd is not a string
+	 * @return float strainCbd
 	 */
-	public function setStrainCbd(string $newStrainCbd) {
+	public function setStrainCbd(float $newStrainCbd) {
 		$newStrainCbd = filter_input($newStrainCbd, FILTER_SANITIZE_STRING);
 		if($newStrainCbd === false) {
 			throw(new \UnexpectedValueException("Strain Cbd Invalid"));
@@ -226,8 +227,9 @@ class Strain implements \JsonSerializable {
 	 *
 	 * @param \string $newStrainDescription new string of strain payment
 	 * @throws \UnexpectedValueException if $newStrainDescription is not a string
+	 * @return \string $newStrainDescription
 	 */
-	public function setStrainDescription($newStrainDescription) {
+	public function setStrainDescription(string $newStrainDescription) {
 		$newStrainDescription = filter_input($newStrainDescription, FILTER_SANITIZE_STRING);
 		if($newStrainDescription === false) {
 			throw(new \UnexpectedValueException("Strain Description Invalid"));
@@ -251,7 +253,7 @@ class Strain implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "INSERT INTO strain(strainId, strainName, strainType, strainThc, strainCbd, strainDescription) VALUES(:strainId, :stainName, :strainType, :strainThc, :strainCbd)";
+		$query = "INSERT INTO strain(strainId, strainName, strainType, strainThc, strainCbd, strainDescription) VALUES(:strainId, :stainName, :strainType, :strainThc, :strainCbd, :strainDescription)";
 		$statement = $pdo->prepare($query);
 
 
@@ -278,7 +280,7 @@ class Strain implements \JsonSerializable {
 		}
 
 		//Create Query Template
-		$query = "DELETE FROM strain WHERE strainId = :strainIc";
+		$query = "DELETE FROM strain WHERE strainId = :strainId";
 		$statement = $pdo->prepare($query);
 
 		//Bind the member variables to the place holder in the template
@@ -312,25 +314,25 @@ class Strain implements \JsonSerializable {
 	 * This function retrieves a strain by strain ID
 	 *
 	 * @param \PDO $pdo -- a PDO connection
-	 * @param  int $strainId -- strain ID to be retrieved
+	 * @param  \int $strainId -- strain ID to be retrieved
 	 * @throws \InvalidArgumentException when $strainId is not an integer
 	 * @throws \RangeException when $strainId is not positive
 	 * @throws \PDOException
-	 * @return null|Strain
+	 * @return null | Strain
 	 */
 
-	public static function getStrainByStrainId(PDO $pdo, $strainId) {
+	public static function getStrainByStrainId(\PDO $pdo, $strainId) {
 		//  check validity of $strainId
 		$strainId = filter_var($strainId, FILTER_VALIDATE_INT);
 		if($strainId === false) {
-			throw(new InvalidArgumentException("Strain id is not an integer."));
+			throw(new \InvalidArgumentException("Strain id is not an integer."));
 		}
 		if($strainId <= 0) {
-			throw(new RangeException("Strain id is not positive."));
+			throw(new \RangeException("Strain id is not positive."));
 		}
 		// prepare query
 		$query = "SELECT strainId, strainName, strainType,
-                        strainThc, strainCbd, strainDescription,
+                        strainThc, strainCbd, strainDescription
 					  FROM strain WHERE strainId = :strainId";
 		$statement = $pdo->prepare($query);
 		$parameters = array("strainId" => $strainId);
@@ -338,18 +340,17 @@ class Strain implements \JsonSerializable {
 		//  setup results from query
 		try {
 			$profile = null;
-			$statement->setFetchMode(PDO::FETCH_ASSOC);
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
 				$strain = new Strain($row["strainId"], $row["strainName"], $row["strainType"], $row["strainThc"],
 					$row["strainCbd"], $row["strainDescription"]);
 			}
-		} catch(Exception $exception) {
-			throw(new PDOException($exception->getMessage(), 0, $exception));
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		return ($strain);
 	}  // getStrainByStrainId
-
 
 	/**
 	 * formats the state variables for JSON serialization
