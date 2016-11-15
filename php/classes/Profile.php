@@ -49,9 +49,9 @@ class Profile implements \JsonSerializable {
 	 * @param int | null $newProfileId Id of this profile or null if new profile
 	 * @param string $newProfileUserName the name of the profile
 	 * @param string $newProfileEmail the email for the profile
-	 * @param string $profileHash the hash for the profile
-	 * @param string $profileActivation the activation for the profile
-	 * @param string $profileSalt the salt for the profile
+	 * @param string $newProfileHash the hash for the profile
+	 * @param string $newProfileActivation the activation for the profile
+	 * @param string $newProfileSalt the salt for the profile
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -98,7 +98,14 @@ class Profile implements \JsonSerializable {
 	 * @throws \RangeException if $newProfileId is not positive
 	 * @throws \TypeError if $newProfileId is not an integer
 	 */
-	public function setProfileId( int $newProfileId) {
+	public function setProfileId(int $newProfileId) {
+
+		// base case: if the newProfileId is null, this is a new profile without a mySQL assigned ID
+		if($newProfileId === null) {
+			$this->profileId = null;
+			return;
+		}
+		// validate that the new profileId is an integer
 		$newProfileId = filter_var($newProfileId);
 		if($newProfileId === false) {
 			throw(new \UnexpectedValueException("Profile Id is not a vaild integer"));
@@ -106,7 +113,7 @@ class Profile implements \JsonSerializable {
 
 
 		//Convert and store the profile Id
-		$this->ProfileId = intval($newProfileId);
+		$this->profileId = intval($newProfileId);
 	}
 
 
@@ -127,7 +134,7 @@ class Profile implements \JsonSerializable {
 	 */
 
 
-	public function setProfileUserName( string $newProfileUserName) {
+	public function setProfileUserName(string $newProfileUserName) {
 		$newProfileUserName = filter_input($newProfileUserName, FILTER_SANITIZE_STRING);
 		if($newProfileUserName === false) {
 			throw(new \UnexpectedValueException("Profile UserName not vaild"));
@@ -155,9 +162,9 @@ class Profile implements \JsonSerializable {
 	 * @throws \UnexpectedValueException if $newProfileEmail is not a string
 	 */
 
-	public function setProfileEmail( string $newProfileEmail) {
+	public function setProfileEmail(string $newProfileEmail) {
 		$newProfileEmail = filter_input($newProfileEmail, FILTER_SANITIZE_STRING);
-		if($newProfileEmail === false)	{
+		if($newProfileEmail === false) {
 			throw(new \UnexpectedValueException("Profile Email Invalid"));
 		}
 
@@ -174,6 +181,7 @@ class Profile implements \JsonSerializable {
 	public function getProfileHash() {
 		return $this->profileHash;
 	}
+
 	/**
 	 * mutator method for Profile Hash
 	 *
@@ -184,7 +192,7 @@ class Profile implements \JsonSerializable {
 		// verify the profile hash content
 		$newProfileHash = trim($newProfileHash);
 		$newProfileHash = strtolower($newProfileHash);
-		if(ctype_xdigit($newProfileHash) === false)	{
+		if(ctype_xdigit($newProfileHash) === false) {
 			throw(new \UnexpectedValueException("Hash Invalid"));
 		}
 		// verify the profile hash content will fit in the database
@@ -214,12 +222,13 @@ class Profile implements \JsonSerializable {
 		// verify the profile salt content
 		$newProfileSalt = trim($newProfileSalt);
 		$newProfileSalt = strtolower($newProfileSalt);
-		if(ctype_xdigit($newProfileSalt)=== false)	{
+		if(ctype_xdigit($newProfileSalt) === false) {
 			throw(new \UnexpectedValueException("salt content incorrect"));
 		}
 		//Convert and store the Profile Salt
 		$this->profileSalt = $newProfileSalt;
 	}
+
 	/**
 	 * accessor method for Profile Activation
 	 *
@@ -228,6 +237,7 @@ class Profile implements \JsonSerializable {
 	public function getProfileActivation() {
 		return $this->profileActivation;
 	}
+
 	/**
 	 * mutator method for Profile Activation
 	 *
@@ -238,7 +248,7 @@ class Profile implements \JsonSerializable {
 		// verify the profile activation content
 		$newProfileActivation = trim($newProfileActivation);
 		$newProfileActivation = strtolower($newProfileActivation);
-		if(ctype_xdigit($newProfileActivation) === false)	{
+		if(ctype_xdigit($newProfileActivation) === false) {
 			throw(new \UnexpectedValueException("activation content incorrect"));
 		}
 
@@ -264,7 +274,7 @@ class Profile implements \JsonSerializable {
 
 
 		//prepare is used as an extra means of security
-		$statement = $pdo->prepare($query);
+		$statement = $pdo->prepare($query); //this one nathan
 
 		//bind the member variables to the place holder slots in the template. putting these into an array
 		$parameters = ["profileUserName" => $this->profileUserName, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileSalt" => $this->profileSalt, "profileActivation" => $this->profileActivation];
@@ -275,7 +285,9 @@ class Profile implements \JsonSerializable {
 
 		//update the null profileId. Ask mySQL for the primary key value it assigned to this entry
 		$this->profileId = intval($pdo->lastInsertId());
-	}
+
+
+	}// insert
 
 	/**
 	 * deletes this profile from the mySQL database
@@ -285,18 +297,25 @@ class Profile implements \JsonSerializable {
 	 */
 	public function delete(\PDO $pdo) {
 		//first check to make sure the profileId isn't null, cant delete something that hasn't been entered into SQL yet
-		if($this->profileId === null){
+		if($this->profileId === null) {
 			throw(new \PDOException("The profile you selected does not exist"));
 		}
 
 
 		//create the query template
 		$query = "DELETE FROM profile WHERE profileId = :profileId";
+		// prepare is used as an extra means of security
 		$statement = $pdo->prepare($query);
+
 
 		//bind parameters and execute the function
 		$parameters = ["profileId" => $this->profileId];
-	}
+
+		//execute the command held in $statement
+		$statement->execute($parameters);
+
+	}// delete
+
 	/**
 	 * PDO statement to update this profile in mySQL
 	 * @param \PDO $pdo PDO connection object
@@ -306,7 +325,7 @@ class Profile implements \JsonSerializable {
 
 	public function update(\PDO $pdo) {
 		//ensure that this profile is not null (hasn't been entered into SQL). can't update something that doesn't exist
-		if($this->profileId === null){
+		if($this->profileId === null) {
 			throw(new \PDOException("Can't update a profile that doesn't exist"));
 		}
 
@@ -316,25 +335,106 @@ class Profile implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		//bind the variables to the template and execute the SQL command
-		$parameters = ["profileUserName" => $this->ProfileUserName, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileSalt" => $this->profileSalt, "profileActivation" => $this->profileActivation];
+		$parameters = ["profileUserName" => $this->profileUserName, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileSalt" => $this->profileSalt, "profileActivation" => $this->profileActivation];
 		//execute
 		$statement->execute($parameters);
 	}
+
 	/**
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
 	 */
-	public function  jsonSerialize() {
+	public function jsonSerialize() {
 		$fields = get_object_vars($this);
 		unsent($fields["profileHash"]);
 		unsent($fields["profileSalt"]);
 		return ($fields);
 	}
 
+	/**
+	 * @param PDO $pdo
+	 * @param int $profileId
+	 * @return Profile|null
+	 */
 
-}
+	public static function getProfileByProfileId(PDO $pdo, int $profileId) {
 
+		$profileId = filter_var($profileId);
+		if($profileId === false) {
+			throw(new \InvalidArgumentException("profile Id is not an integer."));
+		}
+		if($profileId <= 0) {
+			throw(new RangeException("Profile id is not positive"));
+		}
+
+		// prepare query
+		$query = "SELECT profileId, profileUserName, profileHash, profileSalt, profileActivation FROM profile WHERE profileId = :profileId";
+
+		$statement = $pdo->prepare($query);
+		$parameters = array("profileId" => $profileId);
+		$statement->execute($parameters);
+
+		// setup results from query
+			try {
+				$profile = null;
+				$statement->setFetchMode(PDO:: FETCH_ASSOC);
+				$row = $statement->fetch();
+				if($row !== false) {
+					$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
+				}
+			} catch(\Exception $exception) {
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		return ($profile);
+	} // getProfileByProfileId
+
+	/**
+	 * @param PDO $pdo
+	 * @param int $profileEmail
+	 * @return ProfileEmail|null
+	 */
+
+	public static function getProfileEmailByProfileId(PDO $pdo, int $profileEmail) {
+
+		$profileEmail = filter_var($profileEmail);
+		if($profileEmail === false) {
+			throw(new \InvalidArgumentException("profile Id is not an integer."));
+		}
+		if($profileEmail <= 0) {
+			throw(new RangeException("Profile id is not positive"));
+		}
+
+		// prepare query
+		$query = "SELECT profileEmail, profileId, profileUserName, profileHash, profileSalt, profileActivation FROM profile WHERE profileId = :profileId";
+
+		$statement = $pdo->prepare($query);
+		$parameters = array("profileEmail" => $profileEmail);
+		$statement->execute($parameters);
+
+		// setup results from query
+		try {
+			$profileEmail = null;
+			$statement->setFetchMode(PDO:: FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$profileEmail = new ProfileEmail $row["profileEmail"], $row["profileId"], $row["profileUserName"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($profileEmail);
+	} // getProfileEmailByProfileId
+
+
+
+
+
+
+
+
+
+	}
 
 
 
