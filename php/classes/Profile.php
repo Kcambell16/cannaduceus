@@ -274,7 +274,7 @@ class Profile implements \JsonSerializable {
 
 
 		//prepare is used as an extra means of security
-		$statement = $pdo->prepare($query); //this one nathan
+		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the place holder slots in the template. putting these into an array
 		$parameters = ["profileUserName" => $this->profileUserName, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileSalt" => $this->profileSalt, "profileActivation" => $this->profileActivation];
@@ -330,7 +330,7 @@ class Profile implements \JsonSerializable {
 		}
 
 		//create a query template
-		$query = "UPDATE profile SET profileUserName = :profileUserName, profileEmail = :profileEmail, profileSalt = :profileSalt, profileHash = :profileHash, profileActivation = :profileActivation";
+		$query = "UPDATE profile SET profileUserName = :profileUserName, profileEmail = :profileEmail, profileSalt = :profileSalt, profileHash = :profileHash, profileActivation = :profileActivation WHERE profileId = :profileId";
 		// prepare statement
 		$statement = $pdo->prepare($query);
 
@@ -347,25 +347,25 @@ class Profile implements \JsonSerializable {
 	 */
 	public function jsonSerialize() {
 		$fields = get_object_vars($this);
-		unsent($fields["profileHash"]);
-		unsent($fields["profileSalt"]);
+		unset($fields["profileHash"]);
+		unset($fields["profileSalt"]);
 		return ($fields);
 	}
 
 	/**
-	 * @param PDO $pdo
+	 * @param \PDO $pdo
 	 * @param int $profileId
 	 * @return Profile|null
 	 */
 
-	public static function getProfileByProfileId(PDO $pdo, int $profileId) {
+	public static function getProfileByProfileId(\PDO $pdo, int $profileId) {
 
 		$profileId = filter_var($profileId);
 		if($profileId === false) {
 			throw(new \InvalidArgumentException("profile Id is not an integer."));
 		}
 		if($profileId <= 0) {
-			throw(new RangeException("Profile id is not positive"));
+			throw(new \RangeException("Profile id is not positive"));
 		}
 
 		// prepare query
@@ -378,7 +378,7 @@ class Profile implements \JsonSerializable {
 		// setup results from query
 			try {
 				$profile = null;
-				$statement->setFetchMode(PDO:: FETCH_ASSOC);
+				$statement->setFetchMode(\PDO:: FETCH_ASSOC);
 				$row = $statement->fetch();
 				if($row !== false) {
 					$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
@@ -390,19 +390,19 @@ class Profile implements \JsonSerializable {
 	} // getProfileByProfileId
 
 	/**
-	 * @param PDO $pdo
+	 * @param \PDO $pdo
 	 * @param int $profileEmail
-	 * @return ProfileEmail|null
+	 * @return Profile|null
 	 */
 
-	public static function getProfileEmailByProfileId(PDO $pdo, int $profileEmail) {
+	public static function getProfileEmailByProfileId(\PDO $pdo, int $profileEmail) {
 
 		$profileEmail = filter_var($profileEmail);
 		if($profileEmail === false) {
 			throw(new \InvalidArgumentException("profile Id is not an integer."));
 		}
 		if($profileEmail <= 0) {
-			throw(new RangeException("Profile id is not positive"));
+			throw(new \RangeException("Profile id is not positive"));
 		}
 
 		// prepare query
@@ -414,16 +414,16 @@ class Profile implements \JsonSerializable {
 
 		// setup results from query
 		try {
-			$profileEmail = null;
-			$statement->setFetchMode(PDO:: FETCH_ASSOC);
+			$profile = null;
+			$statement->setFetchMode(\PDO:: FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$profileEmail = new ProfileEmail $row["profileEmail"], $row["profileId"], $row["profileUserName"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
+				$profile = new Profile( $row["profileEmail"], $row["profileId"], $row["profileUserName"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
 			}
 		} catch(\Exception $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($profileEmail);
+		return ($profile);
 	} // getProfileEmailByProfileId
 
 
@@ -434,7 +434,8 @@ class Profile implements \JsonSerializable {
 
 
 
-	}
+}
+
 
 
 

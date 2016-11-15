@@ -299,7 +299,7 @@ class Strain implements \JsonSerializable {
 		//enforce the strainId is not null (i.e. don't update a strain that hasn't been inserted)
 		if($this->strainId === null)	{
 			throw(new \PDOException("unable to update strain that does not exist"));
-		}
+		}//update
 
 		// create query template
 		$query = "UPDATE strain SET strainId = :strainId, strainName = :strainName, strainType = :strainType, strainThc = :strainThc, strainCbd = :strainCbd, strainDescription = :strainDescription WHERE strainId = :strainId";
@@ -339,7 +339,7 @@ class Strain implements \JsonSerializable {
 		$statement->execute($parameters);
 		//  setup results from query
 		try {
-			$profile = null;
+			$strain = null;
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
