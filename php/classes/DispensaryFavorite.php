@@ -40,16 +40,16 @@ class DispensaryFavorite implements \JsonSerializable {
 		try {
 			$this->dispensaryFavoriteProfileId($newDispensaryFavoriteId);
 			$this->dispensaryFavoriteDispensaryId($newDispensaryFavoriteDispensaryId);
-		}Catch(\InvalidArgumentException $invalidArgumentException) {
+		} Catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the calller
 			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
-		}Catch(\RangeException $range) {
+		} Catch(\RangeException $range) {
 			// rethrow the exception to the caller
 			throw(new \RangeException($range->getMessage(), 0, $range));
-		}Catch(\TypeError $typeError) {
+		} Catch(\TypeError $typeError) {
 			//rethrow the exception to the caller
 			throw(new \TypeError($typeError->getMessage(), 0, $typeError));
-			} Catch(\Exception $exception) {
+		} Catch(\Exception $exception) {
 			//rethrow the exception to the caller
 			throw(new \Exception($exception->getMessage(), 0, $exception));
 		}
@@ -78,14 +78,14 @@ class DispensaryFavorite implements \JsonSerializable {
 			$this->dispensaryFavoriteProfileId = null;
 			return;
 		}
-
+		// validate that the new dispensaryFavoriteProfileId is an integer
 		$newDispensaryFavoriteProfileId = filter_var($newDispensaryFavoriteProfileId);
-		if($newDispensaryFavoriteProfileId === false){
+		if($newDispensaryFavoriteProfileId === false) {
 			throw(new \UnexpectedValueException("dispensary Favorite Profile Id is not a vaild interger"));
 		}
 
 		//Convert and store the dispensaryFavoriteProfileId
-		$this->dispensaryFavoriteProfileId = $newDispensaryFavoriteProfileId;
+		$this->dispensaryFavoriteProfileId = intval($newDispensaryFavoriteProfileId);
 	}
 
 	/**
@@ -103,13 +103,15 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @param int $newDispensaryFavoriteDispensaryId new value of dispensaryFavoriteDispensaryId
 	 * @throws \UnexpectedValueException if $newDispensaryFavoriteDispensaryId is not an integer
 	 */
-	public function setDispensaryFavoriteDispensaryId($dispensaryFavoriteDispensaryId, $newDispensaryFavoriteDispensaryId) {
-		$newDispensaryFavoriteDispensaryId = filter_var($newDispensaryFavoriteDispensaryId, FILTER_VAILIDATE_INT);
+	public function setDispensaryFavoriteDispensaryId($newDispensaryFavoriteDispensaryId) {
+		$newDispensaryFavoriteDispensaryId = filter_input($newDispensaryFavoriteDispensaryId, FILTER_SANITIZE_STRING);
 		if($newDispensaryFavoriteDispensaryId === false) {
 			throw(new \UnexpectedValueException("Dispensary Favorite Dispensary Id not a vaild integer"));
 		}
+
+
 		//Convert and store the dispensaryFavoriteDispensaryId
-		$this->dispensaryFavoriteDispensaryId = $dispensaryFavoriteDispensaryId;
+		$this->dispensaryFavoriteDispensaryId = $newDispensaryFavoriteDispensaryId;
 	}
 
 	/**
@@ -123,6 +125,96 @@ class DispensaryFavorite implements \JsonSerializable {
 		unset($fields["profileSalt"]);
 		return ($fields);
 	}
+
+	/**
+	 * inserts this Dispensary Favorite into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is to a PDO connection object
+	 */
+	public function insert(\PDO $pdo) {
+		// enforce the dispensaryFavoriteProfileId is null (i.e., don't insert a favorite that already exists)
+		if($this->dispensaryFavoriteProfileId !== null) {
+			throw(new\PDOException("not a new profile"));
+		}
+
+		// create query template
+		$query = "INSERT INTO dispensaryFavorite(dispensaryFavoriteProfileId, dispensaryFavoriteDispensaryId) VALUES(:dispensaryFavoriteProfileId, :dispensaryFavoriteDispensaryId)";
+
+
+		//prepare is used as an extra means of security
+		$statement = $pdo->prepare($query);
+
+		//bind the member variables to the place holder slots in the template. putting these into an array
+		$parameters = ["dispensaryFavoriteProfileId" => $this->dispensaryFavoriteProfileId, "dispensaryFavoriteDispensaryId" => $this->dispensaryFavoriteDispensaryId];
+
+
+		//execute the command held in $statement
+		$statement->execute($parameters);
+
+		//update the null dispensaryFavoriteProfileId. Ask mySQL for the primary key value it assigned to this entry
+		$this->dispensaryFavoriteProfileId = intval($pdo->lastInsertId());
+
+
+	}// insert
+
+	/**
+	 * deletes this favorite from the mySQL database
+	 * @param \PDO $pdo Pdo connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+	public function delete(\PDO $pdo) {
+		//first check to make sure the dispensaryFavoriteProfileId isn't null, cant delete something that hasn't been entered into SQL yet
+		if($this->dispensaryFavoriteProfileId === null) {
+			throw(new \PDOException("The profile you selected does not exist"));
+		}
+
+		//create the query template
+		$query = "DELETE FROM dispensaryFavorite WHERE dispensaryFavoriteProfileId = :dispensaryFavoriteProfileId";
+		// prepare is used as an extra means of security
+		$statement = $pdo->prepare($query);
+
+
+		//bind parameters and execute the function
+		$parameters = ["dispensaryFavoriteProfileId" => $this->dispensaryFavoriteProfileId];
+
+		//execute the command held in $statement
+		$statement->execute($parameters);
+	}// delete
+
+	/**
+	 * PDO statement to update this dispensaryFavorite in mySQL
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+
+	public function update(\PDO $pdo) {
+		//ensure that this profile is not null (hasn't been entered into SQL). can't update something that doesn't exist
+		if($this->dispensaryFavoriteProfileId === null) {
+			throw(new \PDOException("Can't update a favorite that doesn't exist"));
+		}
+
+		//create a query template
+		$query = "UPDATE dispensaryFavorite SET dispensaryFavoriteProfileId = :dispensaryFavoriteProfileId";
+		// prepare statement
+		$statement = $pdo->prepare($query);
+
+		//bind the variables to the template and execute the SQL command
+		$parameters = ["dispensaryFavoriteProfileId" => $this->dispensaryFavoriteProfileId, "dispensaryFavoriteDispensaryId" => $this->dispensaryFavoriteDispensaryId];
+		//execute
+		$statement->execute($parameters);
+	}
+
+
+
+
+
+
+
+
 
 
 
