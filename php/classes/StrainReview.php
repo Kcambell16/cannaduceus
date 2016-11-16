@@ -82,169 +82,169 @@ class StrainReview implements \JsonSerializable {
 	}
 
 	/**
-	 * Accesor method for dispensaryReviewId
+	 * Accesor method for strainReviewId
 	 *
-	 * @return int|null value of dispensary review id
+	 * @return int|null value of strain review id
 	 **/
-	public function getDispensaryReviewId() {
-		return ($this->dispensaryReviewId);
+	public function getStrainReviewId() {
+		return ($this->strainReviewId);
 	}
 
 	/**
-	 * mutator method for dispensary review id
+	 * mutator method for strain review id
 	 *
-	 * @param int|null $newDispensaryReviewId new value of dispensary review id
-	 * @throws \RangeException if $newDispensaryReviewId is not positive
-	 * @thows \TypeError if $newDispensaryReviewId is not an integer
+	 * @param int|null $newStrainReviewId new value of strain review id
+	 * @throws \RangeException if $newStrainReviewId is not positive
+	 * @thows \TypeError if $newStrainReviewId is not an integer
 	 **/
 
-	public function setDispensaryReviewId(int $newDispensaryReviewId = null) {
-		// base case: if the dispensary review id is null, this is a new dispensary review without a mySQL assigned id (yet)
-		if($newDispensaryReviewId === null) {
-			$this->dispensaryReviewId = null;
+	public function setStrainReviewId(int $newStrainReviewId = null) {
+		// base case: if the strain review id is null, this is a new strain review without a mySQL assigned id (yet)
+		if($newStrainReviewId === null) {
+			$this->strainReviewId = null;
 			return;
 		}
 
-		// verify the dispensary review id is positive
+		// verify the strain review id is positive
 		if($newDispensaryReviewId <= 0) {
 			throw(new \RangeException("dispensary review id is not positive"));
 		}
-		// convert and store the dispensary review id
-		$this->dispensaryReviewId = $newDispensaryReviewId;
+		// convert and store the strain review id
+		$this->strainReviewId = $newStrainReviewId;
 
 	}
 
 	/**
-	 * Accesor method for dispensaryReviewProfileId
+	 * Accesor method for strainReviewProfileId
 	 *
-	 * @return int|null value of dispensary review profile id
+	 * @return int|null value of strain review profile id
 	 **/
-	public function getDispensaryReviewProfileId() {
-		return ($this->dispensaryReviewProfileId);
+	public function getStrainReviewProfileId() {
+		return ($this->strainReviewProfileId);
 	}
 
 	/**
-	 * mutator method for dispensary review profile id
+	 * mutator method for strain review profile id
 	 *
-	 * @param int|null $newDispensaryReviewProfileId new value of dispensary review profile id
-	 * @throws \RangeException if $newDispensaryReviewProfileId is not positive
-	 * @throws \TypeError if $newDispensaryReviewProfileId is not an integer
+	 * @param int|null $newStrainReviewProfileId new value of strain review profile id
+	 * @throws \RangeException if $newStrainReviewProfileId is not positive
+	 * @throws \TypeError if $newStrainReviewProfileId is not an integer
 	 **/
 
-	public function setDispensaryReviewProfileId(int $newDispensaryReviewProfileId = null) {
-		// base case: if the dispensary review profile id is null, this is a new dispensary review profile id without a mySQL assigned id (yet)
-		if($newDispensaryReviewProfileId === null) { // here hector
-			$this->dispensaryReviewProfileId = null;
+	public function setStrainReviewProfileId(int $newStrainReviewProfileId = null) {
+		// base case: if the strain review profile id is null, this is a new strain review profile id without a mySQL assigned id (yet)
+		if($newStrainReviewProfileId === null) { // otra vez aqui hector Dee Dee Dee
+			$this->strainReviewProfileId = null;
 			return;
 		}
 
-		// verify the dispensary review profile id is positive
-		if($newDispensaryReviewProfileId <= 0) {
-			throw(new \RangeException("dispensary review profile id is not positive"));
+		// verify the strain review profile id is positive
+		if($newStrainReviewProfileId <= 0) {
+			throw(new \RangeException("strain review profile id is not positive"));
 		}
-		// convert and store the dispensary review profile id
-		$this->dispensaryReviewProfileId = $newDispensaryReviewProfileId;
+		// convert and store the strain review profile id
+		$this->strainReviewProfileId = $newStrainReviewProfileId;
 
 	}
 
 	/**
-	 * Accesor method for dispensaryReviewDispensaryId
+	 * Accesor method for strainReviewStrainId
 	 *
-	 * @return int|null value of dispensary review dispensary id
+	 * @return int|null value of strain review strain id
 	 **/
-	public function getDispensaryReviewDispensaryId() {
-		return ($this->dispensaryReviewDispensaryId);
+	public function getStrainReviewStrainId() {
+		return ($this->strainReviewStrainId);
 	}
 
 	/**
-	 * mutator method for dispensary review dispensary id
+	 * mutator method for strain review strain id
 	 *
-	 * @param int|null $newDispensaryReviewDispensaryId new value of dispensary review dispensary id
-	 * @throws \RangeException if $newDispensaryReviewDispensaryId is not positive
-	 * @throws \TypeError if $newDispensaryReviewDispensaryId is not an integer
+	 * @param int|null $newStrainReviewStrainId new value of strain review strain id
+	 * @throws \RangeException if $newStrainReviewStrainId is not positive
+	 * @throws \TypeError if $newStrainReviewStrainId is not an integer
 	 **/
 
-	public function setDispensaryReviewDispensaryId(int $newDispensaryReviewDispensaryId = null) {
-		// base case: if the dispensary review dispensary id is null, this is a new dispensary review dispensary id without a mySQL assigned id (yet)
-		if($newDispensaryReviewDispensaryId === null) {
-			$this->dispensaryReviewProfileId = null;
+	public function setStrainReviewStrainId(int $newStrainReviewStrainId = null) {
+		// base case: if the dispensary review strain id is null, this is a new strain review strain id without a mySQL assigned id (yet)
+		if($newStrainReviewStrainId === null) {
+			$this->strainReviewStrainId = null;
 			return;
 		}
 
-		// verify the dispensary review dispensary id is positive
-		if($newDispensaryReviewDispensaryId <= 0) {
-			throw(new \RangeException("dispensary review dispensary id is not positive"));
+		// verify the strain review strain id is positive
+		if($newStrainReviewStrainId <= 0) {
+			throw(new \RangeException("strain review strain id is not positive"));
 		}
-		// convert and store the dispensary review dispensary id
-		$this->dispensaryReviewDispensaryId = $newDispensaryReviewDispensaryId;
+		// convert and store the strain review strain id
+		$this->strainReviewStrainId = $newStrainReviewStrainId;
 
 	}
 
 	/**
-	 * accessor method for dispensary review date
+	 * accessor method for strain review date
 	 *
-	 * @return \DateTime value of dispensary review date
+	 * @return \DateTime value of strain review date
 	 **/
-	public function getDispensaryReviewDateTime() {
-		return ($this->dispensaryReviewDateTime);
+	public function getStrainReviewDateTime() {
+		return ($this->strainReviewDateTime);
 	}
 
 	/**
-	 * mutator method for dispensary review date
+	 * mutator method for strain review date
 	 *
-	 * @param \DateTime|string|null $newDispensaryReviewDateTime dispensary review date as a DateTime object or string (or null to load the current time)
-	 * @throws \InvalidArgumentException if $newDispensaryReviewDateTime is not a valid object or string
-	 * @throws \RangeException if $newDispensaryReviewDateTime is a date that does not exist
+	 * @param \DateTime|string|null $newStrainReviewDateTime strain review date as a DateTime object or string (or null to load the current time)
+	 * @throws \InvalidArgumentException if $newStrainReviewDateTime is not a valid object or string
+	 * @throws \RangeException if $newStrainReviewDateTime is a date that does not exist
 	 **/
-	public function setDispensaryReviewDate($newDispensaryReviewDateTime = null) {
+	public function setStrainReviewDate($newStrainReviewDateTime = null) {
 		// base case: if the date is null, use the current date and time
-		if($newDispensaryReviewDateTime === null) {
-			$this->dispensaryReviewDateTime = new \DateTime();
+		if($newStrainReviewDateTime === null) {
+			$this->strainReviewDateTime = new \DateTime();
 			return;
 		}
 
-		// store the dispensary review date
+		// store the strain review date
 		try {
-			$newDispensaryReviewDateTime = self::validateDateTime($newDispensaryReviewDateTime);
+			$newStrainReviewDateTime = self::validateDateTime($newStrainReviewDateTime);
 		} catch(\InvalidArgumentException $invalidArgument) {
 			throw(new \InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
 		} catch(\RangeException $range) {
 			throw(new \RangeException($range->getMessage(), 0, $range));
 		}
-		$this->dispensaryReviewDateTime = $newDispensaryReviewDateTime;
+		$this->strainReviewDateTime = $newStrainReviewDateTime;
 	}
 
 	/**
 	 *
-	 * Accesor method for dispensaryReviewTxt
-	 * @return string value of dispensary review txt
+	 * Accesor method for strainReviewTxt
+	 * @return string value of strain review txt
 	 **/
 
-	public function getDispensaryReviewTxt() {
-		return ($this->dispensaryReviewTxt);
+	public function getStrainReviewTxt() {
+		return ($this->strainReviewTxt);
 	}
 
 	/**
-	 * Mutator method for dispensary review txt
+	 * Mutator method for strain review txt
 	 *
-	 * @param string $newDispensaryReviewTxt new value of dispensary review txt
-	 * @throws \InvalidArgumentException if $newDispensaryReviewTxt is not a string or insecure
-	 * @throws \RangeException if $newDispensaryReviewTxt is > 256 characters
-	 * @throws \TypeError if $newDutyStationName is not a string
+	 * @param string $newStrainReviewTxt new value of strain review txt
+	 * @throws \InvalidArgumentException if $newStrainReviewTxt is not a string or insecure
+	 * @throws \RangeException if $newStrainReviewTxt is > 256 characters
+	 * @throws \TypeError if $newStrainReviewTxt is not a string
 	 **/
-	public function setDispensaryReviewTxt(string $newDispensaryReviewTxt) {
-		// verify the dispensary review txt is secure
-		$newDispensaryReviewTxt = trim($newDispensaryReviewTxt);
-		$newDispensaryReviewTxt = filter_var($newDispensaryReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newDispensaryReviewTxt) === true) {
-			throw(new \InvalidArgumentException("dispensary review txt is empty or insecure"));
+	public function setStrainReviewTxt(string $newStrainReviewTxt) {
+		// verify the strain review txt is secure
+		$newStrainReviewTxt = trim($newStrainReviewTxt);
+		$newStrainReviewTxt = filter_var($newStrainReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newStrainReviewTxt) === true) {
+			throw(new \InvalidArgumentException("strain review txt is empty or insecure"));
 		}
 
-		//verify the dispensary review txt will fit in the database
-		if(strlen($newDispensaryReviewTxt) > 256) {
-			throw(new \RangeException("dispensary review txt too large"));
+		//verify the strain review txt will fit in the database
+		if(strlen($newStrainReviewTxt) > 256) {
+			throw(new \RangeException("strain review txt too large"));
 		}
 
 		// store the name content
-		$this->dispensaryReviewTxt = $newDispensaryReviewTxt;
+		$this->strainReviewTxt = $newStrainReviewTxt;
 	}

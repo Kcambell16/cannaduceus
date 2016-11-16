@@ -230,7 +230,7 @@ class DispensayReview implements \JsonSerializable {
 	 * @param string $newDispensaryReviewTxt new value of dispensary review txt
 	 * @throws \InvalidArgumentException if $newDispensaryReviewTxt is not a string or insecure
 	 * @throws \RangeException if $newDispensaryReviewTxt is > 256 characters
-	 * @throws \TypeError if $newDutyStationName is not a string
+	 * @throws \TypeError if $newDispensaryReviewTxt is not a string
 	 **/
 	public function setDispensaryReviewTxt(string $newDispensaryReviewTxt) {
 		// verify the dispensary review txt is secure
