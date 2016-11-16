@@ -115,18 +115,6 @@ class DispensaryFavorite implements \JsonSerializable {
 	}
 
 	/**
-	 * formats the state variables for JSON serialization
-	 *
-	 * @return array resulting state variables to serialize
-	 */
-	public function jsonSerialize() {
-		$fields = get_object_vars($this);
-		unset($fields["profileHash"]);
-		unset($fields["profileSalt"]);
-		return ($fields);
-	}
-
-	/**
 	 * inserts this Dispensary Favorite into mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
@@ -306,7 +294,17 @@ class DispensaryFavorite implements \JsonSerializable {
 		return ($dispensaryFavorite);
 	}  // getDispensaryByDispensaryId
 
-
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 */
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+		unset($fields["profileHash"]);
+		unset($fields["profileSalt"]);
+		return ($fields);
+	}
 
 
 
