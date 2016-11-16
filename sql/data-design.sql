@@ -1,10 +1,10 @@
 -- drop table statements go here
-DROP TABLE IF EXISTS strainfavorite;
-DROP TABLE IF EXISTS strainleafrating;
-DROP TABLE IF EXISTS strainreview;
-DROP TABLE IF EXISTS dispensaryfavorite;
-DROP TABLE IF EXISTS dispensaryleafrating;
-DROP TABLE IF EXISTS dispensaryreview;
+DROP TABLE IF EXISTS strainFavorite;
+DROP TABLE IF EXISTS strainLeafRating;
+DROP TABLE IF EXISTS strainReview;
+DROP TABLE IF EXISTS dispensaryFavorite;
+DROP TABLE IF EXISTS dispensaryLeafRating;
+DROP TABLE IF EXISTS dispensaryReview;
 DROP TABLE IF EXISTS strain;
 DROP TABLE IF EXISTS dispensary;
 DROP TABLE IF EXISTS profile;
@@ -30,11 +30,11 @@ CREATE TABLE dispensary
 	dispensaryEmail VARCHAR(128),
 	dispensaryName VARCHAR(32) NOT NULL,
 	dispensaryPhone VARCHAR(32) NOT NULL ,
+	dispensaryState CHAR(2) NOT NULL,
 	dispensaryStreet1 VARCHAR(48) NOT NULL,
 	dispensaryStreet2 VARCHAR(48) NOT NULL,
 	dispensaryUrl VARCHAR(128),
 	dispensaryZipCode VARCHAR(10) NOT NULL,
-	dispensaryState CHAR(2) NOT NULL,
 	PRIMARY KEY (dispensaryId)
 );
 

@@ -230,7 +230,7 @@ class DispensayReview implements \JsonSerializable {
 	 * @param string $newDispensaryReviewTxt new value of dispensary review txt
 	 * @throws \InvalidArgumentException if $newDispensaryReviewTxt is not a string or insecure
 	 * @throws \RangeException if $newDispensaryReviewTxt is > 256 characters
-	 * @throws \TypeError if $newDutyStationName is not a string
+	 * @throws \TypeError if $newDispensaryReviewTxt is not a string
 	 **/
 	public function setDispensaryReviewTxt(string $newDispensaryReviewTxt) {
 		// verify the dispensary review txt is secure
@@ -398,7 +398,7 @@ class DispensayReview implements \JsonSerializable {
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param string $dispensaryReviewTxt dispensary review content to search for
-	 * @return \SplFixedArray SplFixedArray of Tweets found
+	 * @return \SplFixedArray SplFixedArray of Dispensary Reviews found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/

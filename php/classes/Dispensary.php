@@ -57,6 +57,12 @@ class Dispensary implements \JsonSerializable {
 	private $dispensaryPhone;
 
 	/**
+	 * actual state of dispensary
+	 * @var string $dispensaryState
+	 **/
+	private $dispensaryState;
+
+	/**
 	 * actual street address for dispensary
 	 * @var string $dispensaryStreet
 	 **/
@@ -80,11 +86,6 @@ class Dispensary implements \JsonSerializable {
 	 **/
 	private $dispensaryZipCode;
 
-	/**
-	 * actual state of dispensary
-	 * @var string $dispensaryState
-	 **/
-	private $dispensaryState;
 
 	/**
 	 * constructor for dispensary
@@ -95,11 +96,11 @@ class Dispensary implements \JsonSerializable {
 	 * @param string $newDispensaryEmail email of dispensary
 	 * @param string $newDispensaryName dispensary name
 	 * @param string $newDispensaryPhone phone number of dispensary
+	 * @param string $newDispensaryState dispensary state
 	 * @param string $newDispensaryStreet1 address of dispensary
 	 * @param int $newDispensaryStreet2 additional address info of dispensary
 	 * @param string $newDispensaryUrl web address of dispensary
-	 * @param int $newDispensaryZipCode dipsensary zip code
-	 * @param string $newDispensaryState dispensary state
+	 * @param int $newDispensaryZipCode dispensary zip code
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -108,26 +109,29 @@ class Dispensary implements \JsonSerializable {
 
 	public function __construct(
 		int $newDispensaryId = null,
-		string $newDispensaryName,
 		string $newDispensaryAttention,
+		string $newDispensaryCity,
+		string $newDispensaryEmail,
+		string $newDispensaryName,
+		int $newDispensaryPhone,
+		string $newDispensaryState,
 		string $newDispensaryStreet1,
 		string $newDispensaryStreet2,
-		string $newDispensaryCity,
-		string $newDispensaryState,
-		int $newDispensaryZipCode,
-		string $newDispensaryEmail,
-		int $newDispensaryPhone,
-		string $newDispensaryUrl) {
+		string $newDispensaryUrl,
+		int $newDispensaryZipCode)
+	{
 		try {
 			$this->setDispensaryId($newDispensaryId);
-			$this->setDispensaryName($newDispensaryName);
 			$this->setDispensaryAttention($newDispensaryAttention);
+			$this->setDispensaryCity($newDispensaryCity);
+			$this->setDispensaryEmail($newDispensaryEmail);
+			$this->setDispensaryName($newDispensaryName);
+			$this->setDispensaryPhone($newDispensaryPhone);
+			$this->setDispensaryState($newDispensaryState);
 			$this->setDispensaryStreet1($newDispensaryStreet1);
 			$this->setDispensaryStreet2($newDispensaryStreet2);
-			$this->setDispensaryCity($newDispensaryCity);
+			$this->setDispensaryUrl($newDispensaryUrl);
 			$this->setDispensaryZipCode($newDispensaryZipCode);
-			$this->setDispensaryEmail($newDispensaryEmail);
-			$this->setDispensaryState($newDispensaryState);
 		} catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the caller
 			throw(new \InvalidArgumentException($invalidArgumentException->getCode(), 0, $invalidArgumentException));
@@ -186,13 +190,13 @@ class Dispensary implements \JsonSerializable {
 	/**
 	 * mutator method for dispensary attention
 	 *
-	 * @param string $newdispensaryAttention new vlaue of dispensary attention
-	 * @throws \InvalidArgumentException if $newdispensaryAttention is not a string or insecure
-	 * @throws \RangeException if $newdispensaryAttention is > 140 characters
-	 * @throws \TypeError if $newdispensaryAttention is not a string
+	 * @param string $newDispensaryAttention new vlaue of dispensary attention
+	 * @throws \InvalidArgumentException if $newDispensaryAttention is not a string or insecure
+	 * @throws \RangeException if $newDispensaryAttentionis > 140 characters
+	 * @throws \TypeError if $newDispensaryAttention is not a string
 	 **/
 	public function setDispensaryAttention(string $newDispensaryAttention) {
-		// verify the diespensary attention is secure
+		// verify the dispensary attention is secure
 		$newDispensaryAttention = trim($newDispensaryAttention);
 		$newDispensaryAttention = filter_var($newDispensaryAttention, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newDispensaryAttention) === true) {
@@ -352,13 +356,13 @@ class Dispensary implements \JsonSerializable {
 	/**
 	 * mutator method for dispensary street1
 	 *
-	 * @param string $newDispensaryStreet new value of dispensary street
-	 * @throws \InvalidArgumentException if $newDispensaryStreet is not a string or insecure
-	 * @throws \RangeException if $newDispensaryStreet is > 140 characters
-	 * @throws \TypeError if $newDispensaryStreet is not a string
+	 * @param string $newDispensaryStreet1 new value of dispensary street
+	 * @throws \InvalidArgumentException if $newDispensaryStreet1 is not a string or insecure
+	 * @throws \RangeException if $newDispensaryStreet1 is > 140 characters
+	 * @throws \TypeError if $newDispensaryStreet1 is not a string
 	 **/
-	public function setDispensaryStreet(string $newDispensaryStreet1) {
-		//verify the street is secure
+	public function setDispensaryStreet1(string $newDispensaryStreet1) {
+		//verify the street1 is secure
 		$newDispensaryStreet1 = trim($newDispensaryStreet1);
 		$newDispensaryStreet1 = filter_var($newDispensaryStreet1, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newDispensaryStreet1) === true) {
@@ -370,7 +374,7 @@ class Dispensary implements \JsonSerializable {
 		}
 
 		// store the dispensary street
-		$this->dispensaryStreet = $newDispensaryStreet1;
+		$this->dispensaryStreet1 = $newDispensaryStreet1;
 	}
 
 	/**
@@ -385,19 +389,19 @@ class Dispensary implements \JsonSerializable {
 	/**
 	 * mutator method for dispensary street2
 	 *
-	 * @param string $newDispensaryStreet1 new value of dispensary street
-	 * @throws \InvalidArgumentException if $newDispensaryStreet1 is not a string or insecure
-	 * @throws \RangeException if $newDispensaryStreet1 is > 140 characters
-	 * @throws \TypeError if $newDispensaryStreet1 is not a string
+	 * @param string $newDispensaryStreet2 new value of dispensary street
+	 * @throws \InvalidArgumentException if $newDispensaryStreet2 is not a string or insecure
+	 * @throws \RangeException if $newDispensaryStreet2 is > 140 characters
+	 * @throws \TypeError if $newDispensaryStreet2 is not a string
 	 **/
 	public function setDispensaryStreet2(string $newDispensaryStreet2) {
-		//verify the street is secure
+		//verify the street2 is secure
 		$newDispensaryStreet2 = trim($newDispensaryStreet2);
 		$newDispensaryStreet2 = filter_var($newDispensaryStreet2, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newDispensaryStreet2) === true) {
 			throw(new \RangeException("dispensary street2 is empty or insecure"));
 		}
-		// verify the dispensary street1 will fit in the database
+		// verify the dispensary street2 will fit in the database
 		if(strlen($newDispensaryStreet2) > 140) {
 			throw(new \RangeException("dispensary street2 too large"));
 		}
@@ -499,7 +503,7 @@ class Dispensary implements \JsonSerializable {
 		//store the dispensary state
 		$this->dispensaryState = $newDispensaryState;
 	}
-}
+
 
 	/**
 	 * inserts this Dispensary into mySQL
@@ -508,42 +512,39 @@ class Dispensary implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
-	public function insert(\PDO $PDO) {
+	public function insert(\PDO $pdo) {
 		//enforce dispensary id is null (i.e. dont insert a dispenary that already exsist)
 		if($this->dispensaryId !== null) {
 			throw(new \PDOException("not a new dispensary"));
 		}
 		// create query template
 		$query = "INSERT INTO dispensary(
-dispensaryId,
-dispensaryAttention,
-dispensaryCity,
-dispensaryEmail,
-dispensaryName,
-dispensaryPhone,
-dispensaryStreet1, 
-dispensaryStreet2, 
-dispensaryUrl,
-dispensaryZipCode,
-dispensaryState, 
-) 
-VALUES 
-(:dispensaryId, 
-:dispensaryName, 
-:dispensaryAttention, 
-:dispensaryStreet1, 
-:dispensaryStreet2, 
-:dispensaryCity, 
-:dispensaryState, 
-:dispensaryZipCode, 
-:dispensaryEmail, 
-:dispensaryPhone, 
-:dispensaryUrl)";
+			dispensaryAttention,
+			dispensaryCity,
+			dispensaryEmail,
+			dispensaryName,
+			dispensaryPhone,
+			dispensaryState,
+			dispensaryStreet1, 
+			dispensaryStreet2, 
+			dispensaryUrl,
+			dispensaryZipCode) 
+			VALUES (  
+			:dispensaryAttention,
+			:dispensaryCity,
+			:dispensaryEmail, 
+			:dispensaryName,
+			:dispensaryPhone,
+			:dispensaryState,
+			:dispensaryStreet1, 
+			:dispensaryStreet2,
+			:dispensaryUrl,
+			:dispensaryZipCode)";
 		$statement = $pdo->prepare($query);
 
+
 		// bind the member variables to the place holders in the template
-		$parameters =
-			["dispensaryProfileId" => $this->dispensaryId,
+		$parameters = [
 				"dispensaryName" => $this->dispensaryName,
 				"dispensaryAttention" => $this->dispensaryAttention,
 				"dispensaryStreet1" => $this->dispensaryStreet1,
@@ -556,6 +557,63 @@ VALUES
 		$statement->execute($parameters);
 
 	// update the null dispensary Id with what mysql just gave us
-	$this->dispensaryId = invital($pdo->lastInsertId());
+	$this->dispensaryId = intval($pdo->lastInsertId());
 }
 
+/**
+ * delete this dispensary from mySQL
+ *
+ * @param \PDO $pdo PDO connect object
+ * @throws \PDOException when mySQL related errors occur
+ * @throws \TypeError if $pdo is not a PDO connection object
+ **/
+public function delete(\PDO $pdo) {
+//enforce the dispensaryId is not null (i.e., don't delete a disepnsary that hasn't been inserted)
+	if($this->dispensaryId === null) {
+		throw(new \PDOException("unable to delete a dispensary that does not exist"));
+	}
+
+	// create query template
+	$query = "DELETE FROM dispensary WHERE dispensaryId = :dispensaryId";
+	$statement->execute($parameters);
+}
+
+/**
+ * updates this dispensary from mySQL
+ *
+ * @param \PDO $pdo PDO connection object
+ * @throws \PDOException when mySQL related errors occur
+ * @throws \TypeError if $pdo is not a PDO connection object
+ **/
+public function update(\PDO $pdo) {
+	// enforce the dispensaryId is not null ((i.e., don't update a dispensary that hasn't been inserted)
+	if($this->dispensaryId === null){
+		throw(new \PDOException("unable to update a dispensary that does not exist "));
+	}
+
+	// create query template
+	$query = "UPDATE dispensary SET dispensaryId = :dispensaryId,
+dispensaryAttention = :dispensaryAttention,
+dispensaryCity = :dispensaryCity,
+dispensaryEmail = :dispensaryEmail,
+dispensaryName = :dispensaryName,
+dispensaryPhone = :dispensaryPhone,
+dispensaryState = :dispensaryState,
+dispensaryStreet1 = :dispensaryStreet1,
+dispensaryStreet2 = :dispensaryStreet2,
+dispensaryUrl = :dispensaryUrl,
+dispensaryZipCode = :dispensaryZipCode,
+WHERE dispensaryId = :dispensaryId";
+
+}
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+		return($fields);
+	}
+}
