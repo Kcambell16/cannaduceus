@@ -208,4 +208,53 @@ class strainLeafRating {
 			$statement->execute($parameteres);
 		}
 	}//update
+
+	/**
+	 * This function retrieves a Strain Leaf Rating by Dispensary Leaf Rating Rating
+	 *
+	 * @param \PDO $pdo -- a PDO connection
+	 * @param  \int dispensaryLeafRating -- dispensary leaf rating to be retrieved
+	 * @throws \InvalidArgumentException when $dispensaryLeafRating is not an integer
+	 * @throws \RangeException when $dispensaryLeafRatingRating is too long
+	 * @throws \PDOException
+	 * @return null | $dispensaryLeafRating
+	 */
+
+	public static function getDispensaryLeafRatingByDispensaryLeafRatingRating(\PDO $pdo, $dispensaryLeafRating) {
+		//  check validity of $strainName
+		$dispensaryLeafRating = filter_string($dispensaryLeafRating, FILTER_SANITIZE_NUMBER_INT);
+		if($dispensaryLeafRating <= 0) {
+			throw(new \InvalidArgumentException("Dispensary Leaf Rating is not valid."));
+		}
+		if($dispensaryLeafRating === null) {
+			throw(new \RangeException("Strain name does not exist."));
+		}
+		// prepare query
+		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating";
+		$statement = $pdo->prepare($query);
+		$parameters = array("dispensaryLeafRating" => $dispensaryLeafRating);
+		$statement->execute($parameters);
+		//  setup results from query
+		try {
+			$dispensaryLeafRating = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$dispensaryLeafRating = new dispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensryId"], $row["dispensaryLeafRatingProfileId"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($dispensaryLeafRating);
+	}  // get by Strain Leaf Rating Rating
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+		return($fields);
+	}
 }

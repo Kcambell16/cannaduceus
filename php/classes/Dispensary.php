@@ -605,7 +605,63 @@ dispensaryUrl = :dispensaryUrl,
 dispensaryZipCode = :dispensaryZipCode,
 WHERE dispensaryId = :dispensaryId";
 
+	// bind the member varibles to the place holders in the template
+	$parameters = ["\"dispensaryName\" => $this->dispensaryName,
+				\"dispensaryAttention\" => $this->dispensaryAttention,
+				\"dispensaryStreet1\" => $this->dispensaryStreet1,
+				\"dispensaryStreet2\" => $this->dispensaryStreet2,
+				\"dispensaryCity\" => $this->dispensaryCity,
+				\"dispensaryState\" => $this->dispensaryState,
+				\"dispensaryZipCode\" => $this->dispensaryZipCode,
+				\"dispensaryEmail\" => $this->dispensaryEmail,
+				\"dispensaryPhone\" => $this->dispensaryPhone,"];
+	$statement->execute($parameters);
 }
+
+	/**
+	 * gets the dispensary by attention
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $dispensaryAttention dispensary attention to search for
+	 * @return \SplFixedArray SplFixedArray of dispensary found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getDispensaryByDispensaryAttention(\PDO $pdo, string $dispensaryAttention) {
+		//sanitize the description before searching
+		$dispensaryAttention = trim($dispensaryAttention);
+		$dispensaryAttention = filter_var($dispensaryAttention, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($dispensaryAttention) === true){
+			throw(new \PDOException("dispensary attention content is invalid"));
+		}
+		// create query template
+		$query = "SELECT dispensaryId,   			dispensaryAttention,
+			dispensaryCity,
+			dispensaryEmail,
+			dispensaryName,
+			dispensaryPhone,
+			dispensaryState,
+			dispensaryStreet1, 
+			dispensaryStreet2, 
+			dispensaryUrl,
+			dispensaryZipCode FROM dispensary WHERE dispensaryAttention LIKE :dispensaryAttention";
+		$statement = $pdo->prepare($query);
+
+		//bind the dispensary attention to the place holder in the template
+		$dispensaryAttention = "%dispensaryAttention%";
+		$parameters = ["dispensaryAttention" => $dispensaryAttention];
+		$statement->execute($parameters);
+
+		// build an array of dispensary
+		$dispensary = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try{
+				$dispensary = new Dispensary($row["dispensaryId"], $row["dispensaryAttention"], $row["dispensaryCity"], $row["dispensaryEmail",] $row["dispensaryName", $row["dispensaryPhone"], $row["dispensaryState"], $row["dispensaryStreet1"],])
+			}
+		}
+	}
+
 
 	/**
 	 * formats the state variables for JSON serialization

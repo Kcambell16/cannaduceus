@@ -65,9 +65,9 @@ CREATE TABLE dispensaryReview
 
 CREATE TABLE dispensaryLeafRating
 (
+	dispensaryLeafRatingRating TINYINT UNSIGNED NOT NULL,
 	dispensaryLeafRatingDispensaryId INT UNSIGNED NOT NULL,
 	dispensaryLeafRatingProfileId INT UNSIGNED NOT NULL,
-	dispensaryLeafRatingRating TINYINT UNSIGNED NOT NULL,
 	INDEX (dispensaryLeafRatingDispensaryId),
 	INDEX (dispensaryLeafRatingProfileId),
 	FOREIGN KEY (dispensaryLeafRatingProfileId) REFERENCES profile (profileId),
@@ -104,9 +104,9 @@ CREATE TABLE strainReview
 
 CREATE TABLE strainLeafRating
 (
+	strainLeafRatingRating TINYINT UNSIGNED NOT NULL,
 	strainLeafRatingStrainId INT UNSIGNED NOT NULL,
 	strainLeafRatingProfileId INT UNSIGNED NOT NULL,
-	strainLeafRatingRating TINYINT UNSIGNED NOT NULL,
 	INDEX (strainLeafRatingStrainId),
 	INDEX (strainLeafRatingProfileId),
 	FOREIGN KEY (strainLeafRatingProfileId) REFERENCES profile (profileId),
