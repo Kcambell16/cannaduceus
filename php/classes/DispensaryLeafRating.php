@@ -46,7 +46,7 @@ class dispensaryLeafRating {
 	public function __construct(int $newDispensaryLeafRatingRating = null, int $newDispensaryLeafRatingDispensaryId, int $newDispensaryLeafRatingProfileId) {
 		try {
 			$this->setDispensaryLeafRatingRating($newDispensaryLeafRatingRating);
-			$this->setDispensaryLeafRatingdispensaryId($newDispensaryLeafRatingdispensaryId);
+			$this->setDispensaryLeafRatingdispensaryId($newDispensaryLeafRatingDispensaryId);
 			$this->setDispensaryLeafRatingProfileId($newDispensaryLeafRatingProfileId);
 		} Catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the caller
@@ -148,7 +148,7 @@ class dispensaryLeafRating {
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
 	public function insert(\PDO $pdo) {
-		// enforce the dispensaryLeafRatingRating is null (i.e., don't insert a strain that already exists)
+		// enforce the dispensaryLeafRatingRating is null (i.e., don't insert a dispensary that already exists)
 		if($this->dispensaryLeafRatingRating !== null) {
 			throw(new \PDOException("not a new dispensary leaf rating"));
 		}
@@ -162,13 +162,13 @@ class dispensaryLeafRating {
 		$parameters = ["dispensaryLeafRatingRating" => $this->dispensaryLeafRatingRating, "dispensaryLeafRatingDispensaryId" => $this->dispensaryLeafRatingDispensaryId, "dispensaryLeafRatingProfileId" => $this->dispensaryLeafRatingProfileId];
 		$statement->execute($parameters);
 
-		// udate null strainId with what mySQL just gave us
+		// udate null dispensaryId with what mySQL just gave us
 		$this->dispensaryLeafRatingRating = intval($pdo->lastInsertId());
 
 	}   // insert
 
 	/**
-	 * deletes this Strain Leaf Rating from mySQL
+	 * deletes this dispensary Leaf Rating from mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
@@ -197,7 +197,7 @@ class dispensaryLeafRating {
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
 	public function update(\PDO $pdo) {
-		//enforce the strainLeafRating is not null (i.e. don't update a strain leaf rating that hasn't been inserted)
+		//enforce the dispensaryLeafRating is not null (i.e. don't update a dispensary leaf rating that hasn't been inserted)
 		if($this->dispensaryLeafRatingRating === null)	{
 			throw(new \PDOException("unable to update dispensary leaf rating that does not exist"));
 			// create query template
@@ -222,13 +222,13 @@ class dispensaryLeafRating {
 	 */
 
 	public static function getDispensaryLeafRatingByDispensaryLeafRatingRating(\PDO $pdo, $dispensaryLeafRating) {
-		//  check validity of $strainName
-		$dispensaryLeafRating = filter_string($dispensaryLeafRating, FILTER_SANITIZE_NUMBER_INT);
+		//  check validity of $dispensaryName
+		$dispensaryLeafRating = filter_input($dispensaryLeafRating, FILTER_SANITIZE_NUMBER_INT);
 		if($dispensaryLeafRating <= 0) {
 			throw(new \InvalidArgumentException("Dispensary Leaf Rating is not valid."));
 		}
 		if($dispensaryLeafRating === null) {
-			throw(new \RangeException("Strain name does not exist."));
+			throw(new \RangeException("dispensary name does not exist."));
 		}
 		// prepare query
 		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating";
@@ -241,13 +241,91 @@ class dispensaryLeafRating {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$dispensaryLeafRating = new dispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensryId"], $row["dispensaryLeafRatingProfileId"]);
+				$dispensaryLeafRating = new dispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensaryId"], $row["dispensaryLeafRatingProfileId"]);
 			}
 		} catch(\Exception $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		return ($dispensaryLeafRating);
 	}  // get by DispensaryLeafRatingRating
+
+	/**
+	 * This function retrieves a Dispensary Leaf Rating by Dispensary Leaf Rating Dispensary Id
+	 *
+	 * @param \PDO $pdo -- a PDO connection
+	 * @param  \int dispensaryLeafRating -- dispensary leaf rating to be retrieved
+	 * @throws \InvalidArgumentException when $dispensaryLeafRatingDispensaryId is not an integer
+	 * @throws \RangeException when $dispensaryLeafRatingDispensaryId is not an int
+	 * @throws \PDOException
+	 * @return null | $dispensaryLeafRating
+	 */
+
+	public static function getDispensaryLeafRatingByDispensaryLeafDispensaryId(\PDO $pdo, $dispensaryLeafRating) {
+		//  check validity of $dispensaryName
+		$dispensaryLeafRatingDispensaryId = filter_input($dispensaryLeafRating, FILTER_SANITIZE_NUMBER_INT);
+		if($dispensaryLeafRatingDispensaryId <= 0) {
+			throw(new \InvalidArgumentException("Dispensary Leaf Rating Id is not valid."));
+		}
+		if($dispensaryLeafRatingDispensaryId === null) {
+			throw(new \RangeException("Dispensary Leaf Rating does not exist."));
+		}
+		// prepare query
+		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingDispensaryId = :dispensaryLeafRatingDispensaryId";
+		$statement = $pdo->prepare($query);
+		$parameters = array("dispensaryLeafRating" => $dispensaryLeafRating);
+		$statement->execute($parameters);
+		//  setup results from query
+		try {
+			$dispensaryLeafRating = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$dispensaryLeafRating = new dispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensaryId"], $row["dispensaryLeafRatingProfileId"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($dispensaryLeafRating);
+	}  // get by DispensaryLeafRatingDispensaryId
+
+	/**
+	 * This function retrieves a dispensary Leaf Rating by dispensary Leaf Rating Profile Id
+	 *
+	 * @param \PDO $pdo -- a PDO connection
+	 * @param  \int dispensaryLeafRating -- dispensary leaf rating to be retrieved
+	 * @throws \InvalidArgumentException when $dispensaryLeafRatingProfileId is not an integer
+	 * @throws \RangeException when $dispensaryLeafRatingProfileId is not an int
+	 * @throws \PDOException
+	 * @return null | $dispensaryLeafRating
+	 */
+
+	public static function getDispensaryLeafRatingByDispensaryLeafProfileId(\PDO $pdo, $dispensaryLeafRatingProfileId) {
+		//  check validity of $dispensaryName
+		$dispensaryLeafRating = filter_input($dispensaryLeafRatingProfileId, FILTER_SANITIZE_NUMBER_INT);
+		if($dispensaryLeafRatingProfileId <= 0) {
+			throw(new \InvalidArgumentException("Dispensary Leaf Rating Profile Id is not valid."));
+		}
+		if($dispensaryLeafRatingProfileId === null) {
+			throw(new \RangeException("Dispensary Leaf Rating Profile Id does not exist."));
+		}
+		// prepare query
+		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating AND dispensaryLeafRatingDispensaryId = :dispensaryLeafRatingdispensaryId AND dispensaryLeafRatingProfileId = :dispensaryLeafRatingProfileId";
+		$statement = $pdo->prepare($query);
+		$parameters = array("dispensaryLeafRating" => $dispensaryLeafRating);
+		$statement->execute($parameters);
+		//  setup results from query
+		try {
+			$dispensaryLeafRating = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$dispensaryLeafRating = new dispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensaryId"], $row["dispensaryLeafRatingProfileId"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($dispensaryLeafRating);
+	}  // get by dispensaryLeafRatingDispensaryId
 
 	/**
 	 * formats the state variables for JSON serialization
