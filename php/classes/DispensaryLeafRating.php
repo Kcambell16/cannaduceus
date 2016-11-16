@@ -1,5 +1,6 @@
 <?php
 namespace Edu\Cnm\jmontoya306\cannaduceus;
+use Edu\Cnm\Cannaduceus\Dispensary;
 
 /**
  * Cross section of cannaduceus dispensaryLeafRating class
@@ -20,33 +21,33 @@ class dispensaryLeafRating {
 
 	/**
 	 * dispensary Id from the dispensary class;
-	 * @var int $dispensaryLeafRatingdispensaryId
+	 * @var int $dispensaryLeafRatingDispensaryId
 	 **/
-	private $dispensaryLeafRatingdispensaryId;
+	private $dispensaryLeafRatingDispensaryId;
 
 	/**
 	 *profile Id from the profile class;
-	 * @var string $dispensaryType
+	 * @var string $dispensaryLeafRatingProfileId
 	 **/
 	private $dispensaryLeafRatingProfileId;
 
 
 	/** Constructor for new dispensaryLeafRating
 	 *
-	 * @param int | null $newdispensaryLeafRatingRating rating of this dispensary or null if a new dispensary
-	 * @param int $newdispensaryLeafRatingdispensaryId the id of the dispensary from the dispensary class
-	 * @param int $newdispensaryLeafRatingProfileId the id of the profile from the profile class
+	 * @param int | null $newDispensaryLeafRatingRating rating of this dispensary or null if a new dispensary
+	 * @param int $newDispensaryLeafRatingDispensaryId the id of the dispensary from the dispensary class
+	 * @param int $newDispensaryLeafRatingProfileId the id of the profile from the profile class
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newdispensaryLeafRatingRating = null, int $newdispensaryLeafRatingdispensaryId, int $newdispensaryLeafRatingProfileId) {
+	public function __construct(int $newDispensaryLeafRatingRating = null, int $newDispensaryLeafRatingDispensaryId, int $newDispensaryLeafRatingProfileId) {
 		try {
-			$this->setdispensaryLeafRatingRating($newdispensaryLeafRatingRating);
-			$this->setdispensaryLeafRatingdispensaryId($newdispensaryLeafRatingdispensaryId);
-			$this->setdispensaryLeafRatingProfileId($newdispensaryLeafRatingProfileId);
+			$this->setDispensaryLeafRatingRating($newDispensaryLeafRatingRating);
+			$this->setDispensaryLeafRatingdispensaryId($newDispensaryLeafRatingdispensaryId);
+			$this->setDispensaryLeafRatingProfileId($newDispensaryLeafRatingProfileId);
 		} Catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the caller
 			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
@@ -89,22 +90,22 @@ class dispensaryLeafRating {
 
 
 	/**
-	 * accessor method for dispensaryLeafRatingdispensaryId
+	 * accessor method for dispensaryLeafRatingDispensaryId
 	 *
-	 * @return int of dispensaryLeafRatingdispensaryId
+	 * @return int of dispensaryLeafRatingDispensaryId
 	 */
-	public function getdispensaryLeafRatingdispensaryId() {
-		return $this->dispensaryLeafRatingdispensaryId;
+	public function getDispensaryLeafRatingDispensaryId() {
+		return $this->dispensaryLeafRatingDispensaryId;
 	}
 
 	/**
 	 * mutator method for dispensaryLeafRatingDispensaryId
 	 *
 	 * @param int $newDispensaryLeafRatingDispensaryId new var of dispensaryLeafRatingDispensaryId
-	 * @throws \UnexpectedValueException if $newDispensaryLeafRatingDispensaryId is not a int
+	 * @throws \UnexpectedValueException if $newDispensaryLeafRatingDispensaryId is not an int
 	 */
 	public function setdispensaryLeafRatingDispensaryId($newDispensaryLeafRatingDispensaryId) {
-		$newDispensaryLeafRatingDispensaryId = filter_input($newDispensaryLeafRatingDispensaryId, FILTER_SANITIZE_STRING);
+		$newDispensaryLeafRatingDispensaryId = filter_input($newDispensaryLeafRatingDispensaryId, FILTER_SANITIZE_NUMBER_INT);
 		if($newDispensaryLeafRatingDispensaryId === false) {
 			throw(new \UnexpectedValueException("dispensary Leaf Rating dispensary Id not valid"));
 		}
@@ -136,7 +137,125 @@ class dispensaryLeafRating {
 		}
 
 		//Convert and store the dispensaryLeafRatingProfileId
-		$this->dispensaryLeafRatingProfileId = string($newDispensaryLeafRatingProfileId);
+		$this->dispensaryLeafRatingProfileId = int($newDispensaryLeafRatingProfileId);
 	}
 
+	/**
+	 * inserts this Dispensary Leaf Rating into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) {
+		// enforce the dispensaryLeafRatingRating is null (i.e., don't insert a strain that already exists)
+		if($this->dispensaryLeafRatingRating !== null) {
+			throw(new \PDOException("not a new dispensary leaf rating"));
+		}
+
+		// create query template
+		$query = "INSERT INTO dispensaryLeafRating(dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId) VALUES(:dispensaryLeafRatingRating, :dispensaryLeafRatingDispensaryId, :dispensaryLeafRatingProfileId)";
+		$statement = $pdo->prepare($query);
+
+
+		// bind the member variables to the place holders in the template
+		$parameters = ["dispensaryLeafRatingRating" => $this->dispensaryLeafRatingRating, "dispensaryLeafRatingDispensaryId" => $this->dispensaryLeafRatingDispensaryId, "dispensaryLeafRatingProfileId" => $this->dispensaryLeafRatingProfileId];
+		$statement->execute($parameters);
+
+		// udate null strainId with what mySQL just gave us
+		$this->dispensaryLeafRatingRating = intval($pdo->lastInsertId());
+
+	}   // insert
+
+	/**
+	 * deletes this Strain Leaf Rating from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+	public function delete(\PDO $pdo) {
+		//enforce the dispensaryLeafRating is not null (i.e., don't delete a dispensary leaf rating that hasn't been inserted)
+		if($this->dispensaryLeafRatingRating === null) {
+			throw(new \PDOException("unable to delete a dispensary leaf rating that does not exist"));
+		}
+
+		//Create Query Template
+		$query = "DELETE FROM dispensaryLeafRating WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating";
+		$statement = $pdo->prepare($query);
+
+		//Bind the member variables to the place holder in the template
+		$parameters = ["dispensaryLeafRatingRating" => $this->dispensaryLeafRatingRating];
+		$statement->execute($parameters);
+	}	//Delete
+
+	/**
+	 * Updates this Dispensary Leaf Rating in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) {
+		//enforce the strainLeafRating is not null (i.e. don't update a strain leaf rating that hasn't been inserted)
+		if($this->dispensaryLeafRatingRating === null)	{
+			throw(new \PDOException("unable to update dispensary leaf rating that does not exist"));
+			// create query template
+			$query = "UPDATE dispensaryLeafRating SET dispensaryLeafRatingRating = :dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId = :dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId = :dispensaryLeafRatingProfileId WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating";
+			$statement = $pdo->prepare($query);
+
+			//bind the member variables to the place holders in the template
+			$parameteres = ["dispensaryLeafRatingRating" => $this->dispensaryLeafRatingRating, "dispensaryLeafRatingDispensaryId" => $this->dispensaryLeafRatingDispensaryId, "dispensaryLeafRatingProfileId" => $this->dispensaryLeafRatingProfileId];
+			$statement->execute($parameteres);
+		}
+	}//update
+
+	/**
+	 * This function retrieves a Dispensary Leaf Rating by Dispensary Leaf Rating Rating
+	 *
+	 * @param \PDO $pdo -- a PDO connection
+	 * @param  \int dispensaryLeafRating -- dispensary leaf rating to be retrieved
+	 * @throws \InvalidArgumentException when $dispensaryLeafRating is not an integer
+	 * @throws \RangeException when $dispensaryLeafRatingRating is too long
+	 * @throws \PDOException
+	 * @return null | $dispensaryLeafRating
+	 */
+
+	public static function getDispensaryLeafRatingByDispensaryLeafRatingRating(\PDO $pdo, $dispensaryLeafRating) {
+		//  check validity of $strainName
+		$dispensaryLeafRating = filter_string($dispensaryLeafRating, FILTER_SANITIZE_NUMBER_INT);
+		if($dispensaryLeafRating <= 0) {
+			throw(new \InvalidArgumentException("Dispensary Leaf Rating is not valid."));
+		}
+		if($dispensaryLeafRating === null) {
+			throw(new \RangeException("Strain name does not exist."));
+		}
+		// prepare query
+		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating";
+		$statement = $pdo->prepare($query);
+		$parameters = array("dispensaryLeafRating" => $dispensaryLeafRating);
+		$statement->execute($parameters);
+		//  setup results from query
+		try {
+			$dispensaryLeafRating = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$dispensaryLeafRating = new dispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensryId"], $row["dispensaryLeafRatingProfileId"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($dispensaryLeafRating);
+	}  // get by DispensaryLeafRatingRating
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+		return($fields);
+	}
 }
