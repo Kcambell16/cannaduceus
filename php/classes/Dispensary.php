@@ -528,18 +528,19 @@ dispensaryZipCode,
 dispensaryState, 
 ) 
 VALUES 
-(:dispensaryId, 
-:dispensaryName, 
-:dispensaryAttention, 
-:dispensaryStreet1, 
-:dispensaryStreet2, 
-:dispensaryCity, 
-:dispensaryState, 
-:dispensaryZipCode, 
+(:dispensaryId,  
+:dispensaryAttention,
+:dispensaryCity,
 :dispensaryEmail, 
-:dispensaryPhone, 
-:dispensaryUrl)";
+:dispensaryName,
+:dispensaryPhone,
+:dispensaryStreet1, 
+:dispensaryStreet2,
+:dispensaryUrl,
+:dispensaryZipCode,
+:dispensaryState)";
 		$statement = $pdo->prepare($query);
+
 
 		// bind the member variables to the place holders in the template
 		$parameters =
