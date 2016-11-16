@@ -185,28 +185,46 @@ class DispensaryFavorite implements \JsonSerializable {
 	}// delete
 
 	/**
-	 * PDO statement to update this dispensaryFavorite in mySQL
-	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError if $pdo is not a PDO connection object
+	 * This function retrieves a dispensary favorite by dispensary favorite profile ID
+	 * @param \PDO $pdo -- a PDO connection
+	 * @param  \int $dispensaryFavoriteProfileId -- dispensary favorite profile ID to be retrieved
+	 * @throws \InvalidArgumentException when $dispensaryFavoriteProfileId is not an integer
+	 * @throws \RangeException when $dispensaryFavoriteProfileId is not a positive
+	 * @throws \PDOException
+	 * @return \SplFixedArray of all dispensaryFavorites by profile id
 	 */
 
-	public function update(\PDO $pdo) {
-		//ensure that this profile is not null (hasn't been entered into SQL). can't update something that doesn't exist
-		if($this->dispensaryFavoriteProfileId === null) {
-			throw(new \PDOException("Can't update a favorite that doesn't exist"));
+	public static function getDispensaryFavoriteByDispensaryFavoriteProfileId(\PDO $pdo, $dispensaryFavoriteProfileId) {
+		//  check validity of $dispensaryId
+		$dispensaryFavoriteProfileId = filter_var($dispensaryFavoriteProfileId, FILTER_VALIDATE_INT);
+		if($dispensaryFavoriteProfileId === false) {
+			throw(new \InvalidArgumentException("Favorite Dispensary Profile id is not an integer."));
 		}
-
-		//create a query template
-		$query = "UPDATE dispensaryFavorite SET dispensaryFavoriteProfileId = :dispensaryFavoriteProfileId";
-		// prepare statement
+		if($dispensaryFavoriteProfileId <= 0) {
+			throw(new \RangeException("Dispensary Favorite id is not positive."));
+		}
+		// prepare query
+		$query = "SELECT dispensaryFavoriteProfileId, dispensaryFavoriteDispensaryId FROM dispensaryFavorite WHERE dispensaryFavoriteProfileId = :dispensaryFavoriteProfileId";
 		$statement = $pdo->prepare($query);
-
-		//bind the variables to the template and execute the SQL command
-		$parameters = ["dispensaryFavoriteProfileId" => $this->dispensaryFavoriteProfileId, "dispensaryFavoriteDispensaryId" => $this->dispensaryFavoriteDispensaryId];
-		//execute
+		$parameters = array("dispensaryFavoriteProfileId" => $dispensaryFavoriteProfileId);
 		$statement->execute($parameters);
-	}
+
+		// create an SplFixedArray to hold all results
+		$favorites = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$favorite = new DispensaryFavorite($row["dispensaryFavoriteProfileId"], $row["dispensaryFavoriteDispensaryId"]);
+				$favorites[$favorites->key()] = $favorite;
+				$favorites->next();
+			} catch(\Exception $exception) {
+				// throw exception here
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($favorites);
+
+	}  // getDispensaryFavoriteByDispensaryId
 
 
 
