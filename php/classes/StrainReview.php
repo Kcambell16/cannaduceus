@@ -410,28 +410,28 @@ class StrainReview implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewTxt LIKE :dispensaryReviewTxt";
+		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewTxt FROM strainReview WHERE strainReviewTxt LIKE :strainReviewTxt";
 		$statement = $pdo->prepare($query);
 
-		// bind the tweet content to the place holder in the template
-		$dispensaryReviewTxt = "%$dispensaryReviewTxt%";
-		$parameters = ["dispensaryReviewTxt" => $dispensaryReviewTxt];
+		// bind the strain review content to the place holder in the template
+		$strainReviewTxt = "%$strainReviewTxt%";
+		$parameters = ["strainReviewTxt" => $strainReviewTxt];
 		$statement->execute($parameters);
 
-		// build an array of dispensary reviews
-		$dispensaryReviews = new \SplFixedArray($statement->rowCount());
+		// build an array of strain reviews
+		$strainReviews = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$dispensaryReview = new DispensayReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
-				$s[$dispensaryReviews->key()] = $dispensaryReview;
-				$dispensaryReviews->next();
+				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["strainReviewTxt"]);
+				$s[$strainReviews->key()] = $strainReview;
+				$strainReviews->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return($dispensaryReviews);
+		return($strainReviews);
 	}
 
 
