@@ -193,7 +193,7 @@ class StrainFavorite implements \JsonSerializable {
 		}
 		return($favorites);
 
-	}  // getStrainFavoriteByStrainId
+	}  // getStrainFavoriteByProfileId
 
 	/**
 	 * This function retrieves a strain favorite by strain favorite strain ID
@@ -242,25 +242,25 @@ class StrainFavorite implements \JsonSerializable {
 	 * This function retrieves a strain favorite by StrainFavoriteStrain ID and StrainFavoriteProfile ID
 	 *
 	 * @param \PDO $pdo -- a PDO connection
-	 * @param  \int $strainFavorite -- strain favorite to be retrieved
-	 * @throws \InvalidArgumentException when $strainFavorite is not an integer
-	 * @throws \RangeException when $strainFavorite is not positive
+	 * @param  \int $strainFavoriteStrainId and $strainFavoriteProfileId -- $strainFavorite to be retrieved
+	 * @throws \InvalidArgumentException when $strainFavoriteStrainId and $strainFavoriteProfileId are not integers
+	 * @throws \RangeException when $strainFavoriteStrainId and $strainFavoriteProfileId are not positive
 	 * @throws \PDOException
-	 * @return null | strainFavorite
+	 * @return null | $strainFavorite
 	 */
 
-	public static function getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId(\PDO $pdo, $strainFavorite) {
+	public static function getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId(\PDO $pdo, $strainFavoriteStrainId, $strainFavoriteProfileId) {
 		//  check validity of $strainFavorite
 		$strainFavorite = filter_var($strainFavoriteStrainId, $strainFavoriteProfileId, FILTER_VALIDATE_INT);
 		if($strainFavorite === false) {
-			throw(new \InvalidArgumentException("Strain Favorite id is not an integer."));
+			throw(new \InvalidArgumentException("Strain Favorite Strain Id and Strain Favorite Profile Id are not integers."));
 		}
 		if($strainFavorite <= 0) {
 			throw(new \RangeException("Strain Favorite is Invalid."));
 		}
 		// prepare query
 		$query = "SELECT strainFavoriteStrainId, strainFavoriteProfileId
-					  FROM strainFavorite WHERE (strainFavorite = :strainFavoriteStrainId, :strainFavoriteProfileId)";
+					  FROM strainFavorite WHERE ($strainFavorite = :strainFavoriteStrainId, :strainFavoriteProfileId)";
 		$statement = $pdo->prepare($query);
 		$parameters = array("strainFavorite" => $strainFavorite);
 		$statement->execute($parameters);
