@@ -210,44 +210,121 @@ class strainLeafRating {
 	}//update
 
 	/**
-	 * This function retrieves a Strain Leaf Rating by Dispensary Leaf Rating Rating
+	 * This function retrieves a Strain Leaf Rating by strain Leaf Rating Rating
 	 *
 	 * @param \PDO $pdo -- a PDO connection
-	 * @param  \int dispensaryLeafRating -- dispensary leaf rating to be retrieved
-	 * @throws \InvalidArgumentException when $dispensaryLeafRating is not an integer
-	 * @throws \RangeException when $dispensaryLeafRatingRating is too long
+	 * @param  \int strainLeafRating -- strain leaf rating to be retrieved
+	 * @throws \InvalidArgumentException when $strainLeafRating is not an integer
+	 * @throws \RangeException when $strainLeafRatingRating is too long
 	 * @throws \PDOException
-	 * @return null | $dispensaryLeafRating
+	 * @return null | $strainLeafRating
 	 */
 
-	public static function getDispensaryLeafRatingByDispensaryLeafRatingRating(\PDO $pdo, $dispensaryLeafRating) {
+	public static function getStrainLeafRatingByStrainLeafRatingRating(\PDO $pdo, $strainLeafRating) {
 		//  check validity of $strainName
-		$dispensaryLeafRating = filter_string($dispensaryLeafRating, FILTER_SANITIZE_NUMBER_INT);
-		if($dispensaryLeafRating <= 0) {
-			throw(new \InvalidArgumentException("Dispensary Leaf Rating is not valid."));
+		$strainLeafRating = filter_string($strainLeafRating, FILTER_SANITIZE_NUMBER_INT);
+		if($strainLeafRating <= 0) {
+			throw(new \InvalidArgumentException("strain Leaf Rating is not valid."));
 		}
-		if($dispensaryLeafRating === null) {
+		if($strainLeafRating === null) {
 			throw(new \RangeException("Strain name does not exist."));
 		}
 		// prepare query
-		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating";
+		$query = "SELECT strainLeafRatingRating, strainLeafRatingStrainId, strainLeafRatingProfileId FROM strainLeafRating WHERE strainLeafRatingRating = :strainLeafRatingRating";
 		$statement = $pdo->prepare($query);
-		$parameters = array("dispensaryLeafRating" => $dispensaryLeafRating);
+		$parameters = array("strainLeafRating" => $strainLeafRating);
 		$statement->execute($parameters);
 		//  setup results from query
 		try {
-			$dispensaryLeafRating = null;
+			$strainLeafRating = null;
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$dispensaryLeafRating = new dispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensryId"], $row["dispensaryLeafRatingProfileId"]);
+				$strainLeafRating = new strainLeafRating($row["strainLeafRatingRating"], $row["strainLeafRatingStrainId"], $row["strainLeafRatingProfileId"]);
 			}
 		} catch(\Exception $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($dispensaryLeafRating);
+		return ($strainLeafRating);
 	}  // get by Strain Leaf Rating Rating
 
+	/**
+	 * This function retrieves a Strain Leaf Rating by Strain Leaf Rating Strain Id
+	 *
+	 * @param \PDO $pdo -- a PDO connection
+	 * @param  \int strainLeafRating -- strain leaf rating to be retrieved
+	 * @throws \InvalidArgumentException when $strainLeafRatingStrainId is not an integer
+	 * @throws \RangeException when $strainLeafRatingStrainId is not an int
+	 * @throws \PDOException
+	 * @return null | $strainLeafRating
+	 */
+
+	public static function getStrainLeafRatingByStrainLeafStrainId(\PDO $pdo, $strainLeafRating) {
+		//  check validity of $strainName
+		$strainLeafRatingStrainId = filter_input($strainLeafRating, FILTER_SANITIZE_NUMBER_INT);
+		if($strainLeafRatingStrainId <= 0) {
+			throw(new \InvalidArgumentException("strain Leaf Rating Id is not valid."));
+		}
+		if($strainLeafRatingStrainId === null) {
+			throw(new \RangeException("Strain Leaf Rating does not exist."));
+		}
+		// prepare query
+		$query = "SELECT strainLeafRatingRating, strainLeafRatingStrainId, strainLeafRatingProfileId FROM strainLeafRating WHERE strainLeafRatingStrainId = :strainLeafRatingStrainId";
+		$statement = $pdo->prepare($query);
+		$parameters = array("strainLeafRating" => $strainLeafRating);
+		$statement->execute($parameters);
+		//  setup results from query
+		try {
+			$strainLeafRating = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$strainLeafRating = new strainLeafRating($row["strainLeafRatingRating"], $row["strainLeafRatingStrainId"], $row["strainLeafRatingProfileId"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($strainLeafRating);
+	}  // get by strainLeafRatingStrainId
+
+	/**
+	 * This function retrieves a strain Leaf Rating by Strain Leaf Rating Profile Id
+	 *
+	 * @param \PDO $pdo -- a PDO connection
+	 * @param  \int strainLeafRating -- strain leaf rating to be retrieved
+	 * @throws \InvalidArgumentException when $strainLeafRatingProfileId is not an integer
+	 * @throws \RangeException when $strainLeafRatingProfileId is not an int
+	 * @throws \PDOException
+	 * @return null | $strainLeafRating
+	 */
+
+	public static function getStrainLeafRatingByStrainLeafProfileId(\PDO $pdo, $strainLeafRatingProfileId) {
+		//  check validity of $strainName
+		$strainLeafRating = filter_input($strainLeafRatingProfileId, FILTER_SANITIZE_NUMBER_INT);
+		if($strainLeafRatingProfileId <= 0) {
+			throw(new \InvalidArgumentException("Strain Leaf Rating Profile Id is not valid."));
+		}
+		if($strainLeafRatingProfileId === null) {
+			throw(new \RangeException("Strain Leaf Rating Profile Id does not exist."));
+		}
+		// prepare query
+		$query = "SELECT strainLeafRatingRating, strainLeafRatingStrainId, strainLeafRatingProfileId FROM strainLeafRating WHERE strainLeafRatingRating = :strainLeafRatingRating and  strainLeafRatingStrainId = :strainLeafRatingStrainId AND strainLeafRatingProfileId = :strainLeafRatingProfileId";
+		$statement = $pdo->prepare($query);
+		$parameters = array("strainLeafRating" => $strainLeafRating);
+		$statement->execute($parameters);
+		//  setup results from query
+		try {
+			$strainLeafRating = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$strainLeafRating = new strainLeafRating($row["strainLeafRatingRating"], $row["strainLeafRatingStrainId"], $row["strainLeafRatingProfileId"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($strainLeafRating);
+	}  // get by strainLeafRatingStrainId
 	/**
 	 * formats the state variables for JSON serialization
 	 *
