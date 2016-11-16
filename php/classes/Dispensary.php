@@ -90,16 +90,16 @@ class Dispensary implements \JsonSerializable {
 	 * constructor for dispensary
 	 *
 	 * @param int|null $dispensaryId id of this Dispensay or null if a dispensary
+	 * @param string $newDispensaryAttention required for postal mailing address
+	 * @param string $newDispensaryCity city of dispensary
+	 * @param string $newDispensaryEmail email of dispensary
 	 * @param string $newDispensaryName dispensary name
-	 * @param string $newDispensaryAttention
-	 * @param string $newDispensaryStreet1
-	 * @param string $newDispensaryStreet2
-	 * @param string $newDispensaryCity
-	 * @param string $newDispensaryState
-	 * @param int $newDispensaryZipCode
-	 * @param string $newDispensaryEmail
-	 * @param int $newDispensaryPhone
+	 * @param string $newDispensaryPhone phone number of dispensary
+	 * @param string $newDispensaryStreet1 address of dispensary
+	 * @param int $newDispensaryStreet2 additional address info of dispensary
 	 * @param string $newDispensaryUrl web address of dispensary
+	 * @param int $newDispensaryZipCode dipsensary zip code
+	 * @param string $newDispensaryState dispensary state
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
