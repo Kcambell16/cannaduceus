@@ -353,6 +353,48 @@ class Strain implements \JsonSerializable {
 	}  // getStrainByStrainId
 
 	/**
+	 * This function retrieves a strain by strain name
+	 *
+	 * @param \PDO $pdo -- a PDO connection
+	 * @param  \string $strainName -- strain name to be retrieved
+	 * @throws \InvalidArgumentException when $strainName is not a string
+	 * @throws \RangeException when $strainName is too long
+	 * @throws \PDOException
+	 * @return null | Strain
+	 */
+
+	public static function getStrainByStrainName(\PDO $pdo, $strainName) {
+		//  check validity of $strainName
+		$strainName = filter_string($strainName, FILTER_SANITIZE_STRING);
+		if($strainName === false) {
+			throw(new \InvalidArgumentException("Strain Name is not valid."));
+		}
+		if($strainName === null) {
+			throw(new \RangeException("Strain name does not exist."));
+		}
+		// prepare query
+		$query = "SELECT strainId, strainName, strainType,
+                        strainThc, strainCbd, strainDescription
+					  FROM strain WHERE strainName = :strainName";
+		$statement = $pdo->prepare($query);
+		$parameters = array("strainName" => $strainName);
+		$statement->execute($parameters);
+		//  setup results from query
+		try {
+			$strain = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$strain = new Strain($row["strainId"], $row["strainName"], $row["strainType"], $row["strainThc"],
+					$row["strainCbd"], $row["strainDescription"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($strain);
+	}  // getStrainByStrainName
+
+	/**
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
