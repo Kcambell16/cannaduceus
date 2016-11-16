@@ -89,7 +89,7 @@ class Dispensary implements \JsonSerializable {
 	/**
 	 * constructor for dispensary
 	 *
-	 * @param int|null $dispensaryId id of this Dispensay or null if a dispensary
+	 * @param int|null $newDispensaryId id of this Dispensay or null if a dispensary
 	 * @param string $newDispensaryAttention required for postal mailing address
 	 * @param string $newDispensaryCity city of dispensary
 	 * @param string $newDispensaryEmail email of dispensary
@@ -125,9 +125,9 @@ class Dispensary implements \JsonSerializable {
 			$this->setDispensaryStreet1($newDispensaryStreet1);
 			$this->setDispensaryStreet2($newDispensaryStreet2);
 			$this->setDispensaryCity($newDispensaryCity);
-			$this->setDispensaryState($newDispensaryState);
 			$this->setDispensaryZipCode($newDispensaryZipCode);
 			$this->setDispensaryEmail($newDispensaryEmail);
+			$this->setDispensaryState($newDispensaryState);
 		} catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the caller
 			throw(new \InvalidArgumentException($invalidArgumentException->getCode(), 0, $invalidArgumentException));
@@ -437,7 +437,8 @@ class Dispensary implements \JsonSerializable {
 		$this->dispensaryUrl = $newDispensaryUrl;
 	}
 
-	/** accessor method for dispensary zip code
+	/**
+	 * accessor method for dispensary zip code
 	 *
 	 * @return int|null value of dispensary zip code
 	 **/
@@ -450,7 +451,8 @@ class Dispensary implements \JsonSerializable {
 	 * @param int /null $newDispensaryZipCode new value of dispensary zip code
 	 * @throws \RangeException if $newDispenaryZipCode is not positive
 	 * @throws \TypeError if $newDispensaryZipCode is not an interger
-	 */
+	 *
+	 **/
 	public function setDispensaryZipCode(int $newDispensaryZipCode = null) {
 		// base case: if the zip code is null, this is a new dispensary without a mySQL assigned id (yet)
 		if($newDispensaryZipCode === null) {
@@ -466,6 +468,40 @@ class Dispensary implements \JsonSerializable {
 	}
 
 	/**
+	 * accessor method for dispensary state
+	 *
+	 * @return string value of dispensary state
+	 **/
+	public function getDispensaryState() {
+		return($this->dispensaryState);
+	}
+
+	/**
+	 * mutator method for dispensary state
+	 *
+	 * @param string $newDispensayState new vlaue of dispensary state
+	 * @throws \InvalidArgumentException if $newDispnesaryState is not a string or insecure
+	 * @throws \RangeException if $newDispensayState is > 2 characters
+	 * @throws \TypeError if $newDispensayState is not a string
+	 **/
+	public function setDispensaryState(string $newDispensaryState) {
+		// verify the dispensary state is secure
+		$newDispensayState = trim($newDispensaryState);
+		$newDispensaryState = filter_var($newDispensayState, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newDispensayState) === true) {
+			throw(new \InvalidArgumentException("dispensary state is empty or insecure"));
+		}
+		// verify the dispensary state will fit in the database
+		if(strlen($newDispensayState) > 2) {
+			throw(new \RangeException(" dispensary state is too large"));
+		}
+
+		//store the dispensary state
+		$this->dispensaryState = $newDispensaryState;
+	}
+}
+
+	/**
 	 * inserts this Dispensary into mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
@@ -479,17 +515,18 @@ class Dispensary implements \JsonSerializable {
 		}
 		// create query template
 		$query = "INSERT INTO dispensary(
-dispensaryId, 
-dispensaryName, 
-dispensaryAttention, 
+dispensaryId,
+dispensaryAttention,
+dispensaryCity,
+dispensaryEmail,
+dispensaryName,
+dispensaryPhone,
 dispensaryStreet1, 
 dispensaryStreet2, 
-dispensaryCity, 
+dispensaryUrl,
+dispensaryZipCode,
 dispensaryState, 
-dispensaryZipCode, 
-dispensaryEmail, 
-dispensaryPhone, 
-dispensaryUrl) 
+) 
 VALUES 
 (:dispensaryId, 
 :dispensaryName, 
@@ -505,9 +542,20 @@ VALUES
 		$statement = $pdo->prepare($query);
 
 		// bind the member variables to the place holders in the template
-		$parameters = ["dispensaryProfileId" => $this->dispensaryId, "dispensaryName" => $this->dispensaryName, "dispensaryAttention" => $this->dispensaryAttention, "dispensaryStreet1" => $this->dispensaryStreet1, "dispensaryStreet2" => $this->dispensaryStreet2, "dispensaryCity" $this->dispensaryCity, "dispensaryState" $this->dispensaryState, "dispensaryZipCode" $this->dispensaryZipCode, "dispensaryEmail" $this->dispensaryEmail, "dispensaryPhone" $this->dispensaryPhone];
-	$statement->execute($parameters);
+		$parameters =
+			["dispensaryProfileId" => $this->dispensaryId,
+				"dispensaryName" => $this->dispensaryName,
+				"dispensaryAttention" => $this->dispensaryAttention,
+				"dispensaryStreet1" => $this->dispensaryStreet1,
+				"dispensaryStreet2" => $this->dispensaryStreet2,
+				"dispensaryCity" => $this->dispensaryCity,
+				"dispensaryState" => $this->dispensaryState,
+				"dispensaryZipCode" => $this->dispensaryZipCode,
+				"dispensaryEmail" => $this->dispensaryEmail,
+				"dispensaryPhone" => $this->dispensaryPhone,];
+		$statement->execute($parameters);
 
 	// update the null dispensary Id with what mysql just gave us
 	$this->dispensaryId = invital($pdo->lastInsertId());
 }
+
