@@ -106,7 +106,7 @@ class StrainReview implements \JsonSerializable {
 		}
 
 		// verify the strain review id is positive
-		if($newDispensaryReviewId <= 0) {
+		if($newStrainReviewId <= 0) {
 			throw(new \RangeException("dispensary review id is not positive"));
 		}
 		// convert and store the strain review id
@@ -248,3 +248,200 @@ class StrainReview implements \JsonSerializable {
 		// store the name content
 		$this->strainReviewTxt = $newStrainReviewTxt;
 	}
+
+	/**
+	 * inserts this dispensaryReview into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) {
+
+		// create query template
+		$query = "INSERT INTO strainReview(strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt)
+                       VALUES (:strainReviewProfileId, :strainReviewStrainId, :strainReviewDateTime, :strainReviewTxt)";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holders in the template
+		$formattedDateTime = $this->strainReviewDateTime->format("Y-m-d H:i:s");
+		$parameters = ["strainReviewProfileId" => $this->strainReviewProfileId, "strainReviewDispensaryId" => $this->strainReviewDispensaryId,
+			"strainReviewDateTime" => $formattedDateTime, "strainReviewTxt" => $this->$this->strainReviewTxt];
+
+		$statement->execute($parameters);
+
+		// update the null strainReviewId with what mySQL just gave us
+		$this->strainReviewId = intval($pdo->lastInsertId());
+
+	} // insert
+
+	/**
+	 * gets the StrainReview by Id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param \int $strainReviewId
+	 * @return StrainReview|null StrainReview found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getStrainReviewByStrainReviewId(\PDO $pdo, int $strainReviewId) {
+		// sanitize the strainReviewId before searching
+		if($strainReviewId <= 0) {
+			throw(new \PDOException("strain review id is not positive"));
+		}
+
+		// create query template
+		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewTxt FROM strainReview WHERE strainReviewId = :strainReviewId";
+		$statement = $pdo->prepare($query);
+
+		// bind the strainReview id to the place holder in the template
+		$parameters = ["strainReviewId" => $strainReviewId];
+		$statement->execute($parameters);
+
+		// grab the strainReview from mySQL
+		try {
+			$strainReview = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["strainReviewTxt]"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($strainReview);
+
+	}
+
+	/**
+	 * gets the StrainReview by profile id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param int $strainReviewProfileId profile id to search by
+	 * @return \SplFixedArray SplFixedArray of StrainReviews found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getStrainReviewByStrainReviewProfileId(\PDO $pdo, int $strainReviewProfileId) {
+		// sanitize the profile id before searching
+		if($strainReviewProfileId <= 0) {
+			throw(new \RangeException("strainreview profile id must be positive"));
+		}
+
+		// create query template
+		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewTxt FROM strainReview WHERE strainReviewProfileId = :strainReviewProfileId";
+		$statement = $pdo->prepare($query);
+
+		// bind the strain review profile id to the place holder in the template
+		$parameters = ["strainReviewProfileId" => $strainReviewProfileId];
+		$statement->execute($parameters);
+
+		// build an array of dispensary reviews
+		$strainReviews = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewDispensaryId"], $row["strainReviewTxt"]);
+				$strainReviews[$strainReviews->key()] = $strainReview;
+				$strainReviews->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($strainReviews);
+	}
+
+	/**
+	 * gets the StrainReview by StrainId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param int $strainReviewStrainId profile id to search by
+	 * @return \SplFixedArray SplFixedArray of StrainReviews found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getStrainReviewByStrainReviewStrainId(\PDO $pdo, int $strainReviewStrainId) {
+		// sanitize the profile id before searching
+		if($strainReviewStrainId <= 0) {
+			throw(new \RangeException("strain review strain id must be positive"));
+		}
+
+		// create query template
+		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewTxt FROM strainReview WHERE strainReviewStrainId = :strainReviewStrainId";
+		$statement = $pdo->prepare($query);
+
+		// bind the strain review profile id to the place holder in the template
+		$parameters = ["strainReviewStrainId" => $strainReviewStrainId];
+		$statement->execute($parameters);
+
+		// build an array of dispensary reviews
+		$strainReviews = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["strainReviewTxt"]);
+				$strainReviews[$strainReviews->key()] = $strainReview;
+				$strainReviews->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($strainReviews);
+	}
+
+	/**
+	 * gets the strainReview by content
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $dispensaryReviewTxt dispensary review content to search for
+	 * @return \SplFixedArray SplFixedArray of Tweets found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getDispensaryReviewByDispensaryReviewTxt(\PDO $pdo, string $dispensaryReviewTxt) {
+		// sanitize the description before searching
+		$dispensaryReviewTxt = trim($dispensaryReviewTxt);
+		$dispensaryReviewTxt = filter_var($dispensaryReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($dispensaryReviewTxt) === true) {
+			throw(new \PDOException("dispensary review text is invalid"));
+		}
+
+		// create query template
+		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewTxt LIKE :dispensaryReviewTxt";
+		$statement = $pdo->prepare($query);
+
+		// bind the tweet content to the place holder in the template
+		$dispensaryReviewTxt = "%$dispensaryReviewTxt%";
+		$parameters = ["dispensaryReviewTxt" => $dispensaryReviewTxt];
+		$statement->execute($parameters);
+
+		// build an array of dispensary reviews
+		$dispensaryReviews = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$dispensaryReview = new DispensayReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
+				$s[$dispensaryReviews->key()] = $dispensaryReview;
+				$dispensaryReviews->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($dispensaryReviews);
+	}
+
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+		return($fields);
+	}
+}  // DispensaryReview
