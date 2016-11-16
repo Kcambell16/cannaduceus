@@ -13,7 +13,7 @@ require_once("autoload.php");
  **/
 
 class StrainReview implements \JsonSerializable {
-	use ValidateDate;
+	use ValidateDateTime;
 	/**
 	 * id for this StrainReview; this is the primary key
 	 * @var int $strainReviewId
@@ -265,7 +265,7 @@ class StrainReview implements \JsonSerializable {
 
 		// bind the member variables to the place holders in the template
 		$formattedDateTime = $this->strainReviewDateTime->format("Y-m-d H:i:s");
-		$parameters = ["strainReviewProfileId" => $this->strainReviewProfileId, "strainReviewDispensaryId" => $this->strainReviewDispensaryId,
+		$parameters = ["strainReviewProfileId" => $this->strainReviewProfileId, "strainReviewStrainId" => $this->strainReviewStrainId,
 			"strainReviewDateTime" => $formattedDateTime, "strainReviewTxt" => $this->$this->strainReviewTxt];
 
 		$statement->execute($parameters);
@@ -404,7 +404,7 @@ class StrainReview implements \JsonSerializable {
 	public static function getStrainReviewByStrainReviewTxt(\PDO $pdo, string $strainReviewTxt) {
 		// sanitize the description before searching
 		$strainReviewTxt = trim($strainReviewTxt);
-		$strainReviewTxt = filter_var($dispensaryReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$strainReviewTxt = filter_var($strainReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($strainReviewTxt) === true) {
 			throw(new \PDOException("strain review text is invalid"));
 		}
@@ -444,4 +444,4 @@ class StrainReview implements \JsonSerializable {
 		$fields = get_object_vars($this);
 		return($fields);
 	}
-}  // DispensaryReview
+}  // StrainReview
