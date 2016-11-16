@@ -114,67 +114,42 @@ class StrainFavorite implements \JsonSerializable {
 	 **/
 	public function insert(\PDO $pdo) {
 		// enforce the strainFavoriteProfileId and strainFavoriteStrainId is null (i.e., don't insert a strainFavorite that already exists)
-		if($this->strainId !== null) {
-			throw(new \PDOException("not a new strain"));
+		if($this->strainFavoriteStrainId === null || $this->strainFavoriteProfileId === null) {
+			throw(new \PDOException("not a valid strain favorite"));
 		}
 
 		// create query template
-		$query = "INSERT INTO strain(strainId, strainName, strainType, strainThc, strainCbd, strainDescription) VALUES(:strainId, :stainName, :strainType, :strainThc, :strainCbd, :strainDescription)";
+		$query = "INSERT INTO strainFavorite(strainFavoriteStrainId, strainFavoriteProfileId) VALUES(:strainFavoriteId, :stainStrainFavoriteProfileId)";
 		$statement = $pdo->prepare($query);
 
 
 		// bind the member variables to the place holders in the template
-		$parameters = ["strainId" => $this->strainId, "strainName" => $this->strainName, "strainType" => $this->strainType, "strainThc" => $this->strainThc, "strainCbd" => $this->strainCbd, "strainDescription" => $this->strainDescription];
+		$parameters = ["strainFavoriteStrainId" => $this->strainFavoriteProfileId];
 		$statement->execute($parameters);
-
-		// udate null strainId with what mySQL just gave us
-		$this->strainId = intval($pdo->lastInsertId());
 
 	}   // insert
 
 	/**
-	 * deletes this strain from mySQL
+	 * deletes this strainFavorite from mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 */
 	public function delete(\PDO $pdo) {
-		//enforce the strainId is not null (i.e., don't delete a strain that hasn't been inserted)
-		if($this->strainId === null) {
-			throw(new \PDOException("unable to delete a strain that does not exist"));
+		//enforce the strain favorite is not null (i.e., don't delete a strain favorite that hasn't been rated)
+		if($this->strainFavoriteStrainId === null || $this->strainFavoriteProfileId === null) {
+			throw(new \PDOException("unable to delete a strain favorite that does not exist"));
 		}
 
 		//Create Query Template
-		$query = "DELETE FROM strain WHERE strainId = :strainId";
+		$query = "DELETE FROM strainFavorite WHERE strainFavoriteStrainId = :strainFavoriteStrainId AND strainFavoriteProfileId = :strainFavoriteProfileId";
 		$statement = $pdo->prepare($query);
 
 		//Bind the member variables to the place holder in the template
-		$parameters = ["strainId" => $this->strainId];
+		$parameters = ["strainFavoriteStrainId" => $this->strainFavoriteStrainId, "strainFavoriteProfileId"];
 		$statement->execute($parameters);
 	}	//Delete
-
-	/**
-	 * Updates this Strain in mySQL7
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError if $pdo is not a PDO connection object
-	 **/
-	public function update(\PDO $pdo) {
-		//enforce the strainId is not null (i.e. don't update a strain that hasn't been inserted)
-		if($this->strainId === null)	{
-			throw(new \PDOException("unable to update strain that does not exist"));
-		}//update
-
-		// create query template
-		$query = "UPDATE strain SET strainId = :strainId, strainName = :strainName, strainType = :strainType, strainThc = :strainThc, strainCbd = :strainCbd, strainDescription = :strainDescription WHERE strainId = :strainId";
-		$statement = $pdo->prepare($query);
-
-		//bind the member variables to the place holders in the template
-		$parameteres = ["strainId" => $this->strainId, "strainName" => $this->strainName, "strainType" => $this->strainType, "strainThc" => $this->strainThc, "strainCbd" => $this->strainCbd, "strainDescription" => $this->strainDescription];
-		$statement->execute($parameteres);
-	}
 
 	/**
 	 * This function retrieves a strain favorite by strain favorite profile ID
@@ -261,7 +236,7 @@ class StrainFavorite implements \JsonSerializable {
 			}
 		}
 		return ($favorites);
-	}
+	} //Gets Strain Favorite by Strain Favorite Strain Id
 
 	/**
 	 * This function retrieves a strain favorite by StrainFavoriteStrain ID and StrainFavoriteProfile ID
