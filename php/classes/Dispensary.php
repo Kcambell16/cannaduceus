@@ -186,13 +186,13 @@ class Dispensary implements \JsonSerializable {
 	/**
 	 * mutator method for dispensary attention
 	 *
-	 * @param string $newdispensaryAttention new vlaue of dispensary attention
-	 * @throws \InvalidArgumentException if $newdispensaryAttention is not a string or insecure
-	 * @throws \RangeException if $newdispensaryAttention is > 140 characters
-	 * @throws \TypeError if $newdispensaryAttention is not a string
+	 * @param string $newDispensaryAttention new vlaue of dispensary attention
+	 * @throws \InvalidArgumentException if $newDispensaryAttention is not a string or insecure
+	 * @throws \RangeException if $newDispensaryAttentionis > 140 characters
+	 * @throws \TypeError if $newDispensaryAttention is not a string
 	 **/
 	public function setDispensaryAttention(string $newDispensaryAttention) {
-		// verify the diespensary attention is secure
+		// verify the dispensary attention is secure
 		$newDispensaryAttention = trim($newDispensaryAttention);
 		$newDispensaryAttention = filter_var($newDispensaryAttention, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newDispensaryAttention) === true) {
@@ -352,13 +352,13 @@ class Dispensary implements \JsonSerializable {
 	/**
 	 * mutator method for dispensary street1
 	 *
-	 * @param string $newDispensaryStreet new value of dispensary street
-	 * @throws \InvalidArgumentException if $newDispensaryStreet is not a string or insecure
-	 * @throws \RangeException if $newDispensaryStreet is > 140 characters
-	 * @throws \TypeError if $newDispensaryStreet is not a string
+	 * @param string $newDispensaryStreet1 new value of dispensary street
+	 * @throws \InvalidArgumentException if $newDispensaryStreet1 is not a string or insecure
+	 * @throws \RangeException if $newDispensaryStreet1 is > 140 characters
+	 * @throws \TypeError if $newDispensaryStreet1 is not a string
 	 **/
-	public function setDispensaryStreet(string $newDispensaryStreet1) {
-		//verify the street is secure
+	public function setDispensaryStreet1(string $newDispensaryStreet1) {
+		//verify the street1 is secure
 		$newDispensaryStreet1 = trim($newDispensaryStreet1);
 		$newDispensaryStreet1 = filter_var($newDispensaryStreet1, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newDispensaryStreet1) === true) {
@@ -370,7 +370,7 @@ class Dispensary implements \JsonSerializable {
 		}
 
 		// store the dispensary street
-		$this->dispensaryStreet = $newDispensaryStreet1;
+		$this->dispensaryStreet1 = $newDispensaryStreet1;
 	}
 
 	/**
@@ -385,19 +385,19 @@ class Dispensary implements \JsonSerializable {
 	/**
 	 * mutator method for dispensary street2
 	 *
-	 * @param string $newDispensaryStreet1 new value of dispensary street
-	 * @throws \InvalidArgumentException if $newDispensaryStreet1 is not a string or insecure
-	 * @throws \RangeException if $newDispensaryStreet1 is > 140 characters
-	 * @throws \TypeError if $newDispensaryStreet1 is not a string
+	 * @param string $newDispensaryStreet2 new value of dispensary street
+	 * @throws \InvalidArgumentException if $newDispensaryStreet2 is not a string or insecure
+	 * @throws \RangeException if $newDispensaryStreet2 is > 140 characters
+	 * @throws \TypeError if $newDispensaryStreet2 is not a string
 	 **/
 	public function setDispensaryStreet2(string $newDispensaryStreet2) {
-		//verify the street is secure
+		//verify the street2 is secure
 		$newDispensaryStreet2 = trim($newDispensaryStreet2);
 		$newDispensaryStreet2 = filter_var($newDispensaryStreet2, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newDispensaryStreet2) === true) {
 			throw(new \RangeException("dispensary street2 is empty or insecure"));
 		}
-		// verify the dispensary street1 will fit in the database
+		// verify the dispensary street2 will fit in the database
 		if(strlen($newDispensaryStreet2) > 140) {
 			throw(new \RangeException("dispensary street2 too large"));
 		}
@@ -499,7 +499,7 @@ class Dispensary implements \JsonSerializable {
 		//store the dispensary state
 		$this->dispensaryState = $newDispensaryState;
 	}
-}
+
 
 	/**
 	 * inserts this Dispensary into mySQL
