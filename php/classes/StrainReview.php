@@ -396,17 +396,17 @@ class StrainReview implements \JsonSerializable {
 	 * gets the strainReview by content
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param string $dispensaryReviewTxt dispensary review content to search for
-	 * @return \SplFixedArray SplFixedArray of Tweets found
+	 * @param string $strainReviewTxt strain review content to search for
+	 * @return \SplFixedArray SplFixedArray of Strain Reviews found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getDispensaryReviewByDispensaryReviewTxt(\PDO $pdo, string $dispensaryReviewTxt) {
+	public static function getStrainReviewByStrainReviewTxt(\PDO $pdo, string $strainReviewTxt) {
 		// sanitize the description before searching
-		$dispensaryReviewTxt = trim($dispensaryReviewTxt);
-		$dispensaryReviewTxt = filter_var($dispensaryReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($dispensaryReviewTxt) === true) {
-			throw(new \PDOException("dispensary review text is invalid"));
+		$strainReviewTxt = trim($strainReviewTxt);
+		$strainReviewTxt = filter_var($dispensaryReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($strainReviewTxt) === true) {
+			throw(new \PDOException("strain review text is invalid"));
 		}
 
 		// create query template
