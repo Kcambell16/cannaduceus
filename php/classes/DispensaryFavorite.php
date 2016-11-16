@@ -38,8 +38,8 @@ class DispensaryFavorite implements \JsonSerializable {
 
 	public function __construct(int $newDispensaryFavoriteId = null, int $newDispensaryFavoriteDispensaryId) {
 		try {
-			$this->dispensaryFavoriteProfileId($newDispensaryFavoriteId);
-			$this->dispensaryFavoriteDispensaryId($newDispensaryFavoriteDispensaryId);
+			$this->setDispensaryFavoriteProfileId($newDispensaryFavoriteId);
+			$this->setDispensaryFavoriteDispensaryId($newDispensaryFavoriteDispensaryId);
 		} Catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the calller
 			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
