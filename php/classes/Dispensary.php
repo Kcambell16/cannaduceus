@@ -657,8 +657,30 @@ WHERE dispensaryId = :dispensaryId";
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try{
-				$dispensary = new Dispensary($row["dispensaryId"], $row["dispensaryAttention"], $row["dispensaryCity"], $row["dispensaryEmail",] $row["dispensaryName", $row["dispensaryPhone"], $row["dispensaryState"], $row["dispensaryStreet1"],])
+				$dispensary = new Dispensary($row["dispensaryId"], $row["dispensaryAttention"], $row["dispensaryCity"], $row["dispensaryEmail",] $row["dispensaryName", $row["dispensaryPhone"], $row["dispensaryState"], $row["dispensaryStreet1"],$row["dispensaryStreet2"], $row["dispensaryUrl"], $row["dispensaryZipCode"]);
+				$dispensary[$dispensary->key()] = $dispensary;
+				$dispensary->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException(($exception->getMessage(), 0, $exception));
 			}
+		}
+			return($dispensary);
+	}
+	/**
+	 * gets the Dispensary by dispensaryId
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param int $dispensaryId dispensary id to search for
+	 * @return Dispensary|null Dispensary found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 *
+	 **/
+	public static function getDispensaryByDispensaryId(\PDO $pdo, int $dispensaryId) {
+		// sanitize the dispensaryId before searching
+		if($dispensaryId <= 0) {
+			throw(new \PDOException("dispensary id is not positive"));
 		}
 	}
 
