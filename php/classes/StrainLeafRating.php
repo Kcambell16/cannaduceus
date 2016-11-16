@@ -79,12 +79,12 @@ class strainLeafRating {
 	 */
 	public function setStrainLeafRatingRating($newStrainLeafRatingRating) {
 		$newStrainLeafRatingRating = filter_input($newStrainLeafRatingRating, FILTER_VALIDATE_INT);
-		if($newStrainLeafRatingRating === false) {
+		if($newStrainLeafRatingRating  ) {
 			throw(new \UnexpectedValueException("Strain Leaf Rating is not a valid integer"));
 		}
 
 		//Convert and store the strainLeafRating rating
-		$this->strainLeafRatingRating = string($newStrainLeafRatingRating);
+		$this->strainLeafRatingRating = int($newStrainLeafRatingRating);
 	}
 
 
@@ -93,7 +93,7 @@ class strainLeafRating {
 	 *
 	 * @return int of strainLeafRatingStrainId
 	 */
-	public function getstrainLeafRatingStrainId() {
+	public function getStrainLeafRatingStrainId() {
 		return $this->strainLeafRatingStrainId;
 	}
 
@@ -101,16 +101,16 @@ class strainLeafRating {
 	 * mutator method for strainLeafRatingStrainId
 	 *
 	 * @param int $newStrainLeafRatingStrainId new var of strainLeafRatingStrainId
-	 * @throws UnexpectedValueException if $newStrainLeafRatingStrainId is not a int
+	 * @throws \UnexpectedValueException if $newStrainLeafRatingStrainId is not a int
 	 */
 	public function setStrainLeafRatingStrainId($newStrainLeafRatingStrainId) {
 		$newStrainLeafRatingStrainId = filter_input($newStrainLeafRatingStrainId, FILTER_SANITIZE_STRING);
 		if($newStrainLeafRatingStrainId === false) {
-			throw(new UnexpectedValueException("Strain Leaf Rating Strain Id not valid"));
+			throw(new \UnexpectedValueException("Strain Leaf Rating Strain Id not valid"));
 		}
 
 		//Convert and store the strain name
-		$this->strainLeafRatingStrainId = string($newStrainLeafRatingStrainId);
+		$this->strainLeafRatingStrainId = int($newStrainLeafRatingStrainId);
 	}
 
 
@@ -127,16 +127,85 @@ class strainLeafRating {
 	 * mutator method for strainLeafRatingProfileId
 	 *
 	 * @param int $newStrainLeafRatingProfileId new strainLeafRatingProfileId
-	 * @throws UnexpectedValueException if $newStrainLeafRatingProfileId is not an int
+	 * @throws \UnexpectedValueException if $newStrainLeafRatingProfileId is not an int
 	 */
 	public function setStrainLeafRatingProfileId($newStrainLeafRatingProfileId) {
 		$newStrainLeafRatingProfileId = filter_input($newStrainLeafRatingProfileId, FILTER_SANITIZE_STRING);
 		if($newStrainLeafRatingProfileId === false) {
-			throw(new UnexpectedValueException("Strain Leaf Rating Profile Id Invalid"));
+			throw(new \UnexpectedValueException("Strain Leaf Rating Profile Id Invalid"));
 		}
 
 		//Convert and store the strainLeafRatingProfileId
-		$this->strainLeafRatingProfileId = string($newStrainLeafRatingProfileId);
+		$this->strainLeafRatingProfileId = int($newStrainLeafRatingProfileId);
 	}
 
+	/**
+	 * inserts this Strain Leaf Rating into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) {
+		// enforce the strainLeafRatingRating is null (i.e., don't insert a strain that already exists)
+		if($this->strainLeafRatingRating !== null) {
+			throw(new \PDOException("not a new strain leaf rating"));
+		}
+
+		// create query template
+		$query = "INSERT INTO strainLeafRating(strainLeafRatingRating, strainLeafRatingStrainId, strainLeafRatingProfileId) VALUES(:strainLeafRatingRating, :stainLeafRatingStrainId, :strainLeafRatingProfileId)";
+		$statement = $pdo->prepare($query);
+
+
+		// bind the member variables to the place holders in the template
+		$parameters = ["strainLeafRatingRating" => $this->strainLeafRatingRating, "strainLeafRatingStrainId" => $this->strainLeafRatingStrainId, "strainLeafRatingProfileId" => $this->strainLeafRatingProfileId];
+		$statement->execute($parameters);
+
+		// udate null strainId with what mySQL just gave us
+		$this->strainLeafRatingRating = intval($pdo->lastInsertId());
+
+	}   // insert
+
+	/**
+	 * deletes this Strain Leaf Rating from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+	public function delete(\PDO $pdo) {
+		//enforce the strainId is not null (i.e., don't delete a strain that hasn't been inserted)
+		if($this->strainLeafRatingRating === null) {
+			throw(new \PDOException("unable to delete a strain leaf rating that does not exist"));
+		}
+
+		//Create Query Template
+		$query = "DELETE FROM strainLeafRating WHERE strainLeafRatingRating = :strainLeafRatingRating";
+		$statement = $pdo->prepare($query);
+
+		//Bind the member variables to the place holder in the template
+		$parameters = ["strainLeafRatingRating" => $this->strainLeafRatingRating];
+		$statement->execute($parameters);
+	}	//Delete
+
+	/**
+	 * Updates this Strain Leaf Rating in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function update(\PDO $pdo) {
+		//enforce the strainLeafRating is not null (i.e. don't update a strain leaf rating that hasn't been inserted)
+		if($this->strainLeafRatingRating === null)	{
+			throw(new \PDOException("unable to update strain leaf rating that does not exist"));
+			// create query template
+			$query = "UPDATE strainLeafRating SET strainLeafRatingRating = :strainLeafRatingRating, strainLeafRatingStrainId = :strainLeafRatingStrainId, strainLeafRatingProfileId = :strainLeafRatingProfileId WHERE strainLeafRatingRating = :strainLeafRatingRating";
+			$statement = $pdo->prepare($query);
+
+			//bind the member variables to the place holders in the template
+			$parameteres = ["strainLeafRatingRating" => $this->strainLeafRatingRating, "strainLeafRatingStrainId" => $this->strainLeafRatingStrainId, "strainLeafRatingProfileId" => $this->strainLeafRatingProfileId];
+			$statement->execute($parameteres);
+		}
+	}//update
 }
