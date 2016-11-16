@@ -1,10 +1,10 @@
 -- drop table statements go here
-DROP TABLE IF EXISTS strainfavorite;
-DROP TABLE IF EXISTS strainleafrating;
-DROP TABLE IF EXISTS strainreview;
-DROP TABLE IF EXISTS dispensaryfavorite;
-DROP TABLE IF EXISTS dispensaryleafrating;
-DROP TABLE IF EXISTS dispensaryreview;
+DROP TABLE IF EXISTS strainFavorite;
+DROP TABLE IF EXISTS strainLeafRating;
+DROP TABLE IF EXISTS strainReview;
+DROP TABLE IF EXISTS dispensaryFavorite;
+DROP TABLE IF EXISTS dispensaryLeafRating;
+DROP TABLE IF EXISTS dispensaryReview;
 DROP TABLE IF EXISTS strain;
 DROP TABLE IF EXISTS dispensary;
 DROP TABLE IF EXISTS profile;

@@ -508,43 +508,39 @@ class Dispensary implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
-	public function insert(\PDO $PDO) {
+	public function insert(\PDO $pdo) {
 		//enforce dispensary id is null (i.e. dont insert a dispenary that already exsist)
 		if($this->dispensaryId !== null) {
 			throw(new \PDOException("not a new dispensary"));
 		}
 		// create query template
 		$query = "INSERT INTO dispensary(
-dispensaryId,
-dispensaryAttention,
-dispensaryCity,
-dispensaryEmail,
-dispensaryName,
-dispensaryPhone,
-dispensaryStreet1, 
-dispensaryStreet2, 
-dispensaryUrl,
-dispensaryZipCode,
-dispensaryState, 
-) 
-VALUES 
-(:dispensaryId,  
-:dispensaryAttention,
-:dispensaryCity,
-:dispensaryEmail, 
-:dispensaryName,
-:dispensaryPhone,
-:dispensaryStreet1, 
-:dispensaryStreet2,
-:dispensaryUrl,
-:dispensaryZipCode,
-:dispensaryState)";
+			dispensaryAttention,
+			dispensaryCity,
+			dispensaryEmail,
+			dispensaryName,
+			dispensaryPhone,
+			dispensaryStreet1, 
+			dispensaryStreet2, 
+			dispensaryUrl,
+			dispensaryZipCode,
+			dispensaryState, 
+		) VALUES (  
+			:dispensaryAttention,
+			:dispensaryCity,
+			:dispensaryEmail, 
+			:dispensaryName,
+			:dispensaryPhone,
+			:dispensaryStreet1, 
+			:dispensaryStreet2,
+			:dispensaryUrl,
+			:dispensaryZipCode,
+			:dispensaryState)";
 		$statement = $pdo->prepare($query);
 
 
 		// bind the member variables to the place holders in the template
-		$parameters =
-			["dispensaryProfileId" => $this->dispensaryId,
+		$parameters = [
 				"dispensaryName" => $this->dispensaryName,
 				"dispensaryAttention" => $this->dispensaryAttention,
 				"dispensaryStreet1" => $this->dispensaryStreet1,
@@ -557,6 +553,63 @@ VALUES
 		$statement->execute($parameters);
 
 	// update the null dispensary Id with what mysql just gave us
-	$this->dispensaryId = invital($pdo->lastInsertId());
+	$this->dispensaryId = intval($pdo->lastInsertId());
 }
 
+/**
+ * delete this dispensary from mySQL
+ *
+ * @param \PDO $pdo PDO connect object
+ * @throws \PDOException when mySQL related errors occur
+ * @throws \TypeError if $pdo is not a PDO connection object
+ **/
+public function delete(\PDO $pdo) {
+//enforce the dispensaryId is not null (i.e., don't delete a disepnsary that hasn't been inserted)
+	if($this->dispensaryId === null) {
+		throw(new \PDOException("unable to delete a dispensary that does not exist"));
+	}
+
+	// create query template
+	$query = "DELETE FROM dispensary WHERE dispensaryId = :dispensaryId";
+	$statement->execute($parameters);
+}
+
+/**
+ * updates this dispensary from mySQL
+ *
+ * @param \PDO $pdo PDO connection object
+ * @throws \PDOException when mySQL related errors occur
+ * @throws \TypeError if $pdo is not a PDO connection object
+ **/
+public function update(\PDO $pdo) {
+	// enforce the dispensaryId is not null ((i.e., don't update a dispensary that hasn't been inserted)
+	if($this->dispensaryId === null){
+		throw(new \PDOException("unable to update a dispensary that does not exist "));
+	}
+
+	// create query template
+	$query = "UPDATE dispensary SET dispensaryId = :dispensaryId,
+dispensaryAttention = :dispensaryAttention,
+dispensaryCity = :dispensaryCity,
+dispensaryEmail = :dispensaryEmail,
+dispensaryName = :dispensaryName,
+dispensaryPhone = :dispensaryPhone,
+dispensaryStreet1 = :dispensaryStreet1,
+dispensaryStreet2 = :dispensaryStreet2,
+dispensaryUrl = :dispensaryUrl,
+dispensaryZipCode = :dispensaryZipCode,
+dispensaryState = :dispensaryState 
+WHERE dispensaryId = :dispensaryId";
+
+}
+
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+		return($fields);
+	}
+}
