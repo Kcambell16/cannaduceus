@@ -261,7 +261,7 @@ class Profile implements \JsonSerializable {
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError if $pdo is ot a PDO connection object
+	 * @throws \TypeError if $pdo is to a PDO connection object
 	 */
 	public function insert(\PDO $pdo) {
 		// enforce the profileId is null (i.e., don't insert a profile that already exists)
@@ -270,7 +270,7 @@ class Profile implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "INSERT INTO profile(profileUserName, profileEmail, profileHash, profileSalt, profileActivation) VALUES(:profileName, :profileEmail, :profileHash, :profileSalt, :profileActivation)";
+		$query = "INSERT INTO profile(profileUserName, profileEmail, profileHash, profileSalt, profileActivation) VALUES(:profileUserName, :profileEmail, :profileHash, :profileSalt, :profileActivation)";
 
 
 		//prepare is used as an extra means of security
