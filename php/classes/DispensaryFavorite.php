@@ -267,7 +267,44 @@ class DispensaryFavorite implements \JsonSerializable {
 		return ($favorites);
 	} //Gets Dispensary Favorite by Dispensary Favorite Dispensary Id
 
+	/**
+	 * This function retrieves a dispensary favorite by DispensaryFavoriteDispensary ID and DispensaryFavoriteProfile ID
+	 *
+	 * @param \PDO $pdo -- a PDO connection
+	 * @param  \int $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId -- $dispensaryFavorite to be retrieved
+	 * @throws \InvalidArgumentException when $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId are not integers
+	 * @throws \RangeException when $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId are not positive
+	 * @throws \PDOException
+	 * @return null | $dispensaryFavorite
+	 */
 
+	public static function getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId(\PDO $pdo, $dispensaryFavoriteDispensaryId, $dispensaryFavoriteProfileId) {
+		//  check validity of $dispensaryFavorite
+		$dispensaryFavorite = filter_var($dispensaryFavoriteDispensaryId, $dispensaryFavoriteProfileId, FILTER_VALIDATE_INT);
+		if($dispensaryFavorite === false) {
+			throw(new \InvalidArgumentException("Dispensary Favorite Dispensary Id and Dispensary Favorite Profile Id are not integers."));
+		}
+		if($dispensaryFavorite <= 0) {
+			throw(new \RangeException("Dispensary Favorite is Invalid."));
+		}
+		// prepare query
+		$query = "SELECT dispensaryFavoriteDispensaryId, dispensaryFavoriteProfileId FROM dispensaryFavorite WHERE ($dispensaryFavorite = :dispensaryFavoriteDispensaryId, :dispensaryFavoriteProfileId)";
+		$statement = $pdo->prepare($query);
+		$parameters = array("dispensaryFavorite" => $dispensaryFavorite);
+		$statement->execute($parameters);
+		//  setup results from query
+		try {
+			$dispensaryFavorite = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$dispensaryFavorite = new dispensaryFavorite($row["dispensaryFavoriteDispensaryId"], $row["dispensaryFavoriteProfileId"]);
+			}
+		} catch(\Exception $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($dispensaryFavorite);
+	}  // getDispensaryByDispensaryId
 
 
 
