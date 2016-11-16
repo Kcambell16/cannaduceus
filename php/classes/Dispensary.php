@@ -57,6 +57,12 @@ class Dispensary implements \JsonSerializable {
 	private $dispensaryPhone;
 
 	/**
+	 * actual state of dispensary
+	 * @var string $dispensaryState
+	 **/
+	private $dispensaryState;
+
+	/**
 	 * actual street address for dispensary
 	 * @var string $dispensaryStreet
 	 **/
@@ -80,11 +86,6 @@ class Dispensary implements \JsonSerializable {
 	 **/
 	private $dispensaryZipCode;
 
-	/**
-	 * actual state of dispensary
-	 * @var string $dispensaryState
-	 **/
-	private $dispensaryState;
 
 	/**
 	 * constructor for dispensary
@@ -95,11 +96,11 @@ class Dispensary implements \JsonSerializable {
 	 * @param string $newDispensaryEmail email of dispensary
 	 * @param string $newDispensaryName dispensary name
 	 * @param string $newDispensaryPhone phone number of dispensary
+	 * @param string $newDispensaryState dispensary state
 	 * @param string $newDispensaryStreet1 address of dispensary
 	 * @param int $newDispensaryStreet2 additional address info of dispensary
 	 * @param string $newDispensaryUrl web address of dispensary
-	 * @param int $newDispensaryZipCode dipsensary zip code
-	 * @param string $newDispensaryState dispensary state
+	 * @param int $newDispensaryZipCode dispensary zip code
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -108,26 +109,29 @@ class Dispensary implements \JsonSerializable {
 
 	public function __construct(
 		int $newDispensaryId = null,
-		string $newDispensaryName,
 		string $newDispensaryAttention,
+		string $newDispensaryCity,
+		string $newDispensaryEmail,
+		string $newDispensaryName,
+		int $newDispensaryPhone,
+		string $newDispensaryState,
 		string $newDispensaryStreet1,
 		string $newDispensaryStreet2,
-		string $newDispensaryCity,
-		string $newDispensaryState,
-		int $newDispensaryZipCode,
-		string $newDispensaryEmail,
-		int $newDispensaryPhone,
-		string $newDispensaryUrl) {
+		string $newDispensaryUrl,
+		int $newDispensaryZipCode)
+	{
 		try {
 			$this->setDispensaryId($newDispensaryId);
-			$this->setDispensaryName($newDispensaryName);
 			$this->setDispensaryAttention($newDispensaryAttention);
+			$this->setDispensaryCity($newDispensaryCity);
+			$this->setDispensaryEmail($newDispensaryEmail);
+			$this->setDispensaryName($newDispensaryName);
+			$this->setDispensaryPhone($newDispensaryPhone);
+			$this->setDispensaryState($newDispensaryState);
 			$this->setDispensaryStreet1($newDispensaryStreet1);
 			$this->setDispensaryStreet2($newDispensaryStreet2);
-			$this->setDispensaryCity($newDispensaryCity);
+			$this->setDispensaryUrl($newDispensaryUrl);
 			$this->setDispensaryZipCode($newDispensaryZipCode);
-			$this->setDispensaryEmail($newDispensaryEmail);
-			$this->setDispensaryState($newDispensaryState);
 		} catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the caller
 			throw(new \InvalidArgumentException($invalidArgumentException->getCode(), 0, $invalidArgumentException));
@@ -520,22 +524,22 @@ class Dispensary implements \JsonSerializable {
 			dispensaryEmail,
 			dispensaryName,
 			dispensaryPhone,
+			dispensaryState,
 			dispensaryStreet1, 
 			dispensaryStreet2, 
 			dispensaryUrl,
-			dispensaryZipCode,
-			dispensaryState, 
-		) VALUES (  
+			dispensaryZipCode) 
+			VALUES (  
 			:dispensaryAttention,
 			:dispensaryCity,
 			:dispensaryEmail, 
 			:dispensaryName,
 			:dispensaryPhone,
+			:dispensaryState,
 			:dispensaryStreet1, 
 			:dispensaryStreet2,
 			:dispensaryUrl,
-			:dispensaryZipCode,
-			:dispensaryState)";
+			:dispensaryZipCode)";
 		$statement = $pdo->prepare($query);
 
 
@@ -594,11 +598,11 @@ dispensaryCity = :dispensaryCity,
 dispensaryEmail = :dispensaryEmail,
 dispensaryName = :dispensaryName,
 dispensaryPhone = :dispensaryPhone,
+dispensaryState = :dispensaryState,
 dispensaryStreet1 = :dispensaryStreet1,
 dispensaryStreet2 = :dispensaryStreet2,
 dispensaryUrl = :dispensaryUrl,
 dispensaryZipCode = :dispensaryZipCode,
-dispensaryState = :dispensaryState 
 WHERE dispensaryId = :dispensaryId";
 
 }
