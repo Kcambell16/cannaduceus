@@ -19,3 +19,90 @@ require_once (dirname(__DIR__) . "/classes/autoload.php");
  * @see Profile\
  * @author nathan sanchez <nsanchez121@cnm.edu>
  **/
+class ProfileTest extends CannaduceusTest {
+	/*--------------------------------Declare Protected State Variables -----------------------*/
+
+	/**
+	 * Default input data set for name
+	 * @var string $VAILD_PROFILEUSERNAME1
+	 */
+	protected $VAILD_PROFILEUSERNAME1 = "Name";
+
+
+	/**
+	 * Default input data for updated name
+	 * @var string $VAILD_PROFILEUSERNAME2
+	 */
+	protected $VAILD_PROFILEUSERNAME2 = "NameUpdated";
+
+
+	/**
+	 * Default input data set for email
+	 * @var string $VAILD_PROFILEEMAIL1
+	 */
+	protected $VAILD_PROFILEEMAIL1 ="email.cnm.edu";
+
+
+	/**
+	 * Default input data set for updated email
+	 * @var string $VAILD_PROFILEEMAIL2
+	 */
+	protected $VAILD_PROFILEEMAIL2 = "emailupdated.cnm.edu";
+
+
+/**
+ * Default input data set profile activation token 32 chars
+ * @var string $VAILD_PROFILEACTIVATIONTOKEN1
+ */
+	protected $VAILD_PROFILEACTIVATIONTOKEN1 = "00000000000000000000000000000022";
+
+
+	/**
+	 * Default input data set UPDATED profile activation token 32 chars
+	 * @var string VAILD_PROFILEACTIVATION2
+	 */
+	protected $VALID_PROFILEACTIVATIONTOKEN2 = "99999999999999999999999999999922";
+
+
+/**
+ * Default input data set profile hash 128 chars
+ * @var string $VAILD_PROFILEHASH1
+ */
+	protected $VAILD_PROFILEHASH1 = null;
+
+/**
+ * Default input data set UPDATE profile hash 128 chars
+ * @var string $VAILD_PROFILEHASH2
+ */
+	protected $VAILD_PROFILEHASH2 = null;
+
+
+/**
+ * Default input data set profile salt 64 chars
+ * @var string $VAILD_PROFILESALT1
+ */
+	protected $VAILD_PROFILESALT1 = null;
+
+
+	/**
+	 * Default input data set UPDATED profile salt 64 chars
+	 * @var string $VAILD_PROFILESALT2
+	 */
+	protected $VAILD_PROFILESALT2 = null;
+
+
+
+	/**
+	 * create dependent objects before running each test
+	 */
+	public final function setUp() {
+		// run the default abstract setUp() method from parent first
+		parent::setUp();
+
+
+
+
+	}
+
+
+}
