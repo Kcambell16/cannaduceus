@@ -84,7 +84,7 @@ class strainLeafRating {
 		}
 
 		//Convert and store the strainLeafRating rating
-		$this->strainLeafRatingRating = int($newStrainLeafRatingRating);
+		$this->strainLeafRatingRating = ($newStrainLeafRatingRating);
 	}
 
 
@@ -110,7 +110,7 @@ class strainLeafRating {
 		}
 
 		//Convert and store the strain name
-		$this->strainLeafRatingStrainId = int($newStrainLeafRatingStrainId);
+		$this->strainLeafRatingStrainId = ($newStrainLeafRatingStrainId);
 	}
 
 
@@ -136,7 +136,7 @@ class strainLeafRating {
 		}
 
 		//Convert and store the strainLeafRatingProfileId
-		$this->strainLeafRatingProfileId = int($newStrainLeafRatingProfileId);
+		$this->strainLeafRatingProfileId = ($newStrainLeafRatingProfileId);
 	}
 
 	/**
@@ -162,7 +162,7 @@ class strainLeafRating {
 		$statement->execute($parameters);
 
 		// udate null strainId with what mySQL just gave us
-		$this->strainLeafRatingRating = intval($pdo->lastInsertId());
+		$this->strainLeafRatingRating = ($pdo->lastInsertId());
 
 	}   // insert
 
@@ -198,15 +198,14 @@ class strainLeafRating {
 	public function update(\PDO $pdo) {
 		//enforce the strainLeafRating is not null (i.e. don't update a strain leaf rating that hasn't been inserted)
 		if($this->strainLeafRatingRating === null)	{
-			throw(new \PDOException("unable to update strain leaf rating that does not exist"));
+			throw(new \PDOException("unable to update strain leaf rating that does not exist"));}
 			// create query template
-			$query = "UPDATE strainLeafRating SET strainLeafRatingRating = :strainLeafRatingRating, strainLeafRatingStrainId = :strainLeafRatingStrainId, strainLeafRatingProfileId = :strainLeafRatingProfileId WHERE strainLeafRatingRating = :strainLeafRatingRating";
+			$query = "UPDATE strainLeafRating SET strainLeafRatingRating = :strainLeafRatingRating AND strainLeafRatingStrainId = :strainLeafRatingStrainId AND strainLeafRatingProfileId = :strainLeafRatingProfileId WHERE strainLeafRatingRating = :strainLeafRatingRating";
 			$statement = $pdo->prepare($query);
 
 			//bind the member variables to the place holders in the template
-			$parameteres = ["strainLeafRatingRating" => $this->strainLeafRatingRating, "strainLeafRatingStrainId" => $this->strainLeafRatingStrainId, "strainLeafRatingProfileId" => $this->strainLeafRatingProfileId];
-			$statement->execute($parameteres);
-		}
+			$parameters = ["strainLeafRatingRating" => $this->strainLeafRatingRating, "strainLeafRatingStrainId" => $this->strainLeafRatingStrainId, "strainLeafRatingProfileId" => $this->strainLeafRatingProfileId];
+			$statement->execute($parameters);
 	}//update
 
 	/**
@@ -222,7 +221,7 @@ class strainLeafRating {
 
 	public static function getStrainLeafRatingByStrainLeafRatingRating(\PDO $pdo, $strainLeafRating) {
 		//  check validity of $strainName
-		$strainLeafRating = filter_string($strainLeafRating, FILTER_SANITIZE_NUMBER_INT);
+		$strainLeafRating = filter_var($strainLeafRating, FILTER_SANITIZE_NUMBER_INT);
 		if($strainLeafRating <= 0) {
 			throw(new \InvalidArgumentException("strain Leaf Rating is not valid."));
 		}

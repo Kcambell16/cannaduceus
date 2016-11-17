@@ -32,7 +32,7 @@ class dispensaryLeafRating {
 	private $dispensaryLeafRatingProfileId;
 
 
-	/** Constructor for new dispensaryLeafRatingRating
+	/** Constructor for new Dispensary Leaf Rating
 	 *
 	 * @param int | null $newDispensaryLeafRatingRating rating of this dispensary or null if a new dispensary
 	 * @param int | null $newDispensaryLeafRatingDispensaryId the id of the dispensary from the dispensary class
@@ -43,11 +43,11 @@ class dispensaryLeafRating {
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newDispensaryLeafRatingRating = null, int $newDispensaryLeafRatingDispensaryId, int $newDispensaryLeafRatingProfileId) {
+	public function __construct(int $newDispensaryLeafRatingRating = null, int $newDispensaryLeafRatingDispensaryId = null, int $newDispensaryLeafRatingProfileId = null) {
 		try {
-			$this->setDispensaryLeafRatingRating($newDispensaryLeafRatingRating);
-			$this->setDispensaryLeafRatingdispensaryId($newDispensaryLeafRatingDispensaryId);
-			$this->setDispensaryLeafRatingProfileId($newDispensaryLeafRatingProfileId);
+			$this->setdispensaryLeafRatingRating($newDispensaryLeafRatingRating);
+			$this->setdispensaryLeafRatingDispensaryId($newDispensaryLeafRatingDispensaryId);
+			$this->setdispensaryLeafRatingProfileId($newDispensaryLeafRatingProfileId);
 		} Catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the caller
 			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
@@ -85,7 +85,7 @@ class dispensaryLeafRating {
 		}
 
 		//Convert and store the dispensaryLeafRating rating
-		$this->dispensaryLeafRatingRating = int($newDispensaryLeafRatingRating);
+		$this->dispensaryLeafRatingRating = ($newDispensaryLeafRatingRating);
 	}
 
 
@@ -137,7 +137,7 @@ class dispensaryLeafRating {
 		}
 
 		//Convert and store the dispensaryLeafRatingProfileId
-		$this->dispensaryLeafRatingProfileId = int($newDispensaryLeafRatingProfileId);
+		$this->dispensaryLeafRatingProfileId = ($newDispensaryLeafRatingProfileId);
 	}
 
 	/**
@@ -154,7 +154,7 @@ class dispensaryLeafRating {
 		}
 
 		// create query template
-		$query = "INSERT INTO dispensaryLeafRating(dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId) VALUES :dispensaryLeafRatingRating, :dispensaryLeafRatingDispensaryId, :dispensaryLeafRatingProfileId";
+		$query = "INSERT INTO dispensaryLeafRating(dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId) VALUES(:dispensaryLeafRatingRating, :dispensaryLeafRatingDispensaryId, :dispensaryLeafRatingProfileId)";
 		$statement = $pdo->prepare($query);
 
 
@@ -199,7 +199,7 @@ class dispensaryLeafRating {
 	public function update(\PDO $pdo) {
 		//enforce the dispensaryLeafRating is not null (i.e. don't update a dispensary leaf rating that hasn't been inserted)
 		if($this->dispensaryLeafRatingRating === null)	{
-			throw(new \PDOException("unable to update dispensary leaf rating that does not exist"));
+			throw(new \PDOException("unable to update dispensary leaf rating that does not exist"));}
 			// create query template
 			$query = "UPDATE dispensaryLeafRating SET dispensaryLeafRatingRating = :dispensaryLeafRatingRating AND dispensaryLeafRatingDispensaryId = :dispensaryLeafRatingDispensaryId AND dispensaryLeafRatingProfileId = :dispensaryLeafRatingProfileId WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating";
 			$statement = $pdo->prepare($query);
@@ -207,7 +207,6 @@ class dispensaryLeafRating {
 			//bind the member variables to the place holders in the template
 			$parameteres = ["dispensaryLeafRatingRating" => $this->dispensaryLeafRatingRating, "dispensaryLeafRatingDispensaryId" => $this->dispensaryLeafRatingDispensaryId, "dispensaryLeafRatingProfileId" => $this->dispensaryLeafRatingProfileId];
 			$statement->execute($parameteres);
-		}
 	}//update
 
 	/**
