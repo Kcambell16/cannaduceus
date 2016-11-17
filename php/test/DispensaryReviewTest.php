@@ -182,3 +182,28 @@ class DispensaryReviewTest extends DataDesign {
 		$dispensaryReview = DispensayReview::getDispensaryReviewByDispensaryReviewTxt($this->getPDO(), "Dee Dee Dee, No Such Thing");
 		$this->assertCount(0, $dispensaryReview);
 	}
+
+	/**
+	 * test grabbing all DispensaryReviews
+	 **/
+	public function testGetAllValidTweets() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("tweet");
+
+		// create a new Tweet and insert to into mySQL
+		$tweet = new Tweet(null, $this->profile->getProfileId(), $this->VALID_TWEETCONTENT, $this->VALID_TWEETDATE);
+		$tweet->insert($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$results = Tweet::getAllTweets($this->getPDO());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("tweet"));
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Dmcdonald21\\DataDesign\\Tweet", $results);
+
+		// grab the result from the array and validate it
+		$pdoTweet = $results[0];
+		$this->assertEquals($pdoTweet->getProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoTweet->getTweetContent(), $this->VALID_TWEETCONTENT);
+		$this->assertEquals($pdoTweet->getTweetDate(), $this->VALID_TWEETDATE);
+	}
+}
