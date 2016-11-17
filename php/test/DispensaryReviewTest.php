@@ -87,22 +87,22 @@ class DispensaryReviewTest extends DataDesign {
 	/**
 	 * test inserting a DispensaryReview, editing it, and then updating it
 	 **/
-	public function testUpdateValidTweet() {
+	public function testUpdateValidDispensaryReview() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("tweet");
+		$numRows = $this->getConnection()->getRowCount("dispensary review");
 
-		// create a new Tweet and insert to into mySQL
-		$tweet = new Tweet(null, $this->profile->getProfileId(), $this->VALID_TWEETCONTENT, $this->VALID_TWEETDATE);
-		$tweet->insert($this->getPDO());
+		// create a new DispensaryReview and insert to into mySQL
+		$dispensaryReview = new DispensayReview(null, $this->dispensaryReviewProfile->getDispensaryReviewProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview->insert($this->getPDO());
 
-		// edit the Tweet and update it in mySQL
-		$tweet->setTweetContent($this->VALID_TWEETCONTENT2);
-		$tweet->update($this->getPDO());
+		// edit the DispensaryReview and update it in mySQL
+		$dispensaryReview->setDispensaryReviewTxt($this->VALID_DISPENSARYREVIEWTXT2);
+		$dispensaryReview->update($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$pdoTweet = Tweet::getTweetByTweetId($this->getPDO(), $tweet->getTweetId());
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("tweet"));
-		$this->assertEquals($pdoTweet->getProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoTweet->getTweetContent(), $this->VALID_TWEETCONTENT2);
-		$this->assertEquals($pdoTweet->getTweetDate(), $this->VALID_TWEETDATE);
+		$pdoDispensaryReview = DispensayReview::getDispensaryReviewByDispensaryReviewId($this->getPDO(), $dispensaryReview->getDisensaryReviewId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewProfileId(), $this->profile->getDispensaryReviewProfileId());
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT2);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATE);
 	}
