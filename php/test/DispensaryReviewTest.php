@@ -140,12 +140,12 @@ class DispensaryReviewTest extends DataDesign {
 	}
 
 	/**
-	 * test deleting a Tweet that does not exist
+	 * test deleting a DispensaryReview that does not exist
 	 *
 	 * @expectedException PDOException
 	 **/
-	public function testDeleteInvalidTweet() {
-		// create a Tweet and try to delete it without actually inserting it
-		$tweet = new Tweet(null, $this->profile->getProfileId(), $this->VALID_TWEETCONTENT, $this->VALID_TWEETDATE);
-		$tweet->delete($this->getPDO());
+	public function testDeleteInvalidDispensaryReview() {
+		// create a DispensaryReview and try to delete it without actually inserting it
+		$dispensaryReview = new DispensayReview(null, $this->dispensaryReviewProfile->getDispensaryReviewProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview->delete($this->getPDO());
 	}
