@@ -186,24 +186,24 @@ class DispensaryReviewTest extends DataDesign {
 	/**
 	 * test grabbing all DispensaryReviews
 	 **/
-	public function testGetAllValidTweets() {
+	public function testGetAllValidDispensaryReviews() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("tweet");
+		$numRows = $this->getConnection()->getRowCount("dispensary review");
 
-		// create a new Tweet and insert to into mySQL
-		$tweet = new Tweet(null, $this->profile->getProfileId(), $this->VALID_TWEETCONTENT, $this->VALID_TWEETDATE);
-		$tweet->insert($this->getPDO());
+		// create a new DispensaryReview and insert to into mySQL
+		$dispensaryReview = new DispensayReview(null, $this->dispensaryReviewProfile->getDispensaryReviewProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$results = Tweet::getAllTweets($this->getPDO());
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("tweet"));
+		$results = DispensayReview::getAllDispensaryReviews($this->getPDO());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Dmcdonald21\\DataDesign\\Tweet", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\hlozano2\\DataDesign\\Dispensary Review", $results);
 
 		// grab the result from the array and validate it
 		$pdoTweet = $results[0];
-		$this->assertEquals($pdoTweet->getProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoTweet->getTweetContent(), $this->VALID_TWEETCONTENT);
-		$this->assertEquals($pdoTweet->getTweetDate(), $this->VALID_TWEETDATE);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewProfileId(), $this->dispensaryReviewProfile->getDispensaryReviewProfileId());
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATE);
 	}
 }
