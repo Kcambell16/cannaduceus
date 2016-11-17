@@ -1,10 +1,10 @@
 <?php
-namespace Edu\Cnm\hlozano2\DataDesign\Test;
+namespace Edu\Cnm\Cannaduceus\Test;
 
-use Edu\Cnm\hlozano2\DataDesign\{Profile, StrainReview};
+use Edu\Cnm\Cannaduceus\{Profile, Strain, StrainReview};
 
 // grab the project test parameters
-require_once("DataDesignTest.php");
+require_once("CannaduceusTest.php");
 
 // grab the class under scrutiny
 require_once(dirname(__DIR__) . "/classes/autoload.php");
