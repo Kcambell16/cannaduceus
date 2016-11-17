@@ -101,9 +101,12 @@ class ProfileTest extends CannaduceusTest {
 
 		$password = "abc123";
 
-		$salt = bin2hex(random_bytes(16));
+		$salt = bin2hex(random_bytes(16));// add another one of these to make it sexy
 		$hash = hash_pdkdf2("sha512", $password, $salt, 262144);
 
+
+		$salt = bin2hex(random_bytes(16));// add another one of these to make it sexy
+		$hash = hash_pdkdf2("sha513", $password, $salt, 262146);
 
 		$this->VAILD_PROFILESALT1 = $salt;
 		$this->VAILD_PROFILESALT2 = $salt;
@@ -111,8 +114,78 @@ class ProfileTest extends CannaduceusTest {
 		$this->VAILD_PROFILEHASH1 = $hash;
 		$this->VAILD_PROFILEHASH2 = $hash;
 
-
 	}
+
+
+	/**
+	 *test inserting a vaild profile and verify that what's in mySQL matches what was input
+	 */
+	public function testInsertVaildProfile() {
+		// count the number of rows initially the database (0)
+		$numRows = $this->getConnection()->getRowCount("profile");
+
+
+		// create a new profile and insert it into SQL
+		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEACTIVATIONTOKEN1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1);
+
+		//insert the mock profile in SQL
+		$profile->insert($this->getPDO());
+
+
+		//NOW, grab the data from SQL and ensure the fields match our expectations
+
+		//$pdoProfile is new declaration... then we call our PDO get method: getProfileByProfileID which requires 2 parameters:
+		//the first is a PDO object, the other is our profileId, which we use the accessor method we wrote (getProfileId) to get!
+		// $pdoProfile now contains all the information for our dummy profile
+		$pdoProfile = Profile::getProfileByProfileId($this->getPDO(), $profile->getProfileId());
+
+
+		//make assertions here....be assertive
+
+
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
+
+
+		// the following will be testing to see if the data we thought we put in the data base is there
+		$this->assertEquals($pdoProfile->getProfileUserName(), $this->VAILD_PROFILEUSERNAME1);
+		$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL1);
+		$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH1);
+		$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILEACTIVATIONTOKEN1);
+	}
+
+
+
+	/**
+	 * test inserting a profile that already exists
+	 * @expectedException \PDOException
+	 */
+	public function testInsertInvalidProfile(){
+		// create a profile with a non-null profileId and watch it fail. use the INVALID_KEY we defined inside the abstract class CannaduceusTest
+		//here we are calling an object ($profile) based on the Profile class and feeding it initial values. BUT whereas normally we would define the primary key as NULL
+		//this time we are giving it a value (INVALID_KEY)
+		$profile = new Profile(CannaduceusTest::INVALID_KEY, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+
+		//now insert it into SQL and hope it throws a error!
+		//this uses the insert PDO method we wrote back in our class, and all the capabilities it has
+		$profile->insert($this->insert($this->getPDO()));
+	}
+
+
+
+	/**
+	 * test inserting a profile, editing it, and then updating it
+	 */
+	public function testUpdatedValidProfile(){
+				//count the initial number of rows and assign it to the variable $numRows
+				$numRows = $this->getConnection()->getRowCount("profile");
+	}
+
+
+
+
+
+
+
 
 
 }
