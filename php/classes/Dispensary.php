@@ -738,9 +738,21 @@ WHERE dispensaryId = :dispensaryId";
 			$statement = $pdo->prepare($query);
 			$statement->execute();
 
+		// build an array of dispensaries
+		$dispensaries = new\SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !=== false) {
+			try {
+				$dispensary = new Dispensary($row["dispensaryId"], $row["dispensaryAttention"], $row["dispensaryCity"], $row["dispensaryEmail",] $row["dispensaryName", $row["dispensaryPhone"], $row["dispensaryState"], $row["dispensaryStreet1"],$row["dispensaryStreet2"], $row["dispensaryUrl"], $row["dispensaryZipCode"]);
+				$dispensaries[$dispensary->key()] = $dispensary;
+				$dispensary->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return ($dispensaries);
 	}
-
-
 	/**
 	 * formats the state variables for JSON serialization
 	 *
