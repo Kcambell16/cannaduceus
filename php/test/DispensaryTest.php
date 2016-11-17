@@ -50,7 +50,7 @@ class DispensaryTest extends CannaduceusTest {
 
 	/**
 	 * Dispensaries by state
-	 * @var string $VALID_DISPENSARYSTATE
+	 * @char string $VALID_DISPENSARYSTATE
 	 **/
 	protected $VALID_DISPENSARYSTATE = "HI";
 
@@ -64,7 +64,21 @@ class DispensaryTest extends CannaduceusTest {
 	 * Dispensary Street2
 	 * @var string $VALID_DISPENSARYSTREET2
 	 **/
-	protected $VALID_DISPENSARYNAME = " Blue Kush Dispensary";
+	protected $VALID_DISPENSARYSTREET2 = "Heaven Ave";
+
+	/**
+	 * Dispensary Url
+	 * @var string $VALID_DISPENSARYURL
+	 **/
+	protected $VALID_DISPENSARYURL = "HowHigh.com";
+
+	/**
+	 * Dispensary Zip code
+	 * @var int $VALID_DISPENSARYZIPCODE
+	 **/
+	protected $VALID_DISPENSARYZIPCODE = "90210";
+
+
 
 
 
