@@ -83,3 +83,26 @@ class DispensaryReviewTest extends DataDesign {
 		$dispensaryReview = new DispensayReview(DataDesignTest::INVALID_KEY, $this->profile->getDispensaryReviewProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
 		$dispensaryReview->insert($this->getPDO());
 	}
+
+	/**
+	 * test inserting a DispensaryReview, editing it, and then updating it
+	 **/
+	public function testUpdateValidTweet() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("tweet");
+
+		// create a new Tweet and insert to into mySQL
+		$tweet = new Tweet(null, $this->profile->getProfileId(), $this->VALID_TWEETCONTENT, $this->VALID_TWEETDATE);
+		$tweet->insert($this->getPDO());
+
+		// edit the Tweet and update it in mySQL
+		$tweet->setTweetContent($this->VALID_TWEETCONTENT2);
+		$tweet->update($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$pdoTweet = Tweet::getTweetByTweetId($this->getPDO(), $tweet->getTweetId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("tweet"));
+		$this->assertEquals($pdoTweet->getProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoTweet->getTweetContent(), $this->VALID_TWEETCONTENT2);
+		$this->assertEquals($pdoTweet->getTweetDate(), $this->VALID_TWEETDATE);
+	}
