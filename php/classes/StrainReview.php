@@ -276,6 +276,29 @@ class StrainReview implements \JsonSerializable {
 	} // insert
 
 	/**
+	 * deletes this StrainReview from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) {
+		// enforce the strainReviewId is not null (i.e., don't delete a strainReview that hasn't been inserted)
+		if($this->strainReviewId === null) {
+			throw(new \PDOException("unable to delete a strain review that does not exist"));
+		}
+
+		// create query template
+		$query = "DELETE FROM strainReview WHERE strainReviewId = :strainReviewId";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holder in the template
+		$parameters = ["strainReviewId" => $this->strainReviewId];
+		$statement->execute($parameters);
+
+	} // deletes
+
+	/**
 	 * gets the StrainReview by Id
 	 *
 	 * @param \PDO $pdo PDO connection object

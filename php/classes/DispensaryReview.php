@@ -296,7 +296,8 @@ class DispensaryReview implements \JsonSerializable {
 		// bind the member variables to the place holder in the template
 		$parameters = ["dispensaryReviewId" => $this->dispensaryReviewId];
 		$statement->execute($parameters);
-	}
+
+	} // deletes
 
 
 	/**
