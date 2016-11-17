@@ -70,7 +70,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewstByDispensaryReviewId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
+		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewsByDispensaryReviewId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
 		$this->assertEquals($pdoDispensaryReview->getProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
@@ -84,7 +84,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 	 **/
 	public function testInsertInvalidDispensaryReview() {
 		// create a Tweet with a non null tweet id and watch it fail
-		$dispensaryReview = new DispensayReview(CannaduceusTest::INVALID_KEY, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
+		$dispensaryReview = new DispensaryReview(CannaduceusTest::INVALID_KEY, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
 		$dispensaryReview->insert($this->getPDO());
 	}
 
