@@ -1,7 +1,7 @@
 <?php
 namespace Edu\Cnm\hlozano2\DataDesign\Test;
 
-use Edu\Cnm\hlozano2\DataDesign\{StrainReviewProfile, StrainReview};
+use Edu\Cnm\hlozano2\DataDesign\{Profile, StrainReview};
 
 // grab the project test parameters
 require_once("DataDesignTest.php");
@@ -48,8 +48,8 @@ class StrainReviewTest extends DataDesignTest {
 		parent::setUp();
 
 		// create and insert a Profile to own the test StrainReview
-		$this->strainReviewProfile = new StrainReviewProfile(null, "@phpunit", "test@phpunit.de", "+12125551212");
-		$this->strainReviewProfile->insert($this->getPDO());
+		$this->profile = new Profile(null, "@phpunit", "test@phpunit.de", "+12125551212");
+		$this->profile->insert($this->getPDO());
 
 		// calculate the date (just use the time the unit test was setup...)
 		$this->VALID_STRAINREVIEWDATE = new \DateTime();
