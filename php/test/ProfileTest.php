@@ -263,7 +263,7 @@ class ProfileTest extends CannaduceusTest {
 	 * @expectedException \PDOException
 	 */
 	public function testDeleteInvaildProfile(){
-				//create a profile and never actually insert it then try to delete it when it hasnt been inserted
+			//create a profile and never actually insert it then try to delete it when it hasnt been inserted
 
 			//create a dummy profile (again:()
 			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
@@ -274,11 +274,64 @@ class ProfileTest extends CannaduceusTest {
 
 
 
+	/**
+	 * test getting a profile by profile name
+	 */
+	public function testGetProfileByProfileName(){
+			//get number of initial rows (will be zero) and save it for later
+			$numRows = $this->getConnection()->getRowCount("profile");
+
+
+			// create a dummy profile
+			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+
+			$results = Profile::getProfileByProfileUserName($this->getPDO(), $profile->getProfileUserName());
+
+			$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
+
+			//confirm we have just 1 profile in the data base
+			$this->assertCount(1, $results);
+
+
+			//ensure there are only instances of the profile class in the namespace
+			$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus\\Profile", $results);
+
+			//grab results from the array and validate them
+			$pdoProfile = $results[0];
+			//check if the stuff in the database matches the stuff we put in
+			$this->assertEquals($pdoProfile->getProfileUserName(), $this->VAILD_PROFILEUSERNAME1);
+			$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL1);
+			$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH1);
+			$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILESALT1);
+			$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATIONTOKEN1);
+	}
+
+	/**
+	 * test getting a profile by the profile email
+	 */
+	public function testGetProfileByProfileEmail(){
+			//get number of initial rows (will be zero) and save it for later
+			$numRows = $this->getConnection()->getRowCount("profile");
+
+			//create a dummy profile
+			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+
+			//insert the mock profile in SQL
+			$profile->insert($this->getPDO());
+
+			$results = Profile::getProfileByProfileEmail($this->getPDO(), $profile->getProfileEmail());
+
+	$this->assert
 
 
 
 
 
+
+
+
+
+	}
 
 
 
