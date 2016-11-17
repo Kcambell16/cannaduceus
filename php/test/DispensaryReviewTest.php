@@ -1,9 +1,7 @@
 <?php
-namespace Edu\Cnm\Cannaduceus;
+namespace Edu\Cnm\Cannaduceus\Test;
 
-use Edu\Cnm\Cannaduceus\{
-	Profile, DispensaryReview, Test\CannaduceusTest
-};
+use Edu\Cnm\Cannaduceus\{Profile, Dispensary, DispensaryReview};
 
 // grab the project test parameters
 require_once("CannaduceusTest.php");
@@ -32,6 +30,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 	 * @var \DateTime $VALID_DISPENSARYREVIEWDATETIME
 	 **/
 	protected $VALID_DISPENSARYREVIEWDATETIME = null;
+
 	/**
 	 * Profile that created the DispensaryReview; this is for foreign key relations
 	 * @var Profile profile
@@ -48,9 +47,12 @@ class DispensaryReviewTest extends CannaduceusTest {
 		// create and insert a Profile to own the test DispensaryReview
 		$this->profile = new Profile(null, "@phpunit", "test@phpunit.de", "+12125551212");
 		$this->profile->insert($this->getPDO());
+		// create and insert a Dispensary to own the test
+		$this->dispensary = new Dispensary(null, "@phpunit", "test@phpunit.de", "+12125551212");
+		$this->dispensary->insert($this->getPDO());
 
 		// calculate the date (just use the time the unit test was setup...)
-		$this->VALID_DISPENSARYREVIEWDATE = new \DateTime();
+		$this->VALID_DISPENSARYREVIEWDATETIME = new \DateTime();
 	}
 	/**
 	 * test inserting a valid DispensaryReview and verify that the actual mySQL data matches
@@ -64,7 +66,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewtByDispensaryReviewId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
+		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewstByDispensaryReviewId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
 		$this->assertEquals($pdoDispensaryReview->getProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);

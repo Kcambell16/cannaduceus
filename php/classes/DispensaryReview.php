@@ -1,6 +1,6 @@
 <?php
 
-namespace Edu\Cnm\hlozano2\DataDesign;
+namespace Edu\Cnm\Cannaduceus;
 
 require_once("autoload.php");
 
@@ -12,7 +12,7 @@ require_once("autoload.php");
  * @version 4.2.0
  **/
 
-class DispensayReview implements \JsonSerializable {
+class DispensaryReview implements \JsonSerializable {
 	use ValidateDate;
 	/**
 	 * id for this DispensaryReview; this is the primary key
@@ -275,6 +275,12 @@ class DispensayReview implements \JsonSerializable {
 		$this->dispensaryReviewId = intval($pdo->lastInsertId());
 
 	} // insert
+
+	/**
+	 * deletes this DispensaryReview from my SQL
+	 *
+	 * @param
+	 */
 
 	/**
 	 * gets the DispensaryReview by Id
