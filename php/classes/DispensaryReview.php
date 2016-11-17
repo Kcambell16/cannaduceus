@@ -348,7 +348,7 @@ class DispensaryReview implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getDispensaryReviewByDispensaryReviewProfileId(\PDO $pdo, int $dispensaryReviewProfileId) {
+	public static function getDispensaryReviewsByDispensaryReviewProfileId(\PDO $pdo, int $dispensaryReviewProfileId) {
 		// sanitize the profile id before searching
 		if($dispensaryReviewProfileId <= 0) {
 			throw(new \RangeException("dispensary review profile id must be positive"));
@@ -387,7 +387,7 @@ class DispensaryReview implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getDispensaryReviewByDispensaryReviewDispensaryId(\PDO $pdo, int $dispensaryReviewDispensaryId) {
+	public static function getDispensaryReviewsByDispensaryReviewDispensaryId(\PDO $pdo, int $dispensaryReviewDispensaryId) {
 		// sanitize the profile id before searching
 		if($dispensaryReviewDispensaryId <= 0) {
 			throw(new \RangeException("dispensary review dispensary id must be positive"));
@@ -416,6 +416,8 @@ class DispensaryReview implements \JsonSerializable {
 		}
 		return($dispensaryReviews);
 	}
+
+
 
 	/**
 	 * gets the didpensaryReview by content

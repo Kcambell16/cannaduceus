@@ -45,10 +45,14 @@ class DispensaryReviewTest extends CannaduceusTest {
 		parent::setUp();
 
 		// create and insert a Profile to own the test DispensaryReview
-		$this->profile = new Profile(null, "@phpunit", "test@phpunit.de", "+12125551212");
+		$password = "abc123";
+		$salt = bin2hex(random_bytes(32));
+		$hash = hash_pbkdf2("sha512", $password, $salt, 262144);
+		$activation = bin2hex(random_bytes(16));
+		$this->profile = new Profile(null, "profileUserName", "user@me.com", $hash, $salt, $activation);
 		$this->profile->insert($this->getPDO());
 		// create and insert a Dispensary to own the test DispensaryReview
-		$this->dispensary = new Dispensary(null, "@phpunit", "test@phpunit.de", "+12125551212");
+		$this->dispensary = new Dispensary(null, "dispensaryName", "dispensaryAttention", "123 elm st", "Juarez", "CH", "86753-7654", "ninja@mac.com", "5058675309", "apple@mac.com");
 		$this->dispensary->insert($this->getPDO());
 
 		// calculate the date (just use the time the unit test was setup...)
