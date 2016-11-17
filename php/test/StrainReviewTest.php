@@ -1,10 +1,10 @@
 <?php
-namespace Edu\Cnm\hlozano2\DataDesign\Test;
+namespace Edu\Cnm\Cannaduceus\Test;
 
-use Edu\Cnm\hlozano2\DataDesign\{Profile, StrainReview};
+use Edu\Cnm\Cannaduceus\{Profile, Strain, StrainReview};
 
 // grab the project test parameters
-require_once("DataDesignTest.php");
+require_once("CannaduceusTest.php");
 
 // grab the class under scrutiny
 require_once(dirname(__DIR__) . "/classes/autoload.php");
@@ -18,20 +18,15 @@ require_once(dirname(__DIR__) . "/classes/autoload.php");
  * @see StrainReview
  * @author Hector Lozano <hlozano2@cnm.edu>
  **/
-class StrainReviewTest extends DataDesignTest {
+class StrainReviewTest extends CannaduceusTest  {
 	/**
 	 * content of the StrainReview
 	 * @var string $VALID_STARINREVIEWTXT
 	 **/
-	protected $VALID_STRAINREVIEWTXT = "PHPUnit test passing";
-	/**
-	 * content of the updated DispensaryReview
-	 * @var string $VALID_DISPENSARYREVIEWCONTENT2
-	 **/
-	protected $VALID_STRAINREVIEWTXT2 = "PHPUnit test still passing";
+	protected $VALID_STRAINREVIEWTXT = "This strain no vale madre!!!";
 	/**
 	 * timestamp of the DispensaryReview; this starts as null and is assigned later
-	 * @var DateTime $VALID_DISPENSARYREVIEWDATE
+	 * @var DateTime $VALID_STRAINREVIEWDATE
 	 **/
 	protected $VALID_STRAINREVIEWDATE = null;
 	/**

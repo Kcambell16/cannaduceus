@@ -1,9 +1,7 @@
 <?php
-namespace Edu\Cnm\Cannaduceus;
+namespace Edu\Cnm\Cannaduceus\Test;
 
-use Edu\Cnm\Cannaduceus\{
-	Profile, DispensaryReview, Test\CannaduceusTest
-};
+use Edu\Cnm\Cannaduceus\{Profile, Dispensary, DispensaryReview};
 
 // grab the project test parameters
 require_once("CannaduceusTest.php");
@@ -32,6 +30,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 	 * @var \DateTime $VALID_DISPENSARYREVIEWDATETIME
 	 **/
 	protected $VALID_DISPENSARYREVIEWDATETIME = null;
+
 	/**
 	 * Profile that created the DispensaryReview; this is for foreign key relations
 	 * @var Profile profile
@@ -46,11 +45,18 @@ class DispensaryReviewTest extends CannaduceusTest {
 		parent::setUp();
 
 		// create and insert a Profile to own the test DispensaryReview
-		$this->profile = new Profile(null, "@phpunit", "test@phpunit.de", "+12125551212");
+		$password = "abc123";
+		$salt = bin2hex(random_bytes(32));
+		$hash = hash_pbkdf2("sha512", $password, $salt, 262144);
+		$activation = bin2hex(random_bytes(16));
+		$this->profile = new Profile(null, "profileUserName", "user@me.com", $hash, $salt, $activation);
 		$this->profile->insert($this->getPDO());
+		// create and insert a Dispensary to own the test DispensaryReview
+		$this->dispensary = new Dispensary(null, "dispensaryName", "dispensaryAttention", "123 elm st", "Juarez", "CH", "86753-7654", "ninja@mac.com", "5058675309", "apple@mac.com");
+		$this->dispensary->insert($this->getPDO());
 
 		// calculate the date (just use the time the unit test was setup...)
-		$this->VALID_DISPENSARYREVIEWDATE = new \DateTime();
+		$this->VALID_DISPENSARYREVIEWDATETIME = new \DateTime();
 	}
 	/**
 	 * test inserting a valid DispensaryReview and verify that the actual mySQL data matches
@@ -60,15 +66,15 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("dispensary review");
 
 		// create a new DispensaryReview and insert to into mySQL
-		$dispensaryReview = new DispensayReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewtByDispensaryReviewId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
+		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewsByDispensaryReviewId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
 		$this->assertEquals($pdoDispensaryReview->getProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
-		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATETIME);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDateTime(), $this->VALID_DISPENSARYREVIEWDATETIME);
 	}
 
 	/**
@@ -78,7 +84,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 	 **/
 	public function testInsertInvalidDispensaryReview() {
 		// create a Tweet with a non null tweet id and watch it fail
-		$dispensaryReview = new DispensayReview(DataDesignTest::INVALID_KEY, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview = new DispensaryReview(CannaduceusTest::INVALID_KEY, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
 		$dispensaryReview->insert($this->getPDO());
 	}
 
@@ -122,11 +128,11 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("dispensary review");
 
 		// create a new DispensaryReview and insert to into mySQL
-		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$results = DispensaryReview::getTweetByDispensaryReviewTxt($this->getPDO(), $dispensaryReview->getDispensaryReviewTxt());
+		$results = DispensaryReview::getDispensaryReviewByDispensaryReviewTxt($this->getPDO(), $dispensaryReview->getDispensaryReviewTxt());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus", $results);
@@ -159,15 +165,15 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$results = DispensayReview::getAllDispensaryReviews($this->getPDO());
+		$results = DispensaryReview::getAllDispensaryReviews($this->getPDO());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\hlozano2\\DataDesign\\Dispensary Review", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus", $results);
 
 		// grab the result from the array and validate it
 		$pdoDispensaryReview = $results[0];
 		$this->assertEquals($pdoDispensaryReview->getProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
-		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATE);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATETIME);
 	}
 }
