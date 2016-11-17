@@ -51,7 +51,7 @@ class StrainReview implements \JsonSerializable {
 	 * @param int|null $newStrainReviewId Id of this strain review or null if new strain review
 	 * @param int|null $newStrainReviewProfileId Id of this strain review profile or null if new strain review profile
 	 * @param int|null $newStrainReviewStrainId Id of this strain review strain or null if new strain review strain
-	 * @param string $newStrainReviewDateTime string contains actual strain review date
+	 * @param string $newStrainReviewDate string contains actual strain review date
 	 * @param string $newStrainReviewTxt string contains actual strain review txt
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g. strings too long, negative integers)

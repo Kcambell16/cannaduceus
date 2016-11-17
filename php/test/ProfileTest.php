@@ -99,7 +99,17 @@ class ProfileTest extends CannaduceusTest {
 		// run the default abstract setUp() method from parent first
 		parent::setUp();
 
+		$password = "abc123";
 
+		$salt = bin2hex(random_bytes(16));
+		$hash = hash_pdkdf2("sha512", $password, $salt, 262144);
+
+
+		$this->VAILD_PROFILESALT1 = $salt;
+		$this->VAILD_PROFILESALT2 = $salt;
+
+		$this->VAILD_PROFILEHASH1 = $hash;
+		$this->VAILD_PROFILEHASH2 = $hash;
 
 
 	}

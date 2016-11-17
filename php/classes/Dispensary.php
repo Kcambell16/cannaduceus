@@ -682,6 +682,62 @@ WHERE dispensaryId = :dispensaryId";
 		if($dispensaryId <= 0) {
 			throw(new \PDOException("dispensary id is not positive"));
 		}
+
+		// create query template
+		$query = "SELECT dispensaryId,
+			dispensaryAttention,
+			dispensaryCity,
+			dispensaryEmail,
+			dispensaryName,
+			dispensaryPhone,
+			dispensaryState,
+			dispensaryStreet1, 
+			dispensaryStreet2, 
+			dispensaryUrl,
+			dispensaryZipCode FROM dispensary WHERE 			dispensaryId = :dispensaryId";
+
+		// bind the dispensary id to the place holder in the template
+		$parameters = ["dispensaryId" => $dispensaryId];
+		$statement->execute($parameters);
+
+		// grab the tweet from mySQL
+		try {
+			$dispensary = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+					$dispensary = new Dispensary($row["dispensaryId"], $row["dispensaryAttention"], $row["dispensaryCity"], $row["dispensaryEmail",] $row["dispensaryName", $row["dispensaryPhone"], $row["dispensaryState"], $row["dispensaryStreet1"],$row["dispensaryStreet2"], $row["dispensaryUrl"], $row["dispensaryZipCode"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+			return($dispensary);
+	}
+
+	/**
+	 * get all dispenaries
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of Tweets found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getAllDispensaries(\PDO $pdo) {
+		// create query template
+		$query = "SELECT dispensaryId,
+			dispensaryAttention,
+			dispensaryCity,
+			dispensaryEmail,
+			dispensaryName,
+			dispensaryPhone,
+			dispensaryState,
+			dispensaryStreet1, 
+			dispensaryStreet2, 
+			dispensaryUrl,
+			dispensaryZipCode FROM dispensary";
+			$statement = $pdo->prepare($query);
+			$statement->execute();
+
 	}
 
 
