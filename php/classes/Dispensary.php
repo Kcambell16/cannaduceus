@@ -568,7 +568,7 @@ class Dispensary implements \JsonSerializable {
  * @throws \TypeError if $pdo is not a PDO connection object
  **/
 public function delete(\PDO $pdo, $statement) {
-//enforce the dispensaryId is not null (i.e., don't delete a disepnsary that hasn't been inserted)
+	//enforce the dispensaryId is not null (i.e., don't delete a disepnsary that hasn't been inserted)
 	if($this->dispensaryId === null) {
 		throw(new \PDOException("unable to delete a dispensary that does not exist"));
 	}
@@ -592,8 +592,7 @@ public function update(\PDO $pdo) {
 	}
 
 	// create query template
-	$query = "UPDATE dispensary SET dispensaryId = :dispensaryId,
-dispensaryAttention = :dispensaryAttention,
+	$query = "UPDATE dispensary SET dispensaryAttention = :dispensaryAttention,
 dispensaryCity = :dispensaryCity,
 dispensaryEmail = :dispensaryEmail,
 dispensaryName = :dispensaryName,
@@ -606,15 +605,15 @@ dispensaryZipCode = :dispensaryZipCode,
 WHERE dispensaryId = :dispensaryId";
 
 	// bind the member varibles to the place holders in the template
-	$parameters = ["\"dispensaryName\" => $this->dispensaryName,
-				\"dispensaryAttention\" => $this->dispensaryAttention,
-				\"dispensaryStreet1\" => $this->dispensaryStreet1,
-				\"dispensaryStreet2\" => $this->dispensaryStreet2,
-				\"dispensaryCity\" => $this->dispensaryCity,
-				\"dispensaryState\" => $this->dispensaryState,
-				\"dispensaryZipCode\" => $this->dispensaryZipCode,
-				\"dispensaryEmail\" => $this->dispensaryEmail,
-				\"dispensaryPhone\" => $this->dispensaryPhone,"];
+	$parameters = ["dispensaryName" => $this->dispensaryName,
+				"dispensaryAttention" => $this->dispensaryAttention,
+				"dispensaryStreet1" => $this->dispensaryStreet1,
+				"dispensaryStreet2" => $this->dispensaryStreet2,
+				"dispensaryCity" => $this->dispensaryCity,
+				"dispensaryState" => $this->dispensaryState,
+				"dispensaryZipCode" => $this->dispensaryZipCode,
+				"dispensaryEmail" => $this->dispensaryEmail,
+				"dispensaryPhone" => $this->dispensaryPhone];
 	$statement->execute($parameters);
 }
 
