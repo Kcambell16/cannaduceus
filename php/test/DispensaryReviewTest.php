@@ -1,7 +1,7 @@
 <?php
 namespace Edu\Cnm\hlozano2\DataDesign\Test;
 
-use Edu\Cnm\hlozano2\DataDesign\{DispensayReviewProfileId, DispensayReview};
+use Edu\Cnm\hlozano2\DataDesign\{DispensayReviewProfile, DispensayReview};
 
 // grab the project test parameters
 require_once("DataDesignTest.php");
@@ -18,17 +18,17 @@ require_once(dirname(__DIR__) . "/classes/autoload.php");
  * @see DispensayReview
  * @author Hector Lozano <hlozano2@cnm.edu>
  **/
-class DispensaryReviewTest extends DataDesignTest {
+class DispensaryReviewTest extends DataDesign {
 	/**
 	 * content of the DispensaryReview
-	 * @var string $VALID_DISPENSARYREVIEWCONTENT
+	 * @var string $VALID_DISPENSARYREVIEWTXT
 	 **/
-	protected $VALID_DISPENSARYREVIEWCONTENT = "PHPUnit test passing";
+	protected $VALID_DISPENSARYREVIEWTXT = "PHPUnit test passing";
 	/**
 	 * content of the updated DispensaryReview
 	 * @var string $VALID_DISPENSARYREVIEWCONTENT2
 	 **/
-	protected $VALID_DISPENSARYREVIEWCONTENT2 = "PHPUnit test still passing";
+	protected $VALID_DISPENSARYREVIEWTXT2 = "PHPUnit test still passing";
 	/**
 	 * timestamp of the DispensaryReview; this starts as null and is assigned later
 	 * @var DateTime $VALID_DISPENSARYREVIEWDATE
@@ -47,9 +47,9 @@ class DispensaryReviewTest extends DataDesignTest {
 		// run the default setUp() method first
 		parent::setUp();
 
-		// create and insert a Profile to own the test Tweet
-		$this->profile = new Profile(null, "@phpunit", "test@phpunit.de", "+12125551212");
-		$this->profile->insert($this->getPDO());
+		// create and insert a Profile to own the test DispensaryReview
+		$this->dispensaryReviewProfile = new DispensaryReviewProfile(null, "@phpunit", "test@phpunit.de", "+12125551212");
+		$this->dispensaryReviewProfile->insert($this->getPDO());
 
 		// calculate the date (just use the time the unit test was setup...)
 		$this->VALID_DISPENSARYREVIEWDATE = new \DateTime();
@@ -66,9 +66,9 @@ class DispensaryReviewTest extends DataDesignTest {
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$pdoTweet = Tweet::getTweetByTweetId($this->getPDO(), $tweet->getTweetId());
+		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewtByDispensaryReviewId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("tweet"));
-		$this->assertEquals($pdoTweet->getProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoTweet->getTweetContent(), $this->VALID_TWEETCONTENT);
-		$this->assertEquals($pdoTweet->getTweetDate(), $this->VALID_TWEETDATE);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewProfileId(), $this->dispensaryReviewProfile->getDispensaryReviewProfileId());
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATE);
 	}
