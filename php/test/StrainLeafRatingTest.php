@@ -5,59 +5,93 @@ require_once("CannaduceusTest.php");
 require_once(dirname(__DIR__) . "/classes/StrainLeafRating.php");
 
 //class being tested
-//require_once(dirname(__DIR__). "/php/classes/StrainLeafRating.php");
+require_once(dirname(__DIR__). "../php/classes/autoload.php");
 
 /**
  * Full PHPUnit test for the StrainLeafRating class
  *
  * This is a complete PHPUnit test of the StrainLeafRating class.
- * *All* mySQL/PDo enabled methods are tested for both valid and invalid inputs
+ * *All* mySQL/PDO enabled methods are tested for both valid and invalid inputs
+ *
+ * @see \Edu\Cnm\Cannaduceus\StrainLeafRating
  * @author James Montoya <jamesmontoyaarts@gmail.com>
  */
 class StrainLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 	/**
-	 * valid strain leaf rating value
-	 * @var int $VALID_STRAINLEAFRATINGVALUE
+	 * valid strain leaf rating rating
+	 * @var int $VALID_STRAINLEAFRATINGRATING
 	 */
-	protected $VALID_STRAINLEAFRATINGVALUE = 5;
+	protected $VALID_STRAINLEAFRATINGRATING = 0;
+
 	/**
-	 * valid second strain leaf rating value
-	 * @var int $VALID_STRAINLEAFRATINGVALUE1
+	 * valid second strain leaf rating rating
+	 * @var int $VALID_STRAINLEAFRATINGRATING1
 	 */
-	protected $VALID_STRAINLEAFRATINGVALUE1 = 4;
+	protected $VALID_STRAINLEAFRATINGRATING1 = 3;
+
 	/**
-	 * invalid strain leaf rating values
-	 * @var int $INVALID_STRAINLEAFRATINGVALUE1
+	 * invalid strain leaf rating rating
+	 * @var int $INVALID_STRAINLEAFRATINGRATING
 	 */
-	protected $INVALID_STRAINLEAFRATINGVALUE1 = "A";
+	protected $INVALID_STRAINLEAFRATINGRATING1 = "A";
+
 	/**
 	 * invalid second strain leaf rating value
-	 * @var int $INVALID_STRAINLEAFRATINGVALUE2
+	 * @var int $INVALID_STRAINLEAFRATINGRATING1
 	 */
-	protected $INVALID_STRAINLEAFRATINGVALUE2 = 8;
+	protected $INVALID_STRAINLEAFRATINGRATING2 = 8;
+
 	/**
-	 * valid browser expressions to use
-	 * @var string $VALID_BROWSER
+	 * valid strain to use
+	 * @var \Edu\Cnm\Cannaduceus\Test\Strain $strainId
 	 */
-	protected $VALID_BROWSER = "chrome 46.0.2490.";
+	protected $strainId = null;
+
 	/**
-	 * valid Ip Address to use for unit testing
-	 * @var string $VALID_IPADDRESS
+	 * invalid strain to use
+	 * @var \Edu\Cnm\Cannaduceus\Test\Strain $strainId
 	 */
-	protected $VALID_IPADDRESS = "2600::dead:beef:cafe";
+	protected $strainId = "Betty Baker 1976";
+
 	/**
 	 * valid user to use
-	 * @var \Edu\Cnm\Cannaduceus\Test\Profile $profileId
+	 * @var \Edu\Cnm\Cannaduceus\Test\strainLeafRating $profileId
 	 */
 	protected $profileId = null;
-	/**
-	 *valid user hash
-	 * @var string $hash
-	 */
-	protected $hash = null;
-	/**
-	 *valid user salt
-	 * @var string $salt
-	 */
-	protected $salt = null;
 
+	/**
+	 * Invalid user to use
+	 * @var \Edu\Cnm\Cannaduceus\Test\strainLeafRating $profileId
+	 */
+	protected $profileId = "Happy Stoner";
+
+
+	/**
+	 * create dependent objects before running each test
+	 */
+	public final function setUp(){
+		//run the default setUp() method first
+		parent::setUp();
+
+		//create and insert a strain and profile to own the rating
+		$this->strainId = new strain(null, "Couch Melt", "Indica", "25%", "13.9%", "A potent strain that will put your butt to sleep");
+		$this->profileId = new profile(null, "Betty Baker", "420Betty@google.com", hash_pdkdf2("sha513", $password, $salt), bin2hex(random_bytes(16)) );
+		$this->profileId->insert($this->getPDO());
+
+		//create the Strain Leaf Rating Test
+		$this->strainLeafRating = new strainLeafRating(null, $this->strainId->gerStrainId(), "PHPUnit strain leaf rating test passing");
+		$this->strainLeafRating->insert($this->getPDO());
+	}//create strain Id and profile Id
+
+	/**
+	 * test inserting a valid strain leaf rating and verify that the actual mySQL data matches
+	 */
+	public function testIntervalValidStrainLeafRating(){
+		//count the number of rows and save it for later
+		$numRows = $this->getRowCount("strainLeafRating");
+
+		//create a new strainLeafRating and insert it into mySQL
+		$like = new \Edu\Cnm\jCannaduceus\strainLeafRating()
+
+	}
+}

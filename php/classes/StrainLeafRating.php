@@ -1,5 +1,5 @@
 <?php
-namespace Edu\Cnm\jmontoya306\cannaduceus;
+namespace Edu\Cnm\jCannaduceus;
 
 /**
  * Cross section of cannaduceus strainLeafRating class
