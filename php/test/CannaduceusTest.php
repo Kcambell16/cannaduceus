@@ -44,15 +44,14 @@ abstract class CannaduceusTest extends \PHPUnit_Extensions_Database_TestCase {
 
 		// add all the tables for the project here
 		// THESE TABLES *MUST* BE LISTED IN THE SAME ORDER THEY WERE CREATED!!!!
-		$dataset->addTable("profile");
 		$dataset->addTable("dispensary");
-		$dataset->addTable("strain");
-		$dataset->addTable("dispensaryReview");
-		$dataset->addTable("dispensaryLeafRating");
 		$dataset->addTable("dispensaryFavorite");
-		$dataset->addTable("strainReview");
-		$dataset->addTable("strainLeafRating");
+		$dataset->addTable("dispensaryReview");
+		$dataset->addTable("profile");
+		$dataset->addTable("strain");
 		$dataset->addTable("strainFavorite");
+		$dataset->addTable("strainLeafRating");
+		$dataset->addTable("strainReview");
 		return($dataset);
 	}
 
