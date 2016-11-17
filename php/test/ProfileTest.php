@@ -205,9 +205,12 @@ class ProfileTest extends CannaduceusTest {
 				$pdoProfile = Profile::getProfileByProfileId($this->getPDO(), $profile->getProfileId());
 				$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
 
-
-
-
+				//the following will all best testing to match that the data in the database matches the data we thought we put in the database
+				$this->assertEquals($pdoProfile->getProfileUserName(), $this->VAILD_PROFILEUSERNAME2);
+				$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL2);
+				$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH2);
+				$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILESALT2);
+				$this->assertEquals($pdoProfile->getProfileActivation(), $this->VALID_PROFILEACTIVATIONTOKEN2);
 	}
 
 
@@ -216,9 +219,67 @@ class ProfileTest extends CannaduceusTest {
 	 * test insering a profile that already exists
 	 * @expectedException \PDOException
 	 */
-	public function testInsertInvalidProfile(){
+	public function testUpdateInvaildProfile(){
+			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
 
+			//now that the dummy profile has been created, we will not insert this bad boy but were gonna try to update it in SQL
+			$profile->update($this->getPDO());
 	}
+
+
+
+	/**
+	 * test creating a profile and then 410'ing it
+	 */
+	public function testDeleteVaildProfile(){
+				//count the rows assign that number to a variable and save it for later
+				$numRows = $this->getConnection()->getRowCount("profile");
+
+
+		//create a dummy profile
+		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+
+		//insert it into SQL
+		$profile->insert($this->getPDO());
+
+		//check to be sure that the profile was properly inserted
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
+
+		//delete the profile
+		$profile->delete($this->getPDO());
+
+
+	// $pdoProfile now contains all the information for our dooomy profile
+	$pdoProfile = Profile::getProfileByProfileId($this->getPDO(), $profile->getProfileId());
+	// assert that its null
+	$this->assertNull($pdoProfile);
+
+
+	//assert that the rows are empty
+	$this->assertEquals($numRows, $this->getConnection()->getRowCount("profile"));
+	}
+	/**
+	 * test deleting a profile that does not exist
+	 * @expectedException \PDOException
+	 */
+	public function testDeleteInvaildProfile(){
+				//create a profile and never actually insert it then try to delete it when it hasnt been inserted
+
+			//create a dummy profile (again:()
+			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+
+			//now time to delete this egg head with out inserting it
+			$profile->delete($this->getPDO());
+	}
+
+
+
+
+
+
+
+
+
 
 
 
