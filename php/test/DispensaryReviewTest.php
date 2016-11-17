@@ -173,3 +173,12 @@ class DispensaryReviewTest extends DataDesign {
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATE);
 	}
+
+	/**
+	 * test grabbing a Tweet by content that does not exist
+	 **/
+	public function testGetInvalidTweetByTweetContent() {
+		// grab a tweet by searching for content that does not exist
+		$tweet = Tweet::getTweetByTweetContent($this->getPDO(), "you will find nothing");
+		$this->assertCount(0, $tweet);
+	}
