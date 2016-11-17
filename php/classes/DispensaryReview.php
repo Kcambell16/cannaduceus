@@ -277,10 +277,27 @@ class DispensaryReview implements \JsonSerializable {
 	} // insert
 
 	/**
-	 * deletes this DispensaryReview from my SQL
+	 * deletes this DispensaryReview from mySQL
 	 *
-	 * @param
-	 */
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) {
+		// enforce the dispensaryReviewId is not null (i.e., don't delete a dispensaryreview that hasn't been inserted)
+		if($this->dispensaryReviewId === null) {
+			throw(new \PDOException("unable to delete a dispensary review that does not exist"));
+		}
+
+		// create query template
+		$query = "DELETE FROM dispensaryReview WHERE dispensaryReviewId = :dispensaryReviewId";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holder in the template
+		$parameters = ["dispensaryReviewId" => $this->dispensaryReviewId];
+		$statement->execute($parameters);
+	}
+
 
 	/**
 	 * gets the DispensaryReview by Id
