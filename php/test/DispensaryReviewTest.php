@@ -24,16 +24,16 @@ class DispensaryReviewTest extends DataDesignTest {
 	 * @var string $VALID_DISPENSARYREVIEWTXT
 	 **/
 	protected $VALID_DISPENSARYREVIEWTXT = "PHPUnit test passing";
-	/**
-	 * content of the updated DispensaryReview
-	 * @var string $VALID_DISPENSARYREVIEWCONTENT2
-	 **/
-	protected $VALID_DISPENSARYREVIEWTXT2 = "PHPUnit test still passing";
+//	/**
+//	 * content of the updated DispensaryReview
+//	 * @var string $VALID_DISPENSARYREVIEWCONTENT2
+//	 **/
+//	protected $VALID_DISPENSARYREVIEWTXT2 = "PHPUnit test still passing";
 	/**
 	 * timestamp of the DispensaryReview; this starts as null and is assigned later
 	 * @var DateTime $VALID_DISPENSARYREVIEWDATE
 	 **/
-	protected $VALID_DISPENSARYREVIEWDATE = null;
+	protected $VALID_DISPENSARYREVIEWDATETIME = null;
 	/**
 	 * Profile that created the DispensaryReview; this is for foreign key relations
 	 * @var Profile profile
