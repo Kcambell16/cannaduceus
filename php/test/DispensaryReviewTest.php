@@ -72,3 +72,14 @@ class DispensaryReviewTest extends DataDesign {
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATE);
 	}
+
+	/**
+	 * test inserting a DispensaryReview that already exists
+	 *
+	 * @expectedException PDOException
+	 **/
+	public function testInsertInvalidDispensaryReview() {
+		// create a Tweet with a non null tweet id and watch it fail
+		$dispensaryReview = new DispensayReview(DataDesignTest::INVALID_KEY, $this->profile->getDispensaryReviewProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview->insert($this->getPDO());
+	}
