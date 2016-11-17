@@ -25,16 +25,48 @@ require_once (dirname(__DIR__) . "/public_html/php/classes/autoload.php");
 
 class DispensaryTest extends CannaduceusTest {
 	/**
-	 * Id of the Dispensary
-	 * @var int $VALID_DISPENSARYID
+	 * Dispensary City
+	 * @var string $VALID_DISPENSARYCITY
 	 **/
-	protected $VALID_DISPENSARYID = "PHPUnit test passing";
+	protected $VALID_DISPENSARYCITY = "Space Jam";
 
 	/**
-	 * Attention of the Dispensary
-	 * @var string $VALID_DISPENSARYATTENTION
+	 * Dispensary email
+	 * @var string $VALID_DISPENSARYEMAIL
 	 **/
-	protected $VALID_DISPENSARYATTENTION = "PHPUnit test still passing";
+	protected $VALID_DISPENSARYEMAIL = "Stayhigh@gmail.com";
+
+	/**
+	 * Dispensary Name
+	 * @var string $VALID_DISPENSARYNAME
+	 **/
+	protected $VALID_DISPENSARYNAME = "Blue Kush Dispensary";
+
+	/**
+	 * Dispensary Phone
+	 * @var int $VALID_DISPENSARYPHONE
+	 **/
+	protected $VALID_DISPENSARYPHONE = "5057829444";
+
+	/**
+	 * Dispensaries by state
+	 * @var string $VALID_DISPENSARYSTATE
+	 **/
+	protected $VALID_DISPENSARYSTATE = "HI";
+
+	/**
+	 * Dispensary Street1
+	 * @var string $VALID_DISPENSARYSTREET1
+	 **/
+	protected $VALID_DISPENSARYSTREET1 = "Blue Haze Blvd";
+
+	/**
+	 * Dispensary Street2
+	 * @var string $VALID_DISPENSARYSTREET2
+	 **/
+	protected $VALID_DISPENSARYNAME = " Blue Kush Dispensary";
+
+
 
 
 
