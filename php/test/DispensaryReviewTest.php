@@ -1,10 +1,12 @@
 <?php
-namespace Edu\Cnm\hlozano2\DataDesign\Test;
+namespace Edu\Cnm\Cannaduceus;
 
-use Edu\Cnm\hlozano2\DataDesign\{Profile, DispensayReview};
+use Edu\Cnm\Cannaduceus\{
+	Profile, DispensaryReview, Test\CannaduceusTest
+};
 
 // grab the project test parameters
-require_once("DataDesignTest.php");
+require_once("CannaduceusTest.php");
 
 // grab the class under scrutiny
 require_once(dirname(__DIR__) . "/classes/autoload.php");
@@ -18,20 +20,16 @@ require_once(dirname(__DIR__) . "/classes/autoload.php");
  * @see DispensayReview
  * @author Hector Lozano <hlozano2@cnm.edu>
  **/
-class DispensaryReviewTest extends DataDesignTest {
+class DispensaryReviewTest extends CannaduceusTest {
 	/**
 	 * content of the DispensaryReview
 	 * @var string $VALID_DISPENSARYREVIEWTXT
 	 **/
-	protected $VALID_DISPENSARYREVIEWTXT = "PHPUnit test passing";
-//	/**
-//	 * content of the updated DispensaryReview
-//	 * @var string $VALID_DISPENSARYREVIEWCONTENT2
-//	 **/
-//	protected $VALID_DISPENSARYREVIEWTXT2 = "PHPUnit test still passing";
+	protected $VALID_DISPENSARYREVIEWTXT = "This dispensary sucks! They have horrible customer service!";
+
 	/**
 	 * timestamp of the DispensaryReview; this starts as null and is assigned later
-	 * @var DateTime $VALID_DISPENSARYREVIEWDATE
+	 * @var \DateTime $VALID_DISPENSARYREVIEWDATETIME
 	 **/
 	protected $VALID_DISPENSARYREVIEWDATETIME = null;
 	/**
@@ -62,7 +60,7 @@ class DispensaryReviewTest extends DataDesignTest {
 		$numRows = $this->getConnection()->getRowCount("dispensary review");
 
 		// create a new DispensaryReview and insert to into mySQL
-		$dispensaryReview = new DispensayReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview = new DispensayReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
@@ -70,7 +68,7 @@ class DispensaryReviewTest extends DataDesignTest {
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
 		$this->assertEquals($pdoDispensaryReview->getProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
-		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATE);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATETIME);
 	}
 
 	/**
@@ -85,48 +83,14 @@ class DispensaryReviewTest extends DataDesignTest {
 	}
 
 	/**
-	 * test inserting a DispensaryReview, editing it, and then updating it
-	 **/
-	public function testUpdateValidDispensaryReview() {
-		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("dispensary review");
-
-		// create a new DispensaryReview and insert to into mySQL
-		$dispensaryReview = new DispensayReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
-		$dispensaryReview->insert($this->getPDO());
-
-		// edit the DispensaryReview and update it in mySQL
-		$dispensaryReview->setDispensaryReviewTxt($this->VALID_DISPENSARYREVIEWTXT2);
-		$dispensaryReview->update($this->getPDO());
-
-		// grab the data from mySQL and enforce the fields match our expectations
-		$pdoDispensaryReview = DispensayReview::getDispensaryReviewByDispensaryReviewId($this->getPDO(), $dispensaryReview->getDisensaryReviewId());
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
-		$this->assertEquals($pdoDispensaryReview->getProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT2);
-		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATE);
-	}
-
-	/**
-	 * test updating a DispensaryReview that does not exist
-	 *
-	 * @expectedException PDOException
-	 **/
-	public function testUpdateInvalidDispensaryReview() {
-		// create a DispensaryReview, try to update it without actually updating it and watch it fail
-		$dispensaryReview = new DispensayReview(null, $this->profile->getProfileId(), $this->VALID_TWEETCONTENT, $this->VALID_TWEETDATE);
-		$dispensaryReview->update($this->getPDO());
-	}
-
-	/**
 	 * test creating a DispensaryReview and then deleting it
 	 **/
 	public function testDeleteValidDispensaryReview() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("dispensary review");
+		$numRows = $this->getConnection()->getRowCount("dispensaryReview");
 
 		// create a new DispensaryReview and insert to into mySQL
-		$dispensaryReview = new DispensayReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
 		$dispensaryReview->insert($this->getPDO());
 
 		// delete the DispensaryReview from mySQL
@@ -146,32 +110,32 @@ class DispensaryReviewTest extends DataDesignTest {
 	 **/
 	public function testDeleteInvalidDispensaryReview() {
 		// create a DispensaryReview and try to delete it without actually inserting it
-		$dispensaryReview = new DispensayReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
 		$dispensaryReview->delete($this->getPDO());
 	}
 
 	/**
-	 * test grabbing a DispensayReview by dispensary text
+	 * test grabbing a DispensaryReview by dispensary text
 	 **/
 	public function testGetValidDispensaryReviewByDispensaryReviewTxt() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("dispensary review");
 
 		// create a new DispensaryReview and insert to into mySQL
-		$dispensaryReview = new DispensayReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$results = DispensayReview::getTweetByDispensaryReviewTxt($this->getPDO(), $dispensaryReview->getDispensaryReviewTxt());
+		$results = DispensaryReview::getTweetByDispensaryReviewTxt($this->getPDO(), $dispensaryReview->getDispensaryReviewTxt());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\hlozano2\\DataDesign\\Dispensary Review", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus", $results);
 
 		// grab the result from the array and validate it
 		$pdoDispensaryReview = $results[0];
 		$this->assertEquals($pdoDispensaryReview->getProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
-		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATE);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDateTime(), $this->VALID_DISPENSARYREVIEWDATETIME);
 	}
 
 	/**
@@ -179,7 +143,7 @@ class DispensaryReviewTest extends DataDesignTest {
 	 **/
 	public function testGetInvalidDispensaryReviewByDispensaryReviewTxt() {
 		// grab a dispensary review by searching for content that does not exist
-		$dispensaryReview = DispensayReview::getDispensaryReviewByDispensaryReviewTxt($this->getPDO(), "Dee Dee Dee, No Such Thing");
+		$dispensaryReview = DispensaryReview::getDispensaryReviewByDispensaryReviewTxt($this->getPDO(), "Dee Dee Dee, No Such Thing");
 		$this->assertCount(0, $dispensaryReview);
 	}
 
@@ -191,7 +155,7 @@ class DispensaryReviewTest extends DataDesignTest {
 		$numRows = $this->getConnection()->getRowCount("dispensary review");
 
 		// create a new DispensaryReview and insert to into mySQL
-		$dispensaryReview = new DispensayReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
