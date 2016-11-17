@@ -1,9 +1,9 @@
 <?php
-namespace Edu\Cnm\jmontoya306\cannaduceus;
-use Edu\Cnm\Cannaduceus\Dispensary;
+namespace Edu\Cnm\Cannaduceus;
+
 
 /**
- * Cross section of cannaduceus dispensaryLeafRating class
+ * Cross section of Cannaduceus dispensaryLeafRating class
  *
  * This is just one dispensary out of many that will be rated
  *
@@ -32,11 +32,11 @@ class dispensaryLeafRating {
 	private $dispensaryLeafRatingProfileId;
 
 
-	/** Constructor for new dispensaryLeafRating
+	/** Constructor for new dispensaryLeafRatingRating
 	 *
 	 * @param int | null $newDispensaryLeafRatingRating rating of this dispensary or null if a new dispensary
-	 * @param int $newDispensaryLeafRatingDispensaryId the id of the dispensary from the dispensary class
-	 * @param int $newDispensaryLeafRatingProfileId the id of the profile from the profile class
+	 * @param int | null $newDispensaryLeafRatingDispensaryId the id of the dispensary from the dispensary class
+	 * @param int | null $newDispensaryLeafRatingProfileId the id of the profile from the profile class
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -154,7 +154,7 @@ class dispensaryLeafRating {
 		}
 
 		// create query template
-		$query = "INSERT INTO dispensaryLeafRating(dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId) VALUES(:dispensaryLeafRatingRating, :dispensaryLeafRatingDispensaryId, :dispensaryLeafRatingProfileId)";
+		$query = "INSERT INTO dispensaryLeafRating(dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId) VALUES :dispensaryLeafRatingRating, :dispensaryLeafRatingDispensaryId, :dispensaryLeafRatingProfileId";
 		$statement = $pdo->prepare($query);
 
 
@@ -201,7 +201,7 @@ class dispensaryLeafRating {
 		if($this->dispensaryLeafRatingRating === null)	{
 			throw(new \PDOException("unable to update dispensary leaf rating that does not exist"));
 			// create query template
-			$query = "UPDATE dispensaryLeafRating SET dispensaryLeafRatingRating = :dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId = :dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId = :dispensaryLeafRatingProfileId WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating";
+			$query = "UPDATE dispensaryLeafRating SET dispensaryLeafRatingRating = :dispensaryLeafRatingRating AND dispensaryLeafRatingDispensaryId = :dispensaryLeafRatingDispensaryId AND dispensaryLeafRatingProfileId = :dispensaryLeafRatingProfileId WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating";
 			$statement = $pdo->prepare($query);
 
 			//bind the member variables to the place holders in the template

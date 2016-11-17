@@ -71,7 +71,7 @@ CREATE TABLE dispensaryLeafRating
 	INDEX (dispensaryLeafRatingDispensaryId),
 	INDEX (dispensaryLeafRatingProfileId),
 	FOREIGN KEY (dispensaryLeafRatingProfileId) REFERENCES profile (profileId),
-	FOREIGN KEY (dispensaryLeafRatingRating) REFERENCES dispensary (dispensaryId),
+	FOREIGN KEY (dispensaryLeafRatingDispensaryId) REFERENCES dispensary (dispensaryId),
 	PRIMARY KEY (dispensaryLeafRatingProfileId, dispensaryLeafRatingDispensaryId)
 );
 
