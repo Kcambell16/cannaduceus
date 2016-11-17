@@ -175,10 +175,10 @@ class DispensaryReviewTest extends DataDesign {
 	}
 
 	/**
-	 * test grabbing a Tweet by content that does not exist
+	 * test grabbing a DispensaryReview by dispensary review text that does not exist
 	 **/
-	public function testGetInvalidTweetByTweetContent() {
-		// grab a tweet by searching for content that does not exist
-		$tweet = Tweet::getTweetByTweetContent($this->getPDO(), "you will find nothing");
-		$this->assertCount(0, $tweet);
+	public function testGetInvalidDispensaryReviewByDispensaryReviewTxt() {
+		// grab a dispensary review by searching for content that does not exist
+		$dispensaryReview = DispensayReview::getDispensaryReviewByDispensaryReviewTxt($this->getPDO(), "Dee Dee Dee, No Such Thing");
+		$this->assertCount(0, $dispensaryReview);
 	}
