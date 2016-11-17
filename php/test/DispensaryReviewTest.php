@@ -18,7 +18,7 @@ require_once(dirname(__DIR__) . "/classes/autoload.php");
  * @see DispensayReview
  * @author Hector Lozano <hlozano2@cnm.edu>
  **/
-class DispensaryReviewTest extends DataDesign {
+class DispensaryReviewTest extends DataDesignTest {
 	/**
 	 * content of the DispensaryReview
 	 * @var string $VALID_DISPENSARYREVIEWTXT
