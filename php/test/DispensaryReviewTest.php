@@ -119,22 +119,22 @@ class DispensaryReviewTest extends DataDesign {
 	}
 
 	/**
-	 * test creating a Tweet and then deleting it
+	 * test creating a DispensaryReview and then deleting it
 	 **/
-	public function testDeleteValidTweet() {
+	public function testDeleteValidDispensaryReview() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("tweet");
+		$numRows = $this->getConnection()->getRowCount("dispensary review");
 
-		// create a new Tweet and insert to into mySQL
-		$tweet = new Tweet(null, $this->profile->getProfileId(), $this->VALID_TWEETCONTENT, $this->VALID_TWEETDATE);
-		$tweet->insert($this->getPDO());
+		// create a new DispensaryReview and insert to into mySQL
+		$dispensaryReview = new DispensayReview(null, $this->dispensaryReviewProfile->getDispensaryReviewProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview->insert($this->getPDO());
 
-		// delete the Tweet from mySQL
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("tweet"));
-		$tweet->delete($this->getPDO());
+		// delete the DispensaryReview from mySQL
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
+		$dispensaryReview->delete($this->getPDO());
 
-		// grab the data from mySQL and enforce the Tweet does not exist
-		$pdoTweet = Tweet::getTweetByTweetId($this->getPDO(), $tweet->getTweetId());
-		$this->assertNull($pdoTweet);
-		$this->assertEquals($numRows, $this->getConnection()->getRowCount("tweet"));
+		// grab the data from mySQL and enforce the DispensaryReview does not exist
+		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewByDispensaryReviewId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
+		$this->assertNull($pdoDispensaryReview);
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("dispensary review"));
 	}
