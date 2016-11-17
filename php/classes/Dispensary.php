@@ -95,10 +95,10 @@ class Dispensary implements \JsonSerializable {
 	 * @param string $newDispensaryCity city of dispensary
 	 * @param string $newDispensaryEmail email of dispensary
 	 * @param string $newDispensaryName dispensary name
-	 * @param string $newDispensaryPhone phone number of dispensary
+	 * @param int $newDispensaryPhone phone number of dispensary
 	 * @param string $newDispensaryState dispensary state
 	 * @param string $newDispensaryStreet1 address of dispensary
-	 * @param int $newDispensaryStreet2 additional address info of dispensary
+	 * @param string $newDispensaryStreet2 additional address info of dispensary
 	 * @param string $newDispensaryUrl web address of dispensary
 	 * @param int $newDispensaryZipCode dispensary zip code
 	 * @throws \InvalidArgumentException if data types are not valid
@@ -567,7 +567,7 @@ class Dispensary implements \JsonSerializable {
  * @throws \PDOException when mySQL related errors occur
  * @throws \TypeError if $pdo is not a PDO connection object
  **/
-public function delete(\PDO $pdo) {
+public function delete(\PDO $pdo, $statement) {
 //enforce the dispensaryId is not null (i.e., don't delete a disepnsary that hasn't been inserted)
 	if($this->dispensaryId === null) {
 		throw(new \PDOException("unable to delete a dispensary that does not exist"));
