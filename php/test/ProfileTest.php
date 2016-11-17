@@ -150,7 +150,8 @@ class ProfileTest extends CannaduceusTest {
 		$this->assertEquals($pdoProfile->getProfileUserName(), $this->VAILD_PROFILEUSERNAME1);
 		$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL1);
 		$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH1);
-		$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILEACTIVATIONTOKEN1);
+		$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILESALT1);
+		$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATIONTOKEN1);
 	}
 
 
@@ -178,11 +179,46 @@ class ProfileTest extends CannaduceusTest {
 	public function testUpdatedValidProfile(){
 				//count the initial number of rows and assign it to the variable $numRows
 				$numRows = $this->getConnection()->getRowCount("profile");
+
+
+				//create a new profile and insert it into SQL
+				$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+
+				//inset the mock profile in SQL
+				$profile->insert($this->getPDO());
+
+				//edit the profile and update it in SQL
+				$profile->setProfileUserName($this->VAILD_PROFILEUSERNAME2);
+				$profile->setProfileEmail($this->VAILD_PROFILEEMAIL2);
+				$profile->setProfileHash($this->VAILD_PROFILEHASH2);
+				$profile->setProfileSalt($this->VAILD_PROFILESALT2);
+				$profile->setProfileActivation($this->VALID_PROFILEACTIVATIONTOKEN2);
+
+				//now call the update PDO method we wrote in the class!!@!@!@
+				$profile->update($this->getPDO());
+
+				//now grab the data back out of SQL to make sure it matches what we put in
+
+				//$pdoProfile is new declaration...then we call our PDO get method: getProfileByProfileId which requires 2 parameters:
+				//the first is a PDO object, the other is our profileId, which we use the accessor method we wrote (getProfileId) to get!
+				// $pdoProfile now contains all the information for our dummy profile
+				$pdoProfile = Profile::getProfileByProfileId($this->getPDO(), $profile->getProfileId());
+				$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
+
+
+
+
 	}
 
 
 
+	/**
+	 * test insering a profile that already exists
+	 * @expectedException \PDOException
+	 */
+	public function testInsertInvalidProfile(){
 
+	}
 
 
 
