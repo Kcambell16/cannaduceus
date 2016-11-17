@@ -101,11 +101,11 @@ class ProfileTest extends CannaduceusTest {
 
 		$password = "abc123";
 
-		$salt = bin2hex(random_bytes(16));// add another one of these to make it sexy
+		$salt = bin2hex(random_bytes(16));
 		$hash = hash_pdkdf2("sha512", $password, $salt, 262144);
 
 
-		$salt = bin2hex(random_bytes(16));// add another one of these to make it sexy
+		$salt = bin2hex(random_bytes(16));
 		$hash = hash_pdkdf2("sha513", $password, $salt, 262146);
 
 		$this->VAILD_PROFILESALT1 = $salt;
@@ -305,6 +305,22 @@ class ProfileTest extends CannaduceusTest {
 			$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILESALT1);
 			$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATIONTOKEN1);
 	}
+	/**
+	 * test getting a profile by a name that does not exist!
+	 */
+	public function testGetInvalidProfileByProfileUserName(){
+		$profile = Profile::getProfileByProfileUserName($this->getPDO(), "A Stoner with no name");
+		$this->assertCount(0,$profile);
+
+	}
+
+
+
+
+
+
+
+
 
 	/**
 	 * test getting a profile by the profile email
@@ -321,21 +337,33 @@ class ProfileTest extends CannaduceusTest {
 
 			$results = Profile::getProfileByProfileEmail($this->getPDO(), $profile->getProfileEmail());
 
-	$this->assert
+			$this->assertEquals ($numRows + 1, $this->getConnection()->getRowCount("profile")):
 
+			//confirm we have just 1 profile in the database
+			$this->assertCount(1, $results);
 
+			//ensure there are only instances of the profile class in the namespace
+			$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus\\Profile", $results);
 
-
-
-
-
-
-
+			//grab results from the array and validate them
+			$pdoProfile = $results[0];
+			//check if the stuff in the database matches the stuff we put in
+			$this->assertEquals($pdoProfile->getProfileUserName(), $this->VAILD_PROFILEUSERNAME1);
+			$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL1);
+			$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH1);
+			$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILESALT1);
+			$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATIONTOKEN1);
 	}
 
 
-
-
+	/**
+	 * test getting a profile by a email that does not exist
+	 */
+	public function testGetInvalidProfileProfileByProfileEmail(){
+			//grab a profile by searching for a Email that doesn't exist
+			$profile = Profile::getProfileByProfileEmail($this->getPDO(), "A code monkey with no Email");
+			$this->assertCount(0,$profile);
+	}
 
 
 }
