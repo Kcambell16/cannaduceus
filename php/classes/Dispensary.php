@@ -221,7 +221,7 @@ class Dispensary implements \JsonSerializable {
 	/**
 	 * mutator method for dispensary city
 	 *
-	 * @param string $newdispensaryCity new vlaue of dispensary city
+	 * @param string $newDispensaryCity new value of dispensary city
 	 * @throws \InvalidArgumentException if $newDispensaryCity is not a string or insecure
 	 * @throws \RangeException if $newDispensaryCity is > 140 characters
 	 * @throws \TypeError if $newDispensaryCity is not a string
@@ -483,7 +483,7 @@ class Dispensary implements \JsonSerializable {
 	/**
 	 * mutator method for dispensary state
 	 *
-	 * @param string $newDispensayState new vlaue of dispensary state
+	 * @param string $newDispensaryState new value of dispensary state
 	 * @throws \InvalidArgumentException if $newDispnesaryState is not a string or insecure
 	 * @throws \RangeException if $newDispensayState is > 2 characters
 	 * @throws \TypeError if $newDispensayState is not a string
@@ -517,6 +517,7 @@ class Dispensary implements \JsonSerializable {
 		if($this->dispensaryId !== null) {
 			throw(new \PDOException("not a new dispensary"));
 		}
+
 		// create query template
 		$query = "INSERT INTO dispensary(
 			dispensaryAttention,
@@ -590,7 +591,7 @@ public function delete(\PDO $pdo) {
  * @throws \PDOException when mySQL related errors occur
  * @throws \TypeError if $pdo is not a PDO connection object
  **/
-public function update(\PDO $pdo, $statement) {
+public function update(\PDO $pdo) {
 	// enforce the dispensaryId is not null ((i.e., don't update a dispensary that hasn't been inserted)
 	if($this->dispensaryId === null){
 		throw(new \PDOException("unable to update a dispensary that does not exist "));
@@ -608,6 +609,7 @@ dispensaryStreet2 = :dispensaryStreet2,
 dispensaryUrl = :dispensaryUrl,
 dispensaryZipCode = :dispensaryZipCode
 WHERE dispensaryId = :dispensaryId";
+	$statement = $pdo->prepare($query);
 
 	// bind the member variables to the place holders in the template
 	$parameters = ["dispensaryName" => $this->dispensaryName,
@@ -623,20 +625,20 @@ WHERE dispensaryId = :dispensaryId";
 }
 
 	/**
-	 * gets the dispensary by dispensaryAttention
+	 * gets the dispensary by dispensaryName
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param string $dispensaryAttention dispensary attention to search for
+	 * @param string $dispensaryName dispensary name to search for
 	 * @return \SplFixedArray SplFixedArray of dispensary found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getDispensaryByDispensaryAttention(\PDO $pdo, string $dispensaryAttention) {
+	public static function getDispensariesByDispensaryName(\PDO $pdo, string $dispensaryName) {
 		//sanitize the description before searching
-		$dispensaryAttention = trim($dispensaryAttention);
-		$dispensaryAttention = filter_var($dispensaryAttention, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($dispensaryAttention) === true){
-			throw(new \PDOException("dispensary attention content is invalid"));
+		$dispensaryName = trim($dispensaryName);
+		$dispensaryName = filter_var($dispensaryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($dispensaryName) === true){
+			throw(new \PDOException("dispensary name content is invalid"));
 		}
 		// create query template
 		$query = "SELECT dispensaryId,
@@ -649,28 +651,28 @@ WHERE dispensaryId = :dispensaryId";
 			dispensaryStreet1, 
 			dispensaryStreet2, 
 			dispensaryUrl,
-			dispensaryZipCode FROM dispensary WHERE dispensaryAttention LIKE :dispensaryAttention";
+			dispensaryZipCode FROM dispensary WHERE dispensaryName LIKE :dispensaryName";
 		$statement = $pdo->prepare($query);
 
 		//bind the dispensary attention to the place holder in the template
-		$dispensaryAttention = "%dispensaryAttention%";
-		$parameters = ["dispensaryAttention" => $dispensaryAttention];
+		$dispensaryName = "%dispensaryName%";
+		$parameters = ["dispensaryName" => $dispensaryName];
 		$statement->execute($parameters);
 
 		// build an array of dispensaries
-		$dispensary = new \SplFixedArray($statement->rowCount());
+		$dispensaries = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try{
 				$dispensary = new Dispensary($row["dispensaryId"], $row["dispensaryAttention"], $row["dispensaryCity"], $row["dispensaryEmail"], $row["dispensaryName"], $row["dispensaryPhone"], $row["dispensaryState"], $row["dispensaryStreet1"],$row["dispensaryStreet2"], $row["dispensaryUrl"], $row["dispensaryZipCode"]);
-				$dispensary[$dispensary->key()] = $dispensary;
-				$dispensary->next();
+				$dispensaries[$dispensaries->key()] = $dispensary;
+				$dispensaries->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
-				throw(new \PDOException(($exception->getMessage(), 0, $exception));
+				throw(new \PDOException(($exception->getMessage()), 0, $exception));
 			}
 		}
-			return($dispensary);
+			return($dispensaries);
 	}
 	/**
 	 * gets the Dispensary by dispensaryId
@@ -700,6 +702,7 @@ WHERE dispensaryId = :dispensaryId";
 			dispensaryStreet2, 
 			dispensaryUrl,
 			dispensaryZipCode FROM dispensary WHERE 			dispensaryId = :dispensaryId";
+		$statement = $pdo->prepare($query);
 
 		// bind the dispensary id to the place holder in the template
 		$parameters = ["dispensaryId" => $dispensaryId];
@@ -749,7 +752,7 @@ WHERE dispensaryId = :dispensaryId";
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$dispensaries = new Dispensary($row["dispensaryId"], $row["dispensaryAttention"], $row["dispensaryCity"], $row["dispensaryEmail"], $row["dispensaryName"], $row["dispensaryPhone"], $row["dispensaryState"], $row["dispensaryStreet1"],$row["dispensaryStreet2"], $row["dispensaryUrl"], $row["dispensaryZipCode"]);
+				$dispensary = new Dispensary($row["dispensaryId"], $row["dispensaryAttention"], $row["dispensaryCity"], $row["dispensaryEmail"], $row["dispensaryName"], $row["dispensaryPhone"], $row["dispensaryState"], $row["dispensaryStreet1"],$row["dispensaryStreet2"], $row["dispensaryUrl"], $row["dispensaryZipCode"]);
 				$dispensaries[$dispensaries->key()] = $dispensary;
 				$dispensaries->next();
 			} catch(\Exception $exception) {
