@@ -138,3 +138,14 @@ class DispensaryReviewTest extends DataDesign {
 		$this->assertNull($pdoDispensaryReview);
 		$this->assertEquals($numRows, $this->getConnection()->getRowCount("dispensary review"));
 	}
+
+	/**
+	 * test deleting a Tweet that does not exist
+	 *
+	 * @expectedException PDOException
+	 **/
+	public function testDeleteInvalidTweet() {
+		// create a Tweet and try to delete it without actually inserting it
+		$tweet = new Tweet(null, $this->profile->getProfileId(), $this->VALID_TWEETCONTENT, $this->VALID_TWEETDATE);
+		$tweet->delete($this->getPDO());
+	}
