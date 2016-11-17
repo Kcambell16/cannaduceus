@@ -47,7 +47,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 		// create and insert a Profile to own the test DispensaryReview
 		$this->profile = new Profile(null, "@phpunit", "test@phpunit.de", "+12125551212");
 		$this->profile->insert($this->getPDO());
-		// create and insert a Dispensary to own the test
+		// create and insert a Dispensary to own the test DispensaryReview
 		$this->dispensary = new Dispensary(null, "@phpunit", "test@phpunit.de", "+12125551212");
 		$this->dispensary->insert($this->getPDO());
 
