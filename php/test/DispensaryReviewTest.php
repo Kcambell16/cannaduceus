@@ -60,7 +60,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("dispensary review");
 
 		// create a new DispensaryReview and insert to into mySQL
-		$dispensaryReview = new DispensayReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
@@ -68,7 +68,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
 		$this->assertEquals($pdoDispensaryReview->getProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
-		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATETIME);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDateTime(), $this->VALID_DISPENSARYREVIEWDATETIME);
 	}
 
 	/**
@@ -78,7 +78,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 	 **/
 	public function testInsertInvalidDispensaryReview() {
 		// create a Tweet with a non null tweet id and watch it fail
-		$dispensaryReview = new DispensayReview(DataDesignTest::INVALID_KEY, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview = new DispensayReview(CannaduceusTest::INVALID_KEY, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
 		$dispensaryReview->insert($this->getPDO());
 	}
 
@@ -122,11 +122,11 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("dispensary review");
 
 		// create a new DispensaryReview and insert to into mySQL
-		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATE);
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$results = DispensaryReview::getTweetByDispensaryReviewTxt($this->getPDO(), $dispensaryReview->getDispensaryReviewTxt());
+		$results = DispensaryReview::getDispensaryReviewByDispensaryReviewTxt($this->getPDO(), $dispensaryReview->getDispensaryReviewTxt());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus", $results);
@@ -159,15 +159,15 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$results = DispensayReview::getAllDispensaryReviews($this->getPDO());
+		$results = DispensaryReview::getAllDispensaryReviews($this->getPDO());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\hlozano2\\DataDesign\\Dispensary Review", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus", $results);
 
 		// grab the result from the array and validate it
 		$pdoDispensaryReview = $results[0];
 		$this->assertEquals($pdoDispensaryReview->getProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
-		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATE);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATETIME);
 	}
 }
