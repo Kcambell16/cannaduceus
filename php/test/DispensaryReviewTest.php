@@ -117,3 +117,24 @@ class DispensaryReviewTest extends DataDesign {
 		$dispensaryReview = new DispensayReview(null, $this->dispensaryReviewProfile->getDispensaryReviewProfileId(), $this->VALID_TWEETCONTENT, $this->VALID_TWEETDATE);
 		$dispensaryReview->update($this->getPDO());
 	}
+
+	/**
+	 * test creating a Tweet and then deleting it
+	 **/
+	public function testDeleteValidTweet() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("tweet");
+
+		// create a new Tweet and insert to into mySQL
+		$tweet = new Tweet(null, $this->profile->getProfileId(), $this->VALID_TWEETCONTENT, $this->VALID_TWEETDATE);
+		$tweet->insert($this->getPDO());
+
+		// delete the Tweet from mySQL
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("tweet"));
+		$tweet->delete($this->getPDO());
+
+		// grab the data from mySQL and enforce the Tweet does not exist
+		$pdoTweet = Tweet::getTweetByTweetId($this->getPDO(), $tweet->getTweetId());
+		$this->assertNull($pdoTweet);
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("tweet"));
+	}
