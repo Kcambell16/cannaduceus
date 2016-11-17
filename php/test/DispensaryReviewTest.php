@@ -112,8 +112,8 @@ class DispensaryReviewTest extends DataDesign {
 	 *
 	 * @expectedException PDOException
 	 **/
-	public function testUpdateInvalidTweet() {
-		// create a Tweet, try to update it without actually updating it and watch it fail
-		$tweet = new Tweet(null, $this->profile->getProfileId(), $this->VALID_TWEETCONTENT, $this->VALID_TWEETDATE);
-		$tweet->update($this->getPDO());
+	public function testUpdateInvalidDispensaryReview() {
+		// create a DispensaryReview, try to update it without actually updating it and watch it fail
+		$dispensaryReview = new DispensayReview(null, $this->dispensaryReviewProfile->getDispensaryReviewProfileId(), $this->VALID_TWEETCONTENT, $this->VALID_TWEETDATE);
+		$dispensaryReview->update($this->getPDO());
 	}
