@@ -12,6 +12,7 @@ use Edu\Cnm\Cannaduceus\{Dispensary};
 
 //grabs the project parameters
 require_once ("CannaduceusTest.php");
+require_once (dirname(__DIR__) . "classes/Dispensary.php");
 
 //grabs the class being tested
 require_once (dirname(__DIR__) . "/public_html/php/classes/autoload.php");
@@ -77,6 +78,28 @@ class DispensaryTest extends CannaduceusTest {
 	 * @var int $VALID_DISPENSARYZIPCODE
 	 **/
 	protected $VALID_DISPENSARYZIPCODE = "90210";
+
+	/**
+	 * create dependent objects before running each test
+	 **/
+	public final function setUp() {
+		// run the default setUp() method first
+		parent::setUp();
+	}
+	/**
+	 * test inserting a valid Dispensary and verify that the actual mySQL data matches
+	 **/
+	public function testInsertValidDispensary() {
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("dispensary");
+
+		//create a new Dispensary and insert into mySQL
+		$dispenary = new Dispensary(null, $this->dispensary->getDispensaryId(), $this)
+	}
+
+
+
+
 
 
 
