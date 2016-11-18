@@ -101,18 +101,18 @@ class ProfileTest extends CannaduceusTest {
 
 		$password = "abc123";
 
-		$salt = bin2hex(random_bytes(16));
-		$hash = hash_pdkdf2("sha512", $password, $salt, 262144);
+		$salt0 = bin2hex(random_bytes(16));
+		$hash0 = hash_pbkdf2("sha512", $password, $salt0, 262144);
 
 
-		$salt = bin2hex(random_bytes(16));
-		$hash = hash_pdkdf2("sha513", $password, $salt, 262146);
+		$salt1 = bin2hex(random_bytes(16));
+		$hash1 = hash_pbkdf2("sha512", $password, $salt1, 262144);
 
-		$this->VAILD_PROFILESALT1 = $salt;
-		$this->VAILD_PROFILESALT2 = $salt;
+		$this->VAILD_PROFILESALT1 = $salt0;
+		$this->VAILD_PROFILESALT2 = $salt1;
 
-		$this->VAILD_PROFILEHASH1 = $hash;
-		$this->VAILD_PROFILEHASH2 = $hash;
+		$this->VAILD_PROFILEHASH1 = $hash0;
+		$this->VAILD_PROFILEHASH2 = $hash1;
 
 	}
 
@@ -126,7 +126,7 @@ class ProfileTest extends CannaduceusTest {
 
 
 		// create a new profile and insert it into SQL
-		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEACTIVATION1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1);
+		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
 
 		//insert the mock profile in SQL
 		$profile->insert($this->getPDO());

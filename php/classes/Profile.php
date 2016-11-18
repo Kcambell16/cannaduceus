@@ -58,7 +58,7 @@ class Profile implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newProfileId = null, string $newProfileUserName, string $newProfileEmail, string $newProfileHash, $newProfileSalt, $newProfileActivation) {
+	public function __construct(int $newProfileId = null, string $newProfileUserName, string $newProfileEmail, string $newProfileHash, string $newProfileSalt, string $newProfileActivation) {
 
 		try {
 			$this->setProfileId($newProfileId);
@@ -98,7 +98,7 @@ class Profile implements \JsonSerializable {
 	 * @throws \RangeException if $newProfileId is not positive
 	 * @throws \TypeError if $newProfileId is not an integer
 	 */
-	public function setProfileId(int $newProfileId) {
+	public function setProfileId(int $newProfileId = null) {
 
 		// base case: if the newProfileId is null, this is a new profile without a mySQL assigned ID
 		if($newProfileId === null) {
@@ -135,7 +135,7 @@ class Profile implements \JsonSerializable {
 
 
 	public function setProfileUserName(string $newProfileUserName) {
-		$newProfileUserName = filter_input($newProfileUserName, FILTER_SANITIZE_STRING);
+		$newProfileUserName = filter_var($newProfileUserName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if($newProfileUserName === false) {
 			throw(new \UnexpectedValueException("Profile UserName not vaild"));
 		}
@@ -163,7 +163,7 @@ class Profile implements \JsonSerializable {
 	 */
 
 	public function setProfileEmail(string $newProfileEmail) {
-		$newProfileEmail = filter_input($newProfileEmail, FILTER_SANITIZE_STRING);
+		$newProfileEmail = filter_var($newProfileEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if($newProfileEmail === false) {
 			throw(new \UnexpectedValueException("Profile Email Invalid"));
 		}
@@ -197,6 +197,7 @@ class Profile implements \JsonSerializable {
 		}
 		// verify the profile hash content will fit in the database
 		if(strlen($newProfileHash) !== 128) {
+			var_dump($newProfileHash);
 			throw(new \RangeException("hash content incorrect"));
 		}
 		//Convert and store the Profile Hash
