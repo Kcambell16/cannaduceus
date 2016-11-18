@@ -1,6 +1,6 @@
 <?php
 
-namespace Edu\Cnm\hlozano2\DataDesign;
+namespace Edu\Cnm\Cannaduceus;
 
 require_once("autoload.php");
 

@@ -79,7 +79,7 @@ class StrainLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 		$this->profileId->insert($this->getPDO());
 
 		//create the Strain Leaf Rating Test
-		$this->strainLeafRating = new strainLeafRating(null, $this->strainId->gerStrainId(), "PHPUnit strain leaf rating test passing");
+		$this->strainLeafRating = new strainLeafRating(null, $this->strainId->getStrainId(), "PHPUnit strain leaf rating test passing");
 		$this->strainLeafRating->insert($this->getPDO());
 	}//create strain Id and profile Id
 

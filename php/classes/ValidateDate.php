@@ -1,5 +1,5 @@
 <?php
-namespace Edu\Cnm\hlozano2\DataDesign;
+namespace Edu\Cnm\Cannaduceus;
 
 /**
  * Trait to Validate a mySQL Date

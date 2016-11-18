@@ -6,7 +6,7 @@ namespace Edu\Cnm\Cannaduceus\Test;
 use Edu\Cnm\Cannaduceus\{Profile};
 
 //grab the parameters for the test, go the abstract test file
-require_once ("ProfileTest.php");
+require_once ("CannaduceusTest.php");
 
 //grab the class being tested
 require_once (dirname(__DIR__) . "/classes/autoload.php");
@@ -16,7 +16,7 @@ require_once (dirname(__DIR__) . "/classes/autoload.php");
  * This is a complete PHPUnit test of the Profile class. It is complete because *ALL* mySQL/PDO enabled methods
  * are tested for both invalid and valid inputs.
  *
- * @see Profile\
+ * @see Profile
  * @author nathan sanchez <nsanchez121@cnm.edu>
  **/
 class ProfileTest extends CannaduceusTest {
@@ -52,16 +52,16 @@ class ProfileTest extends CannaduceusTest {
 
 /**
  * Default input data set profile activation token 32 chars
- * @var string $VAILD_PROFILEACTIVATIONTOKEN1
+ * @var string $VAILD_PROFILEACTIVATION1
  */
-	protected $VAILD_PROFILEACTIVATIONTOKEN1 = "00000000000000000000000000000022";
+	protected $VAILD_PROFILEACTIVATION1 = "00000000000000000000000000000022";
 
 
 	/**
 	 * Default input data set UPDATED profile activation token 32 chars
 	 * @var string VAILD_PROFILEACTIVATION2
 	 */
-	protected $VALID_PROFILEACTIVATIONTOKEN2 = "99999999999999999999999999999922";
+	protected $VALID_PROFILEACTIVATION2 = "99999999999999999999999999999922";
 
 
 /**
@@ -126,7 +126,7 @@ class ProfileTest extends CannaduceusTest {
 
 
 		// create a new profile and insert it into SQL
-		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEACTIVATIONTOKEN1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1);
+		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEACTIVATION1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1);
 
 		//insert the mock profile in SQL
 		$profile->insert($this->getPDO());
@@ -151,7 +151,7 @@ class ProfileTest extends CannaduceusTest {
 		$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL1);
 		$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH1);
 		$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILESALT1);
-		$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATIONTOKEN1);
+		$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATION1);
 	}
 
 
@@ -164,7 +164,7 @@ class ProfileTest extends CannaduceusTest {
 		// create a profile with a non-null profileId and watch it fail. use the INVALID_KEY we defined inside the abstract class CannaduceusTest
 		//here we are calling an object ($profile) based on the Profile class and feeding it initial values. BUT whereas normally we would define the primary key as NULL
 		//this time we are giving it a value (INVALID_KEY)
-		$profile = new Profile(CannaduceusTest::INVALID_KEY, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+		$profile = new Profile(CannaduceusTest::INVALID_KEY, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
 
 		//now insert it into SQL and hope it throws a error!
 		//this uses the insert PDO method we wrote back in our class, and all the capabilities it has
@@ -182,7 +182,7 @@ class ProfileTest extends CannaduceusTest {
 
 
 				//create a new profile and insert it into SQL
-				$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+				$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
 
 				//inset the mock profile in SQL
 				$profile->insert($this->getPDO());
@@ -192,7 +192,7 @@ class ProfileTest extends CannaduceusTest {
 				$profile->setProfileEmail($this->VAILD_PROFILEEMAIL2);
 				$profile->setProfileHash($this->VAILD_PROFILEHASH2);
 				$profile->setProfileSalt($this->VAILD_PROFILESALT2);
-				$profile->setProfileActivation($this->VALID_PROFILEACTIVATIONTOKEN2);
+				$profile->setProfileActivation($this->VALID_PROFILEACTIVATION2);
 
 				//now call the update PDO method we wrote in the class!!@!@!@
 				$profile->update($this->getPDO());
@@ -210,7 +210,7 @@ class ProfileTest extends CannaduceusTest {
 				$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL2);
 				$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH2);
 				$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILESALT2);
-				$this->assertEquals($pdoProfile->getProfileActivation(), $this->VALID_PROFILEACTIVATIONTOKEN2);
+				$this->assertEquals($pdoProfile->getProfileActivation(), $this->VALID_PROFILEACTIVATION2);
 	}
 
 
@@ -220,7 +220,7 @@ class ProfileTest extends CannaduceusTest {
 	 * @expectedException \PDOException
 	 */
 	public function testUpdateInvaildProfile(){
-			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
 
 			//now that the dummy profile has been created, we will not insert this bad boy but were gonna try to update it in SQL
 			$profile->update($this->getPDO());
@@ -237,7 +237,7 @@ class ProfileTest extends CannaduceusTest {
 
 
 		//create a dummy profile
-		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
 
 		//insert it into SQL
 		$profile->insert($this->getPDO());
@@ -266,7 +266,7 @@ class ProfileTest extends CannaduceusTest {
 			//create a profile and never actually insert it then try to delete it when it hasnt been inserted
 
 			//create a dummy profile (again:()
-			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
 
 			//now time to delete this egg head with out inserting it
 			$profile->delete($this->getPDO());
@@ -283,7 +283,7 @@ class ProfileTest extends CannaduceusTest {
 
 
 			// create a dummy profile
-			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
 
 			$results = Profile::getProfileByProfileUserName($this->getPDO(), $profile->getProfileUserName());
 
@@ -303,7 +303,7 @@ class ProfileTest extends CannaduceusTest {
 			$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL1);
 			$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH1);
 			$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILESALT1);
-			$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATIONTOKEN1);
+			$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATION1);
 	}
 	/**
 	 * test getting a profile by a name that does not exist!
@@ -330,7 +330,7 @@ class ProfileTest extends CannaduceusTest {
 			$numRows = $this->getConnection()->getRowCount("profile");
 
 			//create a dummy profile
-			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
 
 			//insert the mock profile in SQL
 			$profile->insert($this->getPDO());
@@ -352,7 +352,7 @@ class ProfileTest extends CannaduceusTest {
 			$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL1);
 			$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH1);
 			$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILESALT1);
-			$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATIONTOKEN1);
+			$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATION1);
 	}
 
 
@@ -373,7 +373,7 @@ class ProfileTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("profile");
 
 		//make a dummy profile
-		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATIONTOKEN1);
+		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
 
 		//insert in to dat SQL
 		$profile->insert($this->getPDO());
@@ -393,7 +393,7 @@ class ProfileTest extends CannaduceusTest {
 		$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL1);
 		$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH1);
 		$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILESALT1);
-		$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATIONTOKEN1);
+		$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATION1);
 
 	}
 
