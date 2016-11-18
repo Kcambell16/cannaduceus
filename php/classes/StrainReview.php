@@ -13,7 +13,7 @@ require_once("autoload.php");
  **/
 
 class StrainReview implements \JsonSerializable {
-	use ValidateDate;
+	//use ValidateDate;
 	/**
 	 * id for this StrainReview; this is the primary key
 	 * @var int $strainReviewId

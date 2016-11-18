@@ -12,10 +12,10 @@ use Edu\Cnm\Cannaduceus\{Dispensary};
 
 //grabs the project parameters
 require_once ("CannaduceusTest.php");
-require_once (dirname(__DIR__) . "classes/Dispensary.php");
+
 
 //grabs the class being tested
-require_once (dirname(__DIR__) . "/public_html/php/classes/autoload.php");
+require_once (dirname(__DIR__) . "/classes/autoload.php");
 
 /**
  * Full PHPUnit test for the Profile class
@@ -36,6 +36,12 @@ class DispensaryTest extends CannaduceusTest {
 	 * @var string $VALID_DISPENSARYCITY
 	 **/
 	protected $VALID_DISPENSARYCITY = "Space Jam";
+
+	/**
+	 * Dispensary City
+	 * @var string $VALID_DISPENSARYCITY2
+	 **/
+	protected $VALID_DISPENSARYCITY2 = "Jungle Jam";
 
 	/**
 	 * Dispensary email
@@ -139,6 +145,47 @@ class DispensaryTest extends CannaduceusTest {
 		// insert again to see if fails
 		$dispensary->insert($this->getPDO());
 
+	}
+
+	/**
+	 *  test inserting a dispensary, editing it and then updating it
+	 *
+	 **/
+	public function testUpdateDispensary(){
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("dispensary");
+
+		//create a new Dispensary and insert into mySQL
+		$dispensary = new Dispensary(null, $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTATE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE);
+
+		$dispensary->insert($this->getPDO());
+
+		$dispensary->setDispensaryCity($this->VALID_DISPENSARYCITY2);
+		$dispensary->update($this->getPDO());
+
+
+		//grab the data from mySQL and enforce the fields match our expectations
+		$pdoDispensary = Dispensary::getDispensaryByDispensaryId($this->getPDO(), $dispensary->getDispensaryId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary"));
+		$this->assertEquals($pdoDispensary->getDispensaryId(), $dispensary->getDispensaryId());
+		$this->assertEquals($pdoDispensary->getDispensaryAttention(), $dispensary->getDispensaryAttention());
+		$this->assertEquals($pdoDispensary->getDispensaryCity(), $this->VALID_DISPENSARYCITY2);
+		$this->assertEquals($pdoDispensary->getDispensaryEmail(), $dispensary->getDispensaryEmail());
+		$this->assertEquals($pdoDispensary->getDispensaryName(), $dispensary->getDispensaryName());
+		$this->assertEquals($pdoDispensary->getDispensaryPhone(), $dispensary->getDispensaryPhone());
+		$this->assertEquals($pdoDispensary->getDispensaryState(), $dispensary->getDispensaryState());
+		$this->assertEquals($pdoDispensary->getDispensaryStreet1(), $dispensary->getDispensaryStreet1());
+		$this->assertEquals($pdoDispensary->getDispensaryStreet2(), $dispensary->getDispensaryStreet2());
+		$this->assertEquals($pdoDispensary->getDispensaryUrl(), $dispensary->getDispensaryUrl());
+		$this->assertEquals($pdoDispensary->getDispensaryZipCode(), $dispensary->getDispensaryZipCode());
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\cnm\\cannaduceus\\Dispensary", $results);
+	}
+	/**
+	 * test grabbing a Dispensary by content that does not exist
+	 **/
+	public function testGetInvalidDispensaryByDispensary() {
+		//
 	}
 
 

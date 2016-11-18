@@ -13,7 +13,7 @@ require_once("autoload.php");
  **/
 
 class DispensaryReview implements \JsonSerializable {
-	use ValidateDate;
+//	use ValidateDate;
 	/**
 	 * id for this DispensaryReview; this is the primary key
 	 * @var int $dispensaryReviewId

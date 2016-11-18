@@ -554,7 +554,8 @@ class Dispensary implements \JsonSerializable {
 				"dispensaryState" => $this->dispensaryState,
 				"dispensaryZipCode" => $this->dispensaryZipCode,
 				"dispensaryEmail" => $this->dispensaryEmail,
-				"dispensaryPhone" => $this->dispensaryPhone,];
+				"dispensaryPhone" => $this->dispensaryPhone,
+				"dispensaryUrl" => $this->dispensaryUrl];
 		$statement->execute($parameters);
 
 	// update the null dispensary Id with what mysql just gave us
@@ -613,14 +614,16 @@ WHERE dispensaryId = :dispensaryId";
 
 	// bind the member variables to the place holders in the template
 	$parameters = ["dispensaryName" => $this->dispensaryName,
-				"dispensaryAttention" => $this->dispensaryAttention,
-				"dispensaryStreet1" => $this->dispensaryStreet1,
-				"dispensaryStreet2" => $this->dispensaryStreet2,
-				"dispensaryCity" => $this->dispensaryCity,
-				"dispensaryState" => $this->dispensaryState,
-				"dispensaryZipCode" => $this->dispensaryZipCode,
-				"dispensaryEmail" => $this->dispensaryEmail,
-				"dispensaryPhone" => $this->dispensaryPhone];
+		"dispensaryAttention" => $this->dispensaryAttention,
+		"dispensaryStreet1" => $this->dispensaryStreet1,
+		"dispensaryStreet2" => $this->dispensaryStreet2,
+		"dispensaryCity" => $this->dispensaryCity,
+		"dispensaryState" => $this->dispensaryState,
+		"dispensaryZipCode" => $this->dispensaryZipCode,
+		"dispensaryEmail" => $this->dispensaryEmail,
+		"dispensaryPhone" => $this->dispensaryPhone,
+		"dispensaryUrl" => $this->dispensaryUrl,
+		"dispensaryId" => $this->dispensaryId];
 				$statement->execute($parameters);
 }
 
