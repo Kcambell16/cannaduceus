@@ -200,7 +200,7 @@ class Dispensary implements \JsonSerializable {
 		$newDispensaryAttention = trim($newDispensaryAttention);
 		$newDispensaryAttention = filter_var($newDispensaryAttention, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newDispensaryAttention) === true) {
-			throw(new \InvalidArgumentException("dispensary attention is emprt or insecure"));
+			throw(new \InvalidArgumentException("dispensary attention is empty or insecure"));
 		}
 		// verify the dispensary attention will fit in the database
 		if(strlen($newDispensaryAttention) > 140) {
