@@ -13,7 +13,7 @@ require_once("autoload.php");
  **/
 
 class DispensaryReview implements \JsonSerializable {
-//	use ValidateDate;
+	use ValidateDate;
 	/**
 	 * id for this DispensaryReview; this is the primary key
 	 * @var int $dispensaryReviewId
@@ -323,19 +323,25 @@ class DispensaryReview implements \JsonSerializable {
 		$parameters = ["dispensaryReviewId" => $dispensaryReviewId];
 		$statement->execute($parameters);
 
-		// grab the dispensaryReview from mySQL
-		try {
-			$dispensaryReview = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
-				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt]"]);
+		$dispensaryReviews = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+
+		// grab the dispensaryReviews from mySQL
+		while (($row = $statement->fetch())  !== false) {
+			try {
+				$dispensaryReview = null;
+				$row = $statement->fetch();
+				if($row !== false) {
+					$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewDateTime"],$row["dispensaryReviewTxt]"]);
+					$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
+					$dispensaryReviews->next();
+				}
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			// if the row couldn't be converted, rethrow it
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return($dispensaryReview);
+		return($dispensaryReviews);
 
 	}
 
