@@ -194,7 +194,38 @@ class DispensaryTest extends CannaduceusTest {
 		$dispensary->update($this->getPDO());
 	}
 
+/**
+ * test creating a Dispensary and then deleting it
+ **/
+public function testDeleteValidDispenary() {
+	// count the number of rows and save it for later
+	$numRows = $this->getConnection()->getRowCount("dispensary");
 
+	// create a new Dispensary and insert to into mySQL
+	$dispensary = new Dispensary(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
+	$dispensary->insert($this->getPDO());
+
+	// delete the Dispensary from mySQL
+	$this->assertEquals($numRows + 1, $this-$this->getConnection()->getRowCount("dispensary"));
+	$dispensary->delete($this->getPDO());
+
+	// grab the data from mySQL and enforce the Dispensary does not exist
+	$pdoDispensary = Dispensary::getDispenaryByDispenaryId($this->getPDO(), $dispensary->getDispensaryId());
+	$this->assertNull($pdoDispensary);
+	$this->assertEquals($numRows, $this->getConnection()->getRowCount("dispensary"));
+}
+
+	/**
+	 * test deleting a Dispensary that does not exist
+	 *
+	 * @expectedException PDOException
+	 **/
+	public function testDeleteInvalidDispenary() {
+		// create a Dispensary and try to delete it without actually inserting it
+		$dispensary = new Dispensary(null, $this->dispensary->getDispensaryId(), $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
+		$dispensary->delete($this->getPDO());
+
+	}
 
 
 
