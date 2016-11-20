@@ -8,6 +8,7 @@
 
 namespace Edu\Cnm\Cannaduceus;
 require_once(dirname(__DIR__) . "/classes/autoload.php");
+
 /**
  * Cross section of cannaduceus dispensary class
  *

@@ -17,6 +17,7 @@ require_once ("CannaduceusTest.php");
 //grabs the class being tested
 require_once (dirname(__DIR__) . "/classes/autoload.php");
 
+
 /**
  * Full PHPUnit test for the Profile class
  * all MySQL/PDO enabled methods are tested for both invalid and valid inputs in this test
@@ -179,8 +180,8 @@ class DispensaryTest extends CannaduceusTest {
 		$this->assertEquals($pdoDispensary->getDispensaryStreet2(), $dispensary->getDispensaryStreet2());
 		$this->assertEquals($pdoDispensary->getDispensaryUrl(), $dispensary->getDispensaryUrl());
 		$this->assertEquals($pdoDispensary->getDispensaryZipCode(), $dispensary->getDispensaryZipCode());
-		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\cnm\\cannaduceus\\Dispensary", $results);
+		$this->assertCount(1, $pdoDispensary);
+		$this->assertContainsOnlyInstancesOf("Edu\\cnm\\cannaduceus\\Dispensary", $pdoDispensary);
 	}
 
 	/**
@@ -227,42 +228,55 @@ public function testDeleteValidDispenary() {
 	}
 
 	/**
-	 * test grabbing a Dispensary Attention by dispensary attention
+	 * test grabbing a Dispensary Name by dispensary name
 	 **/
-	public function testGetValidDispenaryByDispensaryAttention() {
+	public function testGetValidDispenaryByDispensaryName() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("attention");
+		$numRows = $this->getConnection()->getRowCount("name");
 
 		// create a new Dispensary and insert to into mySQL
 		$dispensary = new Dispensary(null, $this->dispensary->getDispensaryId(), $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
 		$dispensary->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$results = Dispensary::getDispensaryByDispensaryAttention($this->getPDO(), $dispensary->getDispensaryAttention());
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("attention"));
+		$results = Dispensary::getDispensaryByDispensaryName($this->getPDO(), $dispensary->getDispensaryName());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("name"));
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesof("Edu\\cnm\\cannaduceus\\Dispensary", $results);
 
 		// grab the result from the array and validate it
 		$pdoDispensary = $results[0];
 		$this->assertEquals($pdoDispensary->getDispensaryId(), $this->dispensary->getDispensaryId());
-		$this->assertEquals($pdoDispensary->getDispensaryAttention(), $this->VALID_DISPENSARYATTENTION);
+		$this->assertEquals($pdoDispensary->getDispensaryName(), $this->VALID_DISPENSARYNAME);
 	}
 	/**
 	 * test grabbing a Dispensary Attention by content that does not exist
 	 **/
-	public function testGetInvalidDispensaryByDispensaryAttention() {
+	public function testGetInvalidDispensaryByDispensaryName() {
 		// grab a dispensary by searching for content that does not exist
-		$dispensary = Dispensary::getDispensaryByDispensaryAttention($this->getPDO(), "where it at tho");
+		$dispensary = Dispensary::getDispensaryByDispensaryName($this->getPDO(), "where it at tho");
 		$this->assertCount(0, $dispensary);
 	}
 
+	/**
+	 * test grabbing all Dispensaries
+	 **/
+	public function testGetAllValidDispensaries() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("get all ");
 
+		// create a new Dispensaries and insert to into mySQL
+		$dispensary = new Dispensary(null, $this->dispensary->getDispensaryId(),  $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
+		$dispensary->insert($this->getPDO());
 
+		// grab the data from mySQL and enforce the fields match our expectations
+		$results = Dispensary::getAllDispensaries($this->getPDO());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("all high"));
+		$this->assertContainsOnlyInstanceof("Edu\\cnm\\cannaduceus\\Dispensary", $results);
 
-
-
-
-
-
+		// grab the result from the array and validate it
+		$pdoDispensary = $results[0];
+		$this->assertEquals($pdoDispensary->getDispensaryId(), $dispensary->getDispensaryId());
+		$this->assertEquals($pdoDispensary->getDispensaryName(), $this->VALID_D);
+	}
 }
