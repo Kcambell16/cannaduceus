@@ -1,21 +1,15 @@
 <?php
-/**
-* Created by PhpStorm.
-* User: Kcampbell
-* Date: 11/11/16
-* Time: 6:45 PM
-*/
 
 namespace Edu\Cnm\Cannaduceus\Test;
 
-use Edu\Cnm\Cannaduceus\{Dispensary};
-use Edu\Cnm\jmontoya306\cannaduceus\Strain;
+use Edu\Cnm\Cannaduceus\{Strain};
+use Edu\Cnm\jmontoya306\cannaduceus\strain;
 
 //grabs the project parameters
 require_once ("CannaduceusTest.php");
 
 //grabs the class being tested
-require_once (dirname(__DIR__) . "/public_html/php/classes/autoload.php");
+require_once (dirname(__DIR__) . "../php/classes/autoload.php");
 
 /**
 * Full PHPUnit test for the Strain class
@@ -36,7 +30,7 @@ class StrainTest extends CannaduceusTest {
 	protected $VALID_STRAINID0 = "420";
 	/**
 	 * strain id 1
-	 * @var string 
+	 * @var string
 	 */
 	protected $VALID_STRAINID1 = "720";
 	/**
@@ -129,8 +123,10 @@ class StrainTest extends CannaduceusTest {
 	public final function setUp() {
 		//run the default setUp() method first
 		parent::setUp();
-	}}
-	// create and insert a Strain to own the test Strain
-$this->strain = new Strain("@phpunit", "test@phpunit.de", "+12125551212");
-$this->strain = insert($this->getPDO());
+
+		// create and insert a Strain to own the test Strain
+		$this->strain = new Strain("@phpunit", "test@phpunit.de", "+12125551212");
+		$this->strain = insert($this->getPDO());
+	}
+
 }
