@@ -27,12 +27,12 @@ class DispensaryReview implements \JsonSerializable {
 	private $dispensaryReviewProfileId;
 	/**
 	 * dispensary being reviewed by a specific profile
-	 * @var string $dispensaryReviewDispensaryId
+	 * @var string $dispensaryReviewDispensaryId                // should this be an int?
 	 **/
 	private $dispensaryReviewDispensaryId;
 	/**
 	 * date and time this Review was sent, in a PHP DateTime object
-	 * @var \DateTime $dispensaryReviewDate
+	 * @var \DateTime $dispensaryReviewDateTime
 	 **/
 	private $dispensaryReviewDateTime;
 	/**

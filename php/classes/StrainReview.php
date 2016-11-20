@@ -25,7 +25,7 @@ class StrainReview implements \JsonSerializable {
 	private $strainReviewProfileId;
 	/**
 	 * strain being reviewed by a specific profile
-	 * @var string $strainReviewStrainId
+	 * @var string $strainReviewStrainId                        // should this be an int?
 	 **/
 	private $strainReviewStrainId;
 	/**
@@ -166,7 +166,7 @@ class StrainReview implements \JsonSerializable {
 	public function setStrainReviewStrainId(int $newStrainReviewStrainId = null) {
 		// base case: if the dispensary review strain id is null, this is a new strain review strain id without a mySQL assigned id (yet)
 		if($newStrainReviewStrainId === null) {
-			$this->strainReviewStrainId = null;
+			$this->strainReviewProfileId = null;
 			return;
 		}
 
@@ -302,7 +302,7 @@ class StrainReview implements \JsonSerializable {
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param \int $strainReviewId
-	 * @return StrainReview|null StrainReview found or null if not found
+	 * @return \SplFixedArray SplFixedArray of StrainReviews found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
@@ -313,14 +313,17 @@ class StrainReview implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewTxt FROM strainReview WHERE strainReviewId = :strainReviewId";
+		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewDateTime strainReviewTxt FROM strainReview WHERE strainReviewId = :strainReviewId";
 		$statement = $pdo->prepare($query);
 
 		// bind the strainReview id to the place holder in the template
 		$parameters = ["strainReviewId" => $strainReviewId];
 		$statement->execute($parameters);
 
-		// grab the strainReview from mySQL
+		$strainReviews = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+
+		// grab the strainReviews from mySQL
 		try {
 			$strainReview = null;
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
