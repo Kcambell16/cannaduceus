@@ -300,7 +300,6 @@ class DispensaryReview implements \JsonSerializable {
 
 	} // deletes
 
-
 	/**
 	 * gets the DispensaryReview by dispensaryReviewId
 	 *
@@ -347,7 +346,7 @@ class DispensaryReview implements \JsonSerializable {
 	}
 
 	/**
-	 * gets the DispensaryReview by dispensaryReviewProfiled
+	 * gets the DispensaryReview by Profiled
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param int $dispensaryReviewProfileId profile id to search by
@@ -386,7 +385,7 @@ class DispensaryReview implements \JsonSerializable {
 	}
 
 	/**
-	 * gets the DispensaryReview by dispensaryReviewDispensaryId
+	 * gets the DispensaryReview by DispensaryId
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param int $dispensaryReviewDispensaryId profile id to search by
@@ -424,15 +423,6 @@ class DispensaryReview implements \JsonSerializable {
 		return($dispensaryReviews);
 	}
 
-	/**
-	 * gets the DispensaryReview by ProfileId
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @param int $dispensaryReviewDispensaryId profile id to search by
-	 * @return \SplFixedArray SplFixedArray of DispensaryReviews found
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when variables are not the correct data type
-	 **/
 
 	/**
 	 * gets the didpensaryReview by content
@@ -466,7 +456,7 @@ class DispensaryReview implements \JsonSerializable {
 		while(($row = $statement->fetch()) !== false) {
 			try {
 				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"],$row ["dispensaryReviewDateTime"], $row["dispensaryReviewTxt"]);
-				$s[$dispensaryReviews->key()] = $dispensaryReview;
+				$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
 				$dispensaryReviews->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
@@ -476,41 +466,6 @@ class DispensaryReview implements \JsonSerializable {
 		return($dispensaryReviews);
 	}
 
-	/**
-	 * gets the didpensaryReview by content
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @param int $dispensaryReviewId dispensary review Id content to search for
-	 * @return DispensaryReview
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when variables are not the correct data type
-	 **/
-	public static function getDispensaryReviewByReviewId(\PDO $pdo, int $dispensaryReviewId) {
-		// sanitize the description before searching
-		if($dispensaryReviewId === null) {
-			throw(new \PDOException("dispensary review Id is invalid"));
-		}
-
-		// create query template
-		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewDateTime ,dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewId = :dispensaryReviewId";
-		$statement = $pdo->prepare($query);
-
-		// bind the tweet content to the place holder in the template
-		$parameters = ["dispensaryReviewId" => $dispensaryReviewId];
-
-
-			try {
-				$statement->setFetchMode(\PDO::FETCH_ASSOC);
-				$statement->execute($parameters);
-				$row = $statement->fetch();
-				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewDateTime"], $row["dispensaryReviewTxt"]);
-			} catch(\Exception $exception) {
-				// if the row couldn't be converted, rethrow it
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
-			}
-
-		return($dispensaryReview);
-	}
 	/**
 	 * formats the state variables for JSON serialization
 	 *

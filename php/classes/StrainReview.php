@@ -249,7 +249,7 @@ class StrainReview implements \JsonSerializable {
 	}
 
 	/**
-	 * inserts this dispensaryReview into mySQL
+	 * inserts this strainReview into mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
@@ -324,18 +324,19 @@ class StrainReview implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 
 		// grab the strainReviews from mySQL
-		try {
-			$strainReview = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
-				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["strainReviewTxt]"]);
+		while (($row = $statement->fetch())  !== false) {
+			try {
+				$strainReview = null;
+				$statement->setFetchMode(\PDO::FETCH_ASSOC);
+				$row = $statement->fetch();
+				if($row !== false) {
+				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["dispensaryReviewDateTime"], $row["strainReviewTxt]"]);
 			}
 		} catch(\Exception $exception) {
 			// if the row couldn't be converted, rethrow it
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return($strainReview);
+		return($strainReviews);
 
 	}
 
@@ -348,14 +349,14 @@ class StrainReview implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getStrainReviewByStrainReviewProfileId(\PDO $pdo, int $strainReviewProfileId) {
+	public static function getStrainReviewsByStrainReviewProfileId(\PDO $pdo, int $strainReviewProfileId) {
 		// sanitize the profile id before searching
 		if($strainReviewProfileId <= 0) {
-			throw(new \RangeException("strainreview profile id must be positive"));
+			throw(new \RangeException("strain review profile id must be positive"));
 		}
 
 		// create query template
-		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewTxt FROM strainReview WHERE strainReviewProfileId = :strainReviewProfileId";
+		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt FROM strainReview WHERE strainReviewProfileId = :strainReviewProfileId";
 		$statement = $pdo->prepare($query);
 
 		// bind the strain review profile id to the place holder in the template
@@ -367,7 +368,7 @@ class StrainReview implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewDispensaryId"], $row["strainReviewTxt"]);
+				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewDispensaryId"], $row["strainReviewDateTime"], $row["strainReviewTxt"]);
 				$strainReviews[$strainReviews->key()] = $strainReview;
 				$strainReviews->next();
 			} catch(\Exception $exception) {
@@ -387,26 +388,26 @@ class StrainReview implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getStrainReviewByStrainReviewStrainId(\PDO $pdo, int $strainReviewStrainId) {
+	public static function getStrainReviewsByStrainReviewStrainId(\PDO $pdo, int $strainReviewStrainId) {
 		// sanitize the profile id before searching
 		if($strainReviewStrainId <= 0) {
 			throw(new \RangeException("strain review strain id must be positive"));
 		}
 
 		// create query template
-		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewTxt FROM strainReview WHERE strainReviewStrainId = :strainReviewStrainId";
+		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt FROM strainReview WHERE strainReviewStrainId = :strainReviewStrainId";
 		$statement = $pdo->prepare($query);
 
 		// bind the strain review profile id to the place holder in the template
 		$parameters = ["strainReviewStrainId" => $strainReviewStrainId];
 		$statement->execute($parameters);
 
-		// build an array of dispensary reviews
+		// build an array of strain reviews
 		$strainReviews = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["strainReviewTxt"]);
+				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["strainReviewDateTime"], $row["strainReviewTxt"]);
 				$strainReviews[$strainReviews->key()] = $strainReview;
 				$strainReviews->next();
 			} catch(\Exception $exception) {
@@ -435,7 +436,7 @@ class StrainReview implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewTxt FROM strainReview WHERE strainReviewTxt LIKE :strainReviewTxt";
+		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt FROM strainReview WHERE strainReviewTxt LIKE :strainReviewTxt";
 		$statement = $pdo->prepare($query);
 
 		// bind the strain review content to the place holder in the template
@@ -448,8 +449,8 @@ class StrainReview implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["strainReviewTxt"]);
-				$s[$strainReviews->key()] = $strainReview;
+				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["strainReviewDateTime"], $row["strainReviewTxt"]);
+				$strainReviews[$strainReviews->key()] = $strainReview;
 				$strainReviews->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
