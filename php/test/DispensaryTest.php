@@ -224,9 +224,38 @@ public function testDeleteValidDispenary() {
 		// create a Dispensary and try to delete it without actually inserting it
 		$dispensary = new Dispensary(null, $this->dispensary->getDispensaryId(), $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
 		$dispensary->delete($this->getPDO());
-
 	}
 
+	/**
+	 * test grabbing a Dispensary Attention by dispensary attention
+	 **/
+	public function testGetValidDispenaryByDispensaryAttention() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("attention");
+
+		// create a new Dispensary and insert to into mySQL
+		$dispensary = new Dispensary(null, $this->dispensary->getDispensaryId(), $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
+		$dispensary->insert($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$results = Dispensary::getDispensaryByDispensaryAttention($this->getPDO(), $dispensary->getDispensaryAttention());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("attention"));
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesof("Edu\\cnm\\cannaduceus\\Dispensary", $results);
+
+		// grab the result from the array and validate it
+		$pdoDispensary = $results[0];
+		$this->assertEquals($pdoDispensary->getDispensaryId(), $this->dispensary->getDispensaryId());
+		$this->assertEquals($pdoDispensary->getDispensaryAttention(), $this->VALID_DISPENSARYATTENTION);
+	}
+	/**
+	 * test grabbing a Dispensary Attention by content that does not exist
+	 **/
+	public function testGetInvalidDispensaryByDispensaryAttention() {
+		// grab a dispensary by searching for content that does not exist
+		$dispensary = Dispensary::getDispensaryByDispensaryAttention($this->getPDO(), "where it at tho");
+		$this->assertCount(0, $dispensary);
+	}
 
 
 
