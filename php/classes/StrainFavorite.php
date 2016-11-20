@@ -1,6 +1,7 @@
 <?php
 namespace Edu\Cnm\jmontoya306\cannaduceus;
 
+require_once(dirname(__DIR__) . "/classes/autoload.php");
 /**
  * Cross section of cannaduceus strainFavorite class
  *

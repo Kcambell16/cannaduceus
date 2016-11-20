@@ -51,13 +51,14 @@ CREATE TABLE strain
 
 CREATE TABLE dispensaryReview
 (
-	dispensaryReviewId INT UNSIGNED NOT NULL,
+	dispensaryReviewId INT UNSIGNED AUTO_INCREMENT NOT NULL,
 	dispensaryReviewProfileId INT UNSIGNED NOT NULL,
 	dispensaryReviewDispensaryId INT UNSIGNED NOT NULL,
-	dispensaryReviewDateTime INT UNSIGNED NOT NULL,
+	dispensaryReviewDateTime DATETIME,
 	dispensaryReviewTxt VARCHAR(255) NOT NULL,
 	INDEX (dispensaryReviewProfileId),
 	INDEX (dispensaryReviewDispensaryId),
+	UNIQUE (dispensaryReviewId),
 	FOREIGN KEY (dispensaryReviewProfileId) REFERENCES profile (profileId),
 	FOREIGN KEY (dispensaryReviewDispensaryId) REFERENCES dispensary (dispensaryId),
 	PRIMARY KEY (dispensaryReviewDispensaryId, dispensaryReviewProfileId)
@@ -91,10 +92,11 @@ CREATE TABLE strainReview
 	strainReviewId INT UNSIGNED NOT NULL,
 	strainReviewProfileId INT UNSIGNED NOT NULL,
 	strainReviewStrainId INT UNSIGNED NOT NULL,
-	strainReviewDateTime VARCHAR(32),
+	strainReviewDateTime DATETIME,
 	strainReviewTxt VARCHAR (255),
 	INDEX (strainReviewProfileId),
 	INDEX (strainReviewStrainId),
+	UNIQUE (strainReviewId),
 	FOREIGN KEY (strainReviewProfileId) REFERENCES profile (profileId),
 	FOREIGN KEY (strainReviewStrainId) REFERENCES strain (strainId),
 	PRIMARY KEY (strainReviewProfileId, strainReviewStrainId)

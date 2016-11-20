@@ -1,7 +1,7 @@
 <?php
 namespace Edu\Cnm\cannaduceus;
 
-require_once ("autoload.php");
+require_once(dirname(__DIR__) . "/classes/autoload.php");
 /**
  * this is going to be a cross section for the dispensary favorite info
  *

@@ -1,8 +1,9 @@
 <?php
 
 namespace Edu\Cnm\Cannaduceus;
+require_once(dirname(__DIR__) . "/classes/autoload.php");
+require_once(dirname(__DIR__) . "/classes/ValidateDate.php");
 
-require_once("autoload.php");
 
 /**
  * Small Cross Section of a Dispensary Review
@@ -26,12 +27,12 @@ class DispensaryReview implements \JsonSerializable {
 	private $dispensaryReviewProfileId;
 	/**
 	 * dispensary being reviewed by a specific profile
-	 * @var string $dispensaryReviewDispensaryId
+	 * @var string $dispensaryReviewDispensaryId                // should this be an int?
 	 **/
 	private $dispensaryReviewDispensaryId;
 	/**
 	 * date and time this Review was sent, in a PHP DateTime object
-	 * @var \DateTime $dispensaryReviewDate
+	 * @var \DateTime $dispensaryReviewDateTime
 	 **/
 	private $dispensaryReviewDateTime;
 	/**
@@ -267,7 +268,7 @@ class DispensaryReview implements \JsonSerializable {
 		// bind the member variables to the place holders in the template
 		$formattedDateTime = $this->dispensaryReviewDateTime->format("Y-m-d H:i:s");
 		$parameters = ["dispensaryReviewProfileId" => $this->dispensaryReviewProfileId, "dispensaryReviewDispensaryId" => $this->dispensaryReviewDispensaryId,
-			            "dispensaryReviewDateTime" => $formattedDateTime, "dispensaryReviewTxt" => $this->$this->dispensaryReviewTxt];
+			            "dispensaryReviewDateTime" => $formattedDateTime, "dispensaryReviewTxt" => $this->dispensaryReviewTxt];
 
 		$statement->execute($parameters);
 
@@ -299,7 +300,6 @@ class DispensaryReview implements \JsonSerializable {
 
 	} // deletes
 
-
 	/**
 	 * gets the DispensaryReview by dispensaryReviewId
 	 *
@@ -316,7 +316,7 @@ class DispensaryReview implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewId = :dispensaryReviewId";
+		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewDateTime, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewId = :dispensaryReviewId";
 		$statement = $pdo->prepare($query);
 
 		// bind the dispensaryReview id to the place holder in the template
@@ -346,7 +346,7 @@ class DispensaryReview implements \JsonSerializable {
 	}
 
 	/**
-	 * gets the DispensaryReview by dispensaryReviewProfiled
+	 * gets the DispensaryReview by Profiled
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param int $dispensaryReviewProfileId profile id to search by
@@ -361,7 +361,7 @@ class DispensaryReview implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewProfileId = :dispensaryReviewProfileId";
+		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewDateTime, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewProfileId = :dispensaryReviewProfileId";
 		$statement = $pdo->prepare($query);
 
 		// bind the dispensary review profile id to the place holder in the template
@@ -373,7 +373,7 @@ class DispensaryReview implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
+				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row ["dispensaryReviewDateTime"], $row["dispensaryReviewTxt"]);
 				$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
 				$dispensaryReviews->next();
 			} catch(\Exception $exception) {
@@ -385,7 +385,7 @@ class DispensaryReview implements \JsonSerializable {
 	}
 
 	/**
-	 * gets the DispensaryReview by dispensaryReviewDispensaryId
+	 * gets the DispensaryReview by DispensaryId
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param int $dispensaryReviewDispensaryId profile id to search by
@@ -400,7 +400,7 @@ class DispensaryReview implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewDispensaryId = :dispensaryReviewDispensaryId";
+		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewDateTime, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewDispensaryId = :dispensaryReviewDispensaryId";
 		$statement = $pdo->prepare($query);
 
 		// bind the dispensary review profile id to the place holder in the template
@@ -412,7 +412,7 @@ class DispensaryReview implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
+				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row ["dispensaryReviewDateTime"], $row["dispensaryReviewTxt"]);
 				$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
 				$dispensaryReviews->next();
 			} catch(\Exception $exception) {
@@ -423,15 +423,6 @@ class DispensaryReview implements \JsonSerializable {
 		return($dispensaryReviews);
 	}
 
-	/**
-	 * gets the DispensaryReview by ProfileId
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @param int $dispensaryReviewDispensaryId profile id to search by
-	 * @return \SplFixedArray SplFixedArray of DispensaryReviews found
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when variables are not the correct data type
-	 **/
 
 	/**
 	 * gets the didpensaryReview by content
@@ -451,7 +442,7 @@ class DispensaryReview implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewTxt LIKE :dispensaryReviewTxt";
+		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewDateTime, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewTxt LIKE :dispensaryReviewTxt";
 		$statement = $pdo->prepare($query);
 
 		// bind the tweet content to the place holder in the template
@@ -464,8 +455,8 @@ class DispensaryReview implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewTxt"]);
-				$s[$dispensaryReviews->key()] = $dispensaryReview;
+				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"],$row ["dispensaryReviewDateTime"], $row["dispensaryReviewTxt"]);
+				$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
 				$dispensaryReviews->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
@@ -474,7 +465,6 @@ class DispensaryReview implements \JsonSerializable {
 		}
 		return($dispensaryReviews);
 	}
-
 
 	/**
 	 * formats the state variables for JSON serialization
