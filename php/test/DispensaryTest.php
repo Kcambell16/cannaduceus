@@ -160,6 +160,7 @@ class DispensaryTest extends CannaduceusTest {
 
 		$dispensary->insert($this->getPDO());
 
+		// edit the Dispensary and update it in mySQL
 		$dispensary->setDispensaryCity($this->VALID_DISPENSARYCITY2);
 		$dispensary->update($this->getPDO());
 
@@ -181,11 +182,16 @@ class DispensaryTest extends CannaduceusTest {
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("Edu\\cnm\\cannaduceus\\Dispensary", $results);
 	}
+
 	/**
-	 * test grabbing a Dispensary by content that does not exist
+	 * test updating a Dispensary that does not exist
+	 *
+	 * @expectedException PDOException
 	 **/
-	public function testGetInvalidDispensaryByDispensary() {
-		//
+	public function testUpdateInvalidDispensary() {
+		//create a Dispensary, try to update it without actually updating it and watch it fail
+		$dispensary = new Dispensary(null, $this->dispensary->getDispensaryId(), $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
+		$dispensary->update($this->getPDO());
 	}
 
 
