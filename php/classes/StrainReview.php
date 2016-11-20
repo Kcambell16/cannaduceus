@@ -2,8 +2,7 @@
 
 namespace Edu\Cnm\Cannaduceus;
 
-require_once("autoload.php");
-
+require_once(dirname(__DIR__) . "/classes/autoload.php");
 /**
  * Small Cross Section of a Strain Review
  *

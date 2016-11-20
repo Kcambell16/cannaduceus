@@ -1,7 +1,7 @@
 <?php
 namespace Edu\Cnm\Cannaduceus;
 
-require_once("autoload.php");
+require_once(dirname(__DIR__) . "/classes/autoload.php");
 /**
  * this is going to be the cross section for profile info
  *
