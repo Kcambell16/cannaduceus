@@ -102,11 +102,12 @@ class ProfileTest extends CannaduceusTest {
 		$password = "abc123";
 
 		$salt0 = bin2hex(random_bytes(16));
-		$hash0 = hash_pbkdf2("sha512", $password, $salt0, 262144);
+		$hash0 = hash_pbkdf2("sha512", $password, $salt0, 262144, 128);
 
 
 		$salt1 = bin2hex(random_bytes(16));
-		$hash1 = hash_pbkdf2("sha512", $password, $salt1, 262144);
+		$hash1 = hash_pbkdf2("sha512", $password, $salt1, 262144, 128);
+		var_dump($hash1);
 
 		$this->VAILD_PROFILESALT1 = $salt0;
 		$this->VAILD_PROFILESALT2 = $salt1;
@@ -120,7 +121,7 @@ class ProfileTest extends CannaduceusTest {
 	/**
 	 *test inserting a vaild profile and verify that what's in mySQL matches what was input
 	 */
-	public function testInsertVaildProfile() {
+	public function testInsertValidProfile() {
 		// count the number of rows initially the database (0)
 		$numRows = $this->getConnection()->getRowCount("profile");
 
@@ -182,7 +183,7 @@ class ProfileTest extends CannaduceusTest {
 
 
 				//create a new profile and insert it into SQL
-				$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
+				$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
 
 				//inset the mock profile in SQL
 				$profile->insert($this->getPDO());
@@ -219,7 +220,7 @@ class ProfileTest extends CannaduceusTest {
 	 * test insering a profile that already exists
 	 * @expectedException \PDOException
 	 */
-	public function testUpdateInvaildProfile(){
+	public function testUpdateInvalidProfile(){
 			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
 
 			//now that the dummy profile has been created, we will not insert this bad boy but were gonna try to update it in SQL
@@ -231,13 +232,13 @@ class ProfileTest extends CannaduceusTest {
 	/**
 	 * test creating a profile and then 410'ing it
 	 */
-	public function testDeleteVaildProfile(){
+	public function testDeleteValidProfile(){
 				//count the rows assign that number to a variable and save it for later
 				$numRows = $this->getConnection()->getRowCount("profile");
 
 
 		//create a dummy profile
-		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
+		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
 
 		//insert it into SQL
 		$profile->insert($this->getPDO());
@@ -262,11 +263,11 @@ class ProfileTest extends CannaduceusTest {
 	 * test deleting a profile that does not exist
 	 * @expectedException \PDOException
 	 */
-	public function testDeleteInvaildProfile(){
+	public function testDeleteInvalidProfile(){
 			//create a profile and never actually insert it then try to delete it when it hasnt been inserted
 
 			//create a dummy profile (again:()
-			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
+			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
 
 			//now time to delete this egg head with out inserting it
 			$profile->delete($this->getPDO());
@@ -277,13 +278,13 @@ class ProfileTest extends CannaduceusTest {
 	/**
 	 * test getting a profile by profile name
 	 */
-	public function testGetProfileByProfileName(){
+	public function testGetProfileByProfileUserName(){
 			//get number of initial rows (will be zero) and save it for later
 			$numRows = $this->getConnection()->getRowCount("profile");
 
 
 			// create a dummy profile
-			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
+			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
 
 			$results = Profile::getProfileByProfileUserName($this->getPDO(), $profile->getProfileUserName());
 
@@ -330,7 +331,7 @@ class ProfileTest extends CannaduceusTest {
 			$numRows = $this->getConnection()->getRowCount("profile");
 
 			//create a dummy profile
-			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
+			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
 
 			//insert the mock profile in SQL
 			$profile->insert($this->getPDO());
@@ -373,8 +374,7 @@ class ProfileTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("profile");
 
 		//make a dummy profile
-		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
-
+		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
 		//insert in to dat SQL
 		$profile->insert($this->getPDO());
 
@@ -383,7 +383,7 @@ class ProfileTest extends CannaduceusTest {
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
 		//confirm we have just 1 profile in the database
 		$this->assertCount(1, $results);
-		//ensure there are only instances of the profile class in the naespace
+		//ensure there are only instances of the profile class in the namespace
 		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus\\Profile", $results);
 
 		//grab results from the array and validate them

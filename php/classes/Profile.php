@@ -331,12 +331,12 @@ class Profile implements \JsonSerializable {
 		}
 
 		//create a query template
-		$query = "UPDATE profile SET profileUserName = :profileUserName, profileEmail = :profileEmail, profileSalt = :profileSalt, profileHash = :profileHash, profileActivation = :profileActivation WHERE profileId = :profileId";
+		$query = "UPDATE profile SET profileUserName = :profileUserName, profileEmail = :profileEmail, profileHash = :profileHash, profileSalt = :profileSalt, profileActivation = :profileActivation WHERE profileId = :profileId";
 		// prepare statement
 		$statement = $pdo->prepare($query);
 
 		//bind the variables to the template and execute the SQL command
-		$parameters = ["profileUserName" => $this->profileUserName, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileSalt" => $this->profileSalt, "profileActivation" => $this->profileActivation];
+		$parameters = ["profileId" => $this->profileId, "profileUserName" => $this->profileUserName, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileSalt" => $this->profileSalt, "profileActivation" => $this->profileActivation];
 		//execute
 		$statement->execute($parameters);
 	}
@@ -360,7 +360,7 @@ class Profile implements \JsonSerializable {
 		}
 
 		// prepare query
-		$query = "SELECT profileId, profileUserName, profileHash, profileSalt, profileActivation FROM profile WHERE profileId = :profileId";
+		$query = "SELECT profileId, profileUserName, profileEmail, profileHash, profileSalt, profileActivation FROM profile WHERE profileId = :profileId";
 
 		$statement = $pdo->prepare($query);
 		$parameters = array("profileId" => $profileId);
@@ -372,7 +372,7 @@ class Profile implements \JsonSerializable {
 				$statement->setFetchMode(\PDO:: FETCH_ASSOC);
 				$row = $statement->fetch();
 				if($row !== false) {
-					$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
+					$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
 				}
 			} catch(\Exception $exception) {
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
