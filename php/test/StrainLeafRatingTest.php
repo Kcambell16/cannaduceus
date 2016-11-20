@@ -45,25 +45,25 @@ class StrainLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 	 * valid strain to use
 	 * @var \Edu\Cnm\Cannaduceus\Test\Strain $strainId
 	 */
-	protected $strainId = null;
+	protected $strainId0 = null;
 
 	/**
 	 * invalid strain to use
 	 * @var \Edu\Cnm\Cannaduceus\Test\Strain $strainId
 	 */
-	protected $strainId = "Betty Baker 1976";
+	protected $strainId1 = "Betty Baker 1976";
 
 	/**
 	 * valid user to use
 	 * @var \Edu\Cnm\Cannaduceus\Test\strainLeafRating $profileId
 	 */
-	protected $profileId = null;
+	protected $profileId0 = null;
 
 	/**
 	 * Invalid user to use
 	 * @var \Edu\Cnm\Cannaduceus\Test\strainLeafRating $profileId
 	 */
-	protected $profileId = "Happy Stoner";
+	protected $profileId1 = "Happy Stoner";
 
 
 	/**
@@ -74,12 +74,12 @@ class StrainLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 		parent::setUp();
 
 		//create and insert a strain and profile to own the rating
-		$this->strainId = new strain(null, "Couch Melt", "Indica", "25%", "13.9%", "A potent strain that will put your butt to sleep");
-		$this->profileId = new profile(null, "Betty Baker", "420Betty@google.com", hash_pdkdf2("sha513", $password, $salt), bin2hex(random_bytes(16)) );
-		$this->profileId->insert($this->getPDO());
+		$this->strainId0 = new strain(null, "Couch Melt", "Indica", "25%", "13.9%", "A potent strain that will put your butt to sleep");
+		$this->profileId0 = new profile(null, "Betty Baker", "420Betty@google.com", hash_pbkdf2("sha513", $profileHash, $profileSalt), bin2hex(random_bytes(16)) );
+		$this->profileId0->insert($this->getPDO());
 
 		//create the Strain Leaf Rating Test
-		$this->strainLeafRating = new strainLeafRating(null, $this->strainId->getStrainId(), "PHPUnit strain leaf rating test passing");
+		$this->strainLeafRating = new strainLeafRating(null, $this->strainId0->getStrainId0(), "PHPUnit strain leaf rating test passing");
 		$this->strainLeafRating->insert($this->getPDO());
 	}//create strain Id and profile Id
 
@@ -91,7 +91,7 @@ class StrainLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 		$numRows = $this->getRowCount("strainLeafRating");
 
 		//create a new strainLeafRating and insert it into mySQL
-		$like = new \Edu\Cnm\jCannaduceus\strainLeafRating()
+		$like = new \Edu\Cnm\jCannaduceus\strainLeafRating();
 
 	}
 }

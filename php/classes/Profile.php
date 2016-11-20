@@ -108,7 +108,7 @@ class Profile implements \JsonSerializable {
 		// validate that the new profileId is an integer
 		$newProfileId = filter_var($newProfileId);
 		if($newProfileId === false) {
-			throw(new \UnexpectedValueException("Profile Id is not a vaild integer"));
+			throw(new \UnexpectedValueException("Profile Id is not a valid integer"));
 		}
 
 
