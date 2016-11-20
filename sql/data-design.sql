@@ -92,10 +92,11 @@ CREATE TABLE strainReview
 	strainReviewId INT UNSIGNED NOT NULL,
 	strainReviewProfileId INT UNSIGNED NOT NULL,
 	strainReviewStrainId INT UNSIGNED NOT NULL,
-	strainReviewDateTime VARCHAR(32),
+	strainReviewDateTime DATETIME,
 	strainReviewTxt VARCHAR (255),
 	INDEX (strainReviewProfileId),
 	INDEX (strainReviewStrainId),
+	UNIQUE (strainReviewId),
 	FOREIGN KEY (strainReviewProfileId) REFERENCES profile (profileId),
 	FOREIGN KEY (strainReviewStrainId) REFERENCES strain (strainId),
 	PRIMARY KEY (strainReviewProfileId, strainReviewStrainId)
