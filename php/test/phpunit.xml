@@ -1,7 +1,7 @@
 <phpunit>
 	<testsuites>
 		<testsuite name="Cannaduceus">
-			<file>DispensaryTest.php</file>
+			<file>ProfileTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>
