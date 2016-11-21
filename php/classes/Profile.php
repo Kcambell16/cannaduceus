@@ -119,13 +119,12 @@ class Profile implements \JsonSerializable {
 		$this->profileId = intval($newProfileId);
 	}
 
-
 	/**
-	 * accessor method for Profile UserName
+	 * accessor method for profile username
 	 *
-	 * @return string of Profile UserName
+	 * @return string
 	 */
-	public function getProfileByProfileUserName() {
+	public function getProfileUserName(): string {
 		return $this->profileUserName;
 	}
 
@@ -390,26 +389,45 @@ class Profile implements \JsonSerializable {
 		return ($profile);
 	} // getProfileByProfileId
 
+	/**
+	 * gets the profile by the Profile UserName
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $profileUserName profile username to search for
+	 * @return mixed profile found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getProfileByProfileUserName(\PDO $pdo, string $profileUserName) {
+		// sanitize the description before searching
+		$profileUserName = trim($profileUserName);
+		$profileUserName = filter_var($profileUserName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($profileUserName) === true){
+			throw(new \PDOException("profile name invalid"));
+		}
+		// create query template
+		$query = "SELECT profileId, profileUserName, profileEmail, profileHash, profileSalt, profileActivation FROM profile WHERE profileUserName = :profileUserName";
+		$statement = $pdo->prepare($query);
 
+		// bind the profile username to the place holder
+		$parameters = ["profileUserName" => $profileUserName];
+		$statement->execute($parameters);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		// grab the profileUserName from mySQL
+		try {
+			$profile = null;
+			// blaze it
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"], ["profileActivation"]);
+			}
+		} catch(\Exception $exception) {
+			// if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($profile);
+	}
 
 	/**
 	 * formats the state variables for JSON serialization
