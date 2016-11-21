@@ -473,7 +473,6 @@ class Dispensary implements \JsonSerializable {
 		// convert and store the dispensary zip code
 		$this->dispensaryZipCode = $newDispensaryZipCode;
 	}
-
 	}
 
 	/**
