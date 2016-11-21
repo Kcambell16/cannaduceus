@@ -51,9 +51,11 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		$salt = bin2hex(random_bytes(32));
 		$hash = hash_pbkdf2("sha512", $password, $salt, 262144, 128);
 		$activation = bin2hex(random_bytes(16));
+
 		$this->profile = new Profile(null, "profileUserName", "profileEmail", "profileHash", "profileSalt", "profileActivation");
 		$this->profile -> insert($this->getPDO());
 		// create and insert a Dispensary to Favorite the test DispensaryFavorite
+
 		$this-> dispensary = new Dispensary(null, "dispensaryAttention", "dispensaryCity", "dispensaryEmail", "dispensaryName", "dispensaryPhone", "dispensaryState", "dispensaryStreet1", "dispensaryStreeet2","dispensaryUrl", "dispensaryZipCode");
 		$this-> dispensary->insert($this->getPDO());
 	}
@@ -65,14 +67,20 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 		// create a new DispensaryFavorite and insert it in to mySQL
 		$dispensaryFavorite = DispensaryFavorite(null, $this->profile->getProfileId(), $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
+
+
+		// insert the mock favorite in SQL
 		$dispensaryFavorite->insert($this->getPDO());
 
 
+		$pdoDispensaryFavorite = Dispensary::getDispensaryFavoriteByProfileId($this->getPDO(), $dispensaryFavorite->getDispensaryFavorite());
 
 
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryFavorite"));
 
 
-
+		$this->assertEquals($pdoDispensaryFavorite->getDispensaryFavorite(), $this->VALID_FAVORITEDISPENSARY1);
+		$this->assertEquals($pdoDispensaryFavorite->getDispensaryFavorite(), $this->VALID_FAVORITEDISPENSARY2);
 
 
 
