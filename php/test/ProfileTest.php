@@ -135,7 +135,7 @@ class ProfileTest extends CannaduceusTest {
 
 		//NOW, grab the data from SQL and ensure the fields match our expectations
 
-		//$pdoProfile is new declaration... then we call our PDO get method: getProfileByProfileId which requires 2 parameters:
+		//$pdoProfile is new declaration... then we call our PDO get method: getProfileByProfileId  which requires 2 parameters:
 		//the first is a PDO object, the other is our profileId, which we use the accessor method we wrote (getProfileId) to get!
 		// $pdoProfile now contains all the information for our dummy profile
 		$pdoProfile = Profile::getProfileByProfileId($this->getPDO(), $profile->getProfileId());
@@ -217,7 +217,7 @@ class ProfileTest extends CannaduceusTest {
 
 
 	/**
-	 * test insering a profile that already exists
+	 * test inserting a profile that already exists
 	 * @expectedException \PDOException
 	 */
 	public function testUpdateInvalidProfile(){

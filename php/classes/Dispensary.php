@@ -96,12 +96,12 @@ class Dispensary implements \JsonSerializable {
 	 * @param string $newDispensaryCity city of dispensary
 	 * @param string $newDispensaryEmail email of dispensary
 	 * @param string $newDispensaryName dispensary name
-	 * @param int $newDispensaryPhone phone number of dispensary
+	 * @param string $newDispensaryPhone phone number of dispensary
 	 * @param string $newDispensaryState dispensary state
 	 * @param string $newDispensaryStreet1 address of dispensary
 	 * @param string $newDispensaryStreet2 additional address info of dispensary
 	 * @param string $newDispensaryUrl web address of dispensary
-	 * @param int $newDispensaryZipCode dispensary zip code
+	 * @param string $newDispensaryZipCode dispensary zip code
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -320,6 +320,7 @@ class Dispensary implements \JsonSerializable {
 	 **/
 	public function getDispensaryPhone() {
 		return ($this->dispensaryPhone);
+
 	}
 
 	/**
@@ -329,21 +330,21 @@ class Dispensary implements \JsonSerializable {
 	 * @throws \RangeException if $newDispenaryPhone is not positive
 	 * @throws \TypeError if $newDispensaryPhone is not an string
 	 **/
-	public function setDispensaryPhone(string $newDispensaryPhone = null) {
-		// base case: if the dispensary phone, this is a new dispensary phone without a mySQL assigned id (yet)
-		if($newDispensaryPhone === null) {
-			$this->dispensaryPhone = null;
-			return;
-		}
+		public function setDispensaryPhone(string $newDispensaryPhone) {
+			//verify the dispensary name is secure
+			$newDispensaryPhone = trim($newDispensaryPhone);
+			$newDispensaryPhone = filter_var($newDispensaryPhone, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+			if(empty($newDispensaryPhone) === true) {
+				throw(new \InvalidArgumentException("dispensary name is empty or insecure"));
+			}
+			//verify the dispensary phone will fit in the database
+			if(strlen($newDispensaryPhone) > 32) {
+				throw(new \RangeException("dispensary phone too large"));
 
-		//verify the dispensary phone is positive
-		if($newDispensaryPhone <= 0) {
-			throw(new \RangeException("dispensary phone is not positive"));
+				// convert and store the dispensary phone
+				$this->dispensaryPhone = $newDispensaryPhone;
+			}
 		}
-
-		// convert and store the dispensary phone
-		$this->dispensaryPhone = $newDispensaryPhone;
-	}
 
 	/**
 	 * accessor method for dispensary street1
@@ -458,18 +459,20 @@ class Dispensary implements \JsonSerializable {
 	 * @throws \TypeError if $newDispensaryZipCode is not an string
 	 *
 	 **/
-	public function setDispensaryZipCode(string $newDispensaryZipCode = null) {
-		// base case: if the zip code is null, this is a new dispensary without a mySQL assigned id (yet)
-		if($newDispensaryZipCode === null) {
-			$this->dispensaryZipCode = null;
-			return;
+	public function setDispensaryZipCode(string $newDispensaryZipCode) {
+		//verify the dispensary zip is secure
+		$newDispensaryZipCode = trim($newDispensaryZipCode);
+		$newDispensaryZipCode= filter_var($newDispensaryZipCode, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newDispensaryZipCode) === true) {
+			throw(new \InvalidArgumentException("dispensary zip code is empty or insecure"));
 		}
-		// verify the dispensary zip code is positive
-		if($newDispensaryZipCode <= 0) {
-			throw(new \RangeException("dispensary zip code is not positive"));
-		}
+		//verify the dispensary phone will fit in the database
+		if(strlen($newDispensaryZipCode) > 10) {
+			throw(new \RangeException("dispensary phone too large"));
+
 		// convert and store the dispensary zip code
 		$this->dispensaryZipCode = $newDispensaryZipCode;
+	}
 	}
 
 	/**
