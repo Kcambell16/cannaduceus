@@ -176,7 +176,8 @@ class DispensaryTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("dispensary");
 
 		//create a new Dispensary and insert into mySQL
-		$dispensary = new Dispensary(null, $this->VALID_DISPENSARYATTENTION,
+		$dispensary = new Dispensary(null,
+			$this->VALID_DISPENSARYATTENTION,
 			$this->VALID_DISPENSARYCITY,
 			$this->VALID_DISPENSARYEMAIL,
 			$this->VALID_DISPENSARYNAME,
@@ -253,11 +254,11 @@ public function testDeleteValidDispensary() {
 	$dispensary->insert($this->getPDO());
 
 	// delete the Dispensary from mySQL
-	$this->assertEquals($numRows + 1, $this-$this->getConnection()->getRowCount("dispensary"));
+	$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary"));
 	$dispensary->delete($this->getPDO());
 
 	// grab the data from mySQL and enforce the Dispensary does not exist
-	$pdoDispensary = Dispensary::getDispenaryByDispenaryId($this->getPDO(), $dispensary->getDispensaryId());
+	$pdoDispensary = Dispensary::getDispensaryByDispensaryId($this->getPDO(), $dispensary->getDispensaryId());
 	$this->assertNull($pdoDispensary);
 	$this->assertEquals($numRows, $this->getConnection()->getRowCount("dispensary"));
 }
@@ -267,10 +268,9 @@ public function testDeleteValidDispensary() {
 	 *
 	 * @expectedException PDOException
 	 **/
-	public function testDeleteInvalidDispenary() {
+	public function testDeleteInvalidDispensary() {
 		// create a Dispensary and try to delete it without actually inserting it
 		$dispensary = new Dispensary(null,
-			$this->dispensary->getDispensaryId(),
 			$this->VALID_DISPENSARYATTENTION,
 			$this->VALID_DISPENSARYCITY,
 			$this->VALID_DISPENSARYEMAIL,
@@ -287,13 +287,12 @@ public function testDeleteValidDispensary() {
 	/**
 	 * test grabbing a Dispensary Name by dispensary name
 	 **/
-	public function testGetValidDispenaryByDispensaryName() {
+	public function testGetValidDispensaryByDispensaryName() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("name");
+		$numRows = $this->getConnection()->getRowCount("dispensary");
 
 		// create a new Dispensary and insert to into mySQL
 		$dispensary = new Dispensary(null,
-			$this->dispensary->getDispensaryId(),
 			$this->VALID_DISPENSARYATTENTION,
 			$this->VALID_DISPENSARYCITY,
 			$this->VALID_DISPENSARYEMAIL,
@@ -306,15 +305,16 @@ public function testDeleteValidDispensary() {
 			$this->VALID_DISPENSARYZIPCODE);
 		$dispensary->insert($this->getPDO());
 
+
 		// grab the data from mySQL and enforce the fields match our expectations
-		$results = Dispensary::getDispensaryByDispensaryName($this->getPDO(), $dispensary->getDispensaryName());
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("name"));
-		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesof("Edu\\cnm\\cannaduceus\\Dispensary", $results);
+		$results = Dispensary::getDispensariesByDispensaryName($this->getPDO(), $dispensary->getDispensaryName());
+
+
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary"));
+		$this->assertContainsOnlyInstancesOf("Edu\\cnm\\cannaduceus\\Dispensary", $results);
 
 		// grab the result from the array and validate it
 		$pdoDispensary = $results[0];
-		$this->assertEquals($pdoDispensary->getDispensaryId(), $this->dispensary->getDispensaryId());
 		$this->assertEquals($pdoDispensary->getDispensaryName(), $this->VALID_DISPENSARYNAME);
 	}
 	/**
@@ -322,7 +322,7 @@ public function testDeleteValidDispensary() {
 	 **/
 	public function testGetInvalidDispensaryByDispensaryName() {
 		// grab a dispensary by searching for content that does not exist
-		$dispensary = Dispensary::getDispensaryByDispensaryName($this->getPDO(), "where it at tho");
+		$dispensary = Dispensary::getDispensariesByDispensaryName($this->getPDO(), "dispensary");
 		$this->assertCount(0, $dispensary);
 	}
 
@@ -331,7 +331,7 @@ public function testDeleteValidDispensary() {
 	 **/
 	public function testGetAllValidDispensaries() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("get all");
+		$numRows = $this->getConnection()->getRowCount("dispensary");
 
 		// create a new Dispensaries and insert to into mySQL
 		$dispensary = new Dispensary(null, $this->VALID_DISPENSARYATTENTION,
@@ -348,12 +348,12 @@ public function testDeleteValidDispensary() {
 
 		// grab the data from mySQL and enforce the fields match our expectations
 		$results = Dispensary::getAllDispensaries($this->getPDO());
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("all high"));
-		$this->assertContainsOnlyInstanceof("Edu\\cnm\\cannaduceus\\Dispensary", $results);
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary"));
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\cnm\\cannaduceus\\Dispensary", $results);
 
 		// grab the result from the array and validate it
 		$pdoDispensary = $results[0];
-		$this->assertEquals($pdoDispensary->getDispensaryId(), $dispensary->getDispensaryId());
-		$this->assertEquals($pdoDispensary->getDispensaryName(), $this->VALID_D);
+		$this->assertEquals($pdoDispensary->getDispensaryName(), $this->VALID_DISPENSARYNAME);
 	}
 }

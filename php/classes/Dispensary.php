@@ -666,7 +666,7 @@ WHERE dispensaryId = :dispensaryId";
 		$statement = $pdo->prepare($query);
 
 		//bind the dispensary attention to the place holder in the template
-		$dispensaryName = "%dispensaryName%";
+		$dispensaryName = "%$dispensaryName%";
 		$parameters = ["dispensaryName" => $dispensaryName];
 		$statement->execute($parameters);
 
