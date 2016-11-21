@@ -110,14 +110,14 @@ class Dispensary implements \JsonSerializable {
 
 	public function __construct(
 		int $newDispensaryId = null,
-		string $newDispensaryAttention,
+		string $newDispensaryAttention = null,
 		string $newDispensaryCity,
 		string $newDispensaryEmail,
 		string $newDispensaryName,
 		string $newDispensaryPhone,
 		string $newDispensaryState,
 		string $newDispensaryStreet1,
-		string $newDispensaryStreet2,
+		string $newDispensaryStreet2 = null,
 		string $newDispensaryUrl,
 		string $newDispensaryZipCode)
 	{
@@ -135,15 +135,15 @@ class Dispensary implements \JsonSerializable {
 			$this->setDispensaryZipCode($newDispensaryZipCode);
 		} catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the caller
-			throw(new \InvalidArgumentException($invalidArgumentException->getCode(), 0, $invalidArgumentException));
+			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
 		} catch(\RangeException $range) {
 			//rethrow the exception to the caller
-			throw(new \RangeException($range->getCode(), 0, $range));
+			throw(new \RangeException($range->getMessage(), 0, $range));
 		} catch(\TypeError $typeError) {
 			//rethrow the exception to the caller
-			throw(new \TypeError($typeError->getCode(), 0, $typeError));
+			throw(new \TypeError($typeError->getMessage(), 0, $typeError));
 		} catch(\Exception $exception) {
-			throw (new \Exception($exception->getCode(), 0, $exception));
+			throw (new \Exception($exception->getMessage(), 0, $exception));
 		}
 	}
 
@@ -340,10 +340,11 @@ class Dispensary implements \JsonSerializable {
 			//verify the dispensary phone will fit in the database
 			if(strlen($newDispensaryPhone) > 32) {
 				throw(new \RangeException("dispensary phone too large"));
+			}
 
 				// convert and store the dispensary phone
 				$this->dispensaryPhone = $newDispensaryPhone;
-			}
+
 		}
 
 	/**
@@ -469,10 +470,11 @@ class Dispensary implements \JsonSerializable {
 		//verify the dispensary phone will fit in the database
 		if(strlen($newDispensaryZipCode) > 10) {
 			throw(new \RangeException("dispensary phone too large"));
+		}
 
 		// convert and store the dispensary zip code
 		$this->dispensaryZipCode = $newDispensaryZipCode;
-	}
+
 	}
 
 	/**
@@ -488,19 +490,20 @@ class Dispensary implements \JsonSerializable {
 	 * mutator method for dispensary state
 	 *
 	 * @param string $newDispensaryState new value of dispensary state
-	 * @throws \InvalidArgumentException if $newDispnesaryState is not a string or insecure
-	 * @throws \RangeException if $newDispensayState is > 2 characters
-	 * @throws \TypeError if $newDispensayState is not a string
+	 * @throws \InvalidArgumentException if $newDispensaryState is not a string or insecure
+	 * @throws \RangeException if $newDispensaryState is > 2 characters
+	 * @throws \TypeError if $newDispensaryState is not a string
 	 **/
 	public function setDispensaryState(string $newDispensaryState) {
+		var_dump($newDispensaryState);
 		// verify the dispensary state is secure
-		$newDispensayState = trim($newDispensaryState);
-		$newDispensaryState = filter_var($newDispensayState, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newDispensayState) === true) {
+		$newDispensaryState = trim($newDispensaryState);
+		$newDispensaryState = filter_var($newDispensaryState, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newDispensaryState) === true) {
 			throw(new \InvalidArgumentException("dispensary state is empty or insecure"));
 		}
 		// verify the dispensary state will fit in the database
-		if(strlen($newDispensayState) > 2) {
+		if(strlen($newDispensaryState) > 2) {
 			throw(new \RangeException(" dispensary state is too large"));
 		}
 
