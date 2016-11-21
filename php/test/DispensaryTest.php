@@ -180,7 +180,6 @@ class DispensaryTest extends CannaduceusTest {
 		$this->assertEquals($pdoDispensary->getDispensaryStreet2(), $dispensary->getDispensaryStreet2());
 		$this->assertEquals($pdoDispensary->getDispensaryUrl(), $dispensary->getDispensaryUrl());
 		$this->assertEquals($pdoDispensary->getDispensaryZipCode(), $dispensary->getDispensaryZipCode());
-		$this->assertContainsOnlyInstancesOf("Edu\\cnm\\cannaduceus\\Dispensary", $pdoDispensary);
 	}
 
 	/**
