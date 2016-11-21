@@ -337,7 +337,7 @@ class dispensaryLeafRating {
 	 * @return null | $dispensaryLeafRating
 	 */
 
-	public static function getDispensaryLeafRatingByDispensaryLeafRatingDispensaryIdAndDispensaryLeafRatingProfileId(\PDO $pdo, , $dispensaryLeafRatingDispensaryId, $dispensaryLeafRatingProfileId) {
+	public static function getDispensaryLeafRatingByDispensaryLeafRatingDispensaryIdAndDispensaryLeafRatingProfileId(\PDO $pdo, $dispensaryLeafRatingDispensaryId, $dispensaryLeafRatingProfileId) {
 		//  check validity of $dispensaryName
 		$dispensaryLeafRating = filter_input($dispensaryLeafRatingDispensaryId, $dispensaryLeafRatingProfileId, FILTER_SANITIZE_NUMBER_INT);
 		if($dispensaryLeafRatingProfileId and $dispensaryLeafRatingDispensaryId<= 0) {
