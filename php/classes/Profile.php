@@ -82,6 +82,8 @@ class Profile implements \JsonSerializable {
 		}
 	}
 
+
+
 	/**
 	 * accessor method for Profile Id
 	 *
@@ -106,10 +108,11 @@ class Profile implements \JsonSerializable {
 			return;
 		}
 		// validate that the new profileId is an integer
-		$newProfileId = filter_var($newProfileId);
-		if($newProfileId === false) {
-			throw(new \UnexpectedValueException("Profile Id is not a valid integer"));
+		// verify the tweet id is positive
+		if($newProfileId <= 0) {
+			throw(new \RangeException("profile id is not positive"));
 		}
+
 
 
 		//Convert and store the profile Id
@@ -122,7 +125,7 @@ class Profile implements \JsonSerializable {
 	 *
 	 * @return string of Profile UserName
 	 */
-	public function getProfileUserName() {
+	public function getProfileByProfileUserName() {
 		return $this->profileUserName;
 	}
 
@@ -135,11 +138,14 @@ class Profile implements \JsonSerializable {
 
 
 	public function setProfileUserName(string $newProfileUserName) {
+		$newProfileUserName = trim($newProfileUserName);
 		$newProfileUserName = filter_var($newProfileUserName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if($newProfileUserName === false) {
-			throw(new \UnexpectedValueException("Profile UserName not vaild"));
+		if(empty($newProfileUserName) === true) {
+			throw(new \InvalidArgumentException("Profile needs a username"));
 		}
-
+		if (strlen($newProfileUserName) === true) {
+			throw(new \RangeException("Profile needs a username"));
+		}
 
 		//Convert and store the Profile UserName
 		$this->profileUserName = $newProfileUserName;
@@ -193,7 +199,7 @@ class Profile implements \JsonSerializable {
 		$newProfileHash = trim($newProfileHash);
 		$newProfileHash = strtolower($newProfileHash);
 		if(ctype_xdigit($newProfileHash) === false) {
-			throw(new \UnexpectedValueException("Hash Invalid"));
+			throw(new \InvalidArgumentException("Hash Invalid"));
 		}
 		// verify the profile hash content will fit in the database
 		if(strlen($newProfileHash) !== 128) {
@@ -225,6 +231,10 @@ class Profile implements \JsonSerializable {
 		$newProfileSalt = strtolower($newProfileSalt);
 		if(ctype_xdigit($newProfileSalt) === false) {
 			throw(new \UnexpectedValueException("salt content incorrect"));
+		}
+		// verify salt is 64
+		if(strlen($newProfileSalt)!==64 ){
+			throw (new \RangeException("salt is not 64 characters"));
 		}
 		//Convert and store the Profile Salt
 		$this->profileSalt = $newProfileSalt;
@@ -379,6 +389,28 @@ class Profile implements \JsonSerializable {
 			}
 		return ($profile);
 	} // getProfileByProfileId
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/**
 	 * formats the state variables for JSON serialization
 	 *

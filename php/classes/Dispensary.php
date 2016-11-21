@@ -567,6 +567,7 @@ class Dispensary implements \JsonSerializable {
 
 	// update the null dispensary Id with what mysql just gave us
 	$this->dispensaryId = intval($pdo->lastInsertId());
+
 }
 
 /**

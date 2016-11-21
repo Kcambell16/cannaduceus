@@ -286,7 +286,7 @@ class ProfileTest extends CannaduceusTest {
 			// create a dummy profile
 			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
 
-			$results = Profile::getProfileByProfileUserName($this->getPDO(), $profile->getProfileUserName());
+			$results = Profile::getProfileByProfileUserName($this->getPDO(), $profile->getProfileByProfileUserName());
 
 			$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
 
