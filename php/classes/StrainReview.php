@@ -12,6 +12,7 @@ require_once(dirname(__DIR__) . "/classes/autoload.php");
  **/
 
 class StrainReview implements \JsonSerializable {
+
 	//use ValidateDate;
 	/**
 	 * id for this StrainReview; this is the primary key
@@ -76,6 +77,29 @@ class StrainReview implements \JsonSerializable {
 			throw (new \Exception($exception->getMessage(), 0, $exception));
 		}
 	}
+
+	private static function validateDate($newStrainReviewDateTime) {
+		// base case: if the date is a DateTime object, there's no work to be done
+		if(is_object($newDate) === true && get_class($newDate) === "DateTime") {
+			return ($newDate);
+		}
+		// treat the date as a mySQL date string: Y-m-d
+		$newDate = trim($newDate);
+		if((preg_match("/^(\d{4})-(\d{2})-(\d{2})$/", $newDate, $matches)) !== 1) {
+			throw(new \InvalidArgumentException("date is not a valid date"));
+		}
+		// verify the date is really a valid calendar date
+		$year = intval($matches[1]);
+		$month = intval($matches[2]);
+		$day = intval($matches[3]);
+		if(checkdate($month, $day, $year) === false) {
+			throw(new \RangeException("date is not a Gregorian date"));
+		}
+		// if we got here, the date is clean
+		$newDate = \DateTime::createFromFormat("Y-m-d H:i:s", $newDate . " 00:00:00");
+		return ($newDate);
+	}
+
 
 	/**
 	 * Accesor method for strainReviewId
@@ -327,7 +351,7 @@ class StrainReview implements \JsonSerializable {
 				$statement->setFetchMode(\PDO::FETCH_ASSOC);
 				$row = $statement->fetch();
 				if($row !== false) {
-					$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["dispensaryReviewDateTime"], $row["strainReviewTxt]"]);
+					$strainReview= new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["dispensaryReviewDateTime"], $row["strainReviewTxt]"]);
 				}
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
@@ -336,6 +360,8 @@ class StrainReview implements \JsonSerializable {
 			return ($strainReviews);
 
 		}
+	}
+
 
 		/**
 		 * gets the StrainReview by profile id
