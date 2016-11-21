@@ -320,6 +320,7 @@ class Dispensary implements \JsonSerializable {
 	 **/
 	public function getDispensaryPhone() {
 		return ($this->dispensaryPhone);
+
 	}
 
 	/**
@@ -329,21 +330,21 @@ class Dispensary implements \JsonSerializable {
 	 * @throws \RangeException if $newDispenaryPhone is not positive
 	 * @throws \TypeError if $newDispensaryPhone is not an string
 	 **/
-	public function setDispensaryPhone(string $newDispensaryPhone = null) {
-		// base case: if the dispensary phone, this is a new dispensary phone without a mySQL assigned id (yet)
-		if($newDispensaryPhone === null) {
-			$this->dispensaryPhone = null;
-			return;
-		}
+		public function setDispensaryPhone(string $newDispensaryPhone) {
+			//verify the dispensary name is secure
+			$newDispensaryPhone = trim($newDispensaryPhone);
+			$newDispensaryPhone = filter_var($newDispensaryPhone, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+			if(empty($newDispensaryPhone) === true) {
+				throw(new \InvalidArgumentException("dispensary name is empty or insecure"));
+			}
+			//verify the dispensary phone will fit in the database
+			if(strlen($newDispensaryPhone) > 32) {
+				throw(new \RangeException("dispensary phone too large"));
 
-		//verify the dispensary phone is positive
-		if($newDispensaryPhone <= 0) {
-			throw(new \RangeException("dispensary phone is not positive"));
+				// convert and store the dispensary phone
+				$this->dispensaryPhone = $newDispensaryPhone;
+			}
 		}
-
-		// convert and store the dispensary phone
-		$this->dispensaryPhone = $newDispensaryPhone;
-	}
 
 	/**
 	 * accessor method for dispensary street1
