@@ -80,11 +80,11 @@ class StrainReview implements \JsonSerializable {
 
 	private static function validateDate($newStrainReviewDateTime) {
 		// base case: if the date is a DateTime object, there's no work to be done
-		if(is_object($newDate) === true && get_class($newDate) === "DateTime") {
-			return ($newDate);
+		if(is_object($newStrainReviewDateTime) === true && get_class($newStrainReviewDateTime) === "DateTime") {
+			return ($newStrainReviewDateTime);
 		}
 		// treat the date as a mySQL date string: Y-m-d
-		$newDate = trim($newDate);
+		$newDate = trim($newStrainReviewDateTime);
 		if((preg_match("/^(\d{4})-(\d{2})-(\d{2})$/", $newDate, $matches)) !== 1) {
 			throw(new \InvalidArgumentException("date is not a valid date"));
 		}
@@ -96,8 +96,8 @@ class StrainReview implements \JsonSerializable {
 			throw(new \RangeException("date is not a Gregorian date"));
 		}
 		// if we got here, the date is clean
-		$newDate = \DateTime::createFromFormat("Y-m-d H:i:s", $newDate . " 00:00:00");
-		return ($newDate);
+		$newStrainReviewDateTime = \DateTime::createFromFormat("Y-m-d H:i:s", $newDate . " 00:00:00");
+		return ($newStrainReviewDateTime);
 	}
 
 
@@ -347,11 +347,11 @@ class StrainReview implements \JsonSerializable {
 		// grab the strainReviews from mySQL
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$strainReview = null;
+				$strainReviewId = null;
 				$statement->setFetchMode(\PDO::FETCH_ASSOC);
 				$row = $statement->fetch();
 				if($row !== false) {
-					$strainReview= new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["dispensaryReviewDateTime"], $row["strainReviewTxt]"]);
+					$strainReviewId = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["dispensaryReviewDateTime"], $row["strainReviewTxt]"]);
 				}
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
@@ -495,6 +495,5 @@ class StrainReview implements \JsonSerializable {
 			$fields = get_object_vars($this);
 			return ($fields);
 		}
-	}// StrainReview
 
 }
