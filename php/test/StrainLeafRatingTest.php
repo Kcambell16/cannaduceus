@@ -65,6 +65,9 @@ class StrainLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 	 */
 	protected $profileId1 = "Happy Stoner";
 
+	protected $strain;
+	protected $profile;
+
 
 	/**
 	 * create dependent objects before running each test

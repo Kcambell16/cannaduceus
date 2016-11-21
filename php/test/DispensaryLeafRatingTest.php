@@ -42,13 +42,13 @@ class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 		parent::setup();
 
 		//create and insert a dispensary and profile to own the rating
-		$this->dispensary = new Dispensary(null, "Betty Baker", "Albuquerque", "420Betty@google.com", "A Good Plant", "420-420-4200", "NM", "420 Blaze It Dr. NE", null, "that-fire.com", "87420"); $this->$this->dispensaryId0->insert($this->getPDO());
+		$this->dispensary = new dispensary(null, "Betty Baker", "Albuquerque", "420Betty@google.com", "A Good Plant", "420-420-4200", "NM", "420 Blaze It Dr. NE", null, "that-fire.com", "87420"); $this->$this->dispensaryId0->insert($this->getPDO());
 
 		$password = "UpInSmoke";
 		$salt = bin2hex(random_bytes(16));
 		$hash = hash_pbkdf2("sha512", $password, $salt, 262144);
 
-		$this->profile = new Profile(null, "Tomas Baker", "Baker420@420.com", $hash, $salt, "activation");
+		$this->profile = new profile(null, "Tomas Baker", "Baker420@420.com", $hash, $salt, "activation");
 		$this->$this->profileId0->insert($this->getPDO());
 
 	}//create dispensary Id and profile Id
@@ -77,7 +77,7 @@ class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 	 *
 	 * @expectedException \TypeError
 	 */
-	public function testInsertInvalidDispensaryLeafRating(){
+	public function testInsertingInvalidDispensaryLeafRating(){
 		//create a dispensaryLeafRating without foreign keys and watch it fail
 		$dispensaryLeafRating = new dispensaryLeafRating(null, null, null);
 	}
@@ -89,18 +89,20 @@ class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 		//count the number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("dispensaryLeafRating");
 
-		//creat a new dispensaryLeafRating and insert into mySQL
-		$dispensaryLeafRating = new dispensaryLeafRating($this->setUp()->getRowContent("dispensaryLeafRating"));
+		//create a new dispensaryLeafRating and insert into mySQL
+		$dispensaryLeafRating = new dispensaryLeafRating($this->dispensary->getDispensaryId(), $this->profile->getProfileId();
+		$dispensaryLeafRating->insert($this->getPDO());
 
-		//delete the dispensaryLeafRating
+		//delete the dispensaryLeafRating from mySQL
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryLeafRating"));
 		$dispensaryLeafRating->delete($this->getPDO());
 
 		//grab the data from mySQL and enforce the dispensaryLeafRating does not exist
-		$pdoDispensaryLeafRating = dispensaryLeafRating::getDispensaryLeafRating;
-		$this->getPDO(); $this->profile->getProfileId(); $this->dispensary->getDispensaryId();
+		$pdoDispensaryLeafRating = dispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingDispensaryIdAndDispensaryLeafRatingProfileId($this->getPDO(), $this->profile->getProfileId(); $this->dispensary->getDispensaryId();
 		$this->assertNull($pdoDispensaryLeafRating);
 		$this->asserEquals($numRows, $this->getConnection()->getRowCount("dispensaryLeafRating"));
 
 	}
+
+	/**
 }
