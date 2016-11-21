@@ -180,7 +180,6 @@ class DispensaryTest extends CannaduceusTest {
 		$this->assertEquals($pdoDispensary->getDispensaryStreet2(), $dispensary->getDispensaryStreet2());
 		$this->assertEquals($pdoDispensary->getDispensaryUrl(), $dispensary->getDispensaryUrl());
 		$this->assertEquals($pdoDispensary->getDispensaryZipCode(), $dispensary->getDispensaryZipCode());
-		$this->assertCount(1, $pdoDispensary);
 		$this->assertContainsOnlyInstancesOf("Edu\\cnm\\cannaduceus\\Dispensary", $pdoDispensary);
 	}
 
@@ -263,7 +262,7 @@ public function testDeleteValidDispenary() {
 	 **/
 	public function testGetAllValidDispensaries() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("get all ");
+		$numRows = $this->getConnection()->getRowCount("get all");
 
 		// create a new Dispensaries and insert to into mySQL
 		$dispensary = new Dispensary(null, $this->dispensary->getDispensaryId(),  $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
