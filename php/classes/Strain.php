@@ -366,7 +366,7 @@ class Strain implements \JsonSerializable {
 
 	public static function getStrainByStrainName(\PDO $pdo, $strainName) {
 		//  check validity of $strainName
-		$strainName = filter_string($strainName, FILTER_SANITIZE_STRING);
+		$strainName = filter_var($strainName, FILTER_SANITIZE_STRING);
 		if($strainName === false) {
 			throw(new \InvalidArgumentException("Strain Name is not valid."));
 		}

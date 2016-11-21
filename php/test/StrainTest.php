@@ -3,7 +3,6 @@
 namespace Edu\Cnm\Cannaduceus\Test;
 
 use Edu\Cnm\Cannaduceus\{Strain};
-use Edu\Cnm\jmontoya306\cannaduceus\strain;
 
 //grabs the project parameters
 require_once ("CannaduceusTest.php");
@@ -57,7 +56,7 @@ class StrainTest extends CannaduceusTest {
 	 * invalid strain name 0
 	 * @var string $INVALID_STRAINNAME0
 	 */
-	protected $INVALID_STRAINNAME0 = "-420";
+	protected $INVALID_STRAINNAME0 = "-4.20%";
 	/**
 	 * strain type content 0
 	 * @var string $VALID_STRAINTYPE0
@@ -117,16 +116,25 @@ class StrainTest extends CannaduceusTest {
 	 * invalid strain description 0
 	 * @var string $INVALID_STRAINDESCRIPTION0
 	 */
-	protected $INVALID_STRAINDESCRIPTION0 = "betty@baker.com";
+	protected $INVALID_STRAINDISCREPTION0 = "betty@baker.com";
+
+	protected $strain;
 
 
 	public final function setUp() {
 		//run the default setUp() method first
-		parent::setUp();
+		parent::getSetUpOperation();
+	}
 
-		// create and insert a Strain to own the test Strain
-		$this->strain = new Strain("@phpunit", "test@phpunit.de", "+12125551212");
-		$this->strain = insert($this->getPDO());
+	/**
+	 * Test inserting a valid strain and verify that the actual mySQL data matches
+	 */
+	public function testInsertValidStrain(){
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("strain");
+
+		//create a new strain and insert it into mySQL
+		$strain = new Strain(null, $this->VALID_STRAINNAME0, $this->VALID_STRAINTYPE0, $this->VALID_STRAINTHC0, $this->VALID_STRAINCBD0, $this->VALID_STRAINDESCRIPTION0), )
 	}
 
 }

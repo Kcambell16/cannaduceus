@@ -18,52 +18,20 @@ require_once(dirname(__DIR__). "../php/classes/autoload.php");
  */
 class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 	/**
-	 * valid dispensary leaf rating rating
+	 * valid dispensary leaf rating rating 0
 	 * @var int $VALID_DISPENSARYLEAFRATINGRATING0
 	 */
 	protected $VALID_DISPENSARYLEAFRATINGRATING0 = 0;
 
 	/**
-	 * valid second dispensary leaf rating rating
-	 * @var int $VALID_DISPENSARYLEAFRATINGRATING1
-	 */
-	protected $VALID_DISPENSARYLEAFRATINGRATING1 = 3;
-
-	/**
-	 * invalid dispensary leaf rating rating
+	 * invalid dispensary leaf rating rating 0
 	 * @var int $INVALID_DISPENSARYLEAFRATINGRATING0
 	 */
 	protected $INVALID_DISPENSARYLEAFRATINGRATING0 = "A";
 
-	/**
-	 * invalid second dispensary leaf rating value
-	 * @var int $INVALID_DISPENSARYLEAFRATINGRATING1
-	 */
-	protected $INVALID_DISPENSARYLEAFRATINGRATING1 = 8;
+	protected $dispensary;
+	protected $profile;
 
-	/**
-	 * valid dispensary to use
-	 * @var \Edu\Cnm\Cannaduceus\Test\dispensaryTest $dispensaryId
-	 */
-	protected $dispensaryId0 = null;
-
-	/**
-	 * invalid dispensary to use
-	 * @var \Edu\Cnm\Cannaduceus\Test\dispensaryTest $dispensaryId
-	 */
-	protected $dispensaryId1 = "Betty Baker 1976";
-
-	/**
-	 * valid user to use
-	 * @var \Edu\Cnm\Cannaduceus\Test\dispensaryTest $profileId
-	 */
-	protected $profileId0 = null;
-
-	/**
-	 * Invalid user to use
-	 * @var \Edu\Cnm\Cannaduceus\Test\dispensaryTest $profileId
-	 */
-	protected $profileId1 = "Happy Stoner";
 
 
 	/**
@@ -71,26 +39,68 @@ class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 	 */
 	public final function setUp(){
 		//run the default setUp() method first
-		parent::setUp();
+		parent::setup();
 
 		//create and insert a dispensary and profile to own the rating
-		$this->dispensaryId0 = new dispensaryLeafRating(null, "Couch Melt", "Indica", "25%", "13.9%", "A potent dispensary that will put your butt to sleep");
-		$this->profileId0 = new dispensaryLeafRating(null, "Betty Baker", "420Betty@google.com", hash_pbkdf2); $this->$this->profileId0->insert($this->getPDO());
+		$this->dispensary = new Dispensary(null, "Betty Baker", "Albuquerque", "420Betty@google.com", "A Good Plant", "420-420-4200", "NM", "420 Blaze It Dr. NE", null, "that-fire.com", "87420"); $this->$this->dispensaryId0->insert($this->getPDO());
 
-		//create the dispensary Leaf Rating Test
-		$this->dispensaryLeafRating = new dispensaryLeafRating(null, $this->dispensaryId0->getdispensaryId0(), "PHPUnit dispensary leaf rating test passing");
-		$this->dispensaryLeafRating->insert($this->getPDO());
+		$password = "UpInSmoke";
+		$salt = bin2hex(random_bytes(16));
+		$hash = hash_pbkdf2("sha512", $password, $salt, 262144);
+
+		$this->profile = new Profile(null, "Tomas Baker", "Baker420@420.com", $hash, $salt, "activation");
+		$this->$this->profileId0->insert($this->getPDO());
+
 	}//create dispensary Id and profile Id
 
 	/**
 	 * test inserting a valid dispensary leaf rating and verify that the actual mySQL data matches
 	 */
-	public function testIntervalValiddispensaryLeafRating(){
+	public function testValidDispensaryLeafRating(){
 		//count the number of rows and save it for later
-		$numRows = $this->getRowCount("dispensaryLeafRating");
+		$numRows = $this->getConnection()->getRowCount("dispensaryLeafRating");
 
 		//create a new dispensaryLeafRating and insert it into mySQL
-		$like = new \Edu\Cnm\jCannaduceus\dispensaryLeafRating();
+		$dispensaryLeafRating = new dispensaryLeafRating($this->profile->getProfileId(), $this->dispensary->getDispensaryId());
+		$dispensaryLeafRating->insert($this->getPDO());
+
+		//grab the data from mySQL and enfore the fields match our expectations
+		$pdoDispensaryLeafRating = dispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingRating($this->getPDO(), $this->dispensary->getDispensaryId(), $this->profile->getProfileId());
+		$this->assertEquals($numRows =1, $this->getConnection()->getRowCount("dispensaryLeafRatingRating"));
+		$this->assertEquals($pdoDispensaryLeafRating->getDispensaryLeafRatingDispensaryId(), $this->dispensary->getDispensaryId());
+		$this->assertEquals($pdoDispensaryLeafRating->getDispensaryLeafRatingProfileId(), $this->profile->getProfileId());
+
+	}
+
+	/**
+	 * test creating a dispensaryLeafRating that makes no sense
+	 *
+	 * @expectedException \TypeError
+	 */
+	public function testInsertInvalidDispensaryLeafRating(){
+		//create a dispensaryLeafRating without foreign keys and watch it fail
+		$dispensaryLeafRating = new dispensaryLeafRating(null, null, null);
+	}
+
+	/**
+	 * test creating a dispensaryLeafRating and deleting it
+	 */
+	public function testDeleteValidDispensaryLeafRating() {
+		//count the number of rows and save for later
+		$numRows = $this->getConnection()->getRowCount("dispensaryLeafRating");
+
+		//creat a new dispensaryLeafRating and insert into mySQL
+		$dispensaryLeafRating = new dispensaryLeafRating($this->setUp()->getRowContent("dispensaryLeafRating"));
+
+		//delete the dispensaryLeafRating
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryLeafRating"));
+		$dispensaryLeafRating->delete($this->getPDO());
+
+		//grab the data from mySQL and enforce the dispensaryLeafRating does not exist
+		$pdoDispensaryLeafRating = dispensaryLeafRating::getDispensaryLeafRating;
+		$this->getPDO(); $this->profile->getProfileId(); $this->dispensary->getDispensaryId();
+		$this->assertNull($pdoDispensaryLeafRating);
+		$this->asserEquals($numRows, $this->getConnection()->getRowCount("dispensaryLeafRating"));
 
 	}
 }

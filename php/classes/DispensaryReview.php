@@ -52,7 +52,7 @@ class DispensaryReview implements \JsonSerializable {
 	 * @param int|null $newDispensaryReviewId Id of this dispensary review or null if new dispensary review
 	 * @param int|null $newDispensaryReviewProfileId Id of this dispensary review profile or null if new dispensary review profile
 	 * @param int|null $newDispensaryReviewDispensaryId Id of this dispensary review dispensary or null if new dispensary review dispensary
-	 * @param string $newDispensaryReviewDate string contains actual dispensary review date
+	 * @param string $newDispensaryReviewDateTime string contains actual dispensary review dateTime
 	 * @param string $newDispensaryReviewTxt string contains actual dispensary review txt
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g. strings too long, negative integers)
