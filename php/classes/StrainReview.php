@@ -351,7 +351,7 @@ class StrainReview implements \JsonSerializable {
 				$statement->setFetchMode(\PDO::FETCH_ASSOC);
 				$row = $statement->fetch();
 				if($row !== false) {
-					$strainReviewId = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["dispensaryReviewDateTime"], $row["strainReviewTxt]"]);
+					$newStrainReviewId = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["dispensaryReviewDateTime"], $row["strainReviewTxt]"]);
 				}
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
