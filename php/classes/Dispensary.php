@@ -114,12 +114,12 @@ class Dispensary implements \JsonSerializable {
 		string $newDispensaryCity,
 		string $newDispensaryEmail,
 		string $newDispensaryName,
-		int $newDispensaryPhone,
+		string $newDispensaryPhone,
 		string $newDispensaryState,
 		string $newDispensaryStreet1,
 		string $newDispensaryStreet2,
 		string $newDispensaryUrl,
-		int $newDispensaryZipCode)
+		string $newDispensaryZipCode)
 	{
 		try {
 			$this->setDispensaryId($newDispensaryId);
@@ -325,11 +325,11 @@ class Dispensary implements \JsonSerializable {
 	/**
 	 * mutator method for dispensary phone
 	 *
-	 * @param int /null $newDispensaryPhone new value of dispensary phone
+	 * @param string /null $newDispensaryPhone new value of dispensary phone
 	 * @throws \RangeException if $newDispenaryPhone is not positive
-	 * @throws \TypeError if $newDispensaryPhone is not an interger
+	 * @throws \TypeError if $newDispensaryPhone is not an string
 	 **/
-	public function setDispensaryPhone(int $newDispensaryPhone = null) {
+	public function setDispensaryPhone(string $newDispensaryPhone = null) {
 		// base case: if the dispensary phone, this is a new dispensary phone without a mySQL assigned id (yet)
 		if($newDispensaryPhone === null) {
 			$this->dispensaryPhone = null;
@@ -453,12 +453,12 @@ class Dispensary implements \JsonSerializable {
 
 	/**
 	 * mutator method for dispensary zip code
-	 * @param int /null $newDispensaryZipCode new value of dispensary zip code
+	 * @param string /null $newDispensaryZipCode new value of dispensary zip code
 	 * @throws \RangeException if $newDispenaryZipCode is not positive
-	 * @throws \TypeError if $newDispensaryZipCode is not an interger
+	 * @throws \TypeError if $newDispensaryZipCode is not an string
 	 *
 	 **/
-	public function setDispensaryZipCode(int $newDispensaryZipCode = null) {
+	public function setDispensaryZipCode(string $newDispensaryZipCode = null) {
 		// base case: if the zip code is null, this is a new dispensary without a mySQL assigned id (yet)
 		if($newDispensaryZipCode === null) {
 			$this->dispensaryZipCode = null;

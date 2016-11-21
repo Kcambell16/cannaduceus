@@ -189,7 +189,7 @@ class DispensaryTest extends CannaduceusTest {
 	 **/
 	public function testUpdateInvalidDispensary() {
 		//create a Dispensary, try to update it without actually updating it and watch it fail
-		$dispensary = new Dispensary(null, $this->dispensary->getDispensaryId(), $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
+		$dispensary = new Dispensary(null, $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
 		$dispensary->update($this->getPDO());
 	}
 
@@ -201,7 +201,7 @@ public function testDeleteValidDispenary() {
 	$numRows = $this->getConnection()->getRowCount("dispensary");
 
 	// create a new Dispensary and insert to into mySQL
-	$dispensary = new Dispensary(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
+	$dispensary = new Dispensary(null, $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
 	$dispensary->insert($this->getPDO());
 
 	// delete the Dispensary from mySQL
