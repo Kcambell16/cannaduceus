@@ -64,7 +64,7 @@ class DispensaryTest extends CannaduceusTest {
 
 	/**
 	 * Dispensaries by state
-	 * @char string $VALID_DISPENSARYSTATE
+	 * @var string $VALID_DISPENSARYSTATE
 	 **/
 	protected $VALID_DISPENSARYSTATE = "HI";
 
@@ -196,12 +196,12 @@ class DispensaryTest extends CannaduceusTest {
 /**
  * test creating a Dispensary and then deleting it
  **/
-public function testDeleteValidDispenary() {
+public function testDeleteValidDispensary() {
 	// count the number of rows and save it for later
 	$numRows = $this->getConnection()->getRowCount("dispensary");
 
 	// create a new Dispensary and insert to into mySQL
-	$dispensary = new Dispensary(null, $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY, $this->VALID_DISPENSARYCITY2, $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
+	$dispensary = new Dispensary(null, $this->VALID_DISPENSARYATTENTION, $this->VALID_DISPENSARYCITY,  $this->VALID_DISPENSARYEMAIL, $this->VALID_DISPENSARYNAME, $this->VALID_DISPENSARYPHONE, $this->VALID_DISPENSARYSTREET1, $this->VALID_DISPENSARYSTREET2, $this->VALID_DISPENSARYURL, $this->VALID_DISPENSARYZIPCODE, $this->VALID_DISPENSARYSTATE);
 	$dispensary->insert($this->getPDO());
 
 	// delete the Dispensary from mySQL
