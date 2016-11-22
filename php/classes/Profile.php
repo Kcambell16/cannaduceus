@@ -222,18 +222,20 @@ class Profile implements \JsonSerializable {
 	 * mutator method for Profile Salt
 	 *
 	 * @param string $newProfileSalt new string for Profile Salt
-	 * @throws \UnexpectedValueException if $newProfileSalt is not a string
+	 * @throws \InvalidArgumentException if salt is empty or insecure
+	 * @throws @throws RangeException if salt is not exactly 64 digits
 	 */
 	public function setProfileSalt(string $newProfileSalt) {
 		// verify the profile salt content
 		$newProfileSalt = trim($newProfileSalt);
 		$newProfileSalt = strtolower($newProfileSalt);
 		if(ctype_xdigit($newProfileSalt) === false) {
-			throw(new \UnexpectedValueException("salt content incorrect"));
+			throw(new \InvalidArgumentException("salt content incorrect"));
 		}
 		// verify salt is 64
-		if(strlen($newProfileSalt)!==64 ){
+		if(strlen($newProfileSalt)!== 64 ) {
 			throw (new \RangeException("salt is not 64 characters"));
+		// Nathan right here
 		}
 		//Convert and store the Profile Salt
 		$this->profileSalt = $newProfileSalt;

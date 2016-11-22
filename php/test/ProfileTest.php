@@ -97,7 +97,7 @@ class ProfileTest extends CannaduceusTest {
 	 */
 	public final function setUp() {
 		// run the default abstract setUp() method from parent first
-		parent::setUp();
+		parent::getDataSet();
 
 		$password = "abc123";
 
@@ -286,7 +286,7 @@ class ProfileTest extends CannaduceusTest {
 			// create a dummy profile
 			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
 
-			$results = Profile::getProfileByProfileUserName($this->getPDO(), $profile->getProfileByProfileUserName());
+			$results = Profile::getProfileByProfileUserName($this->getPDO(), $profile->getProfileUserName());
 
 			$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
 
@@ -379,7 +379,7 @@ class ProfileTest extends CannaduceusTest {
 		$profile->insert($this->getPDO());
 
 		//now get the data from SQL and make sure it matches
-		$results = Profile::getAllProfiles($this->getPDO());
+		$results = Profile::getAllValidProfile($this->getPDO());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
 		//confirm we have just 1 profile in the database
 		$this->assertCount(1, $results);
