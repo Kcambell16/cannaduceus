@@ -32,7 +32,7 @@ CREATE TABLE dispensary
 	dispensaryPhone VARCHAR(32) NOT NULL ,
 	dispensaryState CHAR(2) NOT NULL,
 	dispensaryStreet1 VARCHAR(48) NOT NULL,
-	dispensaryStreet2 VARCHAR(48) NOT NULL,
+	dispensaryStreet2 VARCHAR(48),
 	dispensaryUrl VARCHAR(128),
 	dispensaryZipCode VARCHAR(10) NOT NULL,
 	PRIMARY KEY (dispensaryId)

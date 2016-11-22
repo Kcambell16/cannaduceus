@@ -1,11 +1,14 @@
 <?php
+//namespace
+namespace Edu\Cnm\Cannaduceus\Test;
+
+use Edu\Cnm\Cannaduceus\{Dispensary, Profile};
 
 // grab the project test parameters
 require_once("CannaduceusTest.php");
-require_once(dirname(__DIR__) . "/classes/DispensaryLeafRating.php");
 
 //class being tested
-require_once(dirname(__DIR__). "../php/classes/autoload.php");
+require_once(dirname(__DIR__). "/classes/autoload.php");
 
 /**
  * Full PHPUnit test for the dispensaryLeafRating class
@@ -42,7 +45,7 @@ class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 		parent::setup();
 
 		//create and insert a dispensary and profile to own the rating
-		$this->dispensary = new dispensary(null, "Betty Baker", "Albuquerque", "420Betty@google.com", "A Good Plant", "420-420-4200", "NM", "420 Blaze It Dr. NE", null, "that-fire.com", "87420"); $this->$this->dispensaryId0->insert($this->getPDO());
+		$dispensary = new dispensary(null, "Betty Baker", "Albuquerque", "420Betty@google.com", "A Good Plant", "420-420-4200", "NM", "420 Blaze It Dr. NE", null, "that-fire.com", "87420"); $this->$this->dispensaryId0->insert($this->getPDO());
 
 		$password = "UpInSmoke";
 		$salt = bin2hex(random_bytes(16));
@@ -90,7 +93,7 @@ class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 		$numRows = $this->getConnection()->getRowCount("dispensaryLeafRating");
 
 		//create a new dispensaryLeafRating and insert into mySQL
-		$dispensaryLeafRating = new dispensaryLeafRating($this->dispensary->getDispensaryId(), $this->profile->getProfileId();
+		$dispensaryLeafRating = new dispensaryLeafRating($this->dispensary->getDispensaryId(), $this->profile->getProfileId());
 		$dispensaryLeafRating->insert($this->getPDO());
 
 		//delete the dispensaryLeafRating from mySQL
@@ -98,7 +101,9 @@ class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 		$dispensaryLeafRating->delete($this->getPDO());
 
 		//grab the data from mySQL and enforce the dispensaryLeafRating does not exist
-		$pdoDispensaryLeafRating = dispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingDispensaryIdAndDispensaryLeafRatingProfileId($this->getPDO(), $this->profile->getProfileId(); $this->dispensary->getDispensaryId();
+		$pdoDispensaryLeafRating = dispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingDispensaryIdAndDispensaryLeafRatingProfileId();
+		$this->getPDO();
+		$this->profile->getProfileId(); $this->dispensary->getDispensaryId();
 		$this->assertNull($pdoDispensaryLeafRating);
 		$this->asserEquals($numRows, $this->getConnection()->getRowCount("dispensaryLeafRating"));
 
@@ -113,14 +118,14 @@ class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 		$numRows = $this->getConnection()->getRowCount("dispensaryLeafRating");
 
 		//create a new dispensaryLeafRating and insert into mySQL
-		$dispensaryLeafRating = new dispensaryLeafRating($this->dispensary->getDispensaryId(), $this->profile->getProfileId();
+		$dispensaryLeafRating = new dispensaryLeafRating($this->dispensary->getDispensaryId(), $this->profile->getProfileId());
 		$dispensaryLeafRating->insert($this->getPDO());
 
 		// retrieve the data from mySQL and enforce the fields watch our expectations
 		$pdoDispensaryLeafRating = $dispensaryLeafRating::getDispensaryLeafRatingByDispensaryIdAndProfileId($this->getPDO(), $this->dispensary->getDispensaryId(), $this->profile->getProfileId());
 		$this->asserEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryLeafRating"));
 		$this->assertEquals($pdoDispensaryLeafRating->getDispensaryLeafRatingDispensaryId(),$this->dispensary->getDispensaryId());
-		$this->assertEquals($pdoProfileLeafRating->getDispensaryLeafRatingProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoDispensaryLeafRating->getDispensaryLeafRatingProfileId(), $this->profile->getProfileId());
 	}
 
 	/**
@@ -138,7 +143,7 @@ class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("dispensaryLeafRating");
 		//create a new dispensaryLeafRating and insert into mySQL
-		$dispensaryLeafRating = new dispensaryLeafRating($this->dispensary->getDispensaryId(), $this->profile->getProfileId();
+		$dispensaryLeafRating = new dispensaryLeafRating($this->dispensary->getDispensaryId(), $this->profile->getProfileId());
 		$dispensaryLeafRating->insert($this->getPDO());
 		// grab the data from mySQL and enforce the fields match our expectations
 		$results = dispensaryLeafRating::testGetValidDispensensaryLeafRatingByDispensaryId($this->getPDO(), $this->dispensary->getDispensaryId());
@@ -167,7 +172,7 @@ class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 		$numRows = $this->getConnection()->getRowCount("dispensaryLeafRating");
 
 		//create a new dispensaryLeafRating and insert into mySQL
-		$dispensaryLeafRating = new dispensaryLeafRating($this->dispensary->getDispensaryId(), $this->profile->getProfileId();
+		$dispensaryLeafRating = new dispensaryLeafRating($this->dispensary->getDispensaryId(), $this->profile->getProfileId());
 		$dispensaryLeafRating->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
