@@ -465,7 +465,7 @@ class Profile implements \JsonSerializable {
 		if($row !== false) {
 			$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
 		}
-
+// nathan
 
 	} catch(\Exception $exception) {
 		//rethrow the row couldn't be converted, rethrow that sucka foo
@@ -475,13 +475,13 @@ class Profile implements \JsonSerializable {
 	}
 
 	/**
-	 * retrieves all volunteers
+	 * retrieves all profiles
 	 *
 	 * @param /PDO $pdo pdo connection
 	 * @return \SplFixedArray all organizations
 	 * @throws \PDOException if mySQL errors occur
 	 */
-	public static function getAllValidProfile(\PDO $pdo) {
+	public static function getAllValidProfiles(\PDO $pdo) {
 
 		//create query template
 		$query = "SELECT profileId, profileEmail, profileHash, profileSalt, profileActivation FROM profile ";
@@ -490,7 +490,7 @@ class Profile implements \JsonSerializable {
 
 		//call the function to build an array of the retrieved results
 		try{
-			$retrievedProfile = Profile::getAllValidProfile($statement);
+			$retrievedProfile = Profile::getAllValidProfiles($statement);
 		} catch(\Exception $exception) {
 			//rethrow the exception if retrieval failed
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
