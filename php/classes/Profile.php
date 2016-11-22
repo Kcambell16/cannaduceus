@@ -465,7 +465,7 @@ class Profile implements \JsonSerializable {
 		if($row !== false) {
 			$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
 		}
-
+// nathan
 
 	} catch(\Exception $exception) {
 		//rethrow the row couldn't be converted, rethrow that sucka foo
