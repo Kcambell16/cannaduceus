@@ -491,7 +491,7 @@ class Profile implements \JsonSerializable {
 			$retrievedProfile = Profile::storeSQLResultsInArray($statement);
 		} catch(\Exception $exception) {
 			//rethrow the exception if retrieval failed
-			throw(new PDOExceprion($exception->getMessage(), 0, $exception));
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		return $retrievedProfile;
 	}
