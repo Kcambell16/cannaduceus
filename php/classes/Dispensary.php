@@ -392,12 +392,12 @@ class Dispensary implements \JsonSerializable {
 	/**
 	 * mutator method for dispensary street2
 	 *
-	 * @param string $newDispensaryStreet2 new value of dispensary street
+	 * @param string|null $newDispensaryStreet2 new value of dispensary street
 	 * @throws \InvalidArgumentException if $newDispensaryStreet2 is not a string or insecure
 	 * @throws \RangeException if $newDispensaryStreet2 is > 140 characters
 	 * @throws \TypeError if $newDispensaryStreet2 is not a string
 	 **/
-	public function setDispensaryStreet2(string $newDispensaryStreet2) {
+	public function setDispensaryStreet2( $newDispensaryStreet2 = null) {
 		//verify the street2 is secure
 		$newDispensaryStreet2 = trim($newDispensaryStreet2);
 		$newDispensaryStreet2 = filter_var($newDispensaryStreet2, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
