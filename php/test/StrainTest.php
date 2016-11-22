@@ -120,5 +120,35 @@ class StrainTest extends CannaduceusTest {
 
 
 	}
+	/**
+ 	* test inserting a strain that already exists
+ 	*/
+	public function testInsertInvalidStrain() {
+		$strain = new Strain(null, $this->VALID_STRAINNAME0, $this->VALID_STRAINTYPE0, $this->VALID_STRAINTHC0, $this->VALID_STRAINCBD0, $this->VALID_STRAINDESCRIPTION0);
 
+		$strain->insert($this->getPDO());
+
+		//insert again to see if it fails
+		$strain->insert($this->getPDO());
+	}
+
+	/**
+	 * test inserting a strain, editing it and then updating it
+	 */
+	public function testUpdateStrain(){
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("strain");
+
+		//create a new strain and insert it into mySQL
+		$strain = new Strain(null, $this->VALID_STRAINNAME0, $this->VALID_STRAINTYPE0, $this->VALID_STRAINTHC0, $this->VALID_STRAINCBD0, $this->VALID_STRAINDESCRIPTION0);
+
+		$strain->insert($this->getPDO());
+
+		//edit the strain and update it in mySQL
+		$strain->setStrainName($this->VALID_STRAINNAME0);
+		$strain->update($this->getPDO());
+
+		//grab the data from mySQL and enforce the fields match our expectations
+		$pdoStrain = Strain::getStrainByStrainId($this->)
+	}
 }
