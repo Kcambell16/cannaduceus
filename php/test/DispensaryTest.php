@@ -239,7 +239,7 @@ public function testDeleteValidDispensary() {
 	// count the number of rows and save it for later
 	$numRows = $this->getConnection()->getRowCount("dispensary");
 
-	// create a new Dispensary and insert to into mySQL
+	// create a new Dispensary and insert it into mySQL
 	$dispensary = new Dispensary(null,
 		$this->VALID_DISPENSARYATTENTION,
 		$this->VALID_DISPENSARYCITY,
