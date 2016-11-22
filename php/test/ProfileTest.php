@@ -374,12 +374,18 @@ class ProfileTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("profile");
 
 		//make a dummy profile
-		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
+		$profile = new Profile(null,
+			$this->VAILD_PROFILEUSERNAME1,
+			$this->VAILD_PROFILEEMAIL1,
+			$this->VAILD_PROFILEHASH1,
+			$this->VAILD_PROFILESALT1,
+			$this->VAILD_PROFILEACTIVATION1);
+
 		//insert in to dat SQL
 		$profile->insert($this->getPDO());
 
 		//now get the data from SQL and make sure it matches
-		$results = Profile::getAllValidProfile($this->getPDO());
+		$results = Profile::getAllValidProfiles($this->getPDO());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
 		//confirm we have just 1 profile in the database
 		$this->assertCount(1, $results);
