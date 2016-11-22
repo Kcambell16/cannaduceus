@@ -55,8 +55,8 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		$this->profile -> insert($this->getPDO());
 
 		// create and insert a Dispensary to Favorite the test DispensaryFavorite
-		$this-> dispensary = new Dispensary(null, "dispensaryAttention", "dispensaryCity", "dispensaryEmail", "dispensaryName", "dispensaryPhone", "dispensaryState", "dispensaryStreet1", "dispensaryStreeet2","dispensaryUrl", "dispensaryZipCode");
-		$this-> dispensary->insert($this->getPDO());
+		$this->dispensary = new Dispensary(null, "dispensaryAttention", "dispensaryCity", "dispensaryEmail", "dispensaryName", "dispensaryPhone", "dispensaryState", "dispensaryStreet1", "dispensaryStreet2","dispensaryUrl", "dispensaryZipCode");
+		$this->dispensary->insert($this->getPDO());
 	}
 
 	/**
@@ -68,14 +68,14 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 
 		// create a new DispensaryFavorite and insert it in to mySQL
-		$dispensaryFavorite = DispensaryFavorite(null, $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
+		$dispensaryFavorite = Dispensary(null, $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
 
 
 		// insert the mock favorite in SQL
 		$dispensaryFavorite->insert($this->getPDO());
 
 
-		$pdoDispensaryFavorite = Dispensary::getDispensaryFavoriteByProfileId($this->getPDO(), $dispensaryFavorite->getDispensaryFavorite());
+		$pdoDispensaryFavorite = Dispensary::dispensaryFavoriteDispensaryId($this->getPDO(), $dispensaryFavorite->getDispensaryFavoriteProfileId());
 
 
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryFavorite"));
@@ -93,7 +93,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	public function testInsertInvalidFavorite(){
 
 
-	$dispensaryFavorite = new DispensaryFavorite(CannaduceusTest::INVALID_KEY, $this->$VALID_FAVORITEDISPENSARY1, $this->$VAILD_FAVORITEDISPENSARY2);
+	$dispensaryFavorite = new Dispensary(CannaduceusTest::INVALID_KEY, $this->$VALID_FAVORITEDISPENSARY1, $this->$VAILD_FAVORITEDISPENSARY2);
 
 	$dispensaryFavorite->insert($this->getPDO());
 	}
@@ -104,7 +104,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	public function testUpdatedValidFavorite(){
 		$numRows = $this->getConnection()->getRowCount("favorite");
 
-		$dispensaryFavorite = new DispensaryFavorite(null, $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
+		$dispensaryFavorite = new Dispensary(null, $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
 
 		$dispensaryFavorite->insert($this->getPDO());
 
@@ -122,14 +122,35 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		$this->assertEquals($pdoDispensaryFavorite->getDispensaryFavorite(), $this->VAILD_FAVORITEDISPENSARY2);
 	}
 
+	/**
+	 * test updating a favorite that does not exist
+	 *
+	 * @excpectedException
+	 */
+	public function testUpdateInvalidFavorite() {
+		// create a favorite try to update it without actually updating it and watch it fail
+		$dispensaryFavorite = new Dispensary(null, $this->profile->getProfileId(), $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
+		$dispensaryFavorite->update($this->getPDO());
+	}
 
 	/**
-	 * test inserting a favorite that already exists
-	 * @expectedException \PDOException
+	 * test creating a favorite and then deleting it:(
 	 */
+	public function testDeleteValidFavorite() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("favorite");
 
+		// create a new favorite and insert to into mySQL
+		$dispensaryFavorite = new Dispensary(null, $this->profile->getProfileId(), $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
+		$dispensaryFavorite->update($this->getPDO());
 
+		// delete the favorite from mySQL
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("favorite"));
+		$dispensaryFavorite->delete($this->getPDO());
 
+		//grab the data from mySQL
+		$pdoDispensaryFavorite = Dispensary::getDispensaryByDispensaryId($this->getPDO(), $dispensaryFavorite->getDispensaryId());
+	}
 
 
 
