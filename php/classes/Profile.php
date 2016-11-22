@@ -340,9 +340,9 @@ class Profile implements \JsonSerializable {
 		if($this->profileId === null) {
 			throw(new \PDOException("Can't update a profile that doesn't exist"));
 		}
-
+		// here here good sir added profileId = :profileId,
 		//create a query template
-		$query = "UPDATE profile SET profileUserName = :profileUserName, profileEmail = :profileEmail, profileHash = :profileHash, profileSalt = :profileSalt, profileActivation = :profileActivation WHERE profileId = :profileId";
+		$query = "UPDATE profile SET profileId = :profileId, profileUserName = :profileUserName, profileEmail = :profileEmail, profileHash = :profileHash, profileSalt = :profileSalt, profileActivation = :profileActivation WHERE profileId = :profileId";
 		// prepare statement
 		$statement = $pdo->prepare($query);
 
@@ -463,7 +463,7 @@ class Profile implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		$row = $statement->fetch();
 		if($row !== false) {
-			$profile = new Profile($row["profileId"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
+			$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
 		}
 
 
@@ -471,7 +471,7 @@ class Profile implements \JsonSerializable {
 		//rethrow the row couldn't be converted, rethrow that sucka foo
 		throw(new \PDOException($exception->getMessage(), 0, $exception));
 	}
-	return $profile;
+	return ($profile);
 	}
 
 	/**

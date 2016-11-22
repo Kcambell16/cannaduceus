@@ -101,11 +101,11 @@ class ProfileTest extends CannaduceusTest {
 
 		$password = "abc123";
 
-		$salt0 = bin2hex(random_bytes(16));
+		$salt0 = bin2hex(random_bytes(32));
 		$hash0 = hash_pbkdf2("sha512", $password, $salt0, 262144, 128);
 
 
-		$salt1 = bin2hex(random_bytes(16));
+		$salt1 = bin2hex(random_bytes(32));
 		$hash1 = hash_pbkdf2("sha512", $password, $salt1, 262144, 128);
 		var_dump($hash1);
 
@@ -311,7 +311,7 @@ class ProfileTest extends CannaduceusTest {
 	 */
 	public function testGetInvalidProfileByProfileUserName(){
 		$profile = Profile::getProfileByProfileUserName($this->getPDO(), "A Stoner with no name");
-		$this->assertCount(0,$profile);
+		$this->assertNull($profile);
 
 	}
 
