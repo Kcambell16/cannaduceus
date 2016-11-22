@@ -352,7 +352,7 @@ class ProfileTest extends CannaduceusTest {
 		//the first is a PDO object, the other is our profileEmail, which we use the accessor method we wrote (getProfileEmail) to get!
 		// $pdoProfileEmail now contains all the information for our dummy profile
 
-		$pdoGetProfileEmail = ProfileEmail::GetProfileByProfileEmail($this->getPDO(), $profile->getProfileEmail());
+		$pdoGetProfileEmail = Profile::GetProfileByProfileEmail($this->getPDO(), $profile->getProfileEmail());
 
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
 
@@ -413,9 +413,9 @@ class ProfileTest extends CannaduceusTest {
 	//grab results from the array and validate them
 	$pdoProfile = $results[0];
 	//check if the stuff in the database matches the stuff we put in
-	$this->assertEquals($pdoProfile->getProfileUserName(), $this->VAILD_PROFILEUSERNAME1);
-	$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL1);
-	$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH1);
+	$this->assertEquals($pdoProfile->getProfileUserName(), $this->VAILD_PROFILEUSERNAME2);
+	$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL2);
+	$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH2);
 	$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILESALT1);
 	$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATION1);
 
