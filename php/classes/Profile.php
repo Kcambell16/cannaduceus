@@ -430,6 +430,77 @@ class Profile implements \JsonSerializable {
 	}
 
 	/**
+	 * @param \PDO $pdo
+	 * @param string $profileEmail Email to search for
+	 * @throws \PDOException if mySQL related errors
+	 * @return mixed email found or null if not found
+	 * @throws \TypeError when variables are not the correct data type
+	*/
+
+
+	public static function getProfileByProfileEmail(\PDO $pdo, string $profileEmail) {
+	// sanitize the description before searching
+	$profileEmail = trim($profileEmail);
+	$profileEmail = filter_var($profileEmail, FILTER_SANITIZE_STRING);
+	if($profileEmail === false) {
+		throw (new \PDOException("email is empty"));
+	}
+
+	// create query template
+	$query = "SELECT profileId, profileUserName, profileEmail, profileHash, profileSalt, profileActivation FROM profile WHERE profileEmail = :profileEmail";
+	$statement = $pdo->prepare($query);
+
+	//bind the id value to the placeholder in the template
+	$parameters = array("profileEmail" => $profileEmail);
+	$statement->execute($parameters);
+
+
+	// grab the ProfileEmail from mySQL
+	try {
+		$profile = null;
+		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$row = $statement->fetch();
+		if($row !== false) {
+			$profile = new Profile($row["profileId"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
+		}
+
+
+	} catch(\Exception $exception) {
+		//rethrow the row couldn't be converted, rethrow that sucka foo
+		throw(new \PDOException($exception->getMessage(), 0, $exception));
+	}
+	return $profile;
+	}
+
+	/**
+	 * retrieves all volunteers
+	 *
+	 * @param PDO $pdo pdo connection
+	 * @return \SplFixedArray all organizations
+	 * @throws \PDOException if mySQL errors occur
+	 */
+	public static function getAllValidProfile(PDO $pdo) {
+
+		//create query template
+		$query = "SELECT profileId, profileEmail, profileHash, profileSalt, profileActivation FROM profile ";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
+
+		//call the function to build an array of the retrieved results
+		try{
+			$retrievedProfile = Profile::storeSQLResultsInArray($statement);
+		} catch(\Exception $exception) {
+			//rethrow the exception if retrieval failed
+			throw(new PDOExceprion($exception->getMessage(), 0, $exception));
+		}
+		return $retrievedProfile;
+	}
+
+
+
+
+
+	/**
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
