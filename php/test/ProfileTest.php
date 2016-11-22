@@ -374,7 +374,7 @@ class ProfileTest extends CannaduceusTest {
 
 
 
-	}
+	
 	/**
 	 * test getting a profile by a email that does not exist
 	 */
@@ -422,4 +422,4 @@ class ProfileTest extends CannaduceusTest {
 
 
 
-}
+}}
