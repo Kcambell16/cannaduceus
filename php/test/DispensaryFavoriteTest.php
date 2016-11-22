@@ -75,7 +75,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		$dispensaryFavorite->insert($this->getPDO());
 
 
-		$pdoDispensaryFavorite = Dispensary::getDispensaryFavoriteByProfileId($this->getPDO(), $dispensaryFavorite->getDispensaryFavorite());
+		$pdoDispensaryFavorite = Dispensary::dispensaryFavoriteDispensaryId($this->getPDO(), $dispensaryFavorite->getDispensaryFavoriteProfileId());
 
 
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryFavorite"));
@@ -143,6 +143,13 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		// create a new favorite and insert to into mySQL
 		$dispensaryFavorite = new Dispensary(null, $this->profile->getProfileId(), $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
 		$dispensaryFavorite->update($this->getPDO());
+
+		// delete the favorite from mySQL
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("favorite"));
+		$dispensaryFavorite->delete($this->getPDO());
+
+		//grab the data from mySQL
+		$pdoDispensaryFavorite = Dispensary::getDispensaryByDispensaryId($this->getPDO(), $dispensaryFavorite->getDispensaryId());
 	}
 
 
