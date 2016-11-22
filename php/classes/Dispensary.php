@@ -401,7 +401,7 @@ class Dispensary implements \JsonSerializable {
 		//verify the street2 is secure
 		$newDispensaryStreet2 = trim($newDispensaryStreet2);
 		$newDispensaryStreet2 = filter_var($newDispensaryStreet2, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newDispensaryStreet2) === true) {
+		if(empty($newDispensaryStreet2) === null) {
 			throw(new \RangeException("dispensary street2 is empty or insecure"));
 		}
 		// verify the dispensary street2 will fit in the database
