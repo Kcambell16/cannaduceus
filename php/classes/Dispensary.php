@@ -397,7 +397,7 @@ class Dispensary implements \JsonSerializable {
 	 * @throws \RangeException if $newDispensaryStreet2 is > 140 characters
 	 * @throws \TypeError if $newDispensaryStreet2 is not a string
 	 **/
-	public function setDispensaryStreet2(string $newDispensaryStreet2) {
+	public function setDispensaryStreet2(string $newDispensaryStreet2, null) {
 		//verify the street2 is secure
 		$newDispensaryStreet2 = trim($newDispensaryStreet2);
 		$newDispensaryStreet2 = filter_var($newDispensaryStreet2, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
