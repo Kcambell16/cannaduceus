@@ -369,7 +369,7 @@ class ProfileTest extends CannaduceusTest {
 	/**
 	 * test getting all the profiles
 	 */
-	public function testGetAllValidProfile(){
+	public function testGetAllValidProfiles(){
 		//count the initial number of rows (0) and save it for lates
 		$numRows = $this->getConnection()->getRowCount("profile");
 
