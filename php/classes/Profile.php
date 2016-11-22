@@ -475,7 +475,7 @@ class Profile implements \JsonSerializable {
 	}
 
 	/**
-	 * retrieves all volunteers
+	 * retrieves all profiles
 	 *
 	 * @param /PDO $pdo pdo connection
 	 * @return \SplFixedArray all organizations
