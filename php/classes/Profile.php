@@ -458,7 +458,7 @@ class Profile implements \JsonSerializable {
 	// grab the ProfileEmail from mySQL
 	try {
 		$profile = null;
-		$statement->setFetchMode(PDO::FETCH_ASSOC);
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		$row = $statement->fetch();
 		if($row !== false) {
 			$profile = new Profile($row["profileId"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
@@ -475,11 +475,11 @@ class Profile implements \JsonSerializable {
 	/**
 	 * retrieves all volunteers
 	 *
-	 * @param PDO $pdo pdo connection
+	 * @param /PDO $pdo pdo connection
 	 * @return \SplFixedArray all organizations
 	 * @throws \PDOException if mySQL errors occur
 	 */
-	public static function getAllValidProfile(PDO $pdo) {
+	public static function getAllValidProfile(\PDO $pdo) {
 
 		//create query template
 		$query = "SELECT profileId, profileEmail, profileHash, profileSalt, profileActivation FROM profile ";
@@ -488,7 +488,7 @@ class Profile implements \JsonSerializable {
 
 		//call the function to build an array of the retrieved results
 		try{
-			$retrievedProfile = Profile::storeSQLResultsInArray($statement);
+			$retrievedProfile = Profile::getAllValidProfile($statement);
 		} catch(\Exception $exception) {
 			//rethrow the exception if retrieval failed
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
