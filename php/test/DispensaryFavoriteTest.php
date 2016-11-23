@@ -193,7 +193,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		$this->assertEquals($pdoDispensaryFavorite->getDispensaryFavorite(), $this->VALID_FAVORITEDISPENSARY2);
 	}
 	/**
-	 * test gettting a dispensaryfavorite by name that does not exist
+	 * test gettting a dispensary favorite by name that does not exist
 	 */
 	public function testGetInvalidDispensaryFavoriteByProfileId() {
 	$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByProfileId($this->getPDO(), "dispensary favorite not found");
@@ -205,6 +205,13 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	public function testGetDispensaryFavoriteByDispensaryId() {
 	//get the number of initail rows (will be zero) and save it for later
 	$numRows = $this->getConnection()->getRowCount("dispensaryFavorite");
+	// create a dummy dispensary favorite
+		$dispensaryFavorite = new DispensaryFavorite(null, )
+
+
+
+
+
 	}
 
 
