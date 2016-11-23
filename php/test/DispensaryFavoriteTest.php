@@ -166,7 +166,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		//create a favorite and never actually insert it then try to delete it when it hasnt been inserted
 
 		// create a new DispensaryFavorite and insert it in to mySQL
-		$dispensaryFavorite = dispensaryFavorite(null, $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
+		$dispensaryFavorite = dispensaryFavorite($this->profile->getProfileId(),  $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
 		//now delete it
 		$dispensaryFavorite->delete($this->getPDO());
 	}
@@ -179,7 +179,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		// create a dummy dispensary favorite
 		$dispensaryFavorite = new dispensaryFavorite(null, $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
 		$dispensaryFavorite->insert($this->getPDO());
-		$results = Dispensary::getDispensaryFavoriteByProfileId($this->getPDO(), $dispensaryFavorite->getDispensaryFavorite);
+		$results = dispensaryFavorite::getDispensaryFavoriteByProfileId($this->getPDO(), $dispensaryFavorite->getDispensaryFavorite);
 		//confirm we only have 1 favorite in the database
 		$this->assertCount(1, $results);
 
@@ -192,10 +192,20 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		$this->assertEquals($pdoDispensaryFavorite->getDispensaryFavorite(), $this->VALID_FAVORITEDISPENSARY1);
 		$this->assertEquals($pdoDispensaryFavorite->getDispensaryFavorite(), $this->VALID_FAVORITEDISPENSARY2);
 	}
-
-
-
-
+	/**
+	 * test gettting a dispensaryfavorite by name that does not exist
+	 */
+	public function testGetInvalidDispensaryFavoriteByProfileId() {
+	$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByProfileId($this->getPDO(), "dispensary favorite not found");
+	$this->assertNull($dispensaryFavorite);
+	}
+	/**
+	 * test getting dispensary favorite by dispensary Id
+	 */
+	public function testGetDispensaryFavoriteByDispensaryId() {
+	//get the number of initail rows (will be zero) and save it for later
+	$numRows = $this->getConnection()->getRowCount("dispensaryFavorite");
+	}
 
 
 
