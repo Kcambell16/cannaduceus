@@ -27,7 +27,7 @@ class DispensaryReview implements \JsonSerializable {
 	private $dispensaryReviewProfileId;
 	/**
 	 * dispensary being reviewed by a specific profile
-	 * @var string $dispensaryReviewDispensaryId                // should this be an int?
+	 * @var int $dispensaryReviewDispensaryId
 	 **/
 	private $dispensaryReviewDispensaryId;
 	/**
