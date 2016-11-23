@@ -107,7 +107,7 @@ class ProfileTest extends CannaduceusTest {
 
 		$salt1 = bin2hex(random_bytes(32));
 		$hash1 = hash_pbkdf2("sha512", $password, $salt1, 262144, 128);
-		var_dump($hash1);
+
 
 		$this->VAILD_PROFILESALT1 = $salt0;
 		$this->VAILD_PROFILESALT2 = $salt1;
@@ -165,11 +165,11 @@ class ProfileTest extends CannaduceusTest {
 		// create a profile with a non-null profileId and watch it fail. use the INVALID_KEY we defined inside the abstract class CannaduceusTest
 		//here we are calling an object ($profile) based on the Profile class and feeding it initial values. BUT whereas normally we would define the primary key as NULL
 		//this time we are giving it a value (INVALID_KEY)
-		$profile = new Profile(CannaduceusTest::INVALID_KEY, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
+		$profile = new Profile(CannaduceusTest::INVALID_KEY, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
 
 		//now insert it into SQL and hope it throws a error!
 		//this uses the insert PDO method we wrote back in our class, and all the capabilities it has
-		$profile->insert($this->insert($this->getPDO()));
+		$profile->insert($this->getPDO());
 	}
 
 
@@ -221,7 +221,7 @@ class ProfileTest extends CannaduceusTest {
 	 * @expectedException \PDOException
 	 */
 	public function testUpdateInvalidProfile(){
-			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILEACTIVATION1);
+			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
 
 			//now that the dummy profile has been created, we will not insert this bad boy but were gonna try to update it in SQL
 			$profile->update($this->getPDO());
@@ -285,21 +285,22 @@ class ProfileTest extends CannaduceusTest {
 
 			// create a dummy profile
 			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
-
+			$profile->insert($this->getPDO());
 			$results = Profile::getProfileByProfileUserName($this->getPDO(), $profile->getProfileUserName());
 
 			$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
+		//confirm we only have 1 profile in the database
+		$this->assertCount(1, $results);
 
-			//confirm we have just 1 profile in the data base
-			$this->assertCount(1, $results);
+
+
 
 
 			//ensure there are only instances of the profile class in the namespace
 			$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus\\Profile", $results);
 
-			//grab results from the array and validate them
+
 			$pdoProfile = $results[0];
-			//check if the stuff in the database matches the stuff we put in
 			$this->assertEquals($pdoProfile->getProfileUserName(), $this->VAILD_PROFILEUSERNAME1);
 			$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL1);
 			$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH1);
@@ -328,7 +329,7 @@ class ProfileTest extends CannaduceusTest {
 	 **/
 	public function testGetProfileByProfileEmail() {
 		//get number of initial rows (will be zero) and save it for later
-		$numRows = $this->getConnection()->getRowCount("profile Email");
+		$numRows = $this->getConnection()->getRowCount("profile");
 
 		//create a dummy profile
 		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
@@ -338,7 +339,7 @@ class ProfileTest extends CannaduceusTest {
 
 		//edit the profile and update it in SQL
 		$profile->setProfileUserName($this->VAILD_PROFILEUSERNAME2);
-		$profile->setProfileEmail($this->VAILD_PROFILEUSERNAME2);
+		$profile->setProfileEmail($this->VAILD_PROFILEEMAIL2);
 		$profile->setProfileHash($this->VAILD_PROFILEHASH2);
 		$profile->setProfileSalt($this->VAILD_PROFILESALT2);
 		$profile->setProfileActivation($this->VALID_PROFILEACTIVATION2);
@@ -352,14 +353,14 @@ class ProfileTest extends CannaduceusTest {
 		//the first is a PDO object, the other is our profileEmail, which we use the accessor method we wrote (getProfileEmail) to get!
 		// $pdoProfileEmail now contains all the information for our dummy profile
 
-		$pdoGetProfileEmail = Profile::GetProfileByProfileEmail($this->getPDO(), $profile->getProfileEmail());
+		$pdoGetProfileEmail = Profile::getProfileByProfileEmail($this->getPDO(), $profile->getProfileEmail());
 
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
 
 		//the following will all best testing to match that the data in the database matches the data we thought we put in the database
 		$this->assertEquals($pdoGetProfileEmail->getProfileUserName(),
 			$this->VAILD_PROFILEUSERNAME2);
-		$this->assertEquals($pdoGetProfileEmail->getProfileEmail(),
+		$this->assertSame($pdoGetProfileEmail->getProfileEmail(),
 			$this->VAILD_PROFILEEMAIL2);
 		$this->assertEquals($pdoGetProfileEmail->getProfileHash(),
 			$this->VAILD_PROFILEHASH2);
@@ -370,56 +371,14 @@ class ProfileTest extends CannaduceusTest {
 	}
 
 
-// nathan
-
-
-
-
 	/**
 	 * test getting a profile by a email that does not exist
 	 */
 	public function testGetInvalidProfileProfileByProfileEmail(){
 			//grab a profile by searching for a Email that doesn't exist
 			$profile = Profile::getProfileByProfileEmail($this->getPDO(), "A code monkey with no Email");
-			$this->assertCount(0,$profile);
+			$this->assertNull($profile);
 	}
 
-	/**
-	 * test getting all the profiles
-	 */
-	public function testGetAllValidProfiles() {
-	//count the initial number of rows (0) and save it for lates
-	$numRows = $this->getConnection()->getRowCount("profile");
-
-	//make a dummy profile
-	$profile = new Profile(null,
-		$this->VAILD_PROFILEUSERNAME1,
-		$this->VAILD_PROFILEEMAIL1,
-		$this->VAILD_PROFILEHASH1,
-		$this->VAILD_PROFILESALT1,
-		$this->VAILD_PROFILEACTIVATION1);
-
-	//insert in to dat SQL
-	$profile->insert($this->getPDO());
-
-	//now get the data from SQL and make sure it matches
-	$results = Profile::getAllValidProfiles($this->getPDO());
-	$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
-	//confirm we have just 1 profile in the database
-	$this->assertCount(1, $results);
-	//ensure there are only instances of the profile class in the namespace
-	$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus\\Profile", $results);
-
-	//grab results from the array and validate them
-	$pdoProfile = $results[0];
-	//check if the stuff in the database matches the stuff we put in
-	$this->assertEquals($pdoProfile->getProfileUserName(), $this->VAILD_PROFILEUSERNAME2);
-	$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL2);
-	$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH2);
-	$this->assertEquals($pdoProfile->getProfileSalt(), $this->VAILD_PROFILESALT1);
-	$this->assertEquals($pdoProfile->getProfileActivation(), $this->VAILD_PROFILEACTIVATION1);
-
-
-}
 
 }

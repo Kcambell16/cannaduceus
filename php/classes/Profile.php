@@ -50,8 +50,8 @@ class Profile implements \JsonSerializable {
 	 * @param string $newProfileUserName the name of the profile
 	 * @param string $newProfileEmail the email for the profile
 	 * @param string $newProfileHash the hash for the profile
-	 * @param string $newProfileActivation the activation for the profile
 	 * @param string $newProfileSalt the salt for the profile
+	 * @param string $newProfileActivation the activation for the profile
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -152,18 +152,18 @@ class Profile implements \JsonSerializable {
 
 
 	/**
-	 * accessor method for Profile Email
+	 * accessor method for ProfileEmail
 	 *
-	 * @return string for Profile Email
+	 * @return string for ProfileEmail
 	 */
 	public function getProfileEmail() {
 		return $this->profileEmail;
 	}
 
 	/**
-	 * mutator method for Profile Email
+	 * mutator method for ProfileEmail
 	 *
-	 * @param string $newProfileEmail new sting of Profile Email
+	 * @param string $newProfileEmail new sting of ProfileEmail
 	 * @throws \UnexpectedValueException if $newProfileEmail is not a string
 	 */
 
@@ -404,7 +404,7 @@ class Profile implements \JsonSerializable {
 		// sanitize the description before searching
 		$profileUserName = trim($profileUserName);
 		$profileUserName = filter_var($profileUserName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($profileUserName) === true){
+		if(empty($profileUserName) === true) {
 			throw(new \PDOException("profile name invalid"));
 		}
 		// create query template
@@ -412,13 +412,13 @@ class Profile implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		// bind the profile username to the place holder
+		$profileUserName = "%profileUserName%";
 		$parameters = ["profileUserName" => $profileUserName];
 		$statement->execute($parameters);
 
 		// grab the profileUserName from mySQL
 		try {
 			$profile = null;
-			// blaze it
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
@@ -465,7 +465,7 @@ class Profile implements \JsonSerializable {
 		if($row !== false) {
 			$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
 		}
-// nathan
+
 
 	} catch(\Exception $exception) {
 		//rethrow the row couldn't be converted, rethrow that sucka foo
