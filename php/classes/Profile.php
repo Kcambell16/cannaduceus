@@ -58,7 +58,7 @@ class Profile implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newProfileId = null, string $newProfileUserName, string $newProfileEmail, string $newProfileHash, string $newProfileSalt, string $newProfileActivation) {
+	public function __construct(int $newProfileId = null, string $newProfileUserName, string $newProfileEmail, string $newProfileHash, string $newProfileSalt, string $newProfileActivation = null) {
 
 		try {
 			$this->setProfileId($newProfileId);
@@ -256,7 +256,7 @@ class Profile implements \JsonSerializable {
 	 * @param string $newProfileActivation new string of Profile Activation
 	 * @throws \UnexpectedValueException if $newProfileActivation is not string
 	 */
-	public function setProfileActivation(string $newProfileActivation) {
+	public function setProfileActivation(string $newProfileActivation = null) {
 		// verify the profile activation content
 		$newProfileActivation = trim($newProfileActivation);
 		$newProfileActivation = strtolower($newProfileActivation);
@@ -412,7 +412,6 @@ class Profile implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		// bind the profile username to the place holder
-		$profileUserName = "%profileUserName%";
 		$parameters = ["profileUserName" => $profileUserName];
 		$statement->execute($parameters);
 
@@ -422,7 +421,7 @@ class Profile implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"], ["profileActivation"]);
+				$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
 			}
 		} catch(\Exception $exception) {
 			// if the row couldn't be converted, rethrow it

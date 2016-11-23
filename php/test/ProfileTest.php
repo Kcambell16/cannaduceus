@@ -40,14 +40,14 @@ class ProfileTest extends CannaduceusTest {
 	 * Default input data set for email
 	 * @var string $VAILD_PROFILEEMAIL1
 	 */
-	protected $VAILD_PROFILEEMAIL1 ="email.cnm.edu";
+	protected $VAILD_PROFILEEMAIL1 = "dinoking505@gmail.com";
 
 
 	/**
 	 * Default input data set for updated email
 	 * @var string $VAILD_PROFILEEMAIL2
 	 */
-	protected $VAILD_PROFILEEMAIL2 = "emailupdated.cnm.edu";
+	protected $VAILD_PROFILEEMAIL2 = "james@montoya.cnm.edu";
 
 
 /**
@@ -284,23 +284,16 @@ class ProfileTest extends CannaduceusTest {
 
 
 			// create a dummy profile
-			$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
+		$profile = new Profile(null, $this->VAILD_PROFILEUSERNAME1, $this->VAILD_PROFILEEMAIL1, $this->VAILD_PROFILEHASH1, $this->VAILD_PROFILESALT1, $this->VAILD_PROFILEACTIVATION1);
 			$profile->insert($this->getPDO());
-			$results = Profile::getProfileByProfileUserName($this->getPDO(), $profile->getProfileUserName());
+			$pdoProfile = Profile::getProfileByProfileUserName($this->getPDO(), $profile->getProfileUserName());
 
 			$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
-		//confirm we only have 1 profile in the database
-		$this->assertCount(1, $results);
 
 
 
 
 
-			//ensure there are only instances of the profile class in the namespace
-			$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus\\Profile", $results);
-
-
-			$pdoProfile = $results[0];
 			$this->assertEquals($pdoProfile->getProfileUserName(), $this->VAILD_PROFILEUSERNAME1);
 			$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL1);
 			$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH1);
