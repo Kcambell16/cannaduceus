@@ -45,7 +45,7 @@ class DispensaryReview implements \JsonSerializable {
 
 
 
-	// CONSTRUCTOR GOES HERE LATER
+	// CONSTRUCTOR GOES HERE RIGHT NOW RIGHT NOW NOT LATER LATER
 
 	/**
 	 * DispensaryReview constructor.

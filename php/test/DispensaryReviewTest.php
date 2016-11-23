@@ -134,7 +134,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 	 *
 	 * @expectedException PDOException
 	 **/
-	/*
+
 	public function testDeleteInvalidDispensaryReview() {
 		// create a DispensaryReview and try to delete it without actually inserting it
 		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
@@ -144,7 +144,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 	/**
 	 * test grabbing a DispensaryReview by dispensary text
 	 **/
-	/*
+
 	public function testGetValidDispensaryReviewByDispensaryReviewTxt() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("dispensary review");
@@ -169,7 +169,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 	/**
 	 * test grabbing a DispensaryReview by dispensary review text that does not exist
 	 **/
-	/*
+
 	public function testGetInvalidDispensaryReviewByDispensaryReviewTxt() {
 		// grab a dispensary review by searching for content that does not exist
 		$dispensaryReview = DispensaryReview::getDispensaryReviewByDispensaryReviewTxt($this->getPDO(), "Dee Dee Dee, No Such Thing");
@@ -179,7 +179,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 	/**
 	 * test grabbing all DispensaryReviews
 	 **/
-	/*
+
 	public function testGetAllValidDispensaryReviews() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("dispensary review");
@@ -200,5 +200,5 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATETIME);
 	}
-	*/
+
 }
