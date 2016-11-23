@@ -8,7 +8,7 @@ use Edu\Cnm\Cannaduceus\{Strain};
 require_once ("CannaduceusTest.php");
 
 //grabs the class being tested
-require_once (dirname(__DIR__) . "../php/classes/autoload.php");
+require_once (dirname(__DIR__) . "/classes/autoload.php");
 
 /**
 * Full PHPUnit test for the Strain class
@@ -22,80 +22,75 @@ require_once (dirname(__DIR__) . "../php/classes/autoload.php");
 **/
 
 class StrainTest extends CannaduceusTest {
-	/**
-	 * valid strain Id 0
-	 * @var string $VALID_STRAINID0
-	 */
-	protected $VALID_STRAINID0 = "420";
 
 	/**
-	 * invalid strain Id 0
-	 * @var $INVALID_STRAINID0
+	 * valid strain name
+	 * @var string $VALID_STRAINNAME
 	 */
-	protected $INVALID_STRAINID0 = "Mary Jane";
+	protected $VALID_STRAINNAME = "Shnozzberry";
 
 	/**
-	 * valid strain name 0
-	 * @var string $VALID_STRAINNAME0
+	 * valid strain name 2
+	 * @var string $VALID_STRAINNAME2
 	 */
-	protected $VALID_STRAINNAME0 = "Shnozzberry";
+	protected $VALID_STRAINNAME2 = "Sour Diesel";
 
 	/**
-	 * invalid strain name 0
-	 * @var string $INVALID_STRAINNAME0
+	 * invalid strain name
+	 * @var string $INVALID_STRAINNAME
 	 */
-	protected $INVALID_STRAINNAME0 = "-4.20%";
+	protected $INVALID_STRAINNAME;
+
 	/**
-	 * valid strain type 0
-	 * @var string $VALID_STRAINTYPE0
+	 * valid strain type
+	 * @var string $VALID_STRAINTYPE
 	 **/
-	protected $VALID_STRAINTYPE0 = "Sativa";
-
+	protected $VALID_STRAINTYPE = "Sativa";
 	/**
-	 * invalid strain type 0
-	 * @var string $INVALID_STRAINTYPE0
+	 * invalid strain type
+	 * @var string $INVALID_STRAINTYPE
 	 */
-	protected $INVALID_STRAINTYPE0 = "720";
+	protected $INVALID_STRAINTYPE;
+
 	/**
 	 * valid strain thc content
-	 * @var float $VALID_STRAINTHC0
+	 * @var float $VALID_STRAINTHC
 	 */
-	protected $VALID_STRAINTHC0 = "32%";
-
+	protected $VALID_STRAINTHC = 32.5;
 	/**
 	 * invalid strain thc content
-	 * @var float $INVALID_STRAINTHC0
+	 * @var float $INVALID_STRAINTHC
 	 */
-	protected $INVALID_STRAINTHC0 = "THC";
+	protected $INVALID_STRAINTHC;
+
 	/**
 	 * valid strain Cbd content
-	 * @var float $VALID_STRAINCBD0
+	 * @var float $VALID_STRAINCBD
 	 **/
-	protected $VALID_STRAINCBD0 = "0.8%";
+	protected $VALID_STRAINCBD = 0.8;
+	/**
+	 * invalid Cbd content
+	 * @var float $INVALID_STRAINCBD
+	 */
+	protected $INVALID_STRAINCBD;
 
 	/**
-	 * invalid Cbd content 0
-	 * @var float $INVALID_STRAINCBD0
+	 * valid strain description
+	 * @var string $VALID_STRAINDESCRIPTION
 	 */
-	protected $INVALID_STRAINCDB0 = "Fire";
+	protected $VALID_STRAINDESCRIPTION = "A light airy scent with a strong sativa high";
 	/**
-	 * valid strain description 0
-	 * @var string $VALID_STRAINDESCRIPTION0
+	 * invalid strain description
+	 * @var string $INVALID_STRAINDESCRIPTION
 	 */
-	protected $VALID_STRAINDESCRIPTION0 = "A light airy scent with a strong sativa high";
-
-	/**
-	 * invalid strain description 0
-	 * @var string $INVALID_STRAINDESCRIPTION0
-	 */
-	protected $INVALID_STRAINDISCREPTION0 = "betty@baker.com";
+	protected $INVALID_STRAINDESCRIPTION;
 
 	protected $strain;
 
 
 	public final function setUp() {
 		//run the default setUp() method first
-		parent::getSetUpOperation();
+		parent::setUp();
 	}
 
 	/**
@@ -106,30 +101,30 @@ class StrainTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("strain");
 
 		//create a new strain and insert it into mySQL
-		$strain = new Strain(null, $this->VALID_STRAINNAME0, $this->VALID_STRAINTYPE0, $this->VALID_STRAINTHC0, $this->VALID_STRAINCBD0, $this->VALID_STRAINDESCRIPTION0);
+		$strain = new Strain(null, $this->VALID_STRAINNAME, $this->VALID_STRAINTYPE, $this->VALID_STRAINTHC, $this->VALID_STRAINCBD, $this->VALID_STRAINDESCRIPTION);
+		$strain->insert($this->getPDO());
+
 
 		//grab the data from mySQL and enforce the fields match our expectations
 		$pdoStrain = Strain::getStrainByStrainId($this->getPDO(), $strain->getStrainId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("strain"));
-		$this->assertEquals($pdoStrain->getStrainId(), $strain->assertEquals()->strainId);
-		$this->getStrain($pdoStrain->getStrainName(), $strain->assertEquals()->strainName);
-		$this->getStrain($pdoStrain->getStrainType(), $strain->assertEquals()->strainType));
-		$this->getStrain($pdoStrain->getStrainThc(), $strain->assertEquals()->strainThc);
-		$this->getStrain($pdoStrain->getStrainCbd(), $strain->assertEquals()->strainCbd);
-		$this->getStrain($pdoStrain->getStrainDescription(), $strain->assertEquals()->strainDescription);
+		$this->assertEquals($pdoStrain->getStrainName(), $this->VALID_STRAINNAME);
+		$this->assertEquals($pdoStrain->getStrainType(), $this->VALID_STRAINTYPE);
+		$this->assertEquals($pdoStrain->getStrainThc(), $this->VALID_STRAINTHC);
+		$this->assertEquals($pdoStrain->getStrainCbd(), $this->VALID_STRAINCBD);
+		$this->assertEquals($pdoStrain->getStrainDescription(), $this->VALID_STRAINDESCRIPTION);
 
 
 	}
 	/**
  	* test inserting a strain that already exists
+	* @expectedException \PDOException
  	*/
 	public function testInsertInvalidStrain() {
-		$strain = new Strain(null, $this->VALID_STRAINNAME0, $this->VALID_STRAINTYPE0, $this->VALID_STRAINTHC0, $this->VALID_STRAINCBD0, $this->VALID_STRAINDESCRIPTION0);
+		$strain = new Strain(CannaduceusTest::INVALID_KEY, $this->VALID_STRAINNAME, $this->VALID_STRAINTYPE, $this->VALID_STRAINTHC, $this->VALID_STRAINCBD, $this->VALID_STRAINDESCRIPTION);
 
 		$strain->insert($this->getPDO());
 
-		//insert again to see if it fails
-		$strain->insert($this->getPDO());
 	}
 
 	/**
@@ -140,42 +135,49 @@ class StrainTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("strain");
 
 		//create a new strain and insert it into mySQL
-		$strain = new Strain(null, $this->VALID_STRAINNAME0, $this->VALID_STRAINTYPE0, $this->VALID_STRAINTHC0, $this->VALID_STRAINCBD0, $this->VALID_STRAINDESCRIPTION0);
-
+		$strain = new Strain(null, $this->VALID_STRAINNAME, $this->VALID_STRAINTYPE, $this->VALID_STRAINTHC, $this->VALID_STRAINCBD, $this->VALID_STRAINDESCRIPTION);
 		$strain->insert($this->getPDO());
 
 		//edit the strain and update it in mySQL
-		$strain->setStrainName($this->VALID_STRAINNAME0);
+		$strain->setStrainName($this->VALID_STRAINNAME2);
 		$strain->update($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$pdoStrain = Strain::getStrainByStrainId($this->getPDO(), $strain->getStrainId(), $strain->getStrainName(), $strain->getStrainType(), $strain->getStrainThc(), $strain->getStrainCbd(), $strain->getStrainDescription());
+		$pdoStrain = Strain::getStrainByStrainId($this->getPDO(), $strain->getStrainId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("strain"));
+		$this->assertEquals($pdoStrain->getStrainName(), $this->VALID_STRAINNAME2);
+		$this->assertEquals($pdoStrain->getStrainType(), $this->VALID_STRAINTYPE);
+		$this->assertEquals($pdoStrain->getStrainThc(), $this->VALID_STRAINTHC);
+		$this->assertEquals($pdoStrain->getStrainCbd(), $this->VALID_STRAINCBD);
+		$this->assertEquals($pdoStrain->getStrainDescription(), $this->VALID_STRAINDESCRIPTION);
+
 	}
 
 	/**
-	 * test inserting a Strain that does not exist
+	 * test updating a Strain that does not exist
 	 *
 	 * @expectedException \PDOException
 	 */
-	public function testUpdateInvalidDispensary() {
-		//create a Strain, try to update it without actually updating it and watch it fail
-		$strain = new Strain(null, $this->VALID_STRAINNAME0, $this->VALID_STRAINTYPE0, $this->VALID_STRAINTHC0, $this->VALID_STRAINCBD0, $this->VALID_STRAINDESCRIPTION0);
+	public function testUpdateInvalidStrain() {
+		//create a new strain and do not insert it into mySQL and try to update
+		$strain = new Strain(null, $this->VALID_STRAINNAME, $this->VALID_STRAINTYPE, $this->VALID_STRAINTHC, $this->VALID_STRAINCBD, $this->VALID_STRAINDESCRIPTION);
 		$strain->update($this->getPDO());
 	}
 
 	/**
 	 * test creating a Strain and then deleting it
 	 */
-	public function testDeleteValidDispensary() {
+	public function testDeleteValidStrain() {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("strain");
 
 		//create a new strain and insert it into mySQL
-		$strain = new Strain(null, $this->VALID_STRAINNAME0, $this->VALID_STRAINTYPE0, $this->VALID_STRAINTHC0, $this->VALID_STRAINCBD0, $this->VALID_STRAINDESCRIPTION0);
+		$strain = new Strain(null, $this->VALID_STRAINNAME, $this->VALID_STRAINTYPE, $this->VALID_STRAINTHC, $this->VALID_STRAINCBD, $this->VALID_STRAINDESCRIPTION);
 		$strain->insert($this->getPDO());
 
-		//delete the data from mySQL and enforce the Strain does not exist
+		//Asserts the table row has been incremented by 1 and then deleted
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("strain"));
+		$strain->delete($this->getPDO());
 
 		//grab the data from mySQL and enforce the strain does not exist
 		$pdoStrain = Strain::getStrainByStrainId($this->getPDO(), $strain->getStrainByStrainId());
@@ -189,8 +191,8 @@ class StrainTest extends CannaduceusTest {
 	 * @expectedException \PDOException
 	 */
 	public function testDeleteInvalidStrain() {
-		//create a strain and try and delete it without actually inserting it
-		$strain = new Strain(null, $this->VALID_STRAINNAME0, $this->VALID_STRAINTYPE0, $this->VALID_STRAINTHC0, $this->VALID_STRAINCBD0, $this->VALID_STRAINDESCRIPTION0);
+		//create a new strain and insert it into mySQL
+		$strain = new Strain(null, $this->VALID_STRAINNAME, $this->VALID_STRAINTYPE, $this->VALID_STRAINTHC, $this->VALID_STRAINCBD, $this->VALID_STRAINDESCRIPTION);
 		$strain->delete($this->getPDO());
 	}
 
@@ -202,7 +204,7 @@ class StrainTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("strain");
 
 		//create a new strain and insert it into mySQL
-		$strain = new Strain(null, $this->VALID_STRAINNAME0, $this->VALID_STRAINTYPE0, $this->VALID_STRAINTHC0, $this->VALID_STRAINCBD0, $this->VALID_STRAINDESCRIPTION0);
+		$strain = new Strain(null, $this->VALID_STRAINNAME, $this->VALID_STRAINTYPE, $this->VALID_STRAINTHC, $this->VALID_STRAINCBD, $this->VALID_STRAINDESCRIPTION);
 		$strain->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
@@ -213,7 +215,7 @@ class StrainTest extends CannaduceusTest {
 
 		//grab the result from the array and validate it
 		$pdoStrain = $results[0];
-		$this->assertEquals($pdoStrain->getStrainName(), $this->VALID_STRAINNAME0)
+		$this->assertEquals($pdoStrain->getStrainName(), $this->VALID_STRAINNAME)
 ;
 	}
 
@@ -225,7 +227,7 @@ class StrainTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("strain");
 
 		//create a new strain and insert it into mySQL
-		$strain = new Strain(null, $this->VALID_STRAINNAME0, $this->VALID_STRAINTYPE0, $this->VALID_STRAINTHC0, $this->VALID_STRAINCBD0, $this->VALID_STRAINDESCRIPTION0);
+		$strain = new Strain(null, $this->VALID_STRAINNAME, $this->VALID_STRAINTYPE, $this->VALID_STRAINTHC, $this->VALID_STRAINCBD, $this->VALID_STRAINDESCRIPTION);
 		$strain->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
@@ -236,13 +238,19 @@ class StrainTest extends CannaduceusTest {
 
 		//grab the result from the array and validate it
 		$pdoStrain = $results[0];
-		$this->assertEquals($pdoStrain->getDispensaryType(), $this->VALID_STRAINTYPE0);
+		$this->assertEquals($pdoStrain->getStrainType(), $this->VALID_STRAINTYPE);
 	}
 
 	/**
 	 * test grabbing a strain by Type that does not exist
+	 *
+	 * @expectedException \PDOException
 	 */
 	public function testGetInvalidStrainTypeByStrainType() {
+		//create a new strain and insert it into mySQL
+		$strain = new Strain(null, $this->VALID_STRAINNAME, $this->INVALID_STRAINTYPE, $this->VALID_STRAINTHC, $this->VALID_STRAINCBD, $this->VALID_STRAINDESCRIPTION);
+		$strain->insert($this->getPDO());
+
 		//grab a strain by searching for a strain type that does not exist
 		$strain = Strain::getStrainByStrainType($this->getPDO(), "strain");
 		$this->assertCount(0, $strain);
@@ -256,7 +264,7 @@ class StrainTest extends CannaduceusTest {
 		$numRows = $this->getConnection()->getRowCount("strain");
 
 		//create a new strain and insert it into mySQL
-		$strain = new Strain(null, $this->VALID_STRAINNAME0, $this->VALID_STRAINTYPE0, $this->VALID_STRAINTHC0, $this->VALID_STRAINCBD0, $this->VALID_STRAINDESCRIPTION0);
+		$strain = new Strain(null, $this->VALID_STRAINNAME, $this->VALID_STRAINTYPE, $this->VALID_STRAINTHC, $this->VALID_STRAINCBD, $this->VALID_STRAINDESCRIPTION);
 		$strain->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
@@ -267,7 +275,7 @@ class StrainTest extends CannaduceusTest {
 
 		//grab the result from the array and validate it
 		$pdoStrain = $results[0];
-		$this->assertEquals($pdoStrain->getStrainName(), $this->VALID_STRAINNAME0);
+		$this->assertEquals($pdoStrain->getStrainName(), $this->VALID_STRAINNAME);
 
 	}
 

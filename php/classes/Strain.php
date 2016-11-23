@@ -63,7 +63,12 @@ class Strain implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newStrainId = null, string $newStrainName, string $newStrainType, float $newStrainThc, float $newStrainCbd, string $newStrainDescription) {
+	public function __construct(int $newStrainId = null,
+										 string $newStrainName,
+										 string $newStrainType,
+										 float $newStrainThc,
+										 float $newStrainCbd,
+										 string $newStrainDescription) {
 		try {
 			$this->setStrainId($newStrainId);
 			$this->setStrainName($newStrainName);
@@ -99,16 +104,19 @@ class Strain implements \JsonSerializable {
 	 * mutator method for strain id
 	 *
 	 * @param int $newStrainId new value of Strain Id
-	 * @throws \UnexpectedValueException if $newStrainId is not an integer
+	 * @throws \TypeError if $newStrainId is not an integer
 	 */
-	public function setStrainId(int $newStrainId) {
-		$newStrainId = filter_var($newStrainId, FILTER_VALIDATE_INT);
+	public function setStrainId(int $newStrainId = null) {
+		if($newStrainId === null) {
+			$this->strainId = null;
+			return;
+		}
 		if($newStrainId <= 0) {
-			throw(new \UnexpectedValueException("Strain Id is not a valid integer"));
+			throw(new \RangeException("Strain Id is not a valid integer"));
 		}
 
 		//Convert and store the strain id
-		$this->strainId = intval($newStrainId);
+		$this->strainId = $newStrainId;
 	}
 
 
@@ -125,12 +133,14 @@ class Strain implements \JsonSerializable {
 	 * mutator method for strain name
 	 *
 	 * @param string $newStrainName new strain name
-	 * @throws \UnexpectedValueException if $newStrainName is not a strain
+	 * @throws \InvalidArgumentException if $newStrainName is empty or insecure
 	 */
-	public function setStrainName($newStrainName) {
-		$newStrainName = filter_input($newStrainName, FILTER_SANITIZE_STRING);
-		if($newStrainName === false) {
-			throw(new \UnexpectedValueException("Strain Name not valid"));
+	public function setStrainName(string $newStrainName) {
+		$newStrainName = trim($newStrainName);
+		$newStrainName = filter_var($newStrainName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
+		if(empty($newStrainName)) {
+			throw(new \InvalidArgumentException("Strain Name not valid"));
 		}
 
 		//Convert and store the strain name
@@ -154,7 +164,7 @@ class Strain implements \JsonSerializable {
 	 * @throws \UnexpectedValueException if $newStrainType is not a string
 	 */
 	public function setStrainType(string $newStrainType) {
-		$newStrainType = filter_input($newStrainType, FILTER_SANITIZE_STRING);
+		$newStrainType = filter_var($newStrainType, FILTER_SANITIZE_STRING);
 		if($newStrainType === false) {
 			throw(new \UnexpectedValueException("Strain Type Invalid"));
 		}
@@ -176,16 +186,16 @@ class Strain implements \JsonSerializable {
 	 * mutator method for strain THC
 	 *
 	 * @param float $newStrainThc new value of strain buyer premium
-	 * @throws \UnexpectedValueException if $newStrainThc is not a float
+	 * @throws \InvalidArgumentException if $newStrainThc is not a float
 	 */
 	public function setStrainThc(float $newStrainThc) {
-		$newStrainThc = filter_var($newStrainThc, FILTER_SANITIZE_STRING);
-		if($newStrainThc === false) {
-			throw(new \UnexpectedValueException("Strain THC is not a valid integer"));
+		$newStrainThc = filter_var($newStrainThc, FILTER_SANITIZE_NUMBER_FLOAT);
+		if(empty($newStrainThc)) {
+			throw(new \InvalidArgumentException("Strain THC is not a valid integer"));
 		}
 
 		//Convert and store the strain buyer premium
-		$this->strainThc = intval($newStrainThc);
+		$this->strainThc = $newStrainThc;
 	}
 
 	/**
@@ -205,7 +215,7 @@ class Strain implements \JsonSerializable {
 	 * @return float strainCbd
 	 */
 	public function setStrainCbd(float $newStrainCbd) {
-		$newStrainCbd = filter_input($newStrainCbd, FILTER_SANITIZE_STRING);
+		$newStrainCbd = filter_var($newStrainCbd, FILTER_SANITIZE_NUMBER_FLOAT);
 		if($newStrainCbd === false) {
 			throw(new \UnexpectedValueException("Strain Cbd Invalid"));
 		}
@@ -231,7 +241,7 @@ class Strain implements \JsonSerializable {
 	 * @return \string $newStrainDescription
 	 */
 	public function setStrainDescription(string $newStrainDescription) {
-		$newStrainDescription = filter_input($newStrainDescription, FILTER_SANITIZE_STRING);
+		$newStrainDescription = filter_var($newStrainDescription, FILTER_SANITIZE_STRING);
 		if($newStrainDescription === false) {
 			throw(new \UnexpectedValueException("Strain Description Invalid"));
 		}
@@ -254,12 +264,12 @@ class Strain implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "INSERT INTO strain(strainId, strainName, strainType, strainThc, strainCbd, strainDescription) VALUES(:strainId, :stainName, :strainType, :strainThc, :strainCbd, :strainDescription)";
+		$query = "INSERT INTO strain(strainName, strainType, strainThc, strainCbd, strainDescription) VALUES(:strainName, :strainType, :strainThc, :strainCbd, :strainDescription)";
 		$statement = $pdo->prepare($query);
 
 
 		// bind the member variables to the place holders in the template
-		$parameters = ["strainId" => $this->strainId, "strainName" => $this->strainName, "strainType" => $this->strainType, "strainThc" => $this->strainThc, "strainCbd" => $this->strainCbd, "strainDescription" => $this->strainDescription];
+		$parameters = ["strainName" => $this->strainName, "strainType" => $this->strainType, "strainThc" => $this->strainThc, "strainCbd" => $this->strainCbd, "strainDescription" => $this->strainDescription];
 		$statement->execute($parameters);
 
 		// udate null strainId with what mySQL just gave us
@@ -436,8 +446,6 @@ class Strain implements \JsonSerializable {
 		}
 		return ($strain);
 	}  // getStrainByStrainType
-
-
 
 	/**
 	 * formats the state variables for JSON serialization
