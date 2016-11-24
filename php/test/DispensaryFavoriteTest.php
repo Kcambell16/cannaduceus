@@ -51,11 +51,11 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		$salt = bin2hex(random_bytes(32));
 		$hash = hash_pbkdf2("sha512", $password, $salt, 262144, 128);
 		$activation = bin2hex(random_bytes(16));
-		$this->profile = new Profile(null, "profileUserName", "profileEmail", "profileHash", "profileSalt", "profileActivation");
+		$this->profile = new Profile(null, "profileUserName", "profileEmail", $hash, $salt, $activation);
 		$this->profile -> insert($this->getPDO());
 
 		// create and insert a Dispensary to Favorite the test DispensaryFavorite
-		$this->dispensary = new dispensary(null, "dispensaryAttention", "dispensaryCity", "dispensaryEmail", "dispensaryName", "dispensaryPhone", "dispensaryState", "dispensaryStreet1", "dispensaryStreet2","dispensaryUrl", "dispensaryZipCode");
+		$this->dispensary = new Dispensary(null, "dispensaryAttention", "abq", "dinoking505@gmail.com", "weedpizza", 5058223457, "NM", "CU", "6969Unt","weedpizza.com", 87110);
 		$this->dispensary->insert($this->getPDO());
 	}
 
