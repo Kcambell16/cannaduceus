@@ -22,7 +22,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	/**
 	 * id for the DispensaryFavoriteDispensaryId this is one of the foreign keys used to make a primary key
 	 *
-	 * @var int $dispensaryFavoritesDispensaryId
+	 * @var int $dispensaryFavoriteDispensaryId
 	 */
 	private $dispensaryFavoriteDispensaryId;
 

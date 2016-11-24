@@ -51,11 +51,11 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		$salt = bin2hex(random_bytes(32));
 		$hash = hash_pbkdf2("sha512", $password, $salt, 262144, 128);
 		$activation = bin2hex(random_bytes(16));
-		$this->profile = new Profile(null, "profileUserName", "profileEmail", "profileHash", "profileSalt", "profileActivation");
+		$this->profile = new Profile(null, "profileUserName", "profileEmail", $hash, $salt, $activation);
 		$this->profile -> insert($this->getPDO());
 
 		// create and insert a Dispensary to Favorite the test DispensaryFavorite
-		$this->dispensary = new dispensary(null, "dispensaryAttention", "dispensaryCity", "dispensaryEmail", "dispensaryName", "dispensaryPhone", "dispensaryState", "dispensaryStreet1", "dispensaryStreet2","dispensaryUrl", "dispensaryZipCode");
+		$this->dispensary = new Dispensary(null, "dispensaryAttention", "abq", "dinoking505@gmail.com", "weedpizza", 5058223457, "NM", "CU", "6969Unt","weedpizza.com", 87110);
 		$this->dispensary->insert($this->getPDO());
 	}
 
@@ -166,7 +166,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		//create a favorite and never actually insert it then try to delete it when it hasnt been inserted
 
 		// create a new DispensaryFavorite and insert it in to mySQL
-		$dispensaryFavorite = dispensaryFavorite(null, $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
+		$dispensaryFavorite = dispensaryFavorite($this->profile->getProfileId(),  $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
 		//now delete it
 		$dispensaryFavorite->delete($this->getPDO());
 	}
@@ -179,7 +179,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		// create a dummy dispensary favorite
 		$dispensaryFavorite = new dispensaryFavorite(null, $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
 		$dispensaryFavorite->insert($this->getPDO());
-		$results = Dispensary::getDispensaryFavoriteByProfileId($this->getPDO(), $dispensaryFavorite->getDispensaryFavorite);
+		$results = dispensaryFavorite::getDispensaryFavoriteByProfileId($this->getPDO(), $dispensaryFavorite->getDispensaryFavorite());
 		//confirm we only have 1 favorite in the database
 		$this->assertCount(1, $results);
 
@@ -192,12 +192,41 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		$this->assertEquals($pdoDispensaryFavorite->getDispensaryFavorite(), $this->VALID_FAVORITEDISPENSARY1);
 		$this->assertEquals($pdoDispensaryFavorite->getDispensaryFavorite(), $this->VALID_FAVORITEDISPENSARY2);
 	}
+	/**
+	 * test gettting a dispensary favorite by profileId that does not exist
+	 */
+	public function testGetInvalidDispensaryFavoriteByProfileId() {
+	$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByProfileId($this->getPDO(), "dispensary favorite not found");
+	$this->assertNull($dispensaryFavorite);
+	}
+	/**
+	 * test getting dispensary favorite by dispensary Id
+	 */
+	public function testGetDispensaryFavoriteByDispensaryId() {
+	//get the number of initail rows (will be zero) and save it for later
+	$numRows = $this->getConnection()->getRowCount("dispensaryFavorite");
+
+	// create a dummy dispensary favorite
+		$dispensaryFavorite = new DispensaryFavorite(null, $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
+		$dispensaryFavorite->insert($this->getPDO());
+		$pdoDispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryId($this->getPDO(), $dispensaryFavorite->getDispensaryFavorite());
+
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("DispensaryFavorite"));
 
 
 
+		$this->assertEquals($pdoDispensaryFavorite->getDispensaryFavorite(), $this->VALID_FAVORITEDISPENSARY1);
+		$this->assertEquals($pdoDispensaryFavorite->getDispensaryFavorite(), $this->VALID_FAVORITEDISPENSARY2);
+	}
+	/**
+	 * test getting a dispensary favorite by dispensary Id
+	 */
+public function  testGetInvaildDispensaryFavoriteByDispensaryId() {
+	$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryId($this->getPDO(), "this dispensary couldnt be found:(");
+	$this->assertNull($dispensaryFavorite);
 
 
-
+}
 
 
 

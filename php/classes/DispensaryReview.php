@@ -27,7 +27,7 @@ class DispensaryReview implements \JsonSerializable {
 	private $dispensaryReviewProfileId;
 	/**
 	 * dispensary being reviewed by a specific profile
-	 * @var string $dispensaryReviewDispensaryId                // should this be an int?
+	 * @var int $dispensaryReviewDispensaryId
 	 **/
 	private $dispensaryReviewDispensaryId;
 	/**
@@ -45,7 +45,7 @@ class DispensaryReview implements \JsonSerializable {
 
 
 
-	// CONSTRUCTOR GOES HERE LATER
+	// CONSTRUCTOR GOES HERE RIGHT NOW RIGHT NOW NOT LATER LATER
 
 	/**
 	 * DispensaryReview constructor.
