@@ -78,7 +78,7 @@ class StrainTest extends CannaduceusTest {
 	 * valid strain description
 	 * @var string $VALID_STRAINDESCRIPTION
 	 */
-	protected $VALID_STRAINDESCRIPTION = "A light airy scent with a strong sativa high";
+	protected $VALID_STRAINDESCRIPTION = "A strong sativa with a fruity scent";
 	/**
 	 * invalid strain description
 	 * @var string $INVALID_STRAINDESCRIPTION
@@ -253,7 +253,7 @@ class StrainTest extends CannaduceusTest {
 		$strain->insert($this->getPDO());
 
 		//grab a strain by searching for a strain type that does not exist
-		$strain = Strain::getStrainByStrainType($this->getPDO(), "strain");
+		$strain = Strain::getInvalidStrainByStrainType($this->getPDO(), "strain");
 		$this->assertCount(0, $strain);
 	}
 

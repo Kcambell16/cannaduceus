@@ -54,9 +54,9 @@ class Strain implements \JsonSerializable {
 	 * @param int | null $newStrainId id of this strain or null if a new strain
 	 * @param string $newStrainName the name of the strain
 	 * @param string $newStrainType Sativa, Indica, Hybrid or null if a new strain
-	 * @param float $newStrainThc string of strain THC content
-	 * @param float $newStrainCbd string of strain CBD content
-	 * @param string $newStrainDescription string of strain description
+	 * @param float $newStrainThc string of new strain THC content
+	 * @param float $newStrainCbd string of new strain CBD content
+	 * @param string $newStrainDescription string of new strain description
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -71,9 +71,9 @@ class Strain implements \JsonSerializable {
 			$this->setStrainThc($newStrainThc);
 			$this->setStrainCbd($newStrainCbd);
 			$this->setStrainDescription($newStrainDescription);
-		} Catch(\InvalidArgumentException $invalidArgumentException) {
+		} Catch(\InvalidArgumentException $invalidArgument) {
 			// rethrow the exception to the caller
-			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
+			throw(new \InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
 		} Catch(\RangeException $range) {
 			// rethrow the exception to the caller
 			throw(new \RangeException($range->getMessage(), 0, $range));
@@ -98,7 +98,8 @@ class Strain implements \JsonSerializable {
 	/**
 	 * mutator method for strain id
 	 *
-	 * @param int $newStrainId new value of Strain Id
+	 * @param int|null $newStrainId new value of Strain Id
+	 * @throws \RangeException if $newStrainId is not positive
 	 * @throws \TypeError if $newStrainId is not an integer
 	 */
 	public function setStrainId(int $newStrainId = null) {
@@ -228,26 +229,32 @@ class Strain implements \JsonSerializable {
 	 * @return string for strain description
 	 */
 	public function getStrainDescription() {
-		return $this->strainDescription;
+		return($this->strainDescription);
 	}
 
 	/**
 	 * mutator method for strain description
 	 *
-	 * @param \string $newStrainDescription new string of strain description
-	 * @throws \UnexpectedValueException if $newStrainDescription is not a string
-	 * @return \string $newStrainDescription
+	 * @param \string $newStrainDescription new value of strain description
+	 * @throws \RangeException if $newStrainDescription is > 255 characters
+	 * @throws \InvalidArgumentException if $newStrainDescription is not a string or insecure
+	 * @throws \TypeError if $newStrainDescription is not a string
 	 */
 	public function setStrainDescription(string $newStrainDescription) {
-		$newStrainDescription = filter_var($newStrainDescription, FILTER_SANITIZE_STRING);
-		if($newStrainDescription === false) {
+		//verify the strain description is secure
+		$newStrainDescription = filter_var($newStrainDescription, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newStrainDescription) === false) {
 			throw(new \UnexpectedValueException("Strain Description Invalid"));
+		}
+
+		//verify the strain description will fit in the database
+		if(strlen($newStrainDescription) > 255) {
+			throw (new \RangeException("Strain description too large"));
 		}
 
 		//Convert and store the strain description
 		$this->strainDescription = $newStrainDescription;
 
-		return $this->$newStrainDescription;
 	}
 
 	/**
@@ -437,7 +444,7 @@ class Strain implements \JsonSerializable {
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return \SplFixedArray::fromArray($strains);
+		return \SplFixedArray::fromArray($strain);
 	}
 
 
