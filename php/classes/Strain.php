@@ -63,12 +63,7 @@ class Strain implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newStrainId = null,
-										 string $newStrainName,
-										 string $newStrainType,
-										 float $newStrainThc,
-										 float $newStrainCbd,
-										 string $newStrainDescription) {
+	public function __construct(int $newStrainId = null, string $newStrainName, string $newStrainType, float $newStrainThc, float $newStrainCbd, string $newStrainDescription) {
 		try {
 			$this->setStrainId($newStrainId);
 			$this->setStrainName($newStrainName);
@@ -161,12 +156,15 @@ class Strain implements \JsonSerializable {
 	 * mutator method for strain type
 	 *
 	 * @param \string $newStrainType new string of strain type
-	 * @throws \UnexpectedValueException if $newStrainType is not a string
+	 * @throws \InvalidArgumentException if $newStrainType is not Indica, Sativa, or Hybrid
 	 */
 	public function setStrainType(string $newStrainType) {
-		$newStrainType = filter_var($newStrainType, FILTER_SANITIZE_STRING);
-		if($newStrainType === false) {
-			throw(new \UnexpectedValueException("Strain Type Invalid"));
+		$validStrainTypes = array("Sativa", "Indica", "Hybrid");
+
+		// if $newStrainType is not in array, throw exception
+		if (!in_array($newStrainType, $validStrainTypes)){
+			throw(new \InvalidArgumentException("Type is not valid"));
+
 		}
 
 		//Convert and store the strain type
@@ -189,7 +187,7 @@ class Strain implements \JsonSerializable {
 	 * @throws \InvalidArgumentException if $newStrainThc is not a float
 	 */
 	public function setStrainThc(float $newStrainThc) {
-		$newStrainThc = filter_var($newStrainThc, FILTER_SANITIZE_NUMBER_FLOAT);
+		$newStrainThc = filter_var($newStrainThc, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 		if(empty($newStrainThc)) {
 			throw(new \InvalidArgumentException("Strain THC is not a valid integer"));
 		}
@@ -211,17 +209,17 @@ class Strain implements \JsonSerializable {
 	 * mutator method for strain Cbd
 	 *
 	 * @param \float $newStrainCbd new string of strain Cbd
-	 * @throws \UnexpectedValueException if $newStrainCbd is not a string
+	 * @throws \InvalidArgumentException if $newStrainCbd is not a float
 	 * @return float strainCbd
 	 */
 	public function setStrainCbd(float $newStrainCbd) {
-		$newStrainCbd = filter_var($newStrainCbd, FILTER_SANITIZE_NUMBER_FLOAT);
+		$newStrainCbd = filter_var($newStrainCbd, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
 		if($newStrainCbd === false) {
-			throw(new \UnexpectedValueException("Strain Cbd Invalid"));
+			throw(new \InvalidArgumentException("Strain Cbd Invalid"));
 		}
 
 		//Convert and store the strain Cbd
-		return $this->strainCbd;
+		return $this->strainCbd = $newStrainCbd;
 	}
 
 	/**
@@ -236,7 +234,7 @@ class Strain implements \JsonSerializable {
 	/**
 	 * mutator method for strain description
 	 *
-	 * @param \string $newStrainDescription new string of strain payment
+	 * @param \string $newStrainDescription new string of strain description
 	 * @throws \UnexpectedValueException if $newStrainDescription is not a string
 	 * @return \string $newStrainDescription
 	 */
@@ -247,7 +245,9 @@ class Strain implements \JsonSerializable {
 		}
 
 		//Convert and store the strain description
-		return $this->strainDescription;
+		$this->strainDescription = $newStrainDescription;
+
+		return $this->$newStrainDescription;
 	}
 
 	/**
@@ -366,86 +366,117 @@ class Strain implements \JsonSerializable {
 	/**
 	 * This function retrieves a strain by strain name
 	 *
-	 * @param \PDO $pdo -- a PDO connection
-	 * @param  \string $strainName -- strain name to be retrieved
-	 * @throws \InvalidArgumentException when $strainName is not a string
-	 * @throws \RangeException when $strainName is too long
-	 * @throws \PDOException
-	 * @return null | Strain
+	 * @param \PDO $pdo PDO connection
+	 * @param  \string $strainName strain name search for
+	 * @return \SplFixedArray SplFixedArray of strainNames found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
 	 */
 
-	public static function getStrainByStrainName(\PDO $pdo, $strainName) {
-		//  check validity of $strainName
-		$strainName = filter_var($strainName, FILTER_SANITIZE_STRING);
-		if($strainName === false) {
-			throw(new \InvalidArgumentException("Strain Name is not valid."));
+	public static function getStrainByStrainName(\PDO $pdo, string $strainName) {
+		//  sanitize the strain name before searching
+		$strainName = trim($strainName);
+		$strainName = filter_var($strainName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($strainName) === true) {
+			throw(new \PDOException("Strain Name is Invalid"));
 		}
-		if($strainName === null) {
-			throw(new \RangeException("Strain name does not exist."));
-		}
-		// prepare query
-		$query = "SELECT strainId, strainName, strainType,
-                        strainThc, strainCbd, strainDescription
-					  FROM strain WHERE strainName = :strainName";
+
+		//create query template
+		$query = "SELECT strainId, strainName, strainType, strainThc, strainCbd, strainDescription FROM strain WHERE strainName LIKE :strainName";
 		$statement = $pdo->prepare($query);
-		$parameters = array("strainName" => $strainName);
+
+		//bind the strainName content to the place holder in the template
+		$strainName = "%$strainName%";
+		$parameters = ["strainName" => $strainName];
 		$statement->execute($parameters);
-		//  setup results from query
-		try {
-			$strain = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
-				$strain = new Strain($row["strainId"], $row["strainName"], $row["strainType"], $row["strainThc"],
-					$row["strainCbd"], $row["strainDescription"]);
+
+		//build an array of strainNames
+		$strainNames = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$strain = new Strain($row["strainId"], $row["strainName"], $row["strainType"], $row["strainThc"], $row["strainCbd"], $row["strainDescription"]);
+				$strainNames[$strainNames->key()] = $strain;
+				$strainNames->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($strain);
-	}  // getStrainByStrainName
+		return($strainNames);
+	}
+		// getStrainByStrainNames
 
 	/**
 	 * This function retrieves a strain by strain type
 	 *
-	 * @param \PDO $pdo -- a PDO connection
-	 * @param  \string $strainType -- strain type to be retrieved
-	 * @throws \InvalidArgumentException when $strainType is not a string
-	 * @throws \RangeException when $strainType is too long
-	 * @throws \PDOException
-	 * @return null | Strain
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of Strains found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
 	 */
 
-	public static function getStrainByStrainType(\PDO $pdo, $strainType) {
-		//  check validity of $strainName
-		$strainType = filter_var($strainType, FILTER_SANITIZE_STRING);
-		if($strainType === false) {
-			throw(new \InvalidArgumentException("Strain Type is not valid."));
-		}
-		if($strainType === null) {
-			throw(new \RangeException("Strain type does not exist."));
-		}
-		// prepare query
+	public static function getStrainsByType(\PDO $pdo) {
+		// prepare query template
 		$query = "SELECT strainId, strainName, strainType,
                         strainThc, strainCbd, strainDescription
-					  FROM strain WHERE strainType = :strainType";
+					  FROM strain";
 		$statement = $pdo->prepare($query);
-		$parameters = array("strainType" => $strainType);
-		$statement->execute($parameters);
-		//  setup results from query
-		try {
-			$strain = null;
+		$statement->execute();
+
+		//  build an array of strains
+			$strains = new \SplFixedArray($statement->rowCount());
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
-				$strain = new Strain($row["strainId"], $row["strainName"], $row["strainType"], $row["strainThc"],
-					$row["strainCbd"], $row["strainDescription"]);
+			while (($row = $statement->fetch()) !== false) {
+			try {
+				$strain = new Strain($row["strainId"], $row["strainName"], $row["strainType"], $row["strainThc"], $row["strainCbd"], $row["strainDescription"]);
+			$strains [$strains->key()] = $strain;
+			$strains->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($strain);
-	}  // getStrainByStrainType
+		return \SplFixedArray::fromArray($strains);
+	}
+
+
+	/**
+	 * this function retrieves all strains
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @return \SplFixedArray SplFixedArray of Strains found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 */
+	public static function getAllStrains(\PDO $pdo) {
+		// prepare query
+		$query = "SELECT strainId, strainName, strainType,
+                        strainThc, strainCbd, strainDescription FROM strain ";
+		$statement = $pdo->prepare($query);
+		$statement->execute();
+
+		// build an array of strains
+		$strains = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			while(($row = $statement->fetch()) !== false){
+				try {
+						$strain = new Strain($row["strainId"],
+							$row["strainName"],
+							$row["strainType"],
+							$row["strainThc"],
+							$row["strainCbd"],
+							$row["strainDescription"]);
+						$strains[$strains->key()] = $strain;
+						$strains->next();
+					} catch(\Exception $exception) {
+						//if the row couldn't be converted, rethrow it
+						throw(new \PDOException($exception->getMessage(), 0, $exception));
+					}
+	}
+		return ($strains);
+
+	}
 
 	/**
 	 * formats the state variables for JSON serialization

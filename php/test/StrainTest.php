@@ -50,7 +50,7 @@ class StrainTest extends CannaduceusTest {
 	 * invalid strain type
 	 * @var string $INVALID_STRAINTYPE
 	 */
-	protected $INVALID_STRAINTYPE;
+	protected $INVALID_STRAINTYPE = 420;
 
 	/**
 	 * valid strain thc content
@@ -180,10 +180,11 @@ class StrainTest extends CannaduceusTest {
 		$strain->delete($this->getPDO());
 
 		//grab the data from mySQL and enforce the strain does not exist
-		$pdoStrain = Strain::getStrainByStrainId($this->getPDO(), $strain->getStrainByStrainId());
+		$pdoStrain = Strain::getStrainByStrainId($this->getPDO(), $strain->getStrainId());
 		$this->assertNull($pdoStrain);
 		$this->assertEquals($numRows, $this->getConnection()->getRowCount("strain"));
 	}
+
 
 	/**
 	 * test deleting a strain that does not exist
@@ -280,3 +281,4 @@ class StrainTest extends CannaduceusTest {
 	}
 
 }
+
