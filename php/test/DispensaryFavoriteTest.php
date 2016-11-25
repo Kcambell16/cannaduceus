@@ -6,7 +6,7 @@ use Edu\Cnm\Cannaduceus\Profile;
 use Edu\Cnm\Cannaduceus\Test\{DispensaryFavorite};
 
 // grab the test parameters
-require_once("DispensaryFavoriteTest.php");
+require_once("CannaduceusTest.php");
 // grab the class being tested
 require_once(dirname(__DIR__) . "/classes/autoload.php");
 
@@ -36,7 +36,9 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	 * Profile that created the Favorite; this is foreign key relations
 	 * @var
 	 */
-	protected $profile = null;
+	protected $profile;
+
+	protected $dispensary;
 
 	/**
 	 * create dependent objects before running each test
@@ -64,7 +66,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	 */
 	public function testInsertValidDispensaryFavorite() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("dispensary favorite");
+		$numRows = $this->getConnection()->getRowCount("dispensaryFavorite");
 
 
 		// create a new DispensaryFavorite and insert it in to mySQL
@@ -175,7 +177,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	 */
 	public function testGetDispensaryFavoriteByProfileId(){
 		//get number of inital rows (will be zero!) and save it for lates
-		$numRows = $this->getConnection()->getRowCount("dispensary favorite");
+		$numRows = $this->getConnection()->getRowCount("dispensaryFavorite");
 		// create a dummy dispensary favorite
 		$dispensaryFavorite = new dispensaryFavorite(null, $this->VALID_FAVORITEDISPENSARY1, $this->VAILD_FAVORITEDISPENSARY2);
 		$dispensaryFavorite->insert($this->getPDO());
