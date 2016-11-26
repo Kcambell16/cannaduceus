@@ -120,12 +120,12 @@ class StrainFavorite implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "INSERT INTO strainFavorite(strainFavoriteStrainId, strainFavoriteProfileId) VALUES(:strainFavoriteId, :stainStrainFavoriteProfileId)";
+		$query = "INSERT INTO strainFavorite(strainFavoriteStrainId, strainFavoriteProfileId) VALUES(:strainFavoriteStrainId, :strainFavoriteProfileId)";
 		$statement = $pdo->prepare($query);
 
 
 		// bind the member variables to the place holders in the template
-		$parameters = ["strainFavoriteStrainId" => $this->strainFavoriteProfileId];
+		$parameters = ["strainFavoriteStrainId" => $this->strainFavoriteStrainId, "strainFavoriteProfileId" => $this->strainFavoriteProfileId];
 		$statement->execute($parameters);
 
 	}   // insert

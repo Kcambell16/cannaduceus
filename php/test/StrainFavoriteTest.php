@@ -68,9 +68,9 @@ class strainFavoriteTest extends CannaduceusTest {
 		// create a new strainFavorite and insert it in to mySQL
 		$strainFavorite = new StrainFavorite($this->profile->getProfileId(),$this->strain->getStrainId());
 		// insert the mock favorite in SQL
-		$strainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
+		$strainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getStrainId());
 
-		$pdoStrainFavorite = StrainFavorite::getstrainFavoriteBystrainFavoritestrainIdAndstrainFavoriteProfileId($this->getPDO(), $this->profile->getProfileId(),$this->strain->getstrainId());
+		$pdoStrainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId($this->getPDO(), $this->profile->getProfileId(),$this->strain->getStrainId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("strainFavorite"));
 		$this->assertEquals($pdoStrainFavorite->getStrainFavoriteProfileId(), $strainFavorite->getStrainFavoriteProfileId());
 		$this->assertEquals($pdoStrainFavorite->getStrainFavoriteStrainId(), $strainFavorite->getStrainFavoriteStrainId());
@@ -113,7 +113,7 @@ class strainFavoriteTest extends CannaduceusTest {
 		$strainFavorite->delete($this->getPDO());
 
 		//grab the data from mySQL
-		$pdoStrainFavorite = StrainFavorite::getstrainFavoriteBystrainFavoritestrainIdAndstrainFavoriteProfileId($this->getPDO(), $this->profile->getProfileId(),$this->strain->getstrainId());
+		$pdoStrainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId($this->getPDO(), $this->profile->getProfileId(),$this->strain->getstrainId());
 		//var_dump($pdoStrainFavorite);
 
 		// assert that its null
