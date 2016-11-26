@@ -372,8 +372,7 @@ class StrainReview implements \JsonSerializable {
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when variables are not the correct data type
 		 **/
-		public
-		static function getStrainReviewsByStrainReviewProfileId(\PDO $pdo, int $strainReviewProfileId) {
+		public static function getStrainReviewsByStrainReviewProfileId(\PDO $pdo, int $strainReviewProfileId) {
 			// sanitize the profile id before searching
 			if($strainReviewProfileId <= 0) {
 				throw(new \RangeException("strain review profile id must be positive"));
@@ -451,8 +450,7 @@ class StrainReview implements \JsonSerializable {
 		 * @throws \PDOException when mySQL related errors occur
 		 * @throws \TypeError when variables are not the correct data type
 		 **/
-		public
-		static function getStrainReviewByStrainReviewTxt(\PDO $pdo, string $strainReviewTxt) {
+		public static function getStrainReviewByStrainReviewTxt(\PDO $pdo, string $strainReviewTxt) {
 			// sanitize the description before searching
 			$strainReviewTxt = trim($strainReviewTxt);
 			$strainReviewTxt = filter_var($strainReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);

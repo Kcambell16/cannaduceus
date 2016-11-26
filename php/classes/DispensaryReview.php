@@ -305,7 +305,7 @@ class DispensaryReview implements \JsonSerializable {
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param \int $dispensaryReviewId
-	 * @return \SplFixedArray SplFixedArray of DispensaryReviews found
+	 * @return DispensaryReview
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
@@ -322,26 +322,22 @@ class DispensaryReview implements \JsonSerializable {
 		// bind the dispensaryReview id to the place holder in the template
 		$parameters = ["dispensaryReviewId" => $dispensaryReviewId];
 		$statement->execute($parameters);
-
-		$dispensaryReviews = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 
-		// grab the dispensaryReviews from mySQL
-		while (($row = $statement->fetch())  !== false) {
+		// grab the dispensaryReview from mySQL
 			try {
 				$dispensaryReview = null;
 				$row = $statement->fetch();
 				if($row !== false) {
 					$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewDateTime"],$row["dispensaryReviewTxt]"]);
-					$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
-					$dispensaryReviews->next();
+
 				}
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		}
-		return($dispensaryReviews);
+
+		return($dispensaryReview);
 
 	}
 

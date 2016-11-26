@@ -83,7 +83,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewsByDispensaryReviewDispensaryId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
+		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewsByDispensaryReviewId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryReview"));
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
