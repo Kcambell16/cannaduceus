@@ -495,7 +495,6 @@ class Dispensary implements \JsonSerializable {
 	 * @throws \TypeError if $newDispensaryState is not a string
 	 **/
 	public function setDispensaryState(string $newDispensaryState) {
-		var_dump($newDispensaryState);
 		// verify the dispensary state is secure
 		$newDispensaryState = trim($newDispensaryState);
 		$newDispensaryState = filter_var($newDispensaryState, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);

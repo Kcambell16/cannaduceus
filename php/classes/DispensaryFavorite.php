@@ -36,9 +36,9 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newDispensaryFavoriteId = null, int $newDispensaryFavoriteDispensaryId) {
+	public function __construct(int $newDispensaryFavoriteProfileId = null, int $newDispensaryFavoriteDispensaryId) {
 		try {
-			$this->setDispensaryFavoriteProfileId($newDispensaryFavoriteId);
+			$this->setDispensaryFavoriteProfileId($newDispensaryFavoriteProfileId);
 			$this->setDispensaryFavoriteDispensaryId($newDispensaryFavoriteDispensaryId);
 		} Catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the calller
@@ -93,7 +93,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 *
 	 * @return int|null value of dispensaryFavoriteDispensaryId
 	 */
-	public function getDispensaryFavoriteDispensaryId(): int {
+	public function getDispensaryFavoriteDispensaryId() {
 		return $this->dispensaryFavoriteDispensaryId;
 	}
 
@@ -103,12 +103,12 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @param int $newDispensaryFavoriteDispensaryId new value of dispensaryFavoriteDispensaryId
 	 * @throws \UnexpectedValueException if $newDispensaryFavoriteDispensaryId is not an integer
 	 */
-	public function setDispensaryFavoriteDispensaryId($newDispensaryFavoriteDispensaryId) {
-		$newDispensaryFavoriteDispensaryId = filter_input($newDispensaryFavoriteDispensaryId, FILTER_SANITIZE_STRING);
-		if($newDispensaryFavoriteDispensaryId === false) {
-			throw(new \UnexpectedValueException("Dispensary Favorite Dispensary Id not a vaild integer"));
-		}
+	public function setDispensaryFavoriteDispensaryId(int $newDispensaryFavoriteDispensaryId) {
 
+
+	if($newDispensaryFavoriteDispensaryId <= 0) {
+		throw( new \InvalidArgumentException("Dispensary Favorite ID is not positive"));
+	}
 
 		//Convert and store the dispensaryFavoriteDispensaryId
 		$this->dispensaryFavoriteDispensaryId = $newDispensaryFavoriteDispensaryId;
@@ -118,31 +118,27 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * inserts this Dispensary Favorite into mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
+	 * @param $profileId
+	 * @param $dispensaryId
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is to a PDO connection object
 	 */
-	public function insert(\PDO $pdo) {
+	public function insert(\PDO $pdo, $profileId , $dispensaryId) {
 		// enforce the dispensaryFavoriteProfileId is null (i.e., don't insert a favorite that already exists)
-		if($this->dispensaryFavoriteProfileId !== null) {
-			throw(new\PDOException("not a new profile"));
-		}
 
 		// create query template
-		$query = "INSERT INTO dispensaryFavorite(dispensaryFavoriteProfileId, dispensaryFavoriteDispensaryId) VALUES(:dispensaryFavoriteProfileId, :dispensaryFavoriteDispensaryId)";
+		$query = "INSERT INTO dispensaryFavorite (dispensaryFavoriteProfileId, dispensaryFavoriteDispensaryId ) VALUES(:dispensaryFavoriteProfileId, :dispensaryFavoriteDispensaryId)";
 
 
 		//prepare is used as an extra means of security
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the place holder slots in the template. putting these into an array
-		$parameters = ["dispensaryFavoriteProfileId" => $this->dispensaryFavoriteProfileId, "dispensaryFavoriteDispensaryId" => $this->dispensaryFavoriteDispensaryId];
+		$parameters = ["dispensaryFavoriteProfileId" => $profileId, "dispensaryFavoriteDispensaryId" => $dispensaryId];
 
 
 		//execute the command held in $statement
 		$statement->execute($parameters);
-
-		//update the null dispensaryFavoriteProfileId. Ask mySQL for the primary key value it assigned to this entry
-		$this->dispensaryFavoriteProfileId = intval($pdo->lastInsertId());
 
 
 	}// insert
@@ -155,18 +151,17 @@ class DispensaryFavorite implements \JsonSerializable {
 	 */
 	public function delete(\PDO $pdo) {
 		//first check to make sure the dispensaryFavoriteProfileId isn't null, cant delete something that hasn't been entered into SQL yet
-		if($this->dispensaryFavoriteProfileId === null) {
-			throw(new \PDOException("The profile you selected does not exist"));
+		if($this->dispensaryFavoriteProfileId === null  && $this->dispensaryFavoriteDispensaryId === null) {
+			throw(new \PDOException("The favorite you selected does not exist"));
 		}
 
 		//create the query template
-		$query = "DELETE FROM dispensaryFavorite WHERE dispensaryFavoriteProfileId = :dispensaryFavoriteProfileId";
+		$query = "DELETE FROM dispensaryFavorite WHERE dispensaryFavoriteProfileId = :dispensaryFavoriteProfileId AND dispensaryFavoriteDispensaryId = :dispensaryFavoriteDispensaryId";
 		// prepare is used as an extra means of security
 		$statement = $pdo->prepare($query);
 
-
 		//bind parameters and execute the function
-		$parameters = ["dispensaryFavoriteProfileId" => $this->dispensaryFavoriteProfileId];
+		$parameters = ["dispensaryFavoriteProfileId" => $this->dispensaryFavoriteProfileId, "dispensaryFavoriteDispensaryId" => $this->dispensaryFavoriteDispensaryId];
 
 		//execute the command held in $statement
 		$statement->execute($parameters);
@@ -224,17 +219,15 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @return \SplFixedArray of all dispensaryFavorites by dispensary id
 	 */
 
-	public static function getDispensaryFavoriteByDispensaryFavoriteDispensaryId(\PDO $pdo, $dispensaryFavoriteDispensaryId) {
+	public static function getDispensaryFavoriteByDispensaryFavoriteDispensaryId(\PDO $pdo, int $dispensaryFavoriteDispensaryId) {
 		//  check validity of $dispensaryId
-		$dispensaryFavoriteDispensaryId = filter_var($dispensaryFavoriteDispensaryId, FILTER_VALIDATE_INT);
-		if($dispensaryFavoriteDispensaryId === false) {
-			throw(new \InvalidArgumentException("Favorite Dispensary Dispensary id is not an integer."));
-		}
+
 		if($dispensaryFavoriteDispensaryId <= 0) {
 			throw(new \RangeException("Dispensary Favorite Dispensary id is not positive."));
 		}
+
 		// prepare query
-		$query = "SELECT dispensaryFavoriteDispensaryId, dispensaryFavoriteDispensaryId FROM dispensaryFavorite WHERE dispensaryFavoriteDispensaryId = :dispensaryFavoriteDispensaryId";
+		$query = "SELECT dispensaryFavoriteProfileId, dispensaryFavoriteDispensaryId FROM dispensaryFavorite WHERE dispensaryFavoriteDispensaryId = :dispensaryFavoriteDispensaryId";
 		$statement = $pdo->prepare($query);
 		$parameters = array("dispensaryFavoriteDispensaryId" => $dispensaryFavoriteDispensaryId);
 		$statement->execute($parameters);
@@ -260,25 +253,26 @@ class DispensaryFavorite implements \JsonSerializable {
 	 *
 	 * @param \PDO $pdo -- a PDO connection
 	 * @param  \int $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId -- $dispensaryFavorite to be retrieved
+	 * @param  \int $dispensaryFavoriteProfileId
 	 * @throws \InvalidArgumentException when $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId are not integers
 	 * @throws \RangeException when $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId are not positive
 	 * @throws \PDOException
 	 * @return null | $dispensaryFavorite
 	 */
 
-	public static function getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId(\PDO $pdo, $dispensaryFavoriteDispensaryId, $dispensaryFavoriteProfileId) {
+	public static function getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId(\PDO $pdo, int $dispensaryFavoriteProfileId, int $dispensaryFavoriteDispensaryId ) {
 		//  check validity of $dispensaryFavorite
-		$dispensaryFavorite = filter_var($dispensaryFavoriteDispensaryId, $dispensaryFavoriteProfileId, FILTER_VALIDATE_INT);
-		if($dispensaryFavorite === false) {
-			throw(new \InvalidArgumentException("Dispensary Favorite Dispensary Id and Dispensary Favorite Profile Id are not integers."));
-		}
-		if($dispensaryFavorite <= 0) {
+
+
+		if($dispensaryFavoriteProfileId <= 0 && $dispensaryFavoriteDispensaryId <= 0) {
 			throw(new \RangeException("Dispensary Favorite is Invalid."));
 		}
+
+
 		// prepare query
-		$query = "SELECT dispensaryFavoriteDispensaryId, dispensaryFavoriteProfileId FROM dispensaryFavorite WHERE ($dispensaryFavorite = :dispensaryFavoriteDispensaryId, :dispensaryFavoriteProfileId)";
+		$query = "SELECT dispensaryFavoriteDispensaryId, dispensaryFavoriteProfileId FROM dispensaryFavorite WHERE dispensaryFavoriteDispensaryId = :dispensaryFavoriteDispensaryId AND dispensaryFavoriteProfileId = :dispensaryFavoriteProfileId";
 		$statement = $pdo->prepare($query);
-		$parameters = array("dispensaryFavorite" => $dispensaryFavorite);
+		$parameters = array("dispensaryFavoriteDispensaryId" => $dispensaryFavoriteDispensaryId,  "dispensaryFavoriteProfileId" => $dispensaryFavoriteProfileId);
 		$statement->execute($parameters);
 		//  setup results from query
 		try {
@@ -286,7 +280,7 @@ class DispensaryFavorite implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$dispensaryFavorite = new dispensaryFavorite($row["dispensaryFavoriteDispensaryId"], $row["dispensaryFavoriteProfileId"]);
+				$dispensaryFavorite = new dispensaryFavorite($row["dispensaryFavoriteProfileId"], $row["dispensaryFavoriteDispensaryId"]);
 			}
 		} catch(\Exception $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
