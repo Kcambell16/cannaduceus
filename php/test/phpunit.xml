@@ -2,6 +2,7 @@
 	<testsuites>
 		<testsuite name="Cannaduceus">
 			<file>StrainReviewTest.php</file>
+			<file>DispensaryReviewTest.php</file>
 		</testsuite>
 	</testsuites>
 	<filter>

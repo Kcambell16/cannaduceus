@@ -358,7 +358,7 @@ class StrainReview implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt FROM strainReview WHERE strainReviewStrainId = :strainReviewStrainId";
+		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt FROM strainReview WHERE strainReviewProfileId = :strainReviewProfileId";
 		$statement = $pdo->prepare($query);
 
 		// bind the strain review profile id to the place holder in the template
