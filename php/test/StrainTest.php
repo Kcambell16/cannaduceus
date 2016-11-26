@@ -113,8 +113,6 @@ class StrainTest extends CannaduceusTest {
 		$this->assertEquals($pdoStrain->getStrainThc(), $this->VALID_STRAINTHC);
 		$this->assertEquals($pdoStrain->getStrainCbd(), $this->VALID_STRAINCBD);
 		$this->assertEquals($pdoStrain->getStrainDescription(), $this->VALID_STRAINDESCRIPTION);
-
-
 	}
 	/**
  	* test inserting a strain that already exists
