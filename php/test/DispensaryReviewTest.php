@@ -137,7 +137,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 
 	public function testDeleteInvalidDispensaryReview() {
 		// create a DispensaryReview and try to delete it without actually inserting it
-		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->dispensary->getDispensaryId(), $this->VALID_DISPENSARYREVIEWDATETIME, $this->VALID_DISPENSARYREVIEWTXT);
 		$dispensaryReview->delete($this->getPDO());
 	}
 
@@ -147,15 +147,15 @@ class DispensaryReviewTest extends CannaduceusTest {
 
 	public function testGetValidDispensaryReviewByDispensaryReviewTxt() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("dispensary review");
+		$numRows = $this->getConnection()->getRowCount("dispensaryReview");
 
 		// create a new DispensaryReview and insert to into mySQL
-		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->dispensary->getDispensaryId(), $this->VALID_DISPENSARYREVIEWDATETIME, $this->VALID_DISPENSARYREVIEWTXT);
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
 		$results = DispensaryReview::getDispensaryReviewByDispensaryReviewTxt($this->getPDO(), $dispensaryReview->getDispensaryReviewTxt());
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryReview"));
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus", $results);
 
@@ -182,15 +182,15 @@ class DispensaryReviewTest extends CannaduceusTest {
 
 	public function testGetAllValidDispensaryReviews() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("dispensary review");
+		$numRows = $this->getConnection()->getRowCount("dispensaryReview");
 
 		// create a new DispensaryReview and insert to into mySQL
-		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->VALID_DISPENSARYREVIEWTXT, $this->VALID_DISPENSARYREVIEWDATETIME);
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->dispensary->getDispensaryId(), $this->VALID_DISPENSARYREVIEWDATETIME, $this->VALID_DISPENSARYREVIEWTXT);
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
 		$results = DispensaryReview::getAllDispensaryReviews($this->getPDO());
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensary review"));
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryReview"));
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus", $results);
 

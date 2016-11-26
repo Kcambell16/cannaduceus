@@ -329,7 +329,7 @@ class DispensaryReview implements \JsonSerializable {
 				$dispensaryReview = null;
 				$row = $statement->fetch();
 				if($row !== false) {
-					$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewDateTime"],$row["dispensaryReviewTxt]"]);
+					$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"], $row["dispensaryReviewDateTime"],$row["dispensaryReviewTxt"]);
 
 				}
 			} catch(\Exception $exception) {
