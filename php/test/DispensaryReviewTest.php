@@ -108,8 +108,6 @@ class DispensaryReviewTest extends CannaduceusTest {
 
 	/**
 	 * test creating a DispensaryReview and then deleting it
-	 *
-	 * @expectedException \PDOException
 	 **/
 	public function testDeleteValidDispensaryReview() {
 		// count the number of rows and save it for later
@@ -124,7 +122,7 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$dispensaryReview->delete($this->getPDO());
 
 		// grab the data from mySQL and enforce the DispensaryReview does not exist
-		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewByReviewId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
+		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewsByDispensaryReviewId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
 		$this->assertNull($pdoDispensaryReview);
 		$this->assertEquals($numRows, $this->getConnection()->getRowCount("dispensaryReview"));
 	}
