@@ -223,7 +223,7 @@ class StrainTest extends CannaduceusTest {
 	/**
 	 * test grabbing a strain by type and inserting it into mySQL
 	 */
-	public function testGetStrainByStrainType() {
+	public function testGetStrainsByStrainType() {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("strain");
 
@@ -232,7 +232,7 @@ class StrainTest extends CannaduceusTest {
 		$strain->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$results = Strain::getStrainByStrainType($this->getPDO(), $strain->getStrainType());
+		$results = Strain::getStrainsByStrainType($this->getPDO(), $strain->getStrainType());
 
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("strain"));
 		$this->assertContainsOnlyInstancesOf("Edu\\cnm\\Cannaduceus\\Strain", $results);

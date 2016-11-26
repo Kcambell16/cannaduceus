@@ -415,21 +415,25 @@ class Strain implements \JsonSerializable {
 		// getStrainByStrainNames
 
 	/**
-	 * This function retrieves a strain by strain type
+	 * This function retrieves a fixed array of strains by strain type
 	 *
 	 * @param \PDO $pdo PDO connection object
+	 * @param string $strainType strain type to search by
 	 * @return \SplFixedArray SplFixedArray of Strains found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 */
 
-	public static function getStrainByStrainType(\PDO $pdo) {
+	public static function getStrainsByStrainType(\PDO $pdo, string $strainType) {
 		// prepare query template
 		$query = "SELECT strainId, strainName, strainType,
                         strainThc, strainCbd, strainDescription
-					  FROM strain";
+					  FROM strain WHERE strainType = $strainType";
 		$statement = $pdo->prepare($query);
-		$statement->execute();
+
+		//bind the strain type to the place holder int the template
+		$parameters = ["strainType" => $strainType];
+		$statement->execute($parameters);
 
 		//  build an array of strains
 			$strains = new \SplFixedArray($statement->rowCount());
@@ -444,7 +448,7 @@ class Strain implements \JsonSerializable {
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return \SplFixedArray::fromArray($strain);
+		return($strains);
 	}
 
 
