@@ -214,3 +214,38 @@ class StrainReview implements \JsonSerializable {
 		}
 		$this->strainReviewDateTime = $newStrainReviewDateTime;
 	}
+
+	/**
+	 *
+	 * Accesor method for strainReviewTxt
+	 * @return string value of strain review txt
+	 **/
+
+	public function getStrainReviewTxt() {
+		return ($this->strainReviewTxt);
+	}
+
+	/**
+	 * Mutator method for strain review txt
+	 *
+	 * @param string $newStrainReviewTxt new value of strain review txt
+	 * @throws \InvalidArgumentException if $newStrainReviewTxt is not a string or insecure
+	 * @throws \RangeException if $newStrainReviewTxt is > 256 characters
+	 * @throws \TypeError if $newStrainReviewTxt is not a string
+	 **/
+	public function setStrainReviewTxt(string $newStrainReviewTxt) {
+		// verify the strain review txt is secure
+		$newStrainReviewTxt = trim($newStrainReviewTxt);
+		$newStrainReviewTxt = filter_var($newStrainReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newStrainReviewTxt) === true) {
+			throw(new \InvalidArgumentException("strain review txt is empty or insecure"));
+		}
+
+		//verify the strain review txt will fit in the database
+		if(strlen($newStrainReviewTxt) > 256) {
+			throw(new \RangeException("strain review txt too large"));
+		}
+
+		// store the name content
+		$this->strainReviewTxt = $newStrainReviewTxt;
+	}
