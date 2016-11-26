@@ -159,9 +159,9 @@ class DispensaryReviewTest extends CannaduceusTest {
 
 		// grab the result from the array and validate it
 		$pdoDispensaryReview = $results[0];
-		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewProfileId(), $this->profile->getDispensaryReviewProfileId());
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
-		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDateTime(), $this->VALID_DISPENSARYREVIEWDATETIME);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDateTime()->format("Y-m-d H:i:s"), $this->VALID_DISPENSARYREVIEWDATETIME);
 	}
 
 	/**
@@ -190,13 +190,59 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$results = DispensaryReview::getAllDispensaryReviews($this->getPDO());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryReview"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus\\DispensaryReview", $results);
 
 		// grab the result from the array and validate it
 		$pdoDispensaryReview = $results[0];
-		$this->assertEquals($pdoDispensaryReview->getProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
-		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDate(), $this->VALID_DISPENSARYREVIEWDATETIME);
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDateTime()->format("Y-m-d H:i:s"), $this->VALID_DISPENSARYREVIEWDATETIME);
+	}
+
+	/**
+	 * test inserting a valid DispensaryReview and verify that the actual mySQL data matches
+	 **/
+	public function testGetDispensaryReviewsByDispensaryReviewDispensaryId() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("dispensaryReview");
+
+		// create a new DispensaryReview and insert to into mySQL
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->dispensary->getDispensaryId(), $this->VALID_DISPENSARYREVIEWDATETIME, $this->VALID_DISPENSARYREVIEWTXT);
+		$dispensaryReview->insert($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewsByDispensaryReviewDispensaryId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
+		foreach($pdoDispensaryReview as $review) {
+			if($review->getDispensaryReviewsByDispensaryReviewDispensaryId === $dispensaryReview->getDispensaryReviewDispensaryId()) {
+				$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryReview"));
+				$this->assertEquals($pdoDispensaryReview->getDispensaryReviewProfileId(), $this->profile->getProfileId());
+				$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
+				$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDateTime()->format("Y-m-d H:i:s"), $this->VALID_DISPENSARYREVIEWDATETIME);
+			}
+		}
+	}
+
+	/**
+	 * test inserting a valid DispensaryReview and verify that the actual mySQL data matches
+	 **/
+	public function testGetDispensaryReviewsByDispensaryReviewProfileId() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("dispensaryReview");
+
+		// create a new DispensaryReview and insert to into mySQL
+		$dispensaryReview = new DispensaryReview(null, $this->profile->getProfileId(), $this->dispensary->getDispensaryId(), $this->VALID_DISPENSARYREVIEWDATETIME, $this->VALID_DISPENSARYREVIEWTXT);
+		$dispensaryReview->insert($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewsByDispensaryReviewProfileId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
+		foreach($pdoDispensaryReview as $review) {
+			if($review->getDispensaryReviewsByDispensaryReviewProfileId === $dispensaryReview->getDispensaryReviewProfileId()) {
+				$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryReview"));
+				$this->assertEquals($pdoDispensaryReview->getDispensaryReviewProfileId(), $this->profile->getProfileId());
+				$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
+				$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDateTime()->format("Y-m-d H:i:s"), $this->VALID_DISPENSARYREVIEWDATETIME);
+			}
+		}
 	}
 
 }
