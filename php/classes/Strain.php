@@ -428,7 +428,7 @@ class Strain implements \JsonSerializable {
 		// prepare query template
 		$query = "SELECT strainId, strainName, strainType,
                         strainThc, strainCbd, strainDescription
-					  FROM strain WHERE strainType = $strainType";
+					  FROM strain WHERE strainType = :strainType";
 		$statement = $pdo->prepare($query);
 
 		//bind the strain type to the place holder int the template
