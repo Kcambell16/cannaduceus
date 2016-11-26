@@ -163,7 +163,7 @@ class Strain implements \JsonSerializable {
 		$validStrainTypes = array("Sativa", "Indica", "Hybrid");
 
 		// if $newStrainType is not in array, throw exception
-		if (!in_array($newStrainType, $validStrainTypes)){
+		if (!in_array($newStrainType, $validStrainTypes, true)){
 			throw(new \InvalidArgumentException("Type is not valid"));
 
 		}
@@ -243,7 +243,7 @@ class Strain implements \JsonSerializable {
 	public function setStrainDescription(string $newStrainDescription) {
 		//verify the strain description is secure
 		$newStrainDescription = filter_var($newStrainDescription, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newStrainDescription) === false) {
+		if(empty($newStrainDescription) === true) {
 			throw(new \UnexpectedValueException("Strain Description Invalid"));
 		}
 
@@ -423,7 +423,7 @@ class Strain implements \JsonSerializable {
 	 * @throws \TypeError when variables are not the correct data type
 	 */
 
-	public static function getStrainsByType(\PDO $pdo) {
+	public static function getStrainByStrainType(\PDO $pdo) {
 		// prepare query template
 		$query = "SELECT strainId, strainName, strainType,
                         strainThc, strainCbd, strainDescription

@@ -223,7 +223,7 @@ class StrainTest extends CannaduceusTest {
 	/**
 	 * test grabbing a strain by type and inserting it into mySQL
 	 */
-	public function testGetStrainType() {
+	public function testGetStrainByStrainType() {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("strain");
 
@@ -247,7 +247,7 @@ class StrainTest extends CannaduceusTest {
 	 *
 	 * @expectedException \PDOException
 	 */
-	public function testGetInvalidStrainTypeByStrainType() {
+	public function testGetInvalidStrainByStrainType() {
 		//create a new strain and insert it into mySQL
 		$strain = new Strain(null, $this->VALID_STRAINNAME, $this->INVALID_STRAINTYPE, $this->VALID_STRAINTHC, $this->VALID_STRAINCBD, $this->VALID_STRAINDESCRIPTION);
 		$strain->insert($this->getPDO());
