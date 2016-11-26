@@ -155,11 +155,11 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$results = DispensaryReview::getDispensaryReviewByDispensaryReviewTxt($this->getPDO(), $dispensaryReview->getDispensaryReviewTxt());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryReview"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus", $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus\\DispensaryReview", $results);
 
 		// grab the result from the array and validate it
 		$pdoDispensaryReview = $results[0];
-		$this->assertEquals($pdoDispensaryReview->getProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewProfileId(), $this->profile->getDispensaryReviewProfileId());
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
 		$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDateTime(), $this->VALID_DISPENSARYREVIEWDATETIME);
 	}
