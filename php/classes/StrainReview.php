@@ -147,3 +147,70 @@ class StrainReview implements \JsonSerializable {
 		$this->strainReviewProfileId = $newStrainReviewProfileId;
 
 	}
+
+	/**
+	 * Accesor method for strainReviewStrainId
+	 *
+	 * @return int|null value of strain review strain id
+	 **/
+	public function getStrainReviewStrainId() {
+		return ($this->strainReviewStrainId);
+	}
+
+	/**
+	 * mutator method for strain review strain id
+	 *
+	 * @param int|null $newStrainReviewStrainId new value of strain review strain id
+	 * @throws \RangeException if $newStrainReviewStrainId is not positive
+	 * @throws \TypeError if $newStrainReviewStrainId is not an integer
+	 **/
+
+	public function setStrainReviewStrainId(int $newStrainReviewStrainId = null) {
+		// base case: if the strain review strain id is null, this is a new strain review strain id without a mySQL assigned id (yet)
+		if($newStrainReviewStrainId === null) {
+			$this->strainReviewProfileId = null;
+			return;
+		}
+
+		// verify the strain review strain id is positive
+		if($newStrainReviewStrainId <= 0) {
+			throw(new \RangeException("strain review dispensary id is not positive"));
+		}
+		// convert and store the dispensary review dispensary id
+		$this->dispensaryReviewDispensaryId = $newDispensaryReviewDispensaryId;
+	}
+
+
+	/**
+	 * accessor method for strain review date
+	 *
+	 * @return \DateTime value of strain review date
+	 **/
+	public function getStrainReviewDateTime() {
+		return ($this->strainReviewDateTime);
+	}
+
+	/**
+	 * mutator method for strain review date
+	 *
+	 * @param \DateTime|string|null $newStrainReviewDateTime strain review date as a DateTime object or string (or null to load the current time)
+	 * @throws \InvalidArgumentException if $newStrainReviewDateTime is not a valid object or string
+	 * @throws \RangeException if $newStrainReviewDateTime is a date that does not exist
+	 **/
+	public function setStrainReviewDate($newStrainReviewDateTime = null) {
+		// base case: if the date is null, use the current date and time
+		if($newStrainReviewDateTime === null) {
+			$this->strainReviewDateTime = new \DateTime();
+			return;
+		}
+
+		// store the strain review date
+		try {
+			$newStrainReviewDateTime = self::validateDateTime($newStrainReviewDateTime);
+		} catch(\InvalidArgumentException $invalidArgument) {
+			throw(new \InvalidArgumentException($invalidArgument->getMessage(), 0, $invalidArgument));
+		} catch(\RangeException $range) {
+			throw(new \RangeException($range->getMessage(), 0, $range));
+		}
+		$this->strainReviewDateTime = $newStrainReviewDateTime;
+	}
