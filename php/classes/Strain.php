@@ -63,7 +63,7 @@ class Strain implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newStrainId = null, string $newStrainName, string $newStrainType, float $newStrainThc, float $newStrainCbd, string $newStrainDescription) {
+	public function __construct($newStrainId = null, string $newStrainName, string $newStrainType, float $newStrainThc, float $newStrainCbd, string $newStrainDescription) {
 		try {
 			$this->setStrainId($newStrainId);
 			$this->setStrainName($newStrainName);

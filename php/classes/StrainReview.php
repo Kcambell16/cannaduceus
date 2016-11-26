@@ -60,12 +60,12 @@ class StrainReview implements \JsonSerializable {
 	 * @throws \Exception if any other exception occurs
 	 **/
 
-	public function __construct(int $newStrainReviewId = null, int $newStrainReviewProfileId, int $newStrainReviewStrainId, string $newStrainReviewDate, string $newStrainReviewTxt) {
+	public function __construct(int $newStrainReviewId = null, int $newStrainReviewProfileId, int $newStrainReviewStrainId, string $newStrainReviewDateTime, string $newStrainReviewTxt) {
 		try {
 			$this->setStrainReviewId($newStrainReviewId);
 			$this->setStrainReviewProfileId($newStrainReviewProfileId);
 			$this->setStrainReviewStrainId($newStrainReviewStrainId);
-			$this->setStrainReviewDate($newStrainReviewDate);
+			$this->setStrainReviewDate($newStrainReviewDateTime);
 			$this->setStrainReviewTxt($newStrainReviewTxt);
 		} catch(\InvalidArgumentException $invalidArgument) {
 			// rethrow the exception to the caller
@@ -174,10 +174,10 @@ class StrainReview implements \JsonSerializable {
 
 		// verify the strain review strain id is positive
 		if($newStrainReviewStrainId <= 0) {
-			throw(new \RangeException("strain review dispensary id is not positive"));
+			throw(new \RangeException("strain review id is not positive"));
 		}
 		// convert and store the dispensary review dispensary id
-		$this->dispensaryReviewDispensaryId = $newDispensaryReviewDispensaryId;
+		$this->strainReviewStrainId = $newStrainReviewStrainId;
 	}
 
 
@@ -311,12 +311,13 @@ class StrainReview implements \JsonSerializable {
 	 **/
 	public static function getStrainReviewsByStrainReviewId(\PDO $pdo, int $strainReviewId) {
 		// sanitize the strainReviewId before searching
+
 		if($strainReviewId <= 0) {
 			throw(new \PDOException("strain review id is not positive"));
 		}
 
 		// create query template
-		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt FROM strainReview WHERE strainReviewStrainId = :strainReviewStrainId";
+		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt FROM strainReview WHERE strainReviewId = :strainReviewId";
 		$statement = $pdo->prepare($query);
 
 		// bind the strainReview id to the place holder in the template
@@ -438,11 +439,11 @@ class StrainReview implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt FROM strainReview WHERE strainReviewStrainId = :strainReviewStrainId";
+		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt FROM strainReview WHERE strainReviewTxt LIKE :strainReviewTxt";
 		$statement = $pdo->prepare($query);
 
 		// bind the strainReview content to the place holder in the template
-		$dispensaryReviewTxt = "%$strainReviewTxt%";
+		$strainReviewTxt = "%$strainReviewTxt%";
 		$parameters = ["strainReviewTxt" => $strainReviewTxt];
 		$statement->execute($parameters);
 
@@ -466,7 +467,6 @@ class StrainReview implements \JsonSerializable {
 	 * gets the strainReview by content
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param string $strainReviewTxt strain review content to search for
 	 * @return \SplFixedArray SplFixedArray of Dispensary Reviews found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
@@ -474,14 +474,14 @@ class StrainReview implements \JsonSerializable {
 	public static function getAllStrainReviews(\PDO $pdo) {
 
 		// create query template
-		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewstrainId, strainReviewDateTime, strainReviewTxt FROM strainReview";
+		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt FROM strainReview";
 		$statement = $pdo->prepare($query);
 		$statement->execute();
 
 		// bind the review content to the place holder in the template
 
 		// build an array of strain reviews
-		$dispensaryReviews = new \SplFixedArray($statement->rowCount());
+		$strainReviews = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
@@ -505,4 +505,6 @@ class StrainReview implements \JsonSerializable {
 		$fields = get_object_vars($this);
 		return($fields);
 	}
+
+
 }  // StrainReview
