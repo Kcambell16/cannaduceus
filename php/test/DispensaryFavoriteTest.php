@@ -104,7 +104,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 		// create a new favorite and insert to into mySQL
 		$dispensaryFavorite = new DispensaryFavorite($this->profile->getProfileId(), $this->dispensary->getDispensaryId());
-		$dispensaryFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->dispensary->getDispensaryId());
+		$dispensaryFavorite->insert($this->getPDO());
 
 
 		// delete the favorite from mySQL
@@ -134,8 +134,6 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		// create a new DispensaryFavorite
 		$dispensaryFavorite = new DispensaryFavorite($this->profile->getProfileId(),$this->dispensary->getDispensaryId());
 		//now delete it
-		var_dump("inside testDeleteInvalidFavorite");
-		var_dump($dispensaryFavorite);
 		$dispensaryFavorite->delete($this->getPDO());
 	}
 	/**
@@ -146,7 +144,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 		// create a dummy dispensary favorite
 		$dispensaryFavorite = new DispensaryFavorite($this->profile->getProfileId(),$this->dispensary->getDispensaryId());
-		$dispensaryFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->dispensary->getDispensaryId());
+		$dispensaryFavorite->insert($this->getPDO());
 
 		$results = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($this->getPDO(), $dispensaryFavorite->getDispensaryFavoriteProfileId());
 		//confirm we only have 1 favorite in the database
@@ -180,7 +178,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	// create a dummy dispensary favorite
 		$dispensaryFavorite = new DispensaryFavorite($this->profile->getProfileId(),$this->dispensary->getDispensaryId());
-		$dispensaryFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->dispensary->getDispensaryId());
+		$dispensaryFavorite->insert($this->getPDO());
 		$results = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($this->getPDO(), $this->dispensary->getDispensaryId());
 
 		$this->assertCount(1, $results);

@@ -35,7 +35,7 @@ class StrainFavorite implements \JsonSerializable {
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newStrainFavoriteProfileId = null, int $newStrainFavoriteStrainId) {
+	public function __construct(int $newStrainFavoriteProfileId = null, int $newStrainFavoriteStrainId = null) {
 		try {
 			$this->setStrainFavoriteProfileId($newStrainFavoriteProfileId);
 			$this->setStrainFavoriteStrainId($newStrainFavoriteStrainId);
@@ -60,7 +60,7 @@ class StrainFavorite implements \JsonSerializable {
 	 * @return int|null value of strainFavoriteProfileId
 	 */
 
-	public function getStrainFavoriteProfileId(): int {
+	public function getStrainFavoriteProfileId(){
 		return $this->strainFavoriteProfileId;
 	}
 
@@ -114,18 +114,15 @@ class StrainFavorite implements \JsonSerializable {
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
 	public function insert(\PDO $pdo) {
-		// enforce the strainFavoriteProfileId and strainFavoriteStrainId is null (i.e., don't insert a strainFavorite that already exists)
-		if($this->strainFavoriteStrainId === null || $this->strainFavoriteProfileId === null) {
-			throw(new \PDOException("not a valid strain favorite"));
-		}
 
 		// create query template
 		$query = "INSERT INTO strainFavorite(strainFavoriteStrainId, strainFavoriteProfileId) VALUES(:strainFavoriteStrainId, :strainFavoriteProfileId)";
-		$statement = $pdo->prepare($query);
 
+		$statement = $pdo->prepare($query);
 
 		// bind the member variables to the place holders in the template
 		$parameters = ["strainFavoriteStrainId" => $this->strainFavoriteStrainId, "strainFavoriteProfileId" => $this->strainFavoriteProfileId];
+
 		$statement->execute($parameters);
 
 	}   // insert
@@ -144,11 +141,11 @@ class StrainFavorite implements \JsonSerializable {
 		}
 
 		//Create Query Template
-		$query = "DELETE FROM strainFavorite WHERE strainFavoriteStrainId = :strainFavoriteStrainId AND strainFavoriteProfileId = :strainFavoriteProfileId";
+		$query = "DELETE FROM strainFavorite WHERE strainFavoriteProfileId = :strainFavoriteProfileId AND strainFavoriteStrainId = :strainFavoriteStrainId";
 		$statement = $pdo->prepare($query);
 
 		//Bind the member variables to the place holder in the template
-		$parameters = ["strainFavoriteStrainId" => $this->strainFavoriteStrainId, "strainFavoriteProfileId"];
+		$parameters = ["strainFavoriteProfileId" => $this->strainFavoriteProfileId, "strainFavoriteStrainId" => $this->strainFavoriteStrainId];
 		$statement->execute($parameters);
 	}	//Delete
 
@@ -216,8 +213,7 @@ class StrainFavorite implements \JsonSerializable {
 			throw(new \RangeException("Strain Favorite Strain id is not positive."));
 		}
 		// prepare query
-		$query = "SELECT strainFavoriteProfileId, strainFavoriteStrainId 
-					  FROM strainFavorite WHERE strainFavoriteStrainId = :strainFavoriteStrainId";
+		$query = "SELECT strainFavoriteProfileId, strainFavoriteStrainId FROM strainFavorite WHERE strainFavoriteStrainId = :strainFavoriteStrainId";
 		$statement = $pdo->prepare($query);
 		$parameters = array("strainFavoriteStrainId" => $strainFavoriteStrainId);
 		$statement->execute($parameters);
@@ -244,26 +240,25 @@ class StrainFavorite implements \JsonSerializable {
 	 *
 	 * @param \PDO $pdo -- a PDO connection
 	 * @param  \int $strainFavoriteStrainId and $strainFavoriteProfileId -- $strainFavorite to be retrieved
+	 * @param \int $strainFavoriteProfileId
 	 * @throws \InvalidArgumentException when $strainFavoriteStrainId and $strainFavoriteProfileId are not integers
 	 * @throws \RangeException when $strainFavoriteStrainId and $strainFavoriteProfileId are not positive
 	 * @throws \PDOException
 	 * @return null | $strainFavorite
 	 */
 
-	public static function getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId(\PDO $pdo, $strainFavoriteStrainId, $strainFavoriteProfileId) {
+	public static function getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId(\PDO $pdo, int $strainFavoriteStrainId, int $strainFavoriteProfileId) {
 		//  check validity of $strainFavorite
-		$strainFavorite = filter_var($strainFavoriteStrainId, $strainFavoriteProfileId, FILTER_VALIDATE_INT);
-		if($strainFavorite === false) {
-			throw(new \InvalidArgumentException("Strain Favorite Strain Id and Strain Favorite Profile Id are not integers."));
+
+		if($strainFavoriteStrainId <= 0  && $strainFavoriteProfileId <= 0) {
+			throw(new \RangeException("Strain Favorite ID or Strain Favorite Profile ID is Invalid."));
 		}
-		if($strainFavorite <= 0) {
-			throw(new \RangeException("Strain Favorite is Invalid."));
-		}
+
+
 		// prepare query
-		$query = "SELECT strainFavoriteStrainId, strainFavoriteProfileId
-					  FROM strainFavorite WHERE ($strainFavorite = :strainFavoriteStrainId, :strainFavoriteProfileId)";
+		$query = "SELECT strainFavoriteProfileId, strainFavoriteStrainId FROM strainFavorite WHERE strainFavoriteStrainId = :strainFavoriteStrainId AND strainFavoriteProfileId = :strainFavoriteProfileId";
 		$statement = $pdo->prepare($query);
-		$parameters = array("strainFavorite" => $strainFavorite);
+		$parameters = array("strainFavoriteStrainId" => $strainFavoriteStrainId, "strainFavoriteProfileId" => $strainFavoriteProfileId);
 		$statement->execute($parameters);
 		//  setup results from query
 		try {
@@ -271,7 +266,7 @@ class StrainFavorite implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$strainFavorite = new strainFavorite($row["strainFavoriteStrainId"], $row["strainFavoriteProfileId"]);
+				$strainFavorite = new strainFavorite($row["strainFavoriteProfileId"], $row["strainFavoriteStrainId"]);
 			}
 		} catch(\Exception $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));

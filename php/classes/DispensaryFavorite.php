@@ -123,18 +123,16 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is to a PDO connection object
 	 */
-	public function insert(\PDO $pdo, $profileId , $dispensaryId) {
+	public function insert(\PDO $pdo) {
 		// enforce the dispensaryFavoriteProfileId is null (i.e., don't insert a favorite that already exists)
 
 		// create query template
 		$query = "INSERT INTO dispensaryFavorite (dispensaryFavoriteProfileId, dispensaryFavoriteDispensaryId ) VALUES(:dispensaryFavoriteProfileId, :dispensaryFavoriteDispensaryId)";
-
-
 		//prepare is used as an extra means of security
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the place holder slots in the template. putting these into an array
-		$parameters = ["dispensaryFavoriteProfileId" => $profileId, "dispensaryFavoriteDispensaryId" => $dispensaryId];
+		$parameters = ["dispensaryFavoriteProfileId" => $this->dispensaryFavoriteProfileId, "dispensaryFavoriteDispensaryId" => $this->dispensaryFavoriteDispensaryId];
 
 
 		//execute the command held in $statement
