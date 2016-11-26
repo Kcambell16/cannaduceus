@@ -89,7 +89,7 @@ CREATE TABLE dispensaryFavorite
 
 CREATE TABLE strainReview
 (
-	strainReviewId INT UNSIGNED NOT NULL,
+	strainReviewId INT UNSIGNED AUTO_INCREMENT NOT NULL,
 	strainReviewProfileId INT UNSIGNED NOT NULL,
 	strainReviewStrainId INT UNSIGNED NOT NULL,
 	strainReviewDateTime DATETIME,
