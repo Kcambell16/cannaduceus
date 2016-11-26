@@ -90,3 +90,27 @@ class StrainReview implements \JsonSerializable {
 	public function getStrainReviewId() {
 		return ($this->strainReviewId);
 	}
+
+	/**
+	 * mutator method for strain review id
+	 *
+	 * @param int|null $newStrainReviewId new value of strain review id
+	 * @throws \RangeException if $newStrainReviewId is not positive
+	 * @thows \TypeError if $newStrainReviewId is not an integer
+	 **/
+
+	public function setStrainReviewId(int $newStrainReviewId = null) {
+		// base case: if the strain review id is null, this is a new strain review without a mySQL assigned id (yet)
+		if($newStrainReviewId === null) {
+			$this->strainReviewId = null;
+			return;
+		}
+
+		// verify the strain review id is positive
+		if($newStrainReviewId <= 0) {
+			throw(new \RangeException("strain review id is not positive"));
+		}
+		// convert and store the strain review id
+		$this->strainReviewId = $newStrainReviewId;
+
+	}
