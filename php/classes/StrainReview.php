@@ -486,14 +486,14 @@ class StrainReview implements \JsonSerializable {
 		while(($row = $statement->fetch()) !== false) {
 			try {
 				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"],$row ["strainReviewDateTime"], $row["strainReviewTxt"]);
-				$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
-				$dispensaryReviews->next();
+				$strainReviews[$strainReviews->key()] = $strainReview;
+				$strainReviews->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return($dispensaryReviews);
+		return($strainReviews);
 	}
 
 	/**
