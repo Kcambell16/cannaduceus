@@ -471,22 +471,14 @@ class DispensaryReview implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getAllDispensaryReviews(\PDO $pdo, string $dispensaryReviewTxt) {
-		// sanitize the description before searching
-		$dispensaryReviewTxt = trim($dispensaryReviewTxt);
-		$dispensaryReviewTxt = filter_var($dispensaryReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($dispensaryReviewTxt) === true) {
-			throw(new \PDOException("dispensary review text is invalid"));
-		}
+	public static function getAllDispensaryReviews(\PDO $pdo) {
 
 		// create query template
-		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewDateTime, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewTxt LIKE :dispensaryReviewTxt";
+		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewDateTime, dispensaryReviewTxt FROM dispensaryReview";
 		$statement = $pdo->prepare($query);
+		$statement->execute();
 
-		// bind the tweet content to the place holder in the template
-		$dispensaryReviewTxt = "%$dispensaryReviewTxt%";
-		$parameters = ["dispensaryReviewTxt" => $dispensaryReviewTxt];
-		$statement->execute($parameters);
+		// bind the review content to the place holder in the template
 
 		// build an array of dispensary reviews
 		$dispensaryReviews = new \SplFixedArray($statement->rowCount());
