@@ -249,3 +249,53 @@ class StrainReview implements \JsonSerializable {
 		// store the name content
 		$this->strainReviewTxt = $newStrainReviewTxt;
 	}
+
+
+	/**
+	 * inserts this strainReview into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo) {
+
+		// create query template
+		$query = "INSERT INTO strainReview(strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt)
+                       VALUES (:strainReviewProfileId, :strainReviewStrainId, :strainReviewDateTime, :strainReviewTxt)";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holders in the template
+		$formattedDateTime = $this->strainReviewDateTime->format("Y-m-d H:i:s");
+		$parameters = ["strainReviewProfileId" => $this->strainReviewProfileId, "strainReviewStrainId" => $this->strainReviewStrainId,
+			"strainReviewDateTime" => $formattedDateTime, "strainReviewTxt" => $this->strainReviewTxt];
+
+		$statement->execute($parameters);
+
+		// update the null strainId with what mySQL just gave us
+		$this->strainReviewId = intval($pdo->lastInsertId());
+
+	} // insert
+
+	/**
+	 * deletes this StrainReview from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function delete(\PDO $pdo) {
+		// enforce the strainReviewId is not null (i.e., don't delete a strainreview that hasn't been inserted)
+		if($this->strainReviewId === null) {
+			throw(new \PDOException("unable to delete a strain review that does not exist"));
+		}
+
+		// create query template
+		$query = "DELETE FROM strainReview WHERE strainReviewId = :strainReviewId";
+		$statement = $pdo->prepare($query);
+
+		// bind the member variables to the place holder in the template
+		$parameters = ["strainReviewId" => $this->strainReviewId];
+		$statement->execute($parameters);
+
+	} // deletes
