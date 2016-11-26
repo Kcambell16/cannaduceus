@@ -463,6 +463,48 @@ class DispensaryReview implements \JsonSerializable {
 	}
 
 	/**
+	 * gets the didpensaryReview by content
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $dispensaryReviewTxt dispensary review content to search for
+	 * @return \SplFixedArray SplFixedArray of Dispensary Reviews found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getAllDispensaryReviews(\PDO $pdo, string $dispensaryReviewTxt) {
+		// sanitize the description before searching
+		$dispensaryReviewTxt = trim($dispensaryReviewTxt);
+		$dispensaryReviewTxt = filter_var($dispensaryReviewTxt, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($dispensaryReviewTxt) === true) {
+			throw(new \PDOException("dispensary review text is invalid"));
+		}
+
+		// create query template
+		$query = "SELECT dispensaryReviewId, dispensaryReviewProfileId, dispensaryReviewDispensaryId, dispensaryReviewDateTime, dispensaryReviewTxt FROM dispensaryReview WHERE dispensaryReviewTxt LIKE :dispensaryReviewTxt";
+		$statement = $pdo->prepare($query);
+
+		// bind the tweet content to the place holder in the template
+		$dispensaryReviewTxt = "%$dispensaryReviewTxt%";
+		$parameters = ["dispensaryReviewTxt" => $dispensaryReviewTxt];
+		$statement->execute($parameters);
+
+		// build an array of dispensary reviews
+		$dispensaryReviews = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$dispensaryReview = new DispensaryReview($row["dispensaryReviewId"], $row["dispensaryReviewProfileId"], $row["dispensaryReviewDispensaryId"],$row ["dispensaryReviewDateTime"], $row["dispensaryReviewTxt"]);
+				$dispensaryReviews[$dispensaryReviews->key()] = $dispensaryReview;
+				$dispensaryReviews->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($dispensaryReviews);
+	}
+
+	/**
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
