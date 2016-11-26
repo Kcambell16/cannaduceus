@@ -1,5 +1,5 @@
 <?php
-namespace Edu\Cnm\jmontoya306\cannaduceus;
+namespace Edu\Cnm\cannaduceus;
 
 require_once(dirname(__DIR__) . "/classes/autoload.php");
 /**

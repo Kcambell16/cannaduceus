@@ -3,12 +3,12 @@ namespace Edu\Cnm\Cannaduceus\Test;
 
 use Edu\Cnm\Cannaduceus\Strain;
 use Edu\Cnm\Cannaduceus\Profile;
-use Edu\Cnm\Cannaduceus\StrainFavorite;
+use Edu\Cnm\Cannaduceus\strainFavorite;
 
 // grab the test parameters
 require_once("CannaduceusTest.php");
 // grab the class being tested
-//require_once(dirname(__DIR__) . "/classes/autoload.php");
+require_once(dirname(__DIR__) . "/classes/autoload.php");
 require_once ("../classes/autoload.php");
 
 /**
@@ -17,10 +17,10 @@ require_once ("../classes/autoload.php");
  * this is a complete PHPUnit test of the strain favorite class. It is complete becasue *ALL* mySQL/PDO enabled methods
  * are tested for both invalid and vailid inputs.
  *
- * @see StrainFavorite
+ * @see strainFavorite
  * @author nathan sanchez <nsanchez121@cnm.edu>
  */
-class StrainFavoriteTest extends CannaduceusTest {
+class strainFavoriteTest extends CannaduceusTest {
 	/*--------------------------------Declare Protected State Variables -----------------------*/
 
 
@@ -43,7 +43,7 @@ class StrainFavoriteTest extends CannaduceusTest {
 		parent::setUp();
 
 
-		// create and insert a Profile to own the test StrainFavorite
+		// create and insert a Profile to own the test strainFavorite
 		$password = "abc123";
 		$salt = bin2hex(random_bytes(32));
 		$hash = hash_pbkdf2("sha512", $password, $salt, 262144, 128);
@@ -51,29 +51,29 @@ class StrainFavoriteTest extends CannaduceusTest {
 		$this->profile = new Profile(null, "profileUserName", "profileEmail", $hash, $salt, $activation);
 		$this->profile -> insert($this->getPDO());
 
-		// create and insert a Strain to Favorite the test StrainFavorite
+		// create and insert a Strain to Favorite the test strainFavorite
 		$this->strain = new Strain(null, "dankestbud", "Sativa", "32.5", "0.8", "some good stuff 10/10");
 		$this->strain->insert($this->getPDO());
 
 	}
 
 	/**
-	 * test inserting a valid StrainFavorite and verify that the actual mySQL data matches
+	 * test inserting a valid strainFavorite and verify that the actual mySQL data matches
 	 */
 	public function testInsertValidStrainFavorite() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("StrainFavorite");
+		$numRows = $this->getConnection()->getRowCount("strainFavorite");
 
 
-		// create a new StrainFavorite and insert it in to mySQL
-		$StrainFavorite = new StrainFavorite($this->profile->getProfileId(),$this->Strain->getStrainId());
+		// create a new strainFavorite and insert it in to mySQL
+		$strainFavorite = new StrainFavorite($this->profile->getProfileId(),$this->strain->getStrainId());
 		// insert the mock favorite in SQL
-		$StrainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
+		$strainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
 
-		$pdoStrainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoritestrainIdAndStrainFavoriteProfileId($this->getPDO(), $this->profile->getProfileId(),$this->strain->getstrainId());
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("StrainFavorite"));
-		$this->assertEquals($pdoStrainFavorite->getStrainFavoriteProfileId(), $StrainFavorite->getStrainFavoriteProfileId());
-		$this->assertEquals($pdoStrainFavorite->getStrainFavoritestrainId(), $StrainFavorite->getStrainFavoritestrainId());
+		$pdoStrainFavorite = StrainFavorite::getstrainFavoriteBystrainFavoritestrainIdAndstrainFavoriteProfileId($this->getPDO(), $this->profile->getProfileId(),$this->strain->getstrainId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("strainFavorite"));
+		$this->assertEquals($pdoStrainFavorite->getStrainFavoriteProfileId(), $strainFavorite->getStrainFavoriteProfileId());
+		$this->assertEquals($pdoStrainFavorite->getStrainFavoriteStrainId(), $strainFavorite->getStrainFavoriteStrainId());
 	}
 
 
@@ -84,11 +84,11 @@ class StrainFavoriteTest extends CannaduceusTest {
 	public function testInsertInvalidFavorite(){
 
 
-		$StrainFavorite = new StrainFavorite($this->profile->getProfileId(),$this->strain->getstrainId());
-		$StrainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
+		$strainFavorite = new StrainFavorite($this->profile->getProfileId(),$this->strain->getstrainId());
+		$strainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
 
-		// insert again and wath it fail
-		$StrainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
+		// insert again and watch it fail
+		$strainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
 
 	}
 
@@ -100,25 +100,25 @@ class StrainFavoriteTest extends CannaduceusTest {
 	 */
 	public function testDeleteValidFavorite() {
 		// count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("StrainFavorite");
+		$numRows = $this->getConnection()->getRowCount("strainFavorite");
 
 		// create a new favorite and insert to into mySQL
-		$StrainFavorite = new StrainFavorite($this->profile->getProfileId(), $this->strain->getstrainId());
-		$StrainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
+		$strainFavorite = new StrainFavorite($this->profile->getProfileId(), $this->strain->getstrainId());
+		$strainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
 
 
 		// delete the favorite from mySQL
-		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("StrainFavorite"));
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("strainFavorite"));
 		// delete strain favorite
-		$StrainFavorite->delete($this->getPDO());
+		$strainFavorite->delete($this->getPDO());
 
 		//grab the data from mySQL
-		$pdoStrainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoritestrainIdAndStrainFavoriteProfileId($this->getPDO(), $this->profile->getProfileId(),$this->strain->getstrainId());
+		$pdoStrainFavorite = StrainFavorite::getstrainFavoriteBystrainFavoritestrainIdAndstrainFavoriteProfileId($this->getPDO(), $this->profile->getProfileId(),$this->strain->getstrainId());
 		//var_dump($pdoStrainFavorite);
 
 		// assert that its null
 		$this->assertNull($pdoStrainFavorite);
-		$this->assertEquals($numRows, $this->getConnection()->getRowCount("StrainFavorite"));
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("strainFavorite"));
 	}
 
 
@@ -131,32 +131,32 @@ class StrainFavoriteTest extends CannaduceusTest {
 	public function  testDeleteInvalidFavorite(){
 		//create a favorite and never actually insert it then try to delete it when it hasnt been inserted
 
-		// create a new StrainFavorite and insert it in to mySQL
-		$StrainFavorite = new StrainFavorite($this->profile->getProfileId(),$this->strain->getstrainId());
+		// create a new strainFavorite and insert it in to mySQL
+		$strainFavorite = new StrainFavorite($this->profile->getProfileId(),$this->strain->getstrainId());
 		//now delete it
-		$StrainFavorite->delete($this->getPDO());
+		$strainFavorite->delete($this->getPDO());
 	}
 	/**
 	 * test getting a strain favorite by profile Id =^. _ .^=
 	 */
-	public function testGetStrainFavoriteByProfileId(){
+	public function testGetstrainFavoriteByProfileId(){
 
 
 		// create a dummy strain favorite
-		$StrainFavorite = new StrainFavorite($this->profile->getProfileId(),$this->strain->getstrainId());
-		$StrainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
+		$strainFavorite = new StrainFavorite($this->profile->getProfileId(),$this->strain->getstrainId());
+		$strainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
 
-		$results = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($this->getPDO(), $StrainFavorite->getStrainFavoriteProfileId());
+		$results = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($this->getPDO(), $strainFavorite->getStrainFavoriteProfileId());
 		//confirm we only have 1 favorite in the database
 		$this->assertCount(1, $results);
 
-		//ensure there are only instances of the StrainFavorite class in the namespace
-		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus\\StrainFavorite", $results);
+		//ensure there are only instances of the strainFavorite class in the namespace
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus\\strainFavorite", $results);
 
 
 		$pdoStrainFavorite = $results[0];
-		$this->assertEquals($pdoStrainFavorite->getStrainFavoriteProfileId(), $StrainFavorite->getStrainFavoriteProfileId());
-		$this->assertEquals($pdoStrainFavorite->getStrainFavoritestrainId(), $StrainFavorite->getStrainFavoritestrainId());
+		$this->assertEquals($pdoStrainFavorite->getStrainFavoriteProfileId(), $strainFavorite->getStrainFavoriteProfileId());
+		$this->assertEquals($pdoStrainFavorite->getStrainFavoriteStrainId(), $strainFavorite->getStrainFavoriteStrainId());
 
 	}
 
@@ -165,34 +165,34 @@ class StrainFavoriteTest extends CannaduceusTest {
 	 * test gettting a strain favorite by profileId that does not exist
 	 */
 	public function testGetInvalidStrainFavoriteByProfileId() {
-		$StrainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($this->getPDO(), 5000);
-		$this->assertEquals(0, $StrainFavorite->count());
+		$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($this->getPDO(), 5000);
+		$this->assertEquals(0, $strainFavorite->count());
 	}
 
 
 	/**
 	 * test getting strain favorite by strain Id
 	 */
-	public function testGetStrainFavoriteBystrainId() {
+	public function testGetStrainFavoriteByStrainId() {
 		//get the number of initail rows (will be zero) and save it for later
 
 		// create a dummy strain favorite
-		$StrainFavorite = new StrainFavorite($this->profile->getProfileId(),$this->strain->getstrainId());
-		$StrainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
-		$results = StrainFavorite::getStrainFavoriteByStrainFavoritestrainId($this->getPDO(), $this->strain->getstrainId());
+		$strainFavorite = new StrainFavorite($this->profile->getProfileId(),$this->strain->getstrainId());
+		$strainFavorite->insert($this->getPDO(),$this->profile->getProfileId(), $this->strain->getstrainId());
+		$results = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainId($this->getPDO(), $this->strain->getstrainId());
 
 		$this->assertCount(1, $results);
 
 		$pdoStrainFavorite = $results[0];
-		$this->assertEquals($pdoStrainFavorite->getStrainFavoriteProfileId(), $StrainFavorite->getStrainFavoriteProfileId());
-		$this->assertEquals($pdoStrainFavorite->getStrainFavoritestrainId(), $StrainFavorite->getStrainFavoritestrainId());
+		$this->assertEquals($pdoStrainFavorite->getStrainFavoriteProfileId(), $strainFavorite->getStrainFavoriteProfileId());
+		$this->assertEquals($pdoStrainFavorite->getStrainFavoriteStrainId(), $strainFavorite->getStrainFavoriteStrainId());
 	}
 	/**
 	 * test getting a strain favorite by strain Id
 	 */
-	public function  testGetInvaildStrainFavoriteBystrainId() {
-		$StrainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoritestrainId($this->getPDO(),5000);
-		$this->assertEquals(0, $StrainFavorite->count());
+	public function  testGetInvaildStrainFavoriteByStrainId() {
+		$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainId($this->getPDO(),5000);
+		$this->assertEquals(0, $strainFavorite->count());
 
 
 	}

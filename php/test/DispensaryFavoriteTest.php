@@ -126,14 +126,16 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	/**
 	 * test deleting a favorite that does not exist
 	 *
-	 * @expectedException \Exception
+	 * @expectedException \PDOException
 	 */
 	public function  testDeleteInvalidFavorite(){
 		//create a favorite and never actually insert it then try to delete it when it hasnt been inserted
 
-		// create a new DispensaryFavorite and insert it in to mySQL
+		// create a new DispensaryFavorite
 		$dispensaryFavorite = new DispensaryFavorite($this->profile->getProfileId(),$this->dispensary->getDispensaryId());
 		//now delete it
+		var_dump("inside testDeleteInvalidFavorite");
+		var_dump($dispensaryFavorite);
 		$dispensaryFavorite->delete($this->getPDO());
 	}
 	/**

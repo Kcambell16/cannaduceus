@@ -165,6 +165,7 @@ class DispensaryFavorite implements \JsonSerializable {
 
 		//execute the command held in $statement
 		$statement->execute($parameters);
+
 	}// delete
 
 	/**

@@ -102,7 +102,7 @@ class Strain implements \JsonSerializable {
 	 * @throws \RangeException if $newStrainId is not positive
 	 * @throws \TypeError if $newStrainId is not an integer
 	 */
-	public function setStrainId(int $newStrainId = null) {
+	public function setStrainId($newStrainId = null) {
 		if($newStrainId === null) {
 			$this->strainId = null;
 			return;
