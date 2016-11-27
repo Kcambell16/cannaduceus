@@ -45,14 +45,15 @@ class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 		parent::setup();
 
 		//create and insert a dispensary and profile to own the rating
-		$dispensary = new dispensary(null, "Betty Baker", "Albuquerque", "420Betty@google.com", "A Good Plant", "420-420-4200", "NM", "420 Blaze It Dr. NE", null, "that-fire.com", "87420"); $this->$this->dispensaryId0->insert($this->getPDO());
+		$this->dispensary = new dispensary(null, "Betty Baker", "Albuquerque", "420Betty@google.com", "A Good Plant", "420-420-4200", "NM", "420 Blaze It Dr. NE", null, "that-fire.com", "87420"); $this->dispensary->insert($this->getPDO());
 
 		$password = "UpInSmoke";
-		$salt = bin2hex(random_bytes(16));
-		$hash = hash_pbkdf2("sha512", $password, $salt, 262144);
+		$salt = bin2hex(random_bytes(32));
+		$hash = hash_pbkdf2("sha512", $password, $salt, 262144, 128);
+		$activation = bin2hex(random_bytes(16));
 
-		$this->profile = new profile(null, "Tomas Baker", "Baker420@420.com", $hash, $salt, "activation");
-		$this->$this->profileId0->insert($this->getPDO());
+		$this->profile = new profile(null, "Tomas Baker", "Baker420@420.com", $hash, $salt, $activation);
+		$this->profile->insert($this->getPDO());
 
 	}//create dispensary Id and profile Id
 
@@ -65,7 +66,9 @@ class dispensaryLeafRating extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest  {
 
 		//create a new dispensaryLeafRating and insert it into mySQL
 		$dispensaryLeafRating = new dispensaryLeafRating($this->profile->getProfileId(), $this->dispensary->getDispensaryId());
-		$dispensaryLeafRating->insert($this->getPDO());
+		$dispensaryLeafRating->insert($this->getPDO(),
+		$this->profile->getProfileId(),
+		$this->dispensary->getDispensaryId());
 
 		//grab the data from mySQL and enfore the fields match our expectations
 		$pdoDispensaryLeafRating = dispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingRating($this->getPDO(), $this->dispensary->getDispensaryId(), $this->profile->getProfileId());

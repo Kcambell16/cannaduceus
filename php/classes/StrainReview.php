@@ -13,8 +13,9 @@ require_once(dirname(__DIR__) . "/classes/ValidateDate.php");
  * @version 4.2.0
  **/
 
-class StrainReview implements \JsonSerializable {
+class strainReview implements \JsonSerializable   {
 	use ValidateDate;
+
 	/**
 	 * id for this StrainReview; this is the primary key
 	 * @var int $strainReviewId
@@ -177,7 +178,7 @@ class StrainReview implements \JsonSerializable {
 			throw(new \RangeException("strain review dispensary id is not positive"));
 		}
 		// convert and store the dispensary review dispensary id
-		$this->dispensaryReviewDispensaryId = $newDispensaryReviewDispensaryId;
+		$this->strainReviewStrainId = $newStrainReviewStrainId;
 	}
 
 
@@ -381,3 +382,13 @@ class StrainReview implements \JsonSerializable {
 		}
 		return($strainReviews);
 	}
+	/**
+	 * formats the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize
+	 **/
+	public function jsonSerialize() {
+		$fields = get_object_vars($this);
+		return($fields);
+	}
+}

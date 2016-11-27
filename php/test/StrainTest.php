@@ -243,7 +243,7 @@ class StrainTest extends CannaduceusTest {
 	/**
 	 * test grabbing a strain by Type that does not exist
 	 *
-	 * @expectedException \PDOException
+	 * @expectedException \TypeError
 	 */
 	public function testGetInvalidStrainByStrainType() {
 		//create a new strain and insert it into mySQL

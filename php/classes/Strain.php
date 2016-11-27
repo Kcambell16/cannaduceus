@@ -26,7 +26,7 @@ class Strain implements \JsonSerializable {
 	private $strainName;
 
 	/**
-	 *type of strain indica, sativa, or hybrid;
+	 *type of strain Sativa, Indica, Hybrid;
 	 * @var string $strainType
 	 **/
 	private $strainType;
@@ -157,14 +157,14 @@ class Strain implements \JsonSerializable {
 	 * mutator method for strain type
 	 *
 	 * @param \string $newStrainType new string of strain type
-	 * @throws \InvalidArgumentException if $newStrainType is not Indica, Sativa, or Hybrid
+	 * @throws \TypeError if $newStrainType is not Indica, Sativa, or Hybrid
 	 */
 	public function setStrainType(string $newStrainType) {
 		$validStrainTypes = array("Sativa", "Indica", "Hybrid");
 
 		// if $newStrainType is not in array, throw exception
 		if (!in_array($newStrainType, $validStrainTypes, true)){
-			throw(new \InvalidArgumentException("Type is not valid"));
+			throw(new \TypeError("Type is not valid"));
 
 		}
 
