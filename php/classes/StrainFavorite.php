@@ -68,7 +68,7 @@ class StrainFavorite implements \JsonSerializable {
 	 * mutator method for strainFavoriteProfileId
 	 *
 	 * @param int $newStrainFavoriteProfileId new value of strainFavoriteProfile Id
-	 * @throws \UnexpectedValueException if $newStrainFavoriteProfileId is not an integer
+	 * @throws \RangeException if $newStrainFavoriteProfileId is not an integer
 	 */
 	public function setStrainFavoriteProfileId(int $newStrainFavoriteProfileId) {
 
@@ -94,7 +94,7 @@ class StrainFavorite implements \JsonSerializable {
 	 * mutator method for strainFavoriteStrainId
 	 *
 	 * @param int $newStrainFavoriteStrainId new value of strainFavoriteStrain Id
-	 * @throws \UnexpectedValueException if $newStrainFavoriteStrainId is not an integer
+	 * @throws \RangeException if $newStrainFavoriteStrainId is not an integer
 	 */
 	public function setStrainFavoriteStrainId(int $newStrainFavoriteStrainId) {
 
@@ -156,6 +156,7 @@ class StrainFavorite implements \JsonSerializable {
 	 * @throws \InvalidArgumentException when $strainFavoriteProfileId is not an integer
 	 * @throws \RangeException when $strainFavoriteProfileId is not a positive
 	 * @throws \PDOException
+	 * @throws \Exception
 	 * @return \SplFixedArray of all strainFavorites by profile id
 	 */
 
@@ -196,10 +197,11 @@ class StrainFavorite implements \JsonSerializable {
 	/**
 	 * This function retrieves a strain favorite by strain favorite strain ID
 	 * @param \PDO $pdo -- a PDO connection
-	 * @param  \int $strainFavoriteStrainId -- strain favorite strain ID to be retrieved
+	 * @param  int $strainFavoriteStrainId -- strain favorite strain ID to be retrieved
 	 * @throws \InvalidArgumentException when $strainFavoriteStrainId is not an integer
 	 * @throws \RangeException when $strainFavoriteStrainId is not a positive
 	 * @throws \PDOException
+	 * @throws \Exception
 	 * @return \SplFixedArray of all strainFavorites by strain id
 	 */
 
@@ -239,11 +241,12 @@ class StrainFavorite implements \JsonSerializable {
 	 * This function retrieves a strain favorite by StrainFavoriteStrain ID and StrainFavoriteProfile ID
 	 *
 	 * @param \PDO $pdo -- a PDO connection
-	 * @param  \int $strainFavoriteStrainId and $strainFavoriteProfileId -- $strainFavorite to be retrieved
-	 * @param \int $strainFavoriteProfileId
+	 * @param  int $strainFavoriteStrainId and $strainFavoriteProfileId -- $strainFavorite to be retrieved
+	 * @param  int $strainFavoriteProfileId
 	 * @throws \InvalidArgumentException when $strainFavoriteStrainId and $strainFavoriteProfileId are not integers
 	 * @throws \RangeException when $strainFavoriteStrainId and $strainFavoriteProfileId are not positive
 	 * @throws \PDOException
+	 * @throws \Exception
 	 * @return null | $strainFavorite
 	 */
 

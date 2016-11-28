@@ -96,7 +96,7 @@ class Profile implements \JsonSerializable {
 	/**
 	 * mutator method for Profile Id
 	 *
-	 * @param  \int|null $newProfileId new value of Profile Id
+	 * @param  int|null $newProfileId new value of Profile Id
 	 * @throws \RangeException if $newProfileId is not positive
 	 * @throws \TypeError if $newProfileId is not an integer
 	 */
@@ -131,7 +131,7 @@ class Profile implements \JsonSerializable {
 	/**
 	 * mutator method for Profile UserName
 	 *
-	 * @param  \string $newProfileUserName new binary of Profile UserName
+	 * @param  string $newProfileUserName new binary of Profile UserName
 	 * @throws \InvalidArgumentException if $newProfileUserName is not a binary
 	 * @throws \RangeException if profile needs a user name
 	 */
@@ -164,7 +164,7 @@ class Profile implements \JsonSerializable {
 	/**
 	 * mutator method for ProfileEmail
 	 *
-	 * @param  \string $newProfileEmail new sting of ProfileEmail
+	 * @param  string $newProfileEmail new sting of ProfileEmail
 	 * @throws \UnexpectedValueException if $newProfileEmail is not a string
 	 */
 
@@ -191,7 +191,7 @@ class Profile implements \JsonSerializable {
 	/**
 	 * mutator method for Profile Hash
 	 *
-	 * @param  \string $newProfileHash new string of Profile Hash
+	 * @param  string $newProfileHash new string of Profile Hash
 	 * @throws \InvalidArgumentException if $newProfileHash is not string
 	 * @throws \RangeException if hash content is incorrect
 	 */
@@ -359,7 +359,7 @@ class Profile implements \JsonSerializable {
 	/**
 	 * gets profile by the profile Id
 	 * @param  \PDO $pdo connection object
-	 * @param  \int $profileId
+	 * @param  int $profileId
 	 * @throws \InvalidArgumentException
 	 * @throws \RangeException
 	 * @throws \PDOException

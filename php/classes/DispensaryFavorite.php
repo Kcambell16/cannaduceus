@@ -58,7 +58,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	/**
 	 * accessor method for the dispensary Favorite Profile Id
 	 *
-	 * @return int|null value of dispensary Favorite Profile Id
+	 * @return int|null value of dispensaryFavoriteProfileId
 	 */
 	public function getDispensaryFavoriteProfileId(): int {
 		return $this->dispensaryFavoriteProfileId;
@@ -256,8 +256,8 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * This function retrieves a dispensary favorite by DispensaryFavoriteDispensary ID and DispensaryFavoriteProfile ID
 	 *
 	 * @param \PDO $pdo -- a PDO connection
-	 * @param  \int $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId -- $dispensaryFavorite to be retrieved
-	 * @param  \int $dispensaryFavoriteProfileId
+	 * @param  int $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId -- $dispensaryFavorite to be retrieved
+	 * @param  int $dispensaryFavoriteProfileId
 	 * @throws \InvalidArgumentException when $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId are not integers
 	 * @throws \RangeException when $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId are not positive
 	 * @throws \PDOException

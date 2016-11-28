@@ -127,6 +127,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test deleting a favorite that does not exist
+	 * @throws \Exception
 	 */
 	public function  testDeleteInvalidFavorite(){
 		//create a favorite and never actually insert it then try to delete it when it hasnt been inserted
@@ -163,6 +164,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test gettting a dispensary favorite by profileId that does not exist
+	 * @throws \Exception
 	 */
 	public function testGetInvalidDispensaryFavoriteByProfileId() {
 	$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($this->getPDO(), 5000);
@@ -187,8 +189,10 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		$this->assertEquals($pdoDispensaryFavorite->getDispensaryFavoriteProfileId(), $dispensaryFavorite->getDispensaryFavoriteProfileId());
 		$this->assertEquals($pdoDispensaryFavorite->getDispensaryFavoriteDispensaryId(), $dispensaryFavorite->getDispensaryFavoriteDispensaryId());
 	}
+	// Making these @throws from PDO/exception to just exception they seem to work fine that way gotta ask dylan why because im not sure
 	/**
 	 * test getting a dispensary favorite by dispensary Id
+	 * @throws \Exception
 	 */
 public function  testGetInvalidDispensaryFavoriteByDispensaryId() {
 	$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($this->getPDO(),5000);
