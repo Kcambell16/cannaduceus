@@ -1,15 +1,13 @@
 <?php
 namespace Edu\Cnm\Cannaduceus\Test;
 
-use Edu\Cnm\Cannaduceus\Strain;
-use Edu\Cnm\Cannaduceus\Profile;
-use Edu\Cnm\Cannaduceus\StrainFavorite;
+use Edu\Cnm\Cannaduceus\{Strain, Profile, StrainFavorite};
 
 // grab the test parameters
 require_once("CannaduceusTest.php");
+
 // grab the class being tested
 require_once(dirname(__DIR__) . "/classes/autoload.php");
-require_once ("../classes/autoload.php");
 
 /**
  * Full PHPUnit test for the strain favorite class
@@ -20,25 +18,25 @@ require_once ("../classes/autoload.php");
  * @see strainFavorite
  * @author Nathan Sanchez <nsanchez121@cnm.edu>
  * @version 1.0.0
- */
+ **/
 class strainFavoriteTest extends CannaduceusTest {
 	/*--------------------------------Declare Protected State Variables -----------------------*/
 
-
 	/**
 	 * Profile that created the Favorite; this is foreign key relations
-	 * @var string $profile
-	 */
+	 * @var mixed $profile
+	 **/
 	protected $profile;
+
 	/**
 	 * the favorite strain
-	 * @var string $strain
+	 * @var mixed $strain
 	 **/
 	protected $strain;
 
 	/**
 	 * create dependent objects before running each test
-	 */
+	 **/
 	public final function setUp() {
 		// run the default abstract setUp() method from parent first
 		parent::setUp();
@@ -60,7 +58,7 @@ class strainFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test inserting a valid strainFavorite and verify that the actual mySQL data matches
-	 */
+	 **/
 	public function testInsertValidStrainFavorite() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("strainFavorite");
@@ -84,9 +82,8 @@ class strainFavoriteTest extends CannaduceusTest {
 	/**
 	 * test inserting a favorite that already exists
 	 * @expectedException \PDOException
-	 */
+	 **/
 	public function testInsertInvalidFavorite(){
-
 
 		$strainFavorite = new StrainFavorite($this->profile->getProfileId(),$this->strain->getstrainId());
 		$strainFavorite->insert($this->getPDO());
@@ -101,7 +98,7 @@ class strainFavoriteTest extends CannaduceusTest {
 
 	/**
 	 *  test creating a favorite and then deleting it:(
-	 */
+	 **/
 	public function testDeleteValidFavorite() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("strainFavorite");
@@ -129,7 +126,8 @@ class strainFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test deleting a favorite that does not exist
-	 */
+	 * @exoectedException PDOException
+	 **/
 	public function  testDeleteInvalidFavorite(){
 		//create a favorite and never actually insert it then try to delete it when it hasnt been inserted
 
@@ -138,9 +136,11 @@ class strainFavoriteTest extends CannaduceusTest {
 		//now delete it
 		$strainFavorite->delete($this->getPDO());
 	}
+
 	/**
 	 * test getting a strain favorite by profile Id =^. _ .^=
-	 */
+	 * @exoectedException PDOException
+	 **/
 	public function testGetStrainFavoriteByProfileId(){
 
 
@@ -165,7 +165,8 @@ class strainFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test getting a invalid strain favorite by profileId
-	 */
+	 * @exoectedException PDOException
+	 **/
 	public function testGetInvalidStrainFavoriteByProfileId() {
 		$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($this->getPDO(), 5000);
 		$this->assertEquals(0, $strainFavorite->count());
@@ -174,7 +175,7 @@ class strainFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test getting strain favorite by strain Id
-	 */
+	 **/
 	public function testGetStrainFavoriteByStrainId() {
 		//get the number of initail rows (will be zero) and save it for later
 
@@ -191,7 +192,7 @@ class strainFavoriteTest extends CannaduceusTest {
 	}
 	/**
 	 * test getting a strain favorite by strain Id
-	 */
+	 **/
 	public function  testGetInvaildStrainFavoriteByStrainId() {
 		$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainId($this->getPDO(),5000);
 		$this->assertEquals(0, $strainFavorite->count());

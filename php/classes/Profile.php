@@ -56,7 +56,7 @@ class Profile implements \JsonSerializable {
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
-	 */
+	 **/
 
 	public function __construct(int $newProfileId = null, string $newProfileUserName, string $newProfileEmail, string $newProfileHash, string $newProfileSalt, string $newProfileActivation = null) {
 
@@ -88,7 +88,7 @@ class Profile implements \JsonSerializable {
 	 * accessor method for Profile Id
 	 *
 	 * @return int|null value of Profile Id
-	 */
+	 **/
 	public function getProfileId() {
 		return $this->profileId;
 	}
@@ -99,7 +99,7 @@ class Profile implements \JsonSerializable {
 	 * @param  int|null $newProfileId new value of Profile Id
 	 * @throws \RangeException if $newProfileId is not positive
 	 * @throws \TypeError if $newProfileId is not an integer
-	 */
+	 **/
 	public function setProfileId(int $newProfileId = null) {
 
 		// base case: if the newProfileId is null, this is a new profile without a mySQL assigned ID
@@ -123,7 +123,7 @@ class Profile implements \JsonSerializable {
 	 * accessor method for profile username
 	 *
 	 * @return string profileUserName
-	 */
+	 **/
 	public function getProfileUserName(): string {
 		return $this->profileUserName;
 	}
@@ -131,10 +131,10 @@ class Profile implements \JsonSerializable {
 	/**
 	 * mutator method for Profile UserName
 	 *
-	 * @param  string $newProfileUserName new binary of Profile UserName
+	 * @param  string $newProfileUserName new Profile UserName
 	 * @throws \InvalidArgumentException if $newProfileUserName is not a binary
-	 * @throws \RangeException if profile needs a user name
-	 */
+	 * @throws \RangeException if profile is too long
+	 **/
 
 
 	public function setProfileUserName(string $newProfileUserName) {
@@ -143,7 +143,7 @@ class Profile implements \JsonSerializable {
 		if(empty($newProfileUserName) === true) {
 			throw(new \InvalidArgumentException("Profile needs a username"));
 		}
-		if (strlen($newProfileUserName) === true) {
+		if (strlen($newProfileUserName) > 32) {
 			throw(new \RangeException("Profile needs a username"));
 		}
 
@@ -156,7 +156,7 @@ class Profile implements \JsonSerializable {
 	 * accessor method for ProfileEmail
 	 *
 	 * @return string for ProfileEmail
-	 */
+	 **/
 	public function getProfileEmail() {
 		return $this->profileEmail;
 	}
@@ -166,7 +166,7 @@ class Profile implements \JsonSerializable {
 	 *
 	 * @param  string $newProfileEmail new sting of ProfileEmail
 	 * @throws \UnexpectedValueException if $newProfileEmail is not a string
-	 */
+	 **/
 
 	public function setProfileEmail(string $newProfileEmail) {
 		$newProfileEmail = filter_var($newProfileEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -183,7 +183,7 @@ class Profile implements \JsonSerializable {
 	 * accessor method for Profile Hash
 	 *
 	 * @return string for Profile Hash
-	 */
+	 **/
 	public function getProfileHash() {
 		return $this->profileHash;
 	}
@@ -194,7 +194,7 @@ class Profile implements \JsonSerializable {
 	 * @param  string $newProfileHash new string of Profile Hash
 	 * @throws \InvalidArgumentException if $newProfileHash is not string
 	 * @throws \RangeException if hash content is incorrect
-	 */
+	 **/
 	public function setProfileHash(string $newProfileHash) {
 		// verify the profile hash content
 		$newProfileHash = trim($newProfileHash);
@@ -215,7 +215,7 @@ class Profile implements \JsonSerializable {
 	 * accessor method for Profile Salt
 	 *
 	 * @return string for Profile Salt
-	 */
+	 **/
 	public function getProfileSalt() {
 		return $this->profileSalt;
 	}
@@ -226,7 +226,7 @@ class Profile implements \JsonSerializable {
 	 * @param string $newProfileSalt new string for Profile Salt
 	 * @throws \InvalidArgumentException if salt is empty or insecure
 	 * @throws \RangeException if salt is not exactly 64 digits
-	 */
+	 **/
 	public function setProfileSalt(string $newProfileSalt) {
 		// verify the profile salt content
 		$newProfileSalt = trim($newProfileSalt);
@@ -247,7 +247,7 @@ class Profile implements \JsonSerializable {
 	 * accessor method for Profile Activation
 	 *
 	 * @return string for $newProfileActivation
-	 */
+	 **/
 	public function getProfileActivation() {
 		return $this->profileActivation;
 	}
@@ -257,7 +257,7 @@ class Profile implements \JsonSerializable {
 	 *
 	 * @param string $newProfileActivation new string of Profile Activation or null
 	 * @throws \UnexpectedValueException if $newProfileActivation is not string
-	 */
+	 **/
 	public function setProfileActivation(string $newProfileActivation = null) {
 		// verify the profile activation content
 		$newProfileActivation = trim($newProfileActivation);
@@ -276,7 +276,7 @@ class Profile implements \JsonSerializable {
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is to a PDO connection object
-	 */
+	 **/
 	public function insert(\PDO $pdo) {
 		// enforce the profileId is null (i.e., don't insert a profile that already exists)
 		if($this->profileId !== null) {
@@ -308,7 +308,7 @@ class Profile implements \JsonSerializable {
 	 * @param \PDO $pdo Pdo connection object
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
-	 */
+	 **/
 	public function delete(\PDO $pdo) {
 		//first check to make sure the profileId isn't null, cant delete something that hasn't been entered into SQL yet
 		if($this->profileId === null) {
@@ -335,7 +335,7 @@ class Profile implements \JsonSerializable {
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
-	 */
+	 **/
 
 	public function update(\PDO $pdo) {
 		//ensure that this profile is not null (hasn't been entered into SQL). can't update something that doesn't exist
@@ -359,12 +359,12 @@ class Profile implements \JsonSerializable {
 	/**
 	 * gets profile by the profile Id
 	 * @param  \PDO $pdo connection object
-	 * @param  int $profileId
-	 * @throws \InvalidArgumentException
-	 * @throws \RangeException
-	 * @throws \PDOException
-	 * @return Profile|null
-	 */
+	 * @param  int $profileId integer for profileId
+	 * @throws \InvalidArgumentException if profile is not a integer
+	 * @throws \RangeException if profile is not positive
+	 * @throws \PDOException when mySQL related errors occur
+	 * @return Profile|null profile or null
+	 **/
 
 	public static function getProfileByProfileId(\PDO $pdo, int $profileId) {
 
@@ -443,7 +443,7 @@ class Profile implements \JsonSerializable {
 	 * @throws \PDOException if mySQL related errors
 	 * @return mixed email found or null if not found
 	 * @throws \TypeError when variables are not the correct data type
-	 */
+	 **/
 
 
 	public static function getProfileByProfileEmail(\PDO $pdo, string $profileEmail) {
@@ -485,7 +485,7 @@ class Profile implements \JsonSerializable {
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
-	 */
+	 **/
 	public function jsonSerialize() {
 		$fields = get_object_vars($this);
 		unset($fields["profileHash"]);

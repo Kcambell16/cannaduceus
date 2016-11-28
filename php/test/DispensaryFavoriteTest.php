@@ -20,15 +20,15 @@ require_once ("../classes/autoload.php");
  * @see DispensaryFavorite
  * @author Nathan Sanchez <nsanchez121@cnm.edu>
  * @version 1.0.0
- */
+ **/
 class DispensaryFavoriteTest extends CannaduceusTest {
-	/*--------------------------------Declare Protected State Variables -----------------------*/
+	/*--------------------------------Declare Protected State Variables -----------------------**/
 
 
 	/**
 	 * Profile that created the Favorite; this is foreign key relations
 	 * @var string $profile
-	 */
+	 **/
 	protected $profile;
 	/**
 	 * the favorite dispensary
@@ -38,7 +38,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * create dependent objects before running each test
-	 */
+	 **/
 	public final function setUp() {
 		// run the default abstract setUp() method from parent first
 		parent::setUp();
@@ -60,7 +60,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test inserting a valid DispensaryFavorite and verify that the actual mySQL data matches
-	 */
+	 **/
 	public function testInsertValidDispensaryFavorite() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("dispensaryFavorite");
@@ -81,7 +81,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	/**
 	 * test inserting a favorite that already exists
 	 * @expectedException \PDOException
-	 */
+	 **/
 	public function testInsertInvalidFavorite(){
 
 
@@ -99,7 +99,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	/**
 	 * test creating a favorite and then deleting it:(\
 	 *
-	 */
+	 **/
 	public function testDeleteValidFavorite() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("dispensaryFavorite");
@@ -127,8 +127,8 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test deleting a favorite that does not exist
-	 * @throws \Exception
-	 */
+	 * @exoectedException PDOException
+	 **/
 	public function  testDeleteInvalidFavorite(){
 		//create a favorite and never actually insert it then try to delete it when it hasnt been inserted
 
@@ -139,7 +139,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	}
 	/**
 	 * test getting a dispensary favorite by profile Id
-	 */
+	 **/
 	public function testGetDispensaryFavoriteByProfileId(){
 
 
@@ -164,8 +164,8 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test gettting a dispensary favorite by profileId that does not exist
-	 * @throws \Exception
-	 */
+	 * @exoectedException PDOException 
+	 **/
 	public function testGetInvalidDispensaryFavoriteByProfileId() {
 	$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($this->getPDO(), 5000);
 	$this->assertEquals(0, $dispensaryFavorite->count());
@@ -174,7 +174,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test getting dispensary favorite by dispensary Id
-	 */
+	 **/
 	public function testGetDispensaryFavoriteByDispensaryId() {
 	//get the number of initial rows (will be zero) and save it for later
 
@@ -192,8 +192,8 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	// Making these @throws from PDO/exception to just exception they seem to work fine that way gotta ask dylan why because im not sure
 	/**
 	 * test getting a dispensary favorite by dispensary Id
-	 * @throws \Exception
-	 */
+	 * @exoectedException PDOException
+	 **/
 public function  testGetInvalidDispensaryFavoriteByDispensaryId() {
 	$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($this->getPDO(),5000);
 	$this->assertEquals(0, $dispensaryFavorite->count());

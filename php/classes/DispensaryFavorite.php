@@ -113,7 +113,7 @@ class DispensaryFavorite implements \JsonSerializable {
 		//Convert and store the dispensaryFavoriteDispensaryId
 		$this->dispensaryFavoriteDispensaryId = $newDispensaryFavoriteDispensaryId;
 	}
-
+// ASK ABOUT DISPENSARYFAVORITEPROFILEID AND DISPENSARYFAVORITEDISPENSARYID and how to handle them or if they even need to be there
 	/**
 	 * inserts this Dispensary Favorite into mySQL
 	 *
@@ -144,8 +144,8 @@ class DispensaryFavorite implements \JsonSerializable {
 	/**
 	 * deletes this favorite from the mySQL database
 	 * @param \PDO $pdo Pdo connection object
-	 * @param dispensaryFavoriteProfileId
-	 * @param dispensaryFavoriteDispensaryId
+	 * @param  dispensaryFavoriteProfileId
+	 * @param  dispensaryFavoriteDispensaryId
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 */
@@ -171,10 +171,10 @@ class DispensaryFavorite implements \JsonSerializable {
 	/**
 	 * This function retrieves a dispensary favorite by dispensary favorite profile ID
 	 * @param \PDO $pdo -- a PDO connection
-	 * @param  \int $dispensaryFavoriteProfileId -- dispensary favorite profile ID to be retrieved
+	 * @param  int $dispensaryFavoriteProfileId -- dispensary favorite profile ID to be retrieved
 	 * @throws \InvalidArgumentException when $dispensaryFavoriteProfileId is not an integer
 	 * @throws \RangeException when $dispensaryFavoriteProfileId is not a positive
-	 * @throws \PDOException
+	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 * @return \SplFixedArray of all dispensaryFavorites by profile id
 	 */
@@ -217,7 +217,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @param  \int $dispensaryFavoriteDispensaryId -- dispensary favorite dispensary ID to be retrieved
 	 * @throws \InvalidArgumentException when $dispensaryFavoriteDispensaryId is not an integer
 	 * @throws \RangeException when $dispensaryFavoriteDispensaryId is not a positive
-	 * @throws \PDOException
+	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 * @return \SplFixedArray of all dispensaryFavorites by dispensary id
 	 * @return null| $favorites
@@ -257,10 +257,10 @@ class DispensaryFavorite implements \JsonSerializable {
 	 *
 	 * @param \PDO $pdo -- a PDO connection
 	 * @param  int $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId -- $dispensaryFavorite to be retrieved
-	 * @param  int $dispensaryFavoriteProfileId
+	 * @param  int $dispensaryFavoriteProfileId integer for $dispensaryFavoriteProfileId
 	 * @throws \InvalidArgumentException when $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId are not integers
 	 * @throws \RangeException when $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId are not positive
-	 * @throws \PDOException
+	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 * @return null | $dispensaryFavorite
 	 */
