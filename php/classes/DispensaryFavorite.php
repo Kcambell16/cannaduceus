@@ -220,7 +220,6 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 * @return \SplFixedArray of all dispensaryFavorites by dispensary id
-	 * @return null| $favorites
 	 **/
 
 	public static function getDispensaryFavoriteByDispensaryFavoriteDispensaryId(\PDO $pdo, int $dispensaryFavoriteDispensaryId) {
