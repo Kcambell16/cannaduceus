@@ -292,9 +292,6 @@ class ProfileTest extends CannaduceusTest {
 			$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
 
 
-
-
-
 			$this->assertEquals($pdoProfile->getProfileUserName(), $this->VAILD_PROFILEUSERNAME1);
 			$this->assertEquals($pdoProfile->getProfileEmail(), $this->VAILD_PROFILEEMAIL1);
 			$this->assertEquals($pdoProfile->getProfileHash(), $this->VAILD_PROFILEHASH1);
@@ -309,13 +306,6 @@ class ProfileTest extends CannaduceusTest {
 		$this->assertNull($profile);
 
 	}
-
-
-
-
-
-
-
 
 
 	/**

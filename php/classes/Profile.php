@@ -480,34 +480,6 @@ class Profile implements \JsonSerializable {
 	return ($profile);
 	}
 
-	/**
-	 * retrieves all profiles
-	 *
-	 * @param \PDO $pdo pdo connection
-	 * @throws \PDOException if mySQL errors occur
-	 * @throws \TypeError when variables are not the correct data type
-	 * @return $retrievedProfile
-	 */
-	public static function getAllValidProfiles(\PDO $pdo) {
-
-		//create query template
-		$query = "SELECT profileId, profileEmail, profileHash, profileSalt, profileActivation FROM profile ";
-		$statement = $pdo->prepare($query);
-		$statement->execute();
-
-		//call the function to build an array of the retrieved results
-		try{
-			$retrievedProfile = Profile::getAllValidProfiles($statement);
-		} catch(\Exception $exception) {
-			//rethrow the exception if retrieval failed
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
-		}
-		return $retrievedProfile;
-	}
-
-
-
-
 
 	/**
 	 * formats the state variables for JSON serialization
