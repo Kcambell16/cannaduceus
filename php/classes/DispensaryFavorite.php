@@ -113,7 +113,7 @@ class DispensaryFavorite implements \JsonSerializable {
 		//Convert and store the dispensaryFavoriteDispensaryId
 		$this->dispensaryFavoriteDispensaryId = $newDispensaryFavoriteDispensaryId;
 	}
-// ASK ABOUT DISPENSARYFAVORITEPROFILEID AND DISPENSARYFAVORITEDISPENSARYID and how to handle them or if they even need to be there
+
 	/**
 	 * inserts this Dispensary Favorite into mySQL
 	 *
