@@ -255,7 +255,7 @@ class Profile implements \JsonSerializable {
 	/**
 	 * mutator method for Profile Activation
 	 *
-	 * @param string $newProfileActivation new string of Profile Activation
+	 * @param string $newProfileActivation new string of Profile Activation or null
 	 * @throws \UnexpectedValueException if $newProfileActivation is not string
 	 */
 	public function setProfileActivation(string $newProfileActivation = null) {
@@ -405,7 +405,6 @@ class Profile implements \JsonSerializable {
 	 * @return mixed profile found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
-	 * @return $profile| null
 	 **/
 	public static function getProfileByProfileUserName(\PDO $pdo, string $profileUserName) {
 		// sanitize the description before searching

@@ -303,7 +303,6 @@ class ProfileTest extends CannaduceusTest {
 	}
 	/**
 	 * test getting a profile by a name that does not exist!
-	 * @expectedException \PDOException
 	 */
 	public function testGetInvalidProfileByProfileUserName(){
 		$profile = Profile::getProfileByProfileUserName($this->getPDO(), "A Stoner with no name");
@@ -368,7 +367,6 @@ class ProfileTest extends CannaduceusTest {
 
 	/**
 	 * test getting a profile by a email that does not exist
-	 * @expectedException \PDOException
 	 */
 	public function testGetInvalidProfileProfileByProfileEmail(){
 			//grab a profile by searching for a Email that doesn't exist

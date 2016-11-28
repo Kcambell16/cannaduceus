@@ -127,8 +127,6 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test deleting a favorite that does not exist
-	 *
-	 * @expectedException \PDOException
 	 */
 	public function  testDeleteInvalidFavorite(){
 		//create a favorite and never actually insert it then try to delete it when it hasnt been inserted
@@ -165,7 +163,6 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test gettting a dispensary favorite by profileId that does not exist
-	 * @expectedException \PDOException
 	 */
 	public function testGetInvalidDispensaryFavoriteByProfileId() {
 	$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($this->getPDO(), 5000);
@@ -192,7 +189,6 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	}
 	/**
 	 * test getting a dispensary favorite by dispensary Id
-	 * @expectedException \PDOException
 	 */
 public function  testGetInvalidDispensaryFavoriteByDispensaryId() {
 	$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($this->getPDO(),5000);
