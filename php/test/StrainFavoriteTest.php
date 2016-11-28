@@ -15,10 +15,10 @@ require_once ("../classes/autoload.php");
  * Full PHPUnit test for the strain favorite class
  *
  * this is a complete PHPUnit test of the strain favorite class. It is complete becasue *ALL* mySQL/PDO enabled methods
- * are tested for both invalid and vailid inputs.
+ * are tested for both invalid and valid inputs.
  *
  * @see strainFavorite
- * @author nathan sanchez <nsanchez121@cnm.edu>
+ * @author Nathan Sanchez <nsanchez121@cnm.edu>
  * @version 1.0.0
  */
 class strainFavoriteTest extends CannaduceusTest {
@@ -168,6 +168,7 @@ class strainFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test getting a invalid strain favorite by profileId
+	 * @expectedException \PDOException
 	 */
 	public function testGetInvalidStrainFavoriteByProfileId() {
 		$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($this->getPDO(), 5000);
@@ -177,7 +178,6 @@ class strainFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test getting strain favorite by strain Id
-	 * @expectedException \PDOException
 	 */
 	public function testGetStrainFavoriteByStrainId() {
 		//get the number of initail rows (will be zero) and save it for later
@@ -195,6 +195,7 @@ class strainFavoriteTest extends CannaduceusTest {
 	}
 	/**
 	 * test getting a strain favorite by strain Id
+	 * @expectedException \PDOException
 	 */
 	public function  testGetInvaildStrainFavoriteByStrainId() {
 		$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainId($this->getPDO(),5000);

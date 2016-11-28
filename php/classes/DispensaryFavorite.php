@@ -177,7 +177,6 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @throws \PDOException
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 * @return \SplFixedArray of all dispensaryFavorites by profile id
-	 * @return null | $favorites
 	 */
 
 	public static function getDispensaryFavoriteByDispensaryFavoriteProfileId(\PDO $pdo, $dispensaryFavoriteProfileId) {

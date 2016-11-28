@@ -8,17 +8,17 @@ use Edu\Cnm\Cannaduceus\DispensaryFavorite;
 // grab the test parameters
 require_once("CannaduceusTest.php");
 // grab the class being tested
-//require_once(dirname(__DIR__) . "/classes/autoload.php");
+require_once(dirname(__DIR__) . "/classes/autoload.php");
 require_once ("../classes/autoload.php");
 
 /**
  * Full PHPUnit test for the dispensary favorite class
  *
  * this is a complete PHPUnit test of the dispensary favorite class. It is complete becasue *ALL* mySQL/PDO enabled methods
- * are tested for both invalid and vailid inputs.
+ * are tested for both invalid and valid inputs.
  *
  * @see DispensaryFavorite
- * @author nathan sanchez <nsanchez121@cnm.edu>
+ * @author Nathan Sanchez <nsanchez121@cnm.edu>
  * @version 1.0.0
  */
 class DispensaryFavoriteTest extends CannaduceusTest {
@@ -98,7 +98,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test creating a favorite and then deleting it:(\
-	 * @expectedException \PDOException
+	 *
 	 */
 	public function testDeleteValidFavorite() {
 		// count the number of rows and save it for later
@@ -139,8 +139,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		$dispensaryFavorite->delete($this->getPDO());
 	}
 	/**
-	 * test getting a dispensary favorite by profile Id =^. _ .^=
-	 * @expectedException \PDOException
+	 * test getting a dispensary favorite by profile Id
 	 */
 	public function testGetDispensaryFavoriteByProfileId(){
 
@@ -166,6 +165,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test gettting a dispensary favorite by profileId that does not exist
+	 * @expectedException \PDOException
 	 */
 	public function testGetInvalidDispensaryFavoriteByProfileId() {
 	$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($this->getPDO(), 5000);
@@ -175,10 +175,9 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test getting dispensary favorite by dispensary Id
-	 * @expectedException \PDOException
 	 */
 	public function testGetDispensaryFavoriteByDispensaryId() {
-	//get the number of initail rows (will be zero) and save it for later
+	//get the number of initial rows (will be zero) and save it for later
 
 	// create a dummy dispensary favorite
 		$dispensaryFavorite = new DispensaryFavorite($this->profile->getProfileId(),$this->dispensary->getDispensaryId());
@@ -193,8 +192,9 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	}
 	/**
 	 * test getting a dispensary favorite by dispensary Id
+	 * @expectedException \PDOException
 	 */
-public function  testGetInvaildDispensaryFavoriteByDispensaryId() {
+public function  testGetInvalidDispensaryFavoriteByDispensaryId() {
 	$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($this->getPDO(),5000);
 	$this->assertEquals(0, $dispensaryFavorite->count());
 
