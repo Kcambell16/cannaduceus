@@ -8,14 +8,15 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Brand</a>
+			<a class="navbar-brand" routerLink="">Cannaduceus</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
 				<li><a routerLink="">Home</a></li>
-				<li><a rotuerLink="/strain">Strain</a></li>
+				<li><a routerLink="/strain">Strain</a></li>
+				<li><a routerLink="/dispensary">Dispensary</a></li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
