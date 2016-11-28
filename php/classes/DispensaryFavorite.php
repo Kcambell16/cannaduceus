@@ -9,21 +9,21 @@ require_once(dirname(__DIR__) . "/classes/autoload.php");
  *
  * @author Nathan A Sanchez (nsanchez121@cnm.edu)
  * @version 1.0.0
- */
+ **/
 
 class DispensaryFavorite implements \JsonSerializable {
 
 	/**
 	 * id for the DispensaryFavoriteProfileId this is the foreign keys used to make a primary key
 	 * @var int $dispensaryFavoriteProfileId
-	 */
+	 **/
 	private $dispensaryFavoriteProfileId;
 
 	/**
 	 * id for the DispensaryFavoriteDispensaryId this is one of the foreign keys used to make a primary key
 	 *
 	 * @var int $dispensaryFavoriteDispensaryId
-	 */
+	 **/
 	private $dispensaryFavoriteDispensaryId;
 
 	/** Constructor for the new dispensaryFavorite
@@ -34,7 +34,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
-	 */
+	 **/
 
 	public function __construct(int $newDispensaryFavoriteProfileId = null, int $newDispensaryFavoriteDispensaryId) {
 		try {
@@ -59,7 +59,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * accessor method for the dispensary Favorite Profile Id
 	 *
 	 * @return int|null value of dispensaryFavoriteProfileId
-	 */
+	 **/
 	public function getDispensaryFavoriteProfileId(): int {
 		return $this->dispensaryFavoriteProfileId;
 	}
@@ -68,7 +68,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * mutator method for dispensaryFavoriteId
 	 * @param int $newDispensaryFavoriteProfileId
 	 * @throws \UnexpectedValueException if dispensary favorite profile id is not valid
-	 */
+	 **/
 
 
 	public function setDispensaryFavoriteProfileId(int $newDispensaryFavoriteProfileId) {
@@ -92,7 +92,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * accessor method for dispensaryFavoriteDispensaryId
 	 *
 	 * @return int|null value of dispensaryFavoriteDispensaryId
-	 */
+	 **/
 	public function getDispensaryFavoriteDispensaryId() {
 		return $this->dispensaryFavoriteDispensaryId;
 	}
@@ -102,7 +102,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 *
 	 * @param int $newDispensaryFavoriteDispensaryId new value of dispensaryFavoriteDispensaryId
 	 * @throws \InvalidArgumentException if $newDispensaryFavoriteDispensaryId is not positive
-	 */
+	 **/
 	public function setDispensaryFavoriteDispensaryId(int $newDispensaryFavoriteDispensaryId) {
 
 
@@ -122,7 +122,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @param dispensaryFavoriteDispensaryId
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is to a PDO connection object
-	 */
+	 **/
 	public function insert(\PDO $pdo) {
 		// enforce the dispensaryFavoriteProfileId is null (i.e., don't insert a favorite that already exists)
 
@@ -148,7 +148,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @param  dispensaryFavoriteDispensaryId
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
-	 */
+	 **/
 	public function delete(\PDO $pdo) {
 		//first check to make sure the dispensaryFavoriteProfileId isn't null, cant delete something that hasn't been entered into SQL yet
 		if($this->dispensaryFavoriteProfileId === null  && $this->dispensaryFavoriteDispensaryId === null) {
@@ -177,7 +177,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 * @return \SplFixedArray of all dispensaryFavorites by profile id
-	 */
+	 **/
 
 	public static function getDispensaryFavoriteByDispensaryFavoriteProfileId(\PDO $pdo, $dispensaryFavoriteProfileId) {
 		//  check validity of $dispensaryId
@@ -221,7 +221,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 * @return \SplFixedArray of all dispensaryFavorites by dispensary id
 	 * @return null| $favorites
-	 */
+	 **/
 
 	public static function getDispensaryFavoriteByDispensaryFavoriteDispensaryId(\PDO $pdo, int $dispensaryFavoriteDispensaryId) {
 		//  check validity of $dispensaryId
@@ -263,7 +263,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 * @return null | $dispensaryFavorite
-	 */
+	 **/
 
 	public static function getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId(\PDO $pdo, int $dispensaryFavoriteProfileId, int $dispensaryFavoriteDispensaryId ) {
 		//  check validity of $dispensaryFavorite
@@ -297,7 +297,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * formats the state variables for JSON serialization
 	 *
 	 * @return array resulting state variables to serialize
-	 */
+	 **/
 	public function jsonSerialize() {
 		$fields = get_object_vars($this);
 		unset($fields["profileHash"]);

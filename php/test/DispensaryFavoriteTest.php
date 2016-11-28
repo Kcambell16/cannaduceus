@@ -9,7 +9,6 @@ use Edu\Cnm\Cannaduceus\DispensaryFavorite;
 require_once("CannaduceusTest.php");
 // grab the class being tested
 require_once(dirname(__DIR__) . "/classes/autoload.php");
-require_once ("../classes/autoload.php");
 
 /**
  * Full PHPUnit test for the dispensary favorite class
