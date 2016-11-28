@@ -28,7 +28,7 @@ class DispensaryFavorite implements \JsonSerializable {
 
 	/** Constructor for the new dispensaryFavorite
 	 *
-	 * @param int | null $newDispensaryFavoriteId id of the profile from profile class
+	 * @param int | null $newDispensaryFavoriteProfileId id of the profile from profile class
 	 * @param int | null $newDispensaryFavoriteDispensaryId id of the dispensary from the dispensary class
 	 * @throws \InvalidArgumentException if data types are not vaild
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
@@ -67,7 +67,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	/**
 	 * mutator method for dispensaryFavoriteId
 	 * @param int $newDispensaryFavoriteProfileId
-	 * @internal param int|null $DispensaryFavoriteId new value of dispensary favorite
+	 * @throws \UnexpectedValueException if dispensary favorite profile id is not valid
 	 */
 
 
@@ -81,7 +81,7 @@ class DispensaryFavorite implements \JsonSerializable {
 		// validate that the new dispensaryFavoriteProfileId is an integer
 		$newDispensaryFavoriteProfileId = filter_var($newDispensaryFavoriteProfileId);
 		if($newDispensaryFavoriteProfileId === false) {
-			throw(new \UnexpectedValueException("dispensary Favorite Profile Id is not a vaild interger"));
+			throw(new \UnexpectedValueException("dispensary Favorite Profile Id is not a valid interger"));
 		}
 
 		//Convert and store the dispensaryFavoriteProfileId
@@ -101,7 +101,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * mutator method for dispensaryFavoriteDispensaryId
 	 *
 	 * @param int $newDispensaryFavoriteDispensaryId new value of dispensaryFavoriteDispensaryId
-	 * @throws \UnexpectedValueException if $newDispensaryFavoriteDispensaryId is not an integer
+	 * @throws \InvalidArgumentException if $newDispensaryFavoriteDispensaryId is not positive
 	 */
 	public function setDispensaryFavoriteDispensaryId(int $newDispensaryFavoriteDispensaryId) {
 
@@ -118,8 +118,8 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * inserts this Dispensary Favorite into mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param $profileId
-	 * @param $dispensaryId
+	 * @param dispensaryFavoriteProfileId
+	 * @param dispensaryFavoriteDispensaryId
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is to a PDO connection object
 	 */
@@ -144,6 +144,8 @@ class DispensaryFavorite implements \JsonSerializable {
 	/**
 	 * deletes this favorite from the mySQL database
 	 * @param \PDO $pdo Pdo connection object
+	 * @param dispensaryFavoriteProfileId
+	 * @param dispensaryFavoriteDispensaryId
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 */
@@ -173,7 +175,9 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @throws \InvalidArgumentException when $dispensaryFavoriteProfileId is not an integer
 	 * @throws \RangeException when $dispensaryFavoriteProfileId is not a positive
 	 * @throws \PDOException
+	 * @throws \TypeError if $pdo is not a PDO connection object
 	 * @return \SplFixedArray of all dispensaryFavorites by profile id
+	 * @return null | $favorites
 	 */
 
 	public static function getDispensaryFavoriteByDispensaryFavoriteProfileId(\PDO $pdo, $dispensaryFavoriteProfileId) {
@@ -215,7 +219,9 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @throws \InvalidArgumentException when $dispensaryFavoriteDispensaryId is not an integer
 	 * @throws \RangeException when $dispensaryFavoriteDispensaryId is not a positive
 	 * @throws \PDOException
+	 * @throws \TypeError if $pdo is not a PDO connection object
 	 * @return \SplFixedArray of all dispensaryFavorites by dispensary id
+	 * @return null| $favorites
 	 */
 
 	public static function getDispensaryFavoriteByDispensaryFavoriteDispensaryId(\PDO $pdo, int $dispensaryFavoriteDispensaryId) {
@@ -256,6 +262,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 * @throws \InvalidArgumentException when $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId are not integers
 	 * @throws \RangeException when $dispensaryFavoriteDispensaryId and $dispensaryFavoriteProfileId are not positive
 	 * @throws \PDOException
+	 * @throws \TypeError if $pdo is not a PDO connection object
 	 * @return null | $dispensaryFavorite
 	 */
 

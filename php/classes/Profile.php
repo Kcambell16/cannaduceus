@@ -122,7 +122,7 @@ class Profile implements \JsonSerializable {
 	/**
 	 * accessor method for profile username
 	 *
-	 * @return string
+	 * @return string profileUserName
 	 */
 	public function getProfileUserName(): string {
 		return $this->profileUserName;
@@ -132,7 +132,8 @@ class Profile implements \JsonSerializable {
 	 * mutator method for Profile UserName
 	 *
 	 * @param string $newProfileUserName new binary of Profile UserName
-	 * @throws /UnexpectedValueException if $newProfileUserName is not a binary
+	 * @throws \InvalidArgumentException if $newProfileUserName is not a binary
+	 * @throws \RangeException if profile needs a user name
 	 */
 
 
@@ -192,6 +193,7 @@ class Profile implements \JsonSerializable {
 	 *
 	 * @param string $newProfileHash new string of Profile Hash
 	 * @throws \UnexpectedValueException if $newProfileHash is not string
+	 * @throws \RangeException if hash content is incorrect
 	 */
 	public function setProfileHash(string $newProfileHash) {
 		// verify the profile hash content
@@ -223,7 +225,7 @@ class Profile implements \JsonSerializable {
 	 *
 	 * @param string $newProfileSalt new string for Profile Salt
 	 * @throws \InvalidArgumentException if salt is empty or insecure
-	 * @throws @throws RangeException if salt is not exactly 64 digits
+	 * @throws \RangeException if salt is not exactly 64 digits
 	 */
 	public function setProfileSalt(string $newProfileSalt) {
 		// verify the profile salt content
@@ -355,8 +357,12 @@ class Profile implements \JsonSerializable {
 
 
 	/**
-	 * @param \PDO $pdo
+	 * gets profile by the profile Id
+	 * @param \PDO $pdo connection object
 	 * @param int $profileId
+	 * @throws \InvalidArgumentException
+	 * @throws \RangeException
+	 * @throws \PDOException
 	 * @return Profile|null
 	 */
 
@@ -399,6 +405,7 @@ class Profile implements \JsonSerializable {
 	 * @return mixed profile found or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
+	 * @return $profile| null
 	 **/
 	public static function getProfileByProfileUserName(\PDO $pdo, string $profileUserName) {
 		// sanitize the description before searching
@@ -431,12 +438,13 @@ class Profile implements \JsonSerializable {
 	}
 
 	/**
+	 * gets profile by profile email
 	 * @param \PDO $pdo
 	 * @param string $profileEmail Email to search for
 	 * @throws \PDOException if mySQL related errors
 	 * @return mixed email found or null if not found
 	 * @throws \TypeError when variables are not the correct data type
-	*/
+	 */
 
 
 	public static function getProfileByProfileEmail(\PDO $pdo, string $profileEmail) {
@@ -476,9 +484,11 @@ class Profile implements \JsonSerializable {
 	/**
 	 * retrieves all profiles
 	 *
-	 * @param /PDO $pdo pdo connection
+	 * @param \PDO $pdo pdo connection
 	 * @return \SplFixedArray all organizations
 	 * @throws \PDOException if mySQL errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 * @return $retrievedProfile
 	 */
 	public static function getAllValidProfiles(\PDO $pdo) {
 

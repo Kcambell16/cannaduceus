@@ -31,7 +31,7 @@ class strainFavoriteTest extends CannaduceusTest {
 	protected $profile;
 	/**
 	 * the favorite strain
-	 * @var string 
+	 * @var string $strain
 	 **/
 	protected $strain;
 
@@ -99,7 +99,8 @@ class strainFavoriteTest extends CannaduceusTest {
 
 
 	/**
-	 * test creating a favorite and then deleting it:(
+	 *  test creating a favorite and then deleting it:(
+	 * @expectedException \PDOException
 	 */
 	public function testDeleteValidFavorite() {
 		// count the number of rows and save it for later
@@ -142,7 +143,7 @@ class strainFavoriteTest extends CannaduceusTest {
 	/**
 	 * test getting a strain favorite by profile Id =^. _ .^=
 	 */
-	public function testGetstrainFavoriteByProfileId(){
+	public function testGetStrainFavoriteByProfileId(){
 
 
 		// create a dummy strain favorite
@@ -165,7 +166,7 @@ class strainFavoriteTest extends CannaduceusTest {
 
 
 	/**
-	 * test gettting a strain favorite by profileId that does not exist
+	 * test getting a invalid strain favorite by profileId
 	 */
 	public function testGetInvalidStrainFavoriteByProfileId() {
 		$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($this->getPDO(), 5000);
@@ -175,6 +176,7 @@ class strainFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test getting strain favorite by strain Id
+	 * @expectedException \PDOException
 	 */
 	public function testGetStrainFavoriteByStrainId() {
 		//get the number of initail rows (will be zero) and save it for later
