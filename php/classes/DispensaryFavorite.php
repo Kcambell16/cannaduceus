@@ -8,7 +8,7 @@ require_once(dirname(__DIR__) . "/classes/autoload.php");
  * this is just one of the dispensary favorites out of the many that will be favorited
  *
  * @author Nathan A Sanchez (nsanchez121@cnm.edu)
- * @version
+ * @version 1.0.0
  */
 
 class DispensaryFavorite implements \JsonSerializable {
@@ -30,7 +30,7 @@ class DispensaryFavorite implements \JsonSerializable {
 	 *
 	 * @param int | null $newDispensaryFavoriteProfileId id of the profile from profile class
 	 * @param int | null $newDispensaryFavoriteDispensaryId id of the dispensary from the dispensary class
-	 * @throws \InvalidArgumentException if data types are not vaild
+	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs

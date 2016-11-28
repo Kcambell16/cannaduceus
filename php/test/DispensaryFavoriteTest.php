@@ -19,6 +19,7 @@ require_once ("../classes/autoload.php");
  *
  * @see DispensaryFavorite
  * @author nathan sanchez <nsanchez121@cnm.edu>
+ * @version 1.0.0
  */
 class DispensaryFavoriteTest extends CannaduceusTest {
 	/*--------------------------------Declare Protected State Variables -----------------------*/
@@ -96,7 +97,8 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 
 	/**
-	 * test creating a favorite and then deleting it:(
+	 * test creating a favorite and then deleting it:(\
+	 * @expectedException \PDOException
 	 */
 	public function testDeleteValidFavorite() {
 		// count the number of rows and save it for later
@@ -138,6 +140,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 	}
 	/**
 	 * test getting a dispensary favorite by profile Id =^. _ .^=
+	 * @expectedException \PDOException
 	 */
 	public function testGetDispensaryFavoriteByProfileId(){
 
@@ -172,6 +175,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * test getting dispensary favorite by dispensary Id
+	 * @expectedException \PDOException
 	 */
 	public function testGetDispensaryFavoriteByDispensaryId() {
 	//get the number of initail rows (will be zero) and save it for later

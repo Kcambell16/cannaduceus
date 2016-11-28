@@ -19,6 +19,7 @@ require_once ("../classes/autoload.php");
  *
  * @see strainFavorite
  * @author nathan sanchez <nsanchez121@cnm.edu>
+ * @version 1.0.0
  */
 class strainFavoriteTest extends CannaduceusTest {
 	/*--------------------------------Declare Protected State Variables -----------------------*/

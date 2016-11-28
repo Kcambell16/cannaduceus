@@ -18,6 +18,7 @@ require_once (dirname(__DIR__) . "/classes/autoload.php");
  *
  * @see Profile
  * @author nathan sanchez <nsanchez121@cnm.edu>
+ * @version 1.0.0
  **/
 class ProfileTest extends CannaduceusTest {
 	/*--------------------------------Declare Protected State Variables -----------------------*/
@@ -120,6 +121,7 @@ class ProfileTest extends CannaduceusTest {
 
 	/**
 	 *test inserting a vaild profile and verify that what's in mySQL matches what was input
+	 * @expectedException \PDOException
 	 */
 	public function testInsertValidProfile() {
 		// count the number of rows initially the database (0)
@@ -176,6 +178,7 @@ class ProfileTest extends CannaduceusTest {
 // this is how get by email should look you dummy
 	/**
 	 * test inserting a profile, editing it, and then updating it
+	 * @expectedException \PDOException
 	 */
 	public function testUpdatedValidProfile(){
 				//count the initial number of rows and assign it to the variable $numRows
@@ -231,6 +234,7 @@ class ProfileTest extends CannaduceusTest {
 
 	/**
 	 * test creating a profile and then 410'ing it
+	 * @expectedException \PDOException
 	 */
 	public function testDeleteValidProfile(){
 				//count the rows assign that number to a variable and save it for later
@@ -277,6 +281,7 @@ class ProfileTest extends CannaduceusTest {
 
 	/**
 	 * test getting a profile by profile name
+	 * @expectedException \PDOException
 	 */
 	public function testGetProfileByProfileUserName(){
 			//get number of initial rows (will be zero) and save it for later
@@ -302,6 +307,7 @@ class ProfileTest extends CannaduceusTest {
 	}
 	/**
 	 * test getting a profile by a name that does not exist!
+	 * @expectedException \PDOException
 	 */
 	public function testGetInvalidProfileByProfileUserName(){
 		$profile = Profile::getProfileByProfileUserName($this->getPDO(), "A Stoner with no name");
@@ -319,6 +325,7 @@ class ProfileTest extends CannaduceusTest {
 
 	/**
 	 * test getting a profile by the profile email
+	 * @expectedException \PDOException
 	 **/
 	public function testGetProfileByProfileEmail() {
 		//get number of initial rows (will be zero) and save it for later
