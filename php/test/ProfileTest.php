@@ -120,7 +120,7 @@ class ProfileTest extends CannaduceusTest {
 
 
 	/**
-	 *test inserting a vaild profile and verify that what's in mySQL matches what was input
+	 *test inserting a valid profile and verify that what's in mySQL matches what was input
 	 * @expectedException \PDOException
 	 */
 	public function testInsertValidProfile() {

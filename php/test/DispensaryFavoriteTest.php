@@ -27,7 +27,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 
 	/**
 	 * Profile that created the Favorite; this is foreign key relations
-	 * @var $profile
+	 * @var string $profile
 	 */
 	protected $profile;
 	/**
