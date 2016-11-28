@@ -27,7 +27,7 @@ class dispensaryLeafRating {
 
 	/**
 	 *profile Id from the profile class;
-	 * @var string $dispensaryLeafRatingProfileId
+	 * @var int $dispensaryLeafRatingProfileId
 	 **/
 	private $dispensaryLeafRatingProfileId;
 
@@ -38,7 +38,7 @@ class dispensaryLeafRating {
 	 * @param int | null $newDispensaryLeafRatingDispensaryId the id of the dispensary from the dispensary class
 	 * @param int | null $newDispensaryLeafRatingProfileId the id of the profile from the profile class
 	 * @throws \InvalidArgumentException if data types are not valid
-	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
+	 * @throws \RangeException if data values are out of bounds (e.g., negative integers)
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 */
@@ -210,14 +210,14 @@ class dispensaryLeafRating {
 	}//update
 
 	/**
-	 * This function retrieves a Dispensary Leaf Rating by Dispensary Leaf Rating Rating
+	 * This function retrieves an array of  Dispensary Leaf Ratings by Dispensary Leaf Rating Rating
 	 *
 	 * @param \PDO $pdo -- a PDO connection
 	 * @param  \int dispensaryLeafRating -- dispensary leaf rating to be retrieved
 	 * @throws \InvalidArgumentException when $dispensaryLeafRating is not an integer
 	 * @throws \RangeException when $dispensaryLeafRatingRating is too long
 	 * @throws \PDOException
-	 * @return null | $dispensaryLeafRating
+	 * @return null | \SplFixedArray array of Dispensaries with the same $ispensaryLeafRatingRating
 	 */
 
 	public static function getDispensaryLeafRatingByDispensaryLeafRatingRating(\PDO $pdo, $dispensaryLeafRating) {
