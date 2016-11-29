@@ -9,7 +9,7 @@ use Edu\Cnm\Cannaduceus;
 /**
  * * api for DispensaryReview class
  *
- * @author Derek Mauldin <derek.e.mauldin@gmai.com>
+ * @author Hector Lozano <hlozano2@cnm.edu>
  **/
 
 
@@ -33,11 +33,13 @@ try {
 
 
 
-	//determines which HTTP Method needs to be processed and stores the result in $method.
+	//determines which HTTP Method was used.
 	$method = array_key_exists("HTTP_x_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
 	//stores the Primary Key for the GET, DELETE, and PUT methods in $id. This key will come in the URL sent by the front end. If no key is present, $id will remain empty. Note that the input is filtered.
 	$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+	$profileId = filter_input(INPUT_GET, "profileId", FILTER_VALIDATE_INT);
+	$content = filter_input(INPUT_GET, "content", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
 
 
