@@ -2,14 +2,14 @@
 
 require_once "autoloader.php";
 require_once "/lib/xsrf.php";
-require_once "/etc/apache2/capstone-mysql/encrypted-config.php";
+require_once "/etc/apache2/cannaduceus/encrypted-config.php";
 
 use Edu\Cnm\cannaduceus;
 
 /**
- * * api for Tweet class
+ * * api for profile class
  *
- * @author Derek Mauldin <derek.e.mauldin@gmai.com>
+ * @author Nathan Sanchez <nsanchez121@cnm.com>
  **/
 
 
@@ -29,7 +29,7 @@ $reply->data = null;
 
 try {
 	//grab the mySQL DataBase connection
-	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/tweet.ini");
+	$pdo = connectToEncryptedMySQL("/etc/apache2/cannaduceus/profile.ini");
 
 
 
@@ -45,4 +45,46 @@ try {
 	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true || $id < 0)) {
 		throw(new InvalidArgumentException("id cannot be empty or negative", 405));
 	}
+
+// Here, we determine if the reques received is a GET request
+if($method === "GET") {
+	//set XSRF cookie
+	setXsrfCookie("/");
+	// handle GET request - if id is present, then profile is presant that profile  is returned,
+
+
+
+	// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested Profile by Profile ID from the DataBase and store it in $profile.
+	if(empty($profileId) === false) {
+		$profile = Profile::getProfileByProfileId($pdo, $profileId);
+		if($profile !== null) {
+			$reply->data = $profile;
+			// here we store the $profile in the $reply->data state variable
+		}
+	} else if(empty($profileUsername) === false) {
+	$profile = Profile::getProfilebyProfileUserName($pdo, $profileId);
+		if($profile !== null) {
+			$reply->data = $profile;
+		}
+	} else if (empty($profileEmail) === false) {
+		$profile = Profile::getProfileByProfileEmail($pdo, $profileId);
+		if($profile !== null) {
+			$reply->data = $profile;
+		}
+	}
+
+
+
+
+
+
+
+
+
+	}
 }
+
+
+
+
+
