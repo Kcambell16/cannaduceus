@@ -1,7 +1,6 @@
 <?php
-
-require_once "autoloader.php";
-require_once "/lib/xsrf.php";
+require_once dirname(__DIR__, 3 ) . "/php/classes/autoloader.php";
+require_once dirname(__DIR__, 3 ) . "/php/lib/xsrf.php";
 require_once "/etc/apache2/cannaduceus/encrypted-config.php";
 
 use Edu\Cnm\Cannaduceus;
