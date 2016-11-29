@@ -58,19 +58,19 @@ try {
 			$dispensaryReview = DispensaryReview::getDispensaryReviewByDispensaryReviewId($pdo, $id);
 			if($dispensaryReview !== null) {
 				$reply->data = $dispensaryReview;
-				// Here, we store the retreived DispensaryReview in the $reply->data state variable.
+
 			} else if(empty($dispensaryReviewProfileId) === false) {
 				$dispensaryReviews = DispensaryReview::getDispensaryReviewByDispensaryReviewProfileId($pdo, $id);
 				if($dispensaryReviews !== null) {
-					$reply->data = $dispensaryRevies;
+					$reply->data = $dispensaryReviews;
 				}
 
-
-			} else {
-				$dispensaryReviews = DispensaryReview::getAllDispensaryReviews($pdo);
+			} else if(empty($dispensaryReviewDispensaryId) === false) {
+				$dispensaryReviews = DispensaryReview::getDispensaryReviewByDispensaryReviewDispensaryId($pdo, $id);
 				if($dispensaryReviews !== null) {
 					$reply->data = $dispensaryReviews;
 				}
-			}
-			// If there is nothing in $id, and it is a GET request, then we simply return all dispensaryReviews. We store all the dispensaryReviews in the $dispensaryReview variable, and then store them in the $reply->data state variable.
+
+
+
 		}
