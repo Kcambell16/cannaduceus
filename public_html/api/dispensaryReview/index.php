@@ -82,7 +82,7 @@ try {
 			$requestContent = file_get_contents("php://input");
 			$requestObject = json_decode($requestContent);
 
-			//make sure tweet content is available (required field)
-			if(empty($requestObject->tweetContent) === true) {
-				throw(new \InvalidArgumentException ("No content for Tweet.", 405));
+			//make sure dispensaryReview content is available (required field)
+			if(empty($requestObject->dispensaryReviewTxt) === true) {
+				throw(new \InvalidArgumentException ("No content for Review.", 405));
 			}
