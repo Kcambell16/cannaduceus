@@ -56,22 +56,22 @@ try {
 
 
 
-		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested Tweet by Tweet ID from the DataBase and store it in $tweet.
+		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested DispensaryReview by DispensaryReview ID from the DataBase and store it in $dispensaryReview.
 		if(empty($id) === false) {
-			$tweet = Tweet::getTweetByTweetId($pdo, $id);
-			if($tweet !== null) {
+			$dispensaryReview = DispensaryReview::getDispensaryReviewByDispensaryReviewId($pdo, $id);
+			if($dispensaryReview !== null) {
 				$reply->data = $tweet;
-				// Here, we store the retreived Tweet in the $reply->data state variable.
+				// Here, we store the retreived DispensaryReview in the $reply->data state variable.
 			}
 
 
 
 
 		} else {
-			$tweets = Tweet::getAllTweets($pdo);
-			if($tweets !== null) {
-				$reply->data = $tweets;
+			$dispensaryReviews = DispensaryReview::getAllDispensaryReviews($pdo);
+			if($dispensaryReviews !== null) {
+				$reply->data = $dispensaryReviews;
 			}
 		}
-		// If there is nothing in $id, and it is a GET request, then we simply return all tweets. We store all the tweets in the $tweets varable, and then store them in the $reply->data state variable.
+		// If there is nothing in $id, and it is a GET request, then we simply return all dispensaryReviews. We store all the dispensaryReviews in the $dispensaryReview variable, and then store them in the $reply->data state variable.
 }
