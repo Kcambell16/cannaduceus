@@ -13,7 +13,6 @@ use Edu\Cnm\Cannaduceus;
  **/
 
 
-
 // Check the session status. If it is not active, start the session.
 if(session_status() !== PHP_SESSION_ACTIVE) {
 	session_start();
@@ -32,7 +31,6 @@ try {
 	$pdo = connectToEncryptedMySQL("/etc/apache2/cannaduceus/dispensaryReview.ini");
 
 
-
 	//determines which HTTP Method was used.
 	$method = array_key_exists("HTTP_x_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
@@ -42,38 +40,37 @@ try {
 	$dispensaryReviewDispensaryId = filter_input(INPUT_GET, "content", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
 
-
 	//Here we check and make sure that we have the Primary Key for the DELETE and PUT requests. If the request is a PUT or DELETE and no key is present in $id, An Exception is thrown.
 	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true || $id < 0)) {
 		throw(new InvalidArgumentException("id cannot be empty or negative", 405));
 	}
 
 
-
-// Here, we determine if the reques received is a GET request
+// Here, we determine if the request received is a GET request
 	if($method === "GET") {
 		//set XSRF cookie
 		setXsrfCookie("/");
 		// handle GET request - if id is present, that dispensaryReview is present, that dispensaryReview is returned, otherwise all dispensaryReviews are returned
 
 
-
 		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested DispensaryReview by DispensaryReview ID from the DataBase and store it in $dispensaryReview.
-		if(empty($id) === false) {
+		if(empty($dispensaryReviewId) === false) {
 			$dispensaryReview = DispensaryReview::getDispensaryReviewByDispensaryReviewId($pdo, $id);
 			if($dispensaryReview !== null) {
-				$reply->data = $tweet;
+				$reply->data = $dispensaryReview;
 				// Here, we store the retreived DispensaryReview in the $reply->data state variable.
+			} else if(empty($dispensaryReviewProfileId) === false) {
+				$dispensaryReviews = DispensaryReview::getDispensaryReviewByDispensaryReviewProfileId($pdo, $id);
+				if($dispensaryReviews !== null) {
+					$reply->data = $dispensaryRevies;
+				}
+
+
+			} else {
+				$dispensaryReviews = DispensaryReview::getAllDispensaryReviews($pdo);
+				if($dispensaryReviews !== null) {
+					$reply->data = $dispensaryReviews;
+				}
 			}
-
-
-
-
-		} else {
-			$dispensaryReviews = DispensaryReview::getAllDispensaryReviews($pdo);
-			if($dispensaryReviews !== null) {
-				$reply->data = $dispensaryReviews;
-			}
+			// If there is nothing in $id, and it is a GET request, then we simply return all dispensaryReviews. We store all the dispensaryReviews in the $dispensaryReview variable, and then store them in the $reply->data state variable.
 		}
-		// If there is nothing in $id, and it is a GET request, then we simply return all dispensaryReviews. We store all the dispensaryReviews in the $dispensaryReview variable, and then store them in the $reply->data state variable.
-}
