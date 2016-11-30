@@ -112,7 +112,7 @@ try {
 	$reply->message = $typeError->getMessage();
 }
 // In these lines, the Exceptions are caught and the $reply object is updated with the data from the caught exception. Note that $reply->status will be updated with the correct error code in the case of an Exception.
-
+// nathans one cool dude
 
 header("Content-type: application/json");
 // sets up the response header.
