@@ -52,16 +52,28 @@ try {
 
 
 		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested dispensaryFavorite by dispensaryFavorite ID from the DataBase and store it in $dispensaryFavorite.
-		if(empty($id) === false) {
+		if(empty($dispensaryFavoriteProfileId) === false) {
 			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteProfileId($pdo, $Id);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
-				// Here, we store the retreived dispensaryFavorite in the $reply->data state variable.
+				// Here, we store the retrieved dispensaryFavorite in the $reply->data state variable.
 			}
-
-		} else if (empty($dispensaryFavoriteDispensaryId)) {
-			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($pdo, $Id);
+		}else if (empty($dispensaryFavoriteDispensaryId)) {
+			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteDispensaryId($pdo, $Id);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 			}
+		} else if (empty($dispensaryFavoriteProfileId)) {
+		$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $Id);
+		if($dispensaryFavorite !== null) {
+			$reply->data = $dispensaryFavorite;
+			}
+		} else if (empty($dispensaryFavoriteDispensaryId)) {
+			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($pdo, $Id);
+			if($dispensaryFavorite !== null){
+				$reply->data = $dispensaryFavorite;
+			}
+		} else (empty($dispensaryFavoriteProfileId ($dispensaryFavoriteDispensaryId)));
+		$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId($pdo, $Id);
 		}
+	}
