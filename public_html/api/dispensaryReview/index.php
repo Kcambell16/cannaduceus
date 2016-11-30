@@ -27,13 +27,13 @@ $reply->data = null;
 
 try {
 	//grab the mySQL DataBase connection
-	$pdo = connectToEncryptedMySQL("/etc/apache2/cannaduceus/dispensaryReview.ini");
+	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/dispensaryReview.ini");
 
 
 	//determines which HTTP Method was used.
 	$method = array_key_exists("HTTP_x_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
-	//stores the Primary Key for the GET, DELETE, and PUT methods in $id. This key will come in the URL sent by the front end. If no key is present, $id will remain empty. Note that the input is filtered.
+	//stores the Primary Key for the GET, DELETE, and PUT methods in $id. This key will come in the URL sent by the front end. If no key is present, $id will remain empty. Note that the input is filtered. Sanitize input.
 	$dispensaryReviewid = filter_input(INPUT_GET, "dispensaryReviewId", FILTER_VALIDATE_INT);
 	$dispensaryReviewProfileId = filter_input(INPUT_GET, "dispensaryReviewProfileId", FILTER_VALIDATE_INT);
 	$dispensaryReviewDispensaryId = filter_input(INPUT_GET, "content", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
