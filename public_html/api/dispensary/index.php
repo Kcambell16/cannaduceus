@@ -60,6 +60,8 @@ try {
 				$reply->data = $dispensaries;
 			}
 		}
+	} else{
+		throw(new \InvalidArgumentException("Beat it!, kevin!", 405));
 	}
 
 
