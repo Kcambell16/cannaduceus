@@ -41,7 +41,7 @@ class DispensaryFavorite implements \JsonSerializable {
 			$this->setDispensaryFavoriteProfileId($newDispensaryFavoriteProfileId);
 			$this->setDispensaryFavoriteDispensaryId($newDispensaryFavoriteDispensaryId);
 		} Catch(\InvalidArgumentException $invalidArgumentException) {
-			// rethrow the exception to the calller
+			// rethrow the exception to the caller
 			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
 		} Catch(\RangeException $range) {
 			// rethrow the exception to the caller
