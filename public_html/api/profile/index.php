@@ -1,7 +1,7 @@
 <?php
 
-require_once dirname(__DIR__, 3 ) . "/php/classes/autoloader.php";
-require_once dirname(__DIR__, 3 ) . "/php/lib/xsrf.php";
+require_once dirname(__DIR__, 3) . "/php/classes/autoloader.php";
+require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
 require_once "/etc/apache2/cannaduceus/encrypted-config.php";
 
 
@@ -12,7 +12,6 @@ use Edu\Cnm\cannaduceus;
  *
  * @author Nathan Sanchez <nsanchez121@cnm.com>
  **/
-
 
 
 // Check the session status. If it is not active, start the session.
@@ -30,7 +29,7 @@ $reply->data = null;
 
 try {
 	//grab the mySQL DataBase connection
-	$pdo = connectToEncryptedMySQL("/etc/apache2/cannaduceus/profile.ini");
+	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/cannaduceus.ini");
 
 
 	//determines which HTTP Method needs to be processed and stores the result in $method.
@@ -45,28 +44,82 @@ try {
 		throw(new InvalidArgumentException("id cannot be empty or negative", 405));
 	}
 
-// Here, we determine if the reques received is a GET request
-	if($method === "GET") {
-		//set XSRF cookie
-		setXsrfCookie("/");
+	if((empty($_SESSION["profile"]) === false) && (($_SESSION ["profile"]->getProfileId()) === $id)) {
 
-		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested Profile by Profile ID from the DataBase and store it in $profile.
-		if(empty($profileId) === false) {
-			$profile = Profile::getProfileByProfileId($pdo, $profileId);
-			if($profile !== null) {
-				$reply->data = $profile;
-				// here we store the $profile in the $reply->data state variable
+
+// Here, we determine if the reques received is a GET request
+
+		if($method === "GET") {
+			//set XSRF cookie
+			setXsrfCookie("/");
+
+			// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested Profile by Profile ID from the DataBase and store it in $profile.
+			if(empty($profileId) === false) {
+				$profile = Profile::getProfileByProfileId($pdo, $Id);
+				if($profile !== null) {
+					$reply->data = $profile;
+					// here we store the $profile in the $reply->data state variable
+				}
+			} else if(empty($profileUsername) === false) {
+				$profile = Profile::getProfilebyProfileUserName($pdo, $Id);
+				if($profile !== null) {
+					$reply->data = $profile;
+				}
 			}
-		} else if(empty($profileUsername) === false) {
-			$profile = Profile::getProfilebyProfileUserName($pdo, $profileId);
-			if($profile !== null) {
-				$reply->data = $profile;
+// here we determine if the request is a PUT
+			if($method === "PUT") {
 			}
 		}
+	} elseif($method === "PUT") {
+		verifyXsrf();
+		$requestContent = file_get_contents("php://input");
+		$requestObject = json_decode($requestContent);
 
+		// make sure that profileId is available!
+		if (empty($requestObject->profileId) == true) {
+			throw(new \InvalidArgumentException("no content for profile id", 405));
+		}
+		// make sure that the profileUserName is available!
+		if(empty($requestObject->profileUserName) === true) {
+			throw(new \InvalidArgumentException("no content for profile name", 405));
+		}
+		// make sure that the profileEmail is available!!
+		if(empty($requestObject->profileEmail) === true) {
+			throw(new \InvalidArgumentException("no content for profile email", 405));
+		}
+		// now retrieve the profile that will be updated in this PUT!
+		$profile->setProfileId($requestObject->profileId);
+		$profile->setProfileUserName($requestObject->profileUserName);
+		$profile->setProfileEmail($requestObject->profileEmail);
 
+		$profile->update($pdo);
+
+		// Update dat reply message
+		$reply->message = "The profile is updated";
+
+	} else {
+		throw (new InvalidArgumentException("Invalid HTTP Method Request"));
+		// If the method request is not GET, PUT, POST, an exception is thrown
 	}
+
+	// update reply with exception information
+} catch(Exception $exception) {
+	$reply->status = $exception->getCode();
+	$reply->message = $exception->getMessage();
+	$reply->trace = $exception->getTraceAsString();
+} catch(TypeError $typeError) {
+	$reply->status = $typeError->getCode();
+	$reply->message = $typeError->getMessage();
 }
+// In these lines, the Exceptions are caught and the $reply object is updated with the data from the caught exception. Note that $reply->status will be updated with the correct error code in the case of an Exception.
+
+
+header("Content-type: application/json");
+// sets up the response header.
+if($reply->data === null) {
+	unset($reply->data);
+}
+
 
 
 
