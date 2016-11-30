@@ -5,7 +5,7 @@ require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
 require_once "/etc/apache2/cannaduceus/encrypted-config.php";
 
 
-use Edu\Cnm\cannaduceus;
+use Edu\Cnm\Cannaduceus\Profile;
 
 /**
  * * api for profile class
@@ -55,19 +55,16 @@ try {
 
 			// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested Profile by Profile ID from the DataBase and store it in $profile.
 			if(empty($profileId) === false) {
-				$profile = Profile::getProfileByProfileId($pdo, $Id);
+				$profile = Profile::getProfileByProfileId($pdo, $id);
 				if($profile !== null) {
 					$reply->data = $profile;
 					// here we store the $profile in the $reply->data state variable
 				}
 			} else if(empty($profileUsername) === false) {
-				$profile = Profile::getProfilebyProfileUserName($pdo, $Id);
+				$profile = Profile::getProfileByProfileUserName($pdo, $id);
 				if($profile !== null) {
 					$reply->data = $profile;
 				}
-			}
-// here we determine if the request is a PUT
-			if($method === "PUT") {
 			}
 		}
 	} elseif($method === "PUT") {
@@ -87,6 +84,8 @@ try {
 		if(empty($requestObject->profileEmail) === true) {
 			throw(new \InvalidArgumentException("no content for profile email", 405));
 		}
+		$profile = Profile::getProfileByProfileId($pdo, $id);
+
 		// now retrieve the profile that will be updated in this PUT!
 		$profile->setProfileId($requestObject->profileId);
 		$profile->setProfileUserName($requestObject->profileUserName);
@@ -112,7 +111,7 @@ try {
 	$reply->message = $typeError->getMessage();
 }
 // In these lines, the Exceptions are caught and the $reply object is updated with the data from the caught exception. Note that $reply->status will be updated with the correct error code in the case of an Exception.
-// nathans one cool dude
+// Nathan's one cool dude
 
 header("Content-type: application/json");
 // sets up the response header.
