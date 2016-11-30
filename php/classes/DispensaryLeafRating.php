@@ -11,7 +11,7 @@ require_once(dirname(__DIR__) . "/classes/autoload.php");
  *
  **/
 
-class dispensaryLeafRating {
+class DispensaryLeafRating implements \JsonSerializable {
 
 	/**
 	 * rating for the dispensary;
@@ -32,22 +32,23 @@ class dispensaryLeafRating {
 	private $dispensaryLeafRatingProfileId;
 
 
-	/** Constructor for new Dispensary Leaf Rating
+	/**
+	 * Constructor for new Dispensary Leaf Rating
 	 *
-	 * @param int | null $newDispensaryLeafRatingRating rating of this dispensary or null if a new dispensary
-	 * @param int | null $newDispensaryLeafRatingDispensaryId the id of the dispensary from the dispensary class
-	 * @param int | null $newDispensaryLeafRatingProfileId the id of the profile from the profile class
+	 * @param int $newDispensaryLeafRatingRating rating of this dispensary
+	 * @param int $newDispensaryLeafRatingDispensaryId the id of the dispensary from the dispensary class
+	 * @param int $newDispensaryLeafRatingProfileId the id of the profile from the profile class
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., negative integers)
 	 * @throws \TypeError if data types violate type hints
 	 * @throws \Exception if some other exception occurs
 	 */
 
-	public function __construct(int $newDispensaryLeafRatingRating = null, int $newDispensaryLeafRatingDispensaryId = null, int $newDispensaryLeafRatingProfileId = null) {
+	public function __construct(int $newDispensaryLeafRatingRating, int $newDispensaryLeafRatingDispensaryId, int $newDispensaryLeafRatingProfileId) {
 		try {
-			$this->setdispensaryLeafRatingRating($newDispensaryLeafRatingRating);
-			$this->setdispensaryLeafRatingDispensaryId($newDispensaryLeafRatingDispensaryId);
-			$this->setdispensaryLeafRatingProfileId($newDispensaryLeafRatingProfileId);
+			$this->setDispensaryLeafRatingRating($newDispensaryLeafRatingRating);
+			$this->setDispensaryLeafRatingDispensaryId($newDispensaryLeafRatingDispensaryId);
+			$this->setDispensaryLeafRatingProfileId($newDispensaryLeafRatingProfileId);
 		} Catch(\InvalidArgumentException $invalidArgumentException) {
 			// rethrow the exception to the caller
 			throw(new \InvalidArgumentException($invalidArgumentException->getMessage(), 0, $invalidArgumentException));
@@ -68,7 +69,7 @@ class dispensaryLeafRating {
 	 *
 	 * @return int|null value of dispensaryLeafRatingRating
 	 */
-	public function getdispensaryLeafRatingRating() {
+	public function getDispensaryLeafRatingRating() {
 		return $this->dispensaryLeafRatingRating;
 	}
 
@@ -76,12 +77,17 @@ class dispensaryLeafRating {
 	 * mutator method for dispensaryLeafRatingRating
 	 *
 	 * @param int $newDispensaryLeafRatingRating new value of dispensaryLeafRatingRating
-	 * @throws \UnexpectedValueException if $newDispensaryLeafRatingRating is not an integer
+	 * @throws \RangeException if $newDispensaryLeafRatingRating is not an integer <0 || 5
+	 * @throws \InvalidArgumentException if $newDispensaryLeafRatingRating is empty
 	 */
-	public function setdispensaryLeafRatingRating($newDispensaryLeafRatingRating) {
+	public function setDispensaryLeafRatingRating(int $newDispensaryLeafRatingRating) {
 
-		if($newDispensaryLeafRatingRating <0 || 5) {
-			throw(new \UnexpectedValueException("Dispensary Leaf Rating is not a valid integer"));
+		if(empty($newDispensaryLeafRatingRating)) {
+			throw(new \InvalidArgumentException("Dispensary Leaf Rating cannot be empty"));
+		}
+
+		if($newDispensaryLeafRatingRating <= 0 || $newDispensaryLeafRatingRating > 5) {
+			throw(new \RangeException("Dispensary Leaf Rating is not a valid integer"));
 		}
 
 		//Convert and store the dispensaryLeafRating rating
@@ -104,10 +110,10 @@ class dispensaryLeafRating {
 	 * @param int $newDispensaryLeafRatingDispensaryId new var of dispensaryLeafRatingDispensaryId
 	 * @throws \UnexpectedValueException if $newDispensaryLeafRatingDispensaryId is not an int
 	 */
-	public function setdispensaryLeafRatingDispensaryId($newDispensaryLeafRatingDispensaryId) {
-		$newDispensaryLeafRatingDispensaryId = filter_input($newDispensaryLeafRatingDispensaryId, FILTER_SANITIZE_NUMBER_INT);
-		if($newDispensaryLeafRatingDispensaryId === false) {
-			throw(new \UnexpectedValueException("dispensary Leaf Rating dispensary Id not valid"));
+	public function setDispensaryLeafRatingDispensaryId(int $newDispensaryLeafRatingDispensaryId) {
+		if($newDispensaryLeafRatingDispensaryId <= 0) {
+			throw(new \UnexpectedValueException("Dispensary Leaf Rating Dispensary Id Invalid"));
+
 		}
 
 		//Convert and store the dispensary name
@@ -120,7 +126,7 @@ class dispensaryLeafRating {
 	 *
 	 * @return int for dispensaryLeafRatingProfileId
 	 */
-	public function getdispensaryLeafRatingProfileId() {
+	public function getDispensaryLeafRatingProfileId() {
 		return $this->dispensaryLeafRatingProfileId;
 	}
 
@@ -130,10 +136,9 @@ class dispensaryLeafRating {
 	 * @param int $newDispensaryLeafRatingProfileId new dispensaryLeafRatingProfileId
 	 * @throws \UnexpectedValueException if $newDispensaryLeafRatingProfileId is not an int
 	 */
-	public function setdispensaryLeafRatingProfileId($newDispensaryLeafRatingProfileId) {
-		$newDispensaryLeafRatingProfileId = filter_input($newDispensaryLeafRatingProfileId, FILTER_SANITIZE_STRING);
-		if($newDispensaryLeafRatingProfileId === false) {
-			throw(new \UnexpectedValueException("dispensary Leaf Rating Profile Id Invalid"));
+	public function setDispensaryLeafRatingProfileId(int $newDispensaryLeafRatingProfileId) {
+		if($newDispensaryLeafRatingProfileId <= 0) {
+			throw(new \UnexpectedValueException("Dispensary Leaf Rating Profile Id Invalid"));
 		}
 
 		//Convert and store the dispensaryLeafRatingProfileId
@@ -149,8 +154,16 @@ class dispensaryLeafRating {
 	 **/
 	public function insert(\PDO $pdo) {
 		// enforce the dispensaryLeafRatingRating is null (i.e., don't insert a dispensary that already exists)
-		if($this->dispensaryLeafRatingRating !== null) {
-			throw(new \PDOException("not a new dispensary leaf rating"));
+		if($this->dispensaryLeafRatingRating === null) {
+			throw(new \PDOException("Not a new dispensary leaf rating rating"));
+		}
+
+		if($this->dispensaryLeafRatingDispensaryId === null) {
+			throw(new \PDOException("Not a valid dispensary leaf rating Dispensary ID"));
+		}
+
+		if($this->dispensaryLeafRatingProfileId === null) {
+			throw(new \PDOException("Not a new dispensary leaf rating Profile ID"));
 		}
 
 		// create query template
@@ -160,10 +173,10 @@ class dispensaryLeafRating {
 
 		// bind the member variables to the place holders in the template
 		$parameters = ["dispensaryLeafRatingRating" => $this->dispensaryLeafRatingRating, "dispensaryLeafRatingDispensaryId" => $this->dispensaryLeafRatingDispensaryId, "dispensaryLeafRatingProfileId" => $this->dispensaryLeafRatingProfileId];
-		$statement->execute($parameters);
+			$statement->execute($parameters);
 
 		// udate null dispensaryId with what mySQL just gave us
-		$this->dispensaryLeafRatingRating = intval($pdo->lastInsertId());
+		//$this->dispensaryLeafRatingRating = intval($pdo->lastInsertId());
 
 	}   // insert
 
@@ -210,154 +223,178 @@ class dispensaryLeafRating {
 	}//update
 
 	/**
-	 * This function retrieves an array of  Dispensary Leaf Ratings by Dispensary Leaf Rating Rating
+	 * This function retrieves an array of Dispensary Leaf Ratings by Dispensary Leaf Rating Rating
 	 *
-	 * @param \PDO $pdo -- a PDO connection
-	 * @param  \int dispensaryLeafRating -- dispensary leaf rating to be retrieved
-	 * @throws \InvalidArgumentException when $dispensaryLeafRating is not an integer
+	 * @param \PDO $pdo PDO connection object
+	 * @param  \int $dispensaryLeafRatingRating dispensary leaf rating to be retrieved
+	 * @throws \InvalidArgumentException when $dispensaryLeafRatingRating is not an integer
 	 * @throws \RangeException when $dispensaryLeafRatingRating is too long
 	 * @throws \PDOException
-	 * @return null | \SplFixedArray array of Dispensaries with the same $ispensaryLeafRatingRating
+	 * @return null | \SplFixedArray array of Dispensaries with the same $dispensaryLeafRatingRating or null if not found
 	 */
 
-	public static function getDispensaryLeafRatingByDispensaryLeafRatingRating(\PDO $pdo, $dispensaryLeafRating) {
-		//  check validity of $dispensaryName
-		$dispensaryLeafRating = filter_input($dispensaryLeafRating, FILTER_SANITIZE_NUMBER_INT);
+	public static function getDispensaryLeafRatingByDispensaryLeafRatingRating(\PDO $pdo, int $dispensaryLeafRatingRating) {
+		//  check validity of $dispensaryLeafRating
+		$dispensaryLeafRating = filter_input($dispensaryLeafRatingRating, FILTER_SANITIZE_NUMBER_INT);
 		if($dispensaryLeafRating <= 0) {
 			throw(new \InvalidArgumentException("Dispensary Leaf Rating is not valid."));
 		}
 		if($dispensaryLeafRating === null) {
-			throw(new \RangeException("dispensary name does not exist."));
+			throw(new \RangeException("Dispensary name does not exist."));
 		}
 		// prepare query
 		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating";
 		$statement = $pdo->prepare($query);
 		$parameters = array("dispensaryLeafRating" => $dispensaryLeafRating);
 		$statement->execute($parameters);
-		//  setup results from query
-		try {
-			$dispensaryLeafRating = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
-				$dispensaryLeafRating = new dispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensaryId"], $row["dispensaryLeafRatingProfileId"]);
+		//  build an array of dispensaries based on dispensaryLeafRating
+		$dispensaryLeafRatings = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try{
+				$dispensaryLeafRating = new DispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensaryId"], $row["dispensaryLeafRatingProfileId"]);
+				$dispensaryLeafRatings[$dispensaryLeafRatings->key()] = $dispensaryLeafRating;
+				$dispensaryLeafRatings->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($dispensaryLeafRating);
+		return ($dispensaryLeafRatings);
+
 	}  // get by DispensaryLeafRatingRating
 
 	/**
 	 * This function retrieves a Dispensary Leaf Rating by Dispensary Leaf Rating Dispensary Id
 	 *
-	 * @param \PDO $pdo -- a PDO connection
-	 * @param  \int dispensaryLeafRating -- dispensary leaf rating to be retrieved
+	 * @param \PDO $pdo PDO connection
+	 * @param  \int dispensaryLeafRatingDispensaryId dispensary leaf rating to be retrieved
 	 * @throws \InvalidArgumentException when $dispensaryLeafRatingDispensaryId is not an integer
 	 * @throws \RangeException when $dispensaryLeafRatingDispensaryId is not an int
 	 * @throws \PDOException
-	 * @return null | $dispensaryLeafRating
+	 * @return null | \SplFixedArray $dispensaryLeafRatings
 	 */
 
-	public static function getDispensaryLeafRatingByDispensaryLeafRatingDispensaryId(\PDO $pdo, $dispensaryLeafRating) {
-		//  check validity of $dispensaryName
-		$dispensaryLeafRatingDispensaryId = filter_input($dispensaryLeafRating, FILTER_SANITIZE_NUMBER_INT);
+	public static function getDispensaryLeafRatingByDispensaryLeafRatingDispensaryId(\PDO $pdo, $dispensaryId) {
+		//  check validity of $dispensaryId
+		$dispensaryLeafRatingDispensaryId = filter_var($dispensaryId, FILTER_SANITIZE_NUMBER_INT);
+
 		if($dispensaryLeafRatingDispensaryId <= 0) {
-			throw(new \InvalidArgumentException("Dispensary Leaf Rating Id is not valid."));
+			throw(new \RangeException("Dispensary Leaf Rating Id is not valid."));
 		}
+
 		if($dispensaryLeafRatingDispensaryId === null) {
-			throw(new \RangeException("Dispensary Leaf Rating does not exist."));
+			throw(new \InvalidArgumentException("Dispensary Leaf Rating does not exist."));
 		}
+
 		// prepare query
 		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingDispensaryId = :dispensaryLeafRatingDispensaryId";
 		$statement = $pdo->prepare($query);
-		$parameters = array("dispensaryLeafRating" => $dispensaryLeafRating);
+		$parameters = array("dispensaryLeafRatingDispensaryId" => $dispensaryLeafRatingDispensaryId);
 		$statement->execute($parameters);
-		//  setup results from query
-		try {
-			$dispensaryLeafRating = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
-				$dispensaryLeafRating = new dispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensaryId"], $row["dispensaryLeafRatingProfileId"]);
+
+		//  build an array of dispensaries based on dispensaryLeafRatingDispensaryId
+		$dispensaryLeafRatings = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try{
+				$dispensaryLeafRating = new DispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensaryId"], $row["dispensaryLeafRatingProfileId"]);
+				$dispensaryLeafRatings[$dispensaryLeafRatings->key()] = $dispensaryLeafRating;
+				$dispensaryLeafRatings->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($dispensaryLeafRating);
+		return ($dispensaryLeafRatings);
+
 	}  // get by DispensaryLeafRatingDispensaryId
 
 	/**
 	 * This function retrieves a dispensary Leaf Rating by dispensary Leaf Rating Profile Id
 	 *
 	 * @param \PDO $pdo -- a PDO connection
-	 * @param  \int dispensaryLeafRating -- dispensary leaf rating to be retrieved
+	 * @param  \int dispensaryLeafRatingProfileId dispensary leaf ratings to be retrieved
 	 * @throws \InvalidArgumentException when $dispensaryLeafRatingProfileId is not an integer
-	 * @throws \RangeException when $dispensaryLeafRatingProfileId is not an int
+	 * @throws \RangeException when $dispensaryLeafRatingProfileId is not an valid integer
 	 * @throws \PDOException
-	 * @return null | $dispensaryLeafRating
+	 * @return null | \SplFixedArray $dispensaryLeafRatings
 	 */
 
 	public static function getDispensaryLeafRatingByDispensaryLeafRatingProfileId(\PDO $pdo, $dispensaryLeafRatingProfileId) {
 		//  check validity of $dispensaryName
-		$dispensaryLeafRating = filter_input($dispensaryLeafRatingProfileId, FILTER_SANITIZE_NUMBER_INT);
+		$dispensaryLeafRatingProfileId = filter_var($dispensaryLeafRatingProfileId, FILTER_SANITIZE_NUMBER_INT);
+
 		if($dispensaryLeafRatingProfileId <= 0) {
 			throw(new \InvalidArgumentException("Dispensary Leaf Rating Profile Id is not valid."));
 		}
+
 		if($dispensaryLeafRatingProfileId === null) {
 			throw(new \RangeException("Dispensary Leaf Rating Profile Id does not exist."));
 		}
+
 		// prepare query
-		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating AND dispensaryLeafRatingDispensaryId = :dispensaryLeafRatingdispensaryId AND dispensaryLeafRatingProfileId = :dispensaryLeafRatingProfileId";
+		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingProfileId = :dispensaryLeafRatingProfileId";
 		$statement = $pdo->prepare($query);
-		$parameters = array("dispensaryLeafRating" => $dispensaryLeafRating);
+		$parameters = array("dispensaryLeafRatingProfileId" => $dispensaryLeafRatingProfileId);
 		$statement->execute($parameters);
-		//  setup results from query
-		try {
-			$dispensaryLeafRating = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
-				$dispensaryLeafRating = new dispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensaryId"], $row["dispensaryLeafRatingProfileId"]);
+
+		//  build an array of dispensaries based on dispensaryLeafRatingProfileId
+		$dispensaryLeafRatings = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try{
+				$dispensaryLeafRating = new DispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensaryId"], $row["dispensaryLeafRatingProfileId"]);
+				$dispensaryLeafRatings[$dispensaryLeafRatings->key()] = $dispensaryLeafRating;
+				$dispensaryLeafRatings->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return ($dispensaryLeafRating);
-	}  // get by dispensaryLeafRatingDispensaryId
+		return ($dispensaryLeafRatings);
+	}  // get by dispensaryLeafRatingProfileId
 
 	/**
 	 * This function retrieves a dispensary Leaf Rating by dispensary Leaf Rating Dispensary Id and dispensary Leaf Rating Profile Id
 	 *
-	 * @param \PDO $pdo -- a PDO connection
-	 * @param  \int dispensaryLeafRating -- dispensary leaf rating to be retrieved
+	 * @param \PDO $pdo PDO connection
+	 * @param  \int $dispensaryLeafRatingRating dispensary leaf rating to be retrieved
+	 * @param  \int $dispensaryLeafRatingDispensaryId dispensary leaf rating dispensaryId to be retrieved
+	 * @param  \int $dispensaryLeafRatingProfileId dispensary leaf rating profileId to be retrieved
 	 * @throws \InvalidArgumentException when $dispensaryLeafRatingDispensaryId and $dispensaryLeafRatingProfileId are not integers
 	 * @throws \RangeException when $dispensaryLeafRatingDispensaryId and $dispensaryLeafRatingProfileId are not integers
 	 * @throws \PDOException
 	 * @return null | $dispensaryLeafRating
 	 */
 
-	public static function getDispensaryLeafRatingByDispensaryLeafRatingDispensaryIdAndDispensaryLeafRatingProfileId(\PDO $pdo, $dispensaryLeafRatingDispensaryId, $dispensaryLeafRatingProfileId) {
-		//  check validity of $dispensaryName
-		$dispensaryLeafRating = filter_input($dispensaryLeafRatingDispensaryId, $dispensaryLeafRatingProfileId, FILTER_SANITIZE_NUMBER_INT);
-		if($dispensaryLeafRatingProfileId and $dispensaryLeafRatingDispensaryId<= 0) {
-			throw(new \InvalidArgumentException("Dispensary Leaf Rating is not valid."));
+	public static function getDispensaryLeafRatingByDispensaryLeafRatingDispensaryIdAndDispensaryLeafRatingProfileId(\PDO $pdo, int $dispensaryLeafRatingDispensaryId, int $dispensaryLeafRatingProfileId) {
+
+		$dispensaryLeafRatingDispensaryId = filter_var($dispensaryLeafRatingDispensaryId, FILTER_SANITIZE_NUMBER_INT);
+
+		$dispensaryLeafRatingProfileId = filter_var($dispensaryLeafRatingProfileId, FILTER_SANITIZE_NUMBER_INT);
+
+		if(empty($dispensaryLeafRatingDispensaryId) || $dispensaryLeafRatingDispensaryId <= 0) {
+			throw(new \InvalidArgumentException("Dispensary Id or is not valid."));
 		}
-		if($dispensaryLeafRatingDispensaryId and $dispensaryLeafRatingProfileId === null) {
-			throw(new \RangeException("Dispensary Leaf Rating does not exist."));
+
+		if(empty($dispensaryLeafRatingProfileId) || $dispensaryLeafRatingProfileId <= 0) {
+			throw(new \InvalidArgumentException("Profile Id or is not valid."));
 		}
+
 		// prepare query
-		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating AND dispensaryLeafRatingDispensaryId = :dispensaryLeafRatingdispensaryId AND dispensaryLeafRatingProfileId = :dispensaryLeafRatingProfileId";
+		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingDispensaryId = :dispensaryLeafRatingDispensaryId AND dispensaryLeafRatingProfileId = :dispensaryLeafRatingProfileId";
 		$statement = $pdo->prepare($query);
-		$parameters = array("dispensaryLeafRating" => $dispensaryLeafRating);
+		$parameters = array("dispensaryLeafRatingDispensaryId" => $dispensaryLeafRatingDispensaryId, "dispensaryLeafRatingProfileId" => $dispensaryLeafRatingProfileId);
 		$statement->execute($parameters);
+
 		//  setup results from query
 		try {
 			$dispensaryLeafRating = null;
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$dispensaryLeafRating = new dispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensaryId"], $row["dispensaryLeafRatingProfileId"]);
+				$dispensaryLeafRating = new DispensaryLeafRating($row["dispensaryLeafRatingRating"], $row["dispensaryLeafRatingDispensaryId"], $row["dispensaryLeafRatingProfileId"]);
 			}
 		} catch(\Exception $exception) {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
