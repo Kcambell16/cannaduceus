@@ -57,18 +57,18 @@ try {
 				} else if(empty($dispensaryId) === false) {
 					$dispensaryReviews = DispensaryReview::getDispensaryReviewsByDispensaryReviewDispensaryId($pdo, $dispensaryId);
 					if($dispensaryReviews !== null) {
-						$reply->data = $dispensaryReviews;
+						$reply->data = $dispensaryReviews->toArray();
 					}
 
 				} else if(empty($reviewTxt) === false) {
 					$dispensaryReviews = DispensaryReview::getDispensaryReviewByDispensaryReviewTxt($pdo, $reviewTxt);
 					if($dispensaryReviews !== null) {
-						$reply->data = $dispensaryReviews;
+						$reply->data = $dispensaryReviews->toArray();
 					}
 				} else {
 					$dispensaryReviews = DispensaryReview::getAllDispensaryReviews($pdo);
 					if($dispensaryReviews !== null) {
-						$reply->data = $dispensaryReviews;
+						$reply->data = $dispensaryReviews->toArray();
 					}
 				}
 		} else if($method === "POST") {

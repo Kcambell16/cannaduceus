@@ -1,7 +1,44 @@
 <?php
+
+require_once dirname(__DIR__, 3) . "/php/classes/autoload.php";
+require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
+require_once "/etc/apache2/capstone-mysql/encrypted-config.php";
+
+use Edu\Cnm\Cannaduceus\Strain;
+
 /**
- * Created by PhpStorm.
- * User: apple
- * Date: 12/1/16
- * Time: 10:14 AM
+ * api for Strain class
+ *
+ * @author James Montoya <jmontoya306@cnm.edu>
  */
+
+//check the session status.  If it is not active, start the session
+if(session_status() !== PHP_SESSION_ACTIVE) {
+	session_start();
+}
+
+// prepare an empty reply
+$reply = new stdClass();
+$reply->status = 200;
+$reply->data = null;
+
+// Here we create a new stdClass named $reply. A stdClass is basically an empty bucket that we can use to store things in.
+// We will use this object named $reply to store the results of the call to our API. The status 200 line adds a state variable to $reply called status and initializes it with the integer 200 (success code). The proceeding line adds a state variable to $reply called data. This is where the result of the API call will be stored. We will also update $reply->message as we proceed through the API.
+
+try {
+	//grab the mySQL DataBase Connection
+	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/cannaduceus.ini");
+
+	//determines which HTTP Method needs to be processed and stores the result in $method.
+	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
+
+	//stores the Primary Key for the GET, DELETE, and PUT methods in $id. This key will come in the URL sent by the front end. If no key is present, $id will remain empty. Note that the input is filtered.
+	$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+	$strainName = filter_input(INPUT_GET, "strainName", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
+	// Here, we determine if the request received is a GET request
+	if($method === "GET") {
+		//set XSRF cookie
+		setXsrfCookie("/");
+
+	// handle GET request - if id is present, that strain is present, that strain is returned, otherwise all strains are returned

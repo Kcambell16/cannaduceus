@@ -41,7 +41,7 @@ try {
 		//set XSRF cookie
 		setXsrfCookie("/");
 
-		// handle GET request - if id is present, that tweet is present, that tweet is returned, otherwise all tweets are returned
+		// handle GET request - if id is present, that strain is present, that strain is returned, otherwise all strains are returned
 		if(empty($id) === false) {
 			$dispensary = Strain::getStrainByStrainId($pdo, $id);
 			if($strain !== null) {

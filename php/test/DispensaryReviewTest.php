@@ -55,8 +55,8 @@ class DispensaryReviewTest extends CannaduceusTest {
 
 		// create and insert a Profile
 		$password = "abc123";
-		$salt = bin2hex(random_bytes(16));
-		$hash = hash_pbkdf2("sha512", $password, $salt, 262144);
+		$salt = bin2hex(random_bytes(32));
+		$hash = hash_pbkdf2("sha512", $password, $salt, 262144, 128);
 		$activation = bin2hex(random_bytes(16));
 		$this->profile = new Profile(null, "profileUserName", "user@me.com", $hash, $salt, $activation);
 		$this->profile->insert($this->getPDO());
