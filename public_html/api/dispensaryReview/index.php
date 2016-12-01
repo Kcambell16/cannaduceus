@@ -36,14 +36,9 @@ try {
 
 	//stores the Primary Key for the GET, DELETE, and PUT methods in $id. This key will come in the URL sent by the front end. If no key is present, $id will remain empty. Note that the input is filtered. Sanitize input.
 	$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
-	$dispensaryReviewProfileId = filter_input(INPUT_GET, "dispensaryReviewProfileId", FILTER_VALIDATE_INT);
-	$dispensaryReviewDispensaryId = filter_input(INPUT_GET, "content", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-
-
-	//Here we check and make sure that we have the Primary Key for the DELETE and PUT requests. If the request is a PUT or DELETE and no key is present in $id, An Exception is thrown.
-	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true || $id < 0)) {
-		throw(new InvalidArgumentException("id cannot be empty or negative", 405));
-	}
+	$profileId = filter_input(INPUT_GET, "profileId", FILTER_VALIDATE_INT);
+	$dispensaryId = filter_input(INPUT_GET, "dispensaryId", FILTER_VALIDATE_INT);
+	$reviewTxt = filter_input(INPUT_GET, "reviewTxt", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
 
 // Here, we determine if the request received is a GET request
@@ -54,19 +49,19 @@ try {
 	//$reply->message = 'inside get';
 
 		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested DispensaryReview by DispensaryReview ID from the DataBase and store it in $dispensaryReview.
-		if(empty($dispensaryReviewId) === false) {
-				$dispensaryReview = DispensaryReview::getDispensaryReviewByDispensaryReviewId($pdo, $id);
+		if(empty($profileId) === false) {
+				$dispensaryReview = DispensaryReview::getDispensaryReviewsByDispensaryReviewProfileId($pdo, $profileId);
 					if($dispensaryReview !== null) {
 						$reply->data = $dispensaryReview;
 					}
-				} else if(empty($dispensaryReviewProfileId) === false) {
-					$dispensaryReviews = DispensaryReview::getDispensaryReviewByDispensaryReviewProfileId($pdo, $id);
+				} else if(empty($dispensaryId) === false) {
+					$dispensaryReviews = DispensaryReview::getDispensaryReviewsByDispensaryReviewDispensaryId($pdo, $dispensaryId);
 					if($dispensaryReviews !== null) {
 						$reply->data = $dispensaryReviews;
 					}
 
-				} else if(empty($dispensaryReviewDispensaryId) === false) {
-					$dispensaryReviews = DispensaryReview::getDispensaryReviewByDispensaryReviewDispensaryId($pdo, $id);
+				} else if(empty($reviewTxt) === false) {
+					$dispensaryReviews = DispensaryReview::getDispensaryReviewByDispensaryReviewTxt($pdo, $reviewTxt);
 					if($dispensaryReviews !== null) {
 						$reply->data = $dispensaryReviews;
 					}
@@ -76,12 +71,26 @@ try {
 						$reply->data = $dispensaryReviews;
 					}
 				}
-		} else if($method === "PUT" || $method === "POST") {
+		} else if($method === "POST") {
 
-			verifyXsrf();
+			//verifyXsrf();
 			$requestContent = file_get_contents("php://input");
 			$requestObject = json_decode($requestContent);
 
+			//make sure dispensaryReview content is available (required field)
+			if(empty($requestObject->dispensaryReviewTxt) === true) {
+				throw(new \InvalidArgumentException ("No content for Review.", 405));
+			}
+
+			$dispensaryReview = new DispensaryReview()
+			//make sure dispensaryReview content is available (required field)
+			if(empty($requestObject->dispensaryReviewTxt) === true) {
+				throw(new \InvalidArgumentException ("No content for Review.", 405));
+			}
+			//make sure dispensaryReview content is available (required field)
+			if(empty($requestObject->dispensaryReviewTxt) === true) {
+				throw(new \InvalidArgumentException ("No content for Review.", 405));
+			}
 			//make sure dispensaryReview content is available (required field)
 			if(empty($requestObject->dispensaryReviewTxt) === true) {
 				throw(new \InvalidArgumentException ("No content for Review.", 405));
