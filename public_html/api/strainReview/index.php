@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__, 3 ) . "/php/classes/autoload.php";
+require_once dirname(__DIR__, 3) . "/php/classes/autoload.php";
 //require_once dirname(__DIR__, 3 ) . "/php/lib/xsrf.php";
 require_once "/etc/apache2/capstone-mysql/encrypted-config.php";
 
@@ -95,4 +95,24 @@ try {
 
 		$strainReview = new StrainReview(null, $requestObject->profileId, $requestObject->strainId, $dateTime, $requestObject->strainReviewTxt);
 		$strainReview->insert($pdo);
-			//make sure strainReview content is available (required field)
+		//make sure strainReview content is available (required field)
+
+
+	}
+
+	// update reply with exception information
+} catch(Exception $exception) {
+	$reply->status = $exception->getCode();
+	$reply->message = $exception->getMessage();
+} catch(TypeError $typeError) {
+	$reply->status = $typeError->getCode();
+	$reply->message = $typeError->getMessage();
+}
+
+header("Content-type: application/json");
+if($reply->data === null) {
+	unset($reply->data);
+}
+
+// encode and return reply to front end caller
+echo json_encode($reply);
