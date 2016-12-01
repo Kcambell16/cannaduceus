@@ -1,6 +1,6 @@
 <?php
 require_once dirname(__DIR__, 3 ) . "/php/classes/autoload.php";
-//require_once dirname(__DIR__, 3 ) . "/php/lib/xsrf.php";
+require_once dirname(__DIR__, 3 ) . "/php/lib/xsrf.php";
 require_once "/etc/apache2/capstone-mysql/encrypted-config.php";
 
 use Edu\Cnm\Cannaduceus\DispensaryReview;
@@ -44,7 +44,7 @@ try {
 // Here, we determine if the request received is a GET request
 	if($method === "GET") {
 		//set XSRF cookie
-	//	setXsrfCookie("/");
+		setXsrfCookie("/");
 		// handle GET request - if id is present, that dispensaryReview is present, that dispensaryReview is returned, otherwise all dispensaryReviews are returned
 	//$reply->message = 'inside get';
 
@@ -73,7 +73,7 @@ try {
 				}
 		} else if($method === "POST") {
 
-			//verifyXsrf();
+			verifyXsrf();
 			$requestContent = file_get_contents("php://input");
 			$requestObject = json_decode($requestContent);
 

@@ -503,6 +503,7 @@ class DispensaryReview implements \JsonSerializable {
 	 **/
 	public function jsonSerialize() {
 		$fields = get_object_vars($this);
+		$fields["dispensaryReviewDateTime"] = $this->dispensaryReviewDateTime->getTimestamp() * 1000;
 		return($fields);
 	}
 }  // DispensaryReview
