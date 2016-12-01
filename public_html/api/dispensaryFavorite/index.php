@@ -58,22 +58,46 @@ try {
 				$reply->data = $dispensaryFavorite;
 				// Here, we store the retrieved dispensaryFavorite in the $reply->data state variable.
 			}
-		}else if (empty($dispensaryFavoriteDispensaryId)) {
-			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteDispensaryId($pdo, $Id);
+		} else if (empty($dispensaryFavoriteProfileId)) {
+			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $Id);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 			}
-		} else if (empty($dispensaryFavoriteProfileId)) {
-		$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $Id);
-		if($dispensaryFavorite !== null) {
-			$reply->data = $dispensaryFavorite;
+		} else if(empty($dispensaryFavoriteDispensaryId)) {
+			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteDispensaryId($pdo, $Id);
+			if($dispensaryFavorite !== null) {
+				$reply->data = $dispensaryFavorite;
 			}
 		} else if (empty($dispensaryFavoriteDispensaryId)) {
 			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($pdo, $Id);
 			if($dispensaryFavorite !== null){
 				$reply->data = $dispensaryFavorite;
 			}
-		} else (empty($dispensaryFavoriteProfileId ($dispensaryFavoriteDispensaryId)));
+		} else if (empty($dispensaryFavoriteProfileId ($dispensaryFavoriteDispensaryId)));
 		$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId($pdo, $Id);
+		if($dispensaryFavorite !== null) {
+			$reply->data = $dispensaryFavorite;
 		}
+		}
+	} else if($method === "PUT" || $method === "POST") {
+
+	verifyXsrf();
+	$requestContent = file_get_contents("php://input");
+	$requestObject = json_decode($requestObject);
+
+	//make sure tweet content is available (required field)
+	if(empty($dispensaryFavorite->dispensaryFavorite) === true) {
+		throw(new \InvalidArgumentException ("no Favorite added", 405));
 	}
+	//  make sure profileId is available
+	if(empty($requestObject->profileId) === true) {
+		throw(new \InvalidArgumentException ("No Profile ID.", 405));
+	}
+} else if ($method === "POST") {
+	// create a new favorite and insert into the database
+	$dispensaryFavorite = new DispensaryFavorite(null, $requestObject->profileId, $requestObject->dispensaryFavorite, null);
+	$dispensaryFavorite->insert($pdo);
+	// update dat reply
+	$reply->message = "favorite has been created";
+}
+
