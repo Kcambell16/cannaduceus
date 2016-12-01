@@ -71,3 +71,28 @@ try {
 				$reply->data = $strainReviews;
 			}
 		}
+	} else if($method === "POST") {
+
+		//verifyXsrf();
+		$requestContent = file_get_contents("php://input");
+		$requestObject = json_decode($requestContent);
+
+		//make sure strainReview content is available (required field)
+		if(empty($requestObject->strainReviewTxt) === true) {
+			throw(new \InvalidArgumentException ("No content for Review.", 405));
+		}
+
+		if(empty($requestObject->profileId) === true) {
+			throw(new \InvalidArgumentException ("No content for Review.", 405));
+		}
+		//make sure strainReview content is available (required field)
+		if(empty($requestObject->strainId) === true) {
+			throw(new \InvalidArgumentException ("No content for Review.", 405));
+		}
+
+		$dateTime = new DateTime('now');
+		$dateTime = $dateTime->format('Y-m-d H:i:s');
+
+		$strainReview = new StrainReview(null, $requestObject->profileId, $requestObject->strainId, $dateTime, $requestObject->strainReviewTxt);
+		$strainReview->insert($pdo);
+			//make sure strainReview content is available (required field)
