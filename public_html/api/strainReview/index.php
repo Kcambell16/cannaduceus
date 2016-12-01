@@ -61,13 +61,13 @@ try {
 			}
 
 		} else if(empty($reviewTxt) === false) {
-			$dispensaryReviews = DispensaryReview::getDispensaryReviewByDispensaryReviewTxt($pdo, $reviewTxt);
-			if($dispensaryReviews !== null) {
-				$reply->data = $dispensaryReviews;
+			$strainReviews = StrainReview::getStrainReviewByStrainReviewTxt($pdo, $reviewTxt);
+			if($strainReviews !== null) {
+				$reply->data = $strainReviews;
 			}
 		} else {
-			$dispensaryReviews = DispensaryReview::getAllDispensaryReviews($pdo);
+			$strainReviews = StrainReview::getAllStrainReviews($pdo);
 			if($dispensaryReviews !== null) {
-				$reply->data = $dispensaryReviews;
+				$reply->data = $strainReviews;
 			}
 		}
