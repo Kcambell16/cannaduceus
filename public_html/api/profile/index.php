@@ -96,6 +96,28 @@ try {
 		// Update dat reply message
 		$reply->message = "The profile is updated";
 
+
+		// determins if the request is a DELETE request.
+	} else if($method === "DELETE") {
+		verifyXsrf();
+
+		// retrieve the Profile to be deleted
+		$profile = Profile::getProfileByProfileId($pdo, $id);
+		// If the request is DELETE, the requested profile is pulled from the database using the Key in $id and stored in $profile
+
+
+		// make sure that the requested  is valid by checking to see if $profile is null.
+		if($profile === null) {
+			throw(new RuntimeException("Profile does not exist", 404));
+		}
+
+
+		// calls the DELETE method on the retrieved Profile. This deletes the profile from the database.
+		$profile->delete($pdo);
+
+
+		// stores the "profile deleted OK" message in the $reply->message state variable.
+		$reply->message = "profile deleted OK";
 	} else {
 		throw (new InvalidArgumentException("Invalid HTTP Method Request"));
 		// If the method request is not GET, PUT, POST, an exception is thrown

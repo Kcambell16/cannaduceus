@@ -30,13 +30,11 @@ try {
 	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/cannaduceus.ini");
 
 
-
 	//determines which HTTP Method needs to be processed and stores the result in $method.
 	$method = array_key_exists("HTTP_x_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
 	//stores the Primary Key for the GET, DELETE, and PUT methods in $id. This key will come in the URL sent by the front end. If no key is present, $id will remain empty. Note that the input is filtered.
 	$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
-
 
 
 	//Here we check and make sure that we have the Primary Key for the DELETE and PUT requests. If the request is a PUT or DELETE and no key is present in $id, An Exception is thrown.
@@ -50,7 +48,6 @@ try {
 		// handle GET request - if id is present, that dispensaryFavorite is present, that dispensaryFavorite is returned, otherwise all dispensaryFavorites are returned
 
 
-
 		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested dispensaryFavorite by dispensaryFavorite ID from the DataBase and store it in $dispensaryFavorite.
 		if(empty($dispensaryFavoriteProfileId) === false) {
 			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteProfileId($pdo, $Id);
@@ -58,7 +55,7 @@ try {
 				$reply->data = $dispensaryFavorite;
 				// Here, we store the retrieved dispensaryFavorite in the $reply->data state variable.
 			}
-		} else if (empty($dispensaryFavoriteProfileId)) {
+		} else if(empty($dispensaryFavoriteProfileId)) {
 			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $Id);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
@@ -68,36 +65,56 @@ try {
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 			}
-		} else if (empty($dispensaryFavoriteDispensaryId)) {
+		} else if(empty($dispensaryFavoriteDispensaryId)) {
 			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($pdo, $Id);
-			if($dispensaryFavorite !== null){
+			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 			}
-		} else if (empty($dispensaryFavoriteProfileId ($dispensaryFavoriteDispensaryId)));
+		} else if(empty($dispensaryFavoriteProfileId ($dispensaryFavoriteDispensaryId))) ;
 		$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId($pdo, $Id);
 		if($dispensaryFavorite !== null) {
 			$reply->data = $dispensaryFavorite;
 		}
-		}
 	} else if($method === "PUT" || $method === "POST") {
 
-	verifyXsrf();
-	$requestContent = file_get_contents("php://input");
-	$requestObject = json_decode($requestObject);
+		verifyXsrf();
+		$requestContent = file_get_contents("php://input");
+		$requestObject = json_decode($requestObject);
 
-	//make sure tweet content is available (required field)
-	if(empty($dispensaryFavorite->dispensaryFavorite) === true) {
-		throw(new \InvalidArgumentException ("no Favorite added", 405));
+		//make sure tweet content is available (required field)
+		if(empty($requestObject->dispensaryFavorite) === true) {
+			throw(new \InvalidArgumentException ("no Favorite added", 405));
+		}
+		//  make sure profileId is available
+		if(empty($requestObject->profileId) === true) {
+			throw(new \InvalidArgumentException ("No Profile ID.", 405));
+		}
+	} else if($method === "POST") {
+		// create a new favorite and insert into the database
+		$dispensaryFavorite = new DispensaryFavorite(null, $requestObject->profileId, $requestObject->dispensaryFavorite, null);
+		$dispensaryFavorite->insert($pdo);
+		// update dat reply
+		$reply->message = "favorite has been created";
 	}
-	//  make sure profileId is available
-	if(empty($requestObject->profileId) === true) {
-		throw(new \InvalidArgumentException ("No Profile ID.", 405));
-	}
-} else if ($method === "POST") {
-	// create a new favorite and insert into the database
-	$dispensaryFavorite = new DispensaryFavorite(null, $requestObject->profileId, $requestObject->dispensaryFavorite, null);
-	$dispensaryFavorite->insert($pdo);
-	// update dat reply
-	$reply->message = "favorite has been created";
+
+
+
+}		// update reply with exception information
+catch(Exception $exception) {
+	$reply->status = $exception->getCode();
+	$reply->message = $exception->getMessage();
+} catch(TypeError $typeError) {
+	$reply->status = $typeError->getCode();
+	$reply->message = $typeError->getMessage();
 }
+
+header("Content-type: application/json");
+if($reply->data === null) {
+	unset($reply->data);
+}
+
+// encode and return reply to front end caller
+echo json_encode($reply);
+
+
 
