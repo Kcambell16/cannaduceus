@@ -82,19 +82,21 @@ try {
 				throw(new \InvalidArgumentException ("No content for Review.", 405));
 			}
 
-			$dispensaryReview = new DispensaryReview()
-			//make sure dispensaryReview content is available (required field)
-			if(empty($requestObject->dispensaryReviewTxt) === true) {
+			if(empty($requestObject->profileId) === true) {
 				throw(new \InvalidArgumentException ("No content for Review.", 405));
 			}
 			//make sure dispensaryReview content is available (required field)
-			if(empty($requestObject->dispensaryReviewTxt) === true) {
+			if(empty($requestObject->dispensaryId) === true) {
 				throw(new \InvalidArgumentException ("No content for Review.", 405));
 			}
+
+			$dateTime = new DateTime('now');
+			$dateTime = $dateTime->format('Y-m-d H:i:s');
+
+			$dispensaryReview = new DispensaryReview(null, $requestObject->profileId, $requestObject->dispensaryId, $dateTime, $requestObject->dispensaryReviewTxt);
+			$dispensaryReview->insert($pdo);
 			//make sure dispensaryReview content is available (required field)
-			if(empty($requestObject->dispensaryReviewTxt) === true) {
-				throw(new \InvalidArgumentException ("No content for Review.", 405));
-			}
+
 
 		}
 
