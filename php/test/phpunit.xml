@@ -1,7 +1,13 @@
 <phpunit>
 	<testsuites>
 		<testsuite name="Cannaduceus">
+
 			<file>StrainReviewTest.php</file>
+
+			<file>ProfileTest.php</file>
+			<file>DispensaryFavoriteTest.php</file>
+			<file>StrainFavoriteTest.php</file>
+
 		</testsuite>
 	</testsuites>
 	<filter>
