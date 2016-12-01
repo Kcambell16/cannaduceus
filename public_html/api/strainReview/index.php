@@ -39,3 +39,35 @@ try {
 	$profileId = filter_input(INPUT_GET, "profileId", FILTER_VALIDATE_INT);
 	$strainId = filter_input(INPUT_GET, "strainId", FILTER_VALIDATE_INT);
 	$reviewTxt = filter_input(INPUT_GET, "reviewTxt", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
+
+	// Here, we determine if the request received is a GET request
+	if($method === "GET") {
+		//set XSRF cookie
+		//	setXsrfCookie("/");
+		// handle GET request - if id is present, that dispensaryReview is present, that dispensaryReview is returned, otherwise all dispensaryReviews are returned
+		//$reply->message = 'inside get';
+
+		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested DispensaryReview by DispensaryReview ID from the DataBase and store it in $dispensaryReview.
+		if(empty($profileId) === false) {
+			$strainReview = StrainReview::getStrainReviewsByStrainReviewProfileId($pdo, $profileId);
+			if($strainReview !== null) {
+				$reply->data = $strainReview;
+			}
+		} else if(empty($strainId) === false) {
+			$strainReviews = StrainReview::getStrainReviewsByStrainReviewStrainId($pdo, $strainId);
+			if($strainReviews !== null) {
+				$reply->data = $strainReviews;
+			}
+
+		} else if(empty($reviewTxt) === false) {
+			$dispensaryReviews = DispensaryReview::getDispensaryReviewByDispensaryReviewTxt($pdo, $reviewTxt);
+			if($dispensaryReviews !== null) {
+				$reply->data = $dispensaryReviews;
+			}
+		} else {
+			$dispensaryReviews = DispensaryReview::getAllDispensaryReviews($pdo);
+			if($dispensaryReviews !== null) {
+				$reply->data = $dispensaryReviews;
+			}
+		}
