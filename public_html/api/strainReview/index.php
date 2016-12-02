@@ -67,7 +67,7 @@ try {
 			}
 		} else {
 			$strainReviews = StrainReview::getAllStrainReviews($pdo);
-			if($dispensaryReviews !== null) {
+			if($strainReviews !== null) {
 				$reply->data = $strainReviews;
 			}
 		}

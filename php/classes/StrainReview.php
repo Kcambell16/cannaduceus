@@ -396,6 +396,7 @@ class StrainReview implements \JsonSerializable {
 			throw(new \RangeException("strain review strain id must be positive"));
 		}
 
+
 		// create query template
 		$query = "SELECT strainReviewId, strainReviewProfileId, strainReviewStrainId, strainReviewDateTime, strainReviewTxt FROM strainReview WHERE strainReviewStrainId = :strainReviewStrainId";
 		$statement = $pdo->prepare($query);
@@ -409,7 +410,7 @@ class StrainReview implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strinReviewStrainId"], $row ["strainReviewDateTime"], $row["strainReviewTxt"]);
+				$strainReview = new StrainReview($row["strainReviewId"], $row["strainReviewProfileId"], $row["strainReviewStrainId"], $row["strainReviewDateTime"], $row["strainReviewTxt"]);
 				$strainReviews[$strainReviews->key()] = $strainReview;
 				$strainReviews->next();
 			} catch(\Exception $exception) {
