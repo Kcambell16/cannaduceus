@@ -64,8 +64,40 @@ INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, di
 VALUES (null, 'Albuquerque', 'contact@urbanwellness.com', 'Urban Wellness', 505-369-0081, 'NM', '2910 San Mateo Blvd Suite 5', null, 'www.urbanwellnessnm.com', 87110);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@verdesfoundation.org', 'The Verdes Foundation', 505-510-1717, 'NM', '6005 Coronado NE', null, 'www.rgreenleaf.com', 87109);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'Compasionate Distributors', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'Pecos Valley Pharmaceuticals, Inc', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'Budding Hope', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'Mother Earth Herbs, Inc', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'MJ Express-O', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'Healthy Education Society', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'Budding Hope Inc', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'New Mexico Top Organics - Ultra Health', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
 
 
 
