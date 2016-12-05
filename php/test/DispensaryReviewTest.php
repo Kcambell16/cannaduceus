@@ -211,11 +211,12 @@ class DispensaryReviewTest extends CannaduceusTest {
 		$dispensaryReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$pdoDispensaryReview = DispensaryReview::getDispensaryReviewsByDispensaryReviewDispensaryId($this->getPDO(), $dispensaryReview->getDispensaryReviewId());
-		foreach($pdoDispensaryReview as $review) {
-			if($review->getDispensaryReviewsByDispensaryReviewDispensaryId === $dispensaryReview->getDispensaryReviewDispensaryId()) {
+		$pdoDispensaryReviews = DispensaryReview::getDispensaryReviewsByDispensaryReviewDispensaryId($this->getPDO(), $dispensaryReview->getDispensaryReviewDispensaryId());
+		foreach($pdoDispensaryReviews as $pdoDispensaryReview) {
+			if($pdoDispensaryReview->getDispensaryReviewDispensaryId() === $dispensaryReview->getDispensaryReviewDispensaryId()) {
 				$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryReview"));
 				$this->assertEquals($pdoDispensaryReview->getDispensaryReviewProfileId(), $this->profile->getProfileId());
+				$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDispensaryId(), $this->dispensary->getDispensaryId());
 				$this->assertEquals($pdoDispensaryReview->getDispensaryReviewTxt(), $this->VALID_DISPENSARYREVIEWTXT);
 				$this->assertEquals($pdoDispensaryReview->getDispensaryReviewDateTime()->format("Y-m-d H:i:s"), $this->VALID_DISPENSARYREVIEWDATETIME);
 			}
