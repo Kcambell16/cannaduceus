@@ -41,9 +41,9 @@ try {
 
 
 	//Here we check and make sure that we have the Primary Key for the DELETE and PUT requests. If the request is a PUT or DELETE and no key is present in $id, An Exception is thrown.
-	//if(($method === "DELETE" || $method === "PUT") && (empty($id) === true || $id < 0)) {
-		//throw(new InvalidArgumentException("id cannot be empty or negative", 405));
-	//}
+	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true || $id < 0)) {
+		throw(new InvalidArgumentException("id cannot be empty or negative", 405));
+	}
 
 	if((empty($_SESSION["profile"]) === false) && (($_SESSION ["profile"]->getProfileId()) === $id)) {
 
@@ -62,9 +62,9 @@ try {
 					// here we store the $profile in the $reply->data state variable
 				}
 			} else if(empty($profileUsername) === false) {
-				$profile = Profile::getProfileByProfileUserName($pdo, $id); // changed from id to profileUserName dec 5
+				$profile = Profile::getProfileByProfileUserName($pdo, $profileUserName); // changed from id to profileUserName dec 5
 				if($profile !== null) {
-					$reply->data = $profile->toArray();
+					$reply->data = $profile->toArray(); // added dec 5
 				}
 			}
 		}
@@ -98,7 +98,7 @@ try {
 		$reply->message = "The profile is updated";
 
 
-		// determins if the request is a DELETE request.
+		// determines if the request is a DELETE request.
 	} else if($method === "DELETE") {
 		verifyXsrf();
 
@@ -128,7 +128,7 @@ try {
 } catch(Exception $exception) {
 	$reply->status = $exception->getCode();
 	$reply->message = $exception->getMessage();
-	$reply->trace = $exception->getTraceAsString();
+	//$reply->trace = $exception->getTraceAsString(); // changed dec 5
 } catch(TypeError $typeError) {
 	$reply->status = $typeError->getCode();
 	$reply->message = $typeError->getMessage();
@@ -141,6 +141,8 @@ header("Content-type: application/json");
 if($reply->data === null) {
 	unset($reply->data);
 }
+// encode and return reply to front end caller
+echo json_encode($reply);
 
 
 
