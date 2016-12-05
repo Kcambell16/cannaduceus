@@ -69,15 +69,15 @@ VALUES (null, 'Albuquerque', 'info@verdesfoundation.org', 'The Verdes Foundation
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'Compasionate Distributors', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
+VALUES (null, 'Albuquerque', 'customerservice@compassionatedistributors.com', 'Compasionate Distributors', 575-258-1087, 'NM', '117 West Walnut Street', null, 'www.compsionatedistriutors.com', 87201);
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'Pecos Valley Pharmaceuticals, Inc', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
+VALUES (null, 'Roswell', 'info@pecosvalleypharmaceuticals.com', 'Pecos Valley Pharmaceuticals, Inc', 575-258-1087, 'NM', '313 W Country Club RD Unit 10', null, 'www.pecosvalleypharmaceuticals.com', 88201);
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'Budding Hope', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 88101);
+VALUES (null, 'Albuquerque', 'ceo@buddinghope.org', 'Budding Hope', 575-447-1869, 'NM', '2500 East 7th Street', null, 'www.buddinghope.org', 88101);
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
