@@ -56,8 +56,12 @@ INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, di
 VALUES (null, 'Albuquerque', 'info@sandiabotanicals.com', 'Sandia Botanicals Inc', 505-717-2764, 'NM', '2406 Comanche RD NE', null, 'www.sandiabotanicals.com', 87110);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@swopnm.com', 'SWOP: Southwest Organic Producers', 505-884-8221, 'NM', '3504 Montgomery', null, 'www.swopnm.com', 87107);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'contact@urbanwellness.com', 'Urban Wellness', 505-369-0081, 'NM', '2910 San Mateo Blvd Suite 5', null, 'www.urbanwellnessnm.com', 87110);
 
 
 
