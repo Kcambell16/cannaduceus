@@ -26,3 +26,47 @@ VALUES (null, 'Albuquerque', 'contactus@medzen.info', 'MedZen Services Inc', 505
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Albuquerque', 'info@minervacanna.com', 'Minerva Canna Group Inc', 505-888-2699, 'NM', '7103 4th st NW Building M', null, 'www.minervacanna.com', 87107);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@naturalrxnm.org', 'Natural RX', 505-404-8214, 'NM', '8612 Paseo Alameda NE Suite E', null, 'www.naturalrxnm.org', 87713);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', '', 'New Mexico Top Organics - Ultra Health (Nob Hill)', 505-322-2858, 'NM', '3213 Central Ave NE', null, 'www.ultrahealth.com', 87106);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', '', 'New Mexico Top Organics - Ultra Health (ABQ NW)', 505-322-2999, 'NM', '7401 Menaul Blvd NE Suite C', null, 'www.ultrahealth.com', 87110);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
