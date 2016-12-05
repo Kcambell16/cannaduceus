@@ -33,13 +33,27 @@ VALUES (null, 'Albuquerque', 'info@naturalrxnm.org', 'Natural RX', 505-404-8214,
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Albuquerque', '', 'New Mexico Top Organics - Ultra Health (Nob Hill)', 505-322-2858, 'NM', '3213 Central Ave NE', null, 'www.ultrahealth.com', 87106);
+VALUES (null, 'Albuquerque', 'nobhill@ultrahealth.com', 'New Mexico Top Organics - Ultra Health (Nob Hill)', 505-322-2858, 'NM', '3213 Central Ave NE', null, 'www.ultrahealth.com', 87106);
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Albuquerque', '', 'New Mexico Top Organics - Ultra Health (ABQ NW)', 505-322-2999, 'NM', '7401 Menaul Blvd NE Suite C', null, 'www.ultrahealth.com', 87110);
+VALUES (null, 'Albuquerque', 'menaul@ultrahealth.com', 'New Mexico Top Organics - Ultra Health (ABQ NE)', 505-322-2999, 'NM', '7401 Menaul Blvd NE Suite C', null, 'www.ultrahealth.com', 87110);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@purelifenm.com', 'PurLife', 505-433-2672, 'NM', '3821 Menaul Blvd NE Suite F', null, 'www.purelifenm.com', 87110);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'R. Greenleaf Organics, Inc', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'R. Greenleaf Organics, Inc (Second Location)', 505-359-1472, 'NM', '4114 Ouray NW Suite E', null, 'www.rgreenleaf.com', 87120);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@sandiabotanicals.com', 'Sandia Botanicals Inc', 505-717-2764, 'NM', '2406 Comanche RD NE', null, 'www.sandiabotanicals.com', 87110);
 
 
 
