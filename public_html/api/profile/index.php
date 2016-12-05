@@ -37,12 +37,13 @@ try {
 
 	//stores the Primary Key for the GET, DELETE, and PUT methods in $id. This key will come in the URL sent by the front end. If no key is present, $id will remain empty. Note that the input is filtered.
 	$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+	$profileUserName = filter_input(INPUT_GET, "profileUserName", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES); // added dec 5
 
 
 	//Here we check and make sure that we have the Primary Key for the DELETE and PUT requests. If the request is a PUT or DELETE and no key is present in $id, An Exception is thrown.
-	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true || $id < 0)) {
-		throw(new InvalidArgumentException("id cannot be empty or negative", 405));
-	}
+	//if(($method === "DELETE" || $method === "PUT") && (empty($id) === true || $id < 0)) {
+		//throw(new InvalidArgumentException("id cannot be empty or negative", 405));
+	//}
 
 	if((empty($_SESSION["profile"]) === false) && (($_SESSION ["profile"]->getProfileId()) === $id)) {
 
@@ -61,9 +62,9 @@ try {
 					// here we store the $profile in the $reply->data state variable
 				}
 			} else if(empty($profileUsername) === false) {
-				$profile = Profile::getProfileByProfileUserName($pdo, $id);
+				$profile = Profile::getProfileByProfileUserName($pdo, $id); // changed from id to profileUserName dec 5
 				if($profile !== null) {
-					$reply->data = $profile;
+					$reply->data = $profile->toArray();
 				}
 			}
 		}
@@ -73,7 +74,7 @@ try {
 		$requestObject = json_decode($requestContent);
 
 		// make sure that profileId is available!
-		if (empty($requestObject->profileId) == true) {
+		if(empty($requestObject->profileId) == true) {
 			throw(new \InvalidArgumentException("no content for profile id", 405));
 		}
 		// make sure that the profileUserName is available!
@@ -119,7 +120,7 @@ try {
 		// stores the "profile deleted OK" message in the $reply->message state variable.
 		$reply->message = "profile deleted OK";
 	} else {
-		throw (new InvalidArgumentException("Invalid HTTP Method Request"));
+		throw (new InvalidArgumentException("Invalid HTTP Method Request", 405));
 		// If the method request is not GET, PUT, POST, an exception is thrown
 	}
 
