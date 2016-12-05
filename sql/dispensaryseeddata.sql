@@ -37,7 +37,7 @@ VALUES (null, 'Albuquerque', '', 'New Mexico Top Organics - Ultra Health (Nob Hi
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Albuquerque', '', 'New Mexico Top Organics - Ultra Health (ABQ )', 505-322-2999, 'NM', '7401 Menaul Blvd NE Suite C', null, 'www.ultrahealth.com', 87110);
+VALUES (null, 'Albuquerque', '', 'New Mexico Top Organics - Ultra Health (ABQ NW)', 505-322-2999, 'NM', '7401 Menaul Blvd NE Suite C', null, 'www.ultrahealth.com', 87110);
 
 
 
