@@ -66,7 +66,7 @@ class StrainLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest {
 	/**
 	 * test inserting a valid strain leaf rating and verify that the actual mySQL data matches
 	 */
-	public function testValidStrainLeafRating() {
+	public function testInsertValidStrainLeafRating() {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("strainLeafRating");
 
@@ -83,7 +83,7 @@ class StrainLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest {
 
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("strainLeafRating"));
 		$this->assertEquals($pdoStrainLeafRating->getStrainLeafRatingStrainId(),
-			$this->strain->getstrainId());
+			$this->strain->getStrainId());
 		$this->assertEquals($pdoStrainLeafRating->getStrainLeafRatingProfileId(), $this->profile->getProfileId());
 	}
 
@@ -113,7 +113,7 @@ class StrainLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest {
 		$strainLeafRating->delete($this->getPDO());
 
 		//grab the data from mySQL and enforce the strainLeafRating does not exist
-		$pdoStrainLeafRating = StrainLeafRating::getstrainLeafRatingBystrainLeafRatingstrainIdAndstrainLeafRatingProfileId($this->getPDO(),
+		$pdoStrainLeafRating = StrainLeafRating::getStrainLeafRatingByStrainLeafRatingStrainIdAndStrainLeafRatingProfileId($this->getPDO(),
 			$this->profile->getProfileId(),
 			$this->strain->getStrainId());
 
@@ -146,7 +146,7 @@ class StrainLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest {
 	 **/
 	public function testGetInvalidStrainLeafRatingByStrainLeafRatingStrainIdAndStrainLeafRatingProfileId() {
 		// grab a strain leaf strain id and profile id that exceeds the maximum allowable strain id and profile id
-		$strainLeafRating = strainLeafRating::getStrainLeafRatingByStrainLeafRatingStrainIdAndStrainLeafRatingProfileId($this->getPDO(), \Edu\Cnm\Cannaduceus\Test\CannaduceusTest::INVALID_KEY, \Edu\Cnm\Cannaduceus\Test\CannaduceusTest::INVALID_KEY);
+		$strainLeafRating = StrainLeafRating::getStrainLeafRatingByStrainLeafRatingStrainIdAndStrainLeafRatingProfileId($this->getPDO(), \Edu\Cnm\Cannaduceus\Test\CannaduceusTest::INVALID_KEY, \Edu\Cnm\Cannaduceus\Test\CannaduceusTest::INVALID_KEY);
 		$this->assertNull($strainLeafRating);
 	}
 
