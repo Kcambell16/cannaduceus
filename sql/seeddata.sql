@@ -175,9 +175,19 @@ VALUES (null, null, 'bernalillo@ultrahealth.com', 'New Mexico Top Organics', 505
 -- dispensary seed data ends here
 
 -- Strain seed data starts here
+
+
 -- Indica Strains
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Berry Kush', 'Indica', 17.00 , 00.00, 'Description');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Bubba Kush', 'Indica', 20, 0.4, 'So Good');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Catarac Kush', 'Indica', 26.00 , 00.00, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
@@ -187,8 +197,13 @@ VALUES ('Hindi Kush', 'Indica', 18.64, 0.21, 'Not Available');
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Kush White Russian', 'Indica', 18.6, 0.13, 'Not Available');
 
+
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Rare Darkness', 'Indica', 26.7, 1.0, 'Deep sedating, night time sleep aid');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Skywalker OG', 'Indica', 25.00 , 00.00, 'Not Available');
 
 
 
