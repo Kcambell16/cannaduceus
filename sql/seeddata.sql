@@ -226,7 +226,15 @@ VALUES ('Skywalker OG', 'Indica', 25.00 , 00.00, 'Not Available');
 
 -- Sativa Strains
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Amnesia', 'Sativa', 20.00 , 00.00, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Cannatonic', 'Sativa', 7.0 , 16.0, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Chocolope', 'Sativa', 15.00 , 00.00, 'Description');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
@@ -247,6 +255,10 @@ VALUES ('Skunk', 'Sativa', 20.0, 0.4, 'Not Available');
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Sour Amnesia', 'Sativa', 18.96 , 0.11, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Super Lemon Haze', 'Sativa', 19.00 , 00.00, 'Not Available');
 
 
 
