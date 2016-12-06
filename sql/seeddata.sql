@@ -228,10 +228,6 @@ VALUES ('Skywalker OG', 'Indica', 25.00 , 00.00, 'Not Available');
 
 
 
-
-
-
-
 -- Sativa Strains
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Amnesia', 'Sativa', 20.00 , 00.00, 'Not Available');
@@ -295,10 +291,6 @@ VALUES ('Super Lemon Haze', 'Sativa', 19.00 , 00.00, 'Not Available');
 
 
 
-
-
-
-
 -- Hybrid Strains
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Alaskan Thunder Funk', 'Hybrid', 23.53 , 0.18, 'Not Available');
@@ -329,10 +321,6 @@ VALUES ('Shiskaberry', 'Hybrid', 15.00 , 00.00, 'Not Available');
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Lemon Sour Diesel', 'Hybrid', 14.00 , 00.00, 'Not Available');
-
-
-
-
 
 
 
