@@ -117,7 +117,7 @@ VALUES (null, 'Gallup', null, 'Red Barn Growers', 505-862-9707, 'NM', '204 South
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Hobbs', 'hobbs@ultrahealth.com', 'New Mexicann Natural Medicine, Inc', 575-964-1500, 'NM', '3211 N Dal Paso Ste B', null, 'www.newmexicann.org', 87533);
+VALUES (null, 'Española', 'info@newmexicann.org', 'New Mexicann Natural Medicine, Inc', 505-982-2621, 'NM', '908 N. Riverside Dr. Suite 3 & S', null, 'www.newmexicann.org', 87533);
 
 
 
