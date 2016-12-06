@@ -1,5 +1,5 @@
 -- dispensary seed data starts here
-
+-- Bernalillo County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 	VALUES (null, 'Albuquerque', 'support@cannaceutics.org', 'Cannaceutics Inc', 505-672-8734, 'NM', 'P.O.Box 95705', null, 'www.cannaceutics.org', 87199);
 
@@ -21,7 +21,11 @@ VALUES (null, 'Albuquerque', 'order@highdesertrelief.org', 'High Desert Relief',
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Albuquerque', 'contactus@medzen.info', 'MedZen Services Inc', 505-200-2367, 'NM', '4014 Central Ave NE', null, 'www.medzen.info', 87106);
+VALUES (null, 'Albuquerque', 'contactus@medzen.info', 'MedZen Services Inc (Location One)', 505-200-2367, 'NM', '4014 Central Ave NE', null, 'www.medzen.info', 87106);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', null, 'MedZen Services (Location Two)', 505- 200-2367, 'NM', '4014 Central Ave. NE', null, null, 87106);
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
@@ -41,11 +45,15 @@ VALUES (null, 'Albuquerque', 'menaul@ultrahealth.com', 'New Mexico Top Organics 
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'westside@ultrahealth.com', 'New Mexico Top Organics - Ultra Health', 505-433-4945, 'NM', '5115 Coors Blvd NW Suite C', null, 'www.ultrahealth.com', 87120);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Albuquerque', 'info@purelifenm.com', 'PurLife', 505-433-2672, 'NM', '3821 Menaul Blvd NE Suite F', null, 'www.purelifenm.com', 87110);
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'R. Greenleaf Organics, Inc', 505-510-1717, 'NM', '4114 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
+VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'R. Greenleaf Organics, Inc', 505-510-1717, 'NM', '4414 Menaul Blvd NE', null, 'www.rgreenleaf.com', 87110);
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
@@ -55,7 +63,7 @@ VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'R. Greenleaf Organics, Inc 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Albuquerque', 'info@sandiabotanicals.com', 'Sandia Botanicals Inc', 505-717-2764, 'NM', '2406 Comanche RD NE', null, 'www.sandiabotanicals.com', 87110);
 
-
+-- C
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Albuquerque', 'info@swopnm.com', 'SWOP: Southwest Organic Producers', 505-884-8221, 'NM', '3504 Montgomery', null, 'www.swopnm.com', 87107);
 
@@ -67,19 +75,19 @@ VALUES (null, 'Albuquerque', 'contact@urbanwellness.com', 'Urban Wellness', 505-
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Albuquerque', 'info@verdesfoundation.org', 'The Verdes Foundation', 505-510-1717, 'NM', '6005 Coronado NE', null, 'www.rgreenleaf.com', 87109);
 
-
+-- Chaves County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Albuquerque', 'customerservice@compassionatedistributors.com', 'Compasionate Distributors', 575-258-1087, 'NM', '117 West Walnut Street', null, 'www.compsionatedistriutors.com', 87201);
+VALUES (null, 'Roswell', 'customerservice@compassionatedistributors.com', 'Compasionate Distributors', 575-258-1087, 'NM', '117 West Walnut Street', null, 'www.compsionatedistriutors.com', 87201);
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Roswell', 'info@pecosvalleypharmaceuticals.com', 'Pecos Valley Pharmaceuticals, Inc', 575-258-1087, 'NM', '313 W Country Club RD Unit 10', null, 'www.pecosvalleypharmaceuticals.com', 88201);
 
-
+-- Curry County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Albuquerque', 'ceo@buddinghope.org', 'Budding Hope', 575-447-1869, 'NM', '2500 East 7th Street', null, 'www.buddinghope.org', 88101);
 
-
+-- Dona Ana County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Las Cruces', 'motherearthherbs@gmail.com', 'Mother Earth Herbs, Inc', 575-312-2446, 'NM', '1115 Commerce Drive', null, 'www.motherhearthherbs.org', 88001);
 
@@ -87,39 +95,31 @@ VALUES (null, 'Las Cruces', 'motherearthherbs@gmail.com', 'Mother Earth Herbs, I
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Las Cruces', 'info@mjexpresso.com', 'MJ Express-O', 575-740-0803, 'NM', '755 S Telshor Blvd Suite 102 A', null, 'www.mjexpresso.com', 88001);
 
-
+-- Eddy County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Artesia', 'info@hesmmj.com', 'Healthy Education Society', 575-703-3176, 'NM', 'R223 North 13th', null, 'www.hesmmj.com', 88210);
 
-
+-- Lea County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Hobbs', 'hobbs2@buddinghope.org', 'Budding Hope Inc', 575-703-3176, 'NM', '301 North Grimes', null, 'www.rgreenleaf.com', 88240);
-
-
-INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Hobbs', 'hobbs@ultrahealth.com', 'New Mexico Top Organics - Ultra Health', 575-964-1500, 'NM', '3211 N Dal Paso Ste B', null, 'www.ultrahealth.com', 88240);
-
-
-INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-VALUES (null, 'Roswell', 'info@pecosvalleypharmaceuticals.com', 'Compassionate Distributors, Inc', 575-258-1087, 'NM', '117 West Walnut St', null, 'www.compassionatedistributors.com', 87110);
+VALUES (null, 'Hobbs', 'hobbs2@buddinghope.org', 'Budding Hope Inc', 575-393-0612, 'NM', '301 North Grimes', null, 'www.buddinghope.org', 88240);
 
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Hobbs', 'hobbs@ultrahealth.com', 'New Mexico Top Organics - Ultra Health', 575-964-1500, 'NM', '3211 N Dal Paso Ste B', null, 'www.ultrahealth.com', 88240);
 
-
+-- Lincoln County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Ruidoso', 'customerservice@compassionatedistributors.com', 'Compassionate Distributors, Inc', 575-258-1087, 'NM', '1216 Meachem Dr Ste 2', null, 'www.compassionatedistributors.com', 888350);
 
-
+-- Mc Kinley County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Gallup', null, 'Red Barn Growers', 505-862-9707, 'NM', '204 South 3rd St', null, null, 87301);
 
-
+-- Rio Arriva County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Española', 'info@newmexicann.org', 'New Mexicann Natural Medicine, Inc', 505-982-2621, 'NM', '908 N. Riverside Dr. Suite 3 & S', null, 'www.newmexicann.org', 87533);
 
-
+-- Santa Fe County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES ('Jaum Barron', 'Santa Fe', 'fruitoftheearthorganics@gmail.com', 'Fruit of the Earth Organics', 505-310-7917, 'NM', '901 Early Street', null, 'www.fruitoftheearthorganics.com', 87505);
 
@@ -135,11 +135,11 @@ VALUES (null, 'Santa Fe', 'santafe@ultrahealth.com', 'New Mexico Top Organics - 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Santa Fe', 'info@newmexicann.org', 'New Mexicann Natural Medicine', 505-982-2621, 'NM', '1592 San Mateo Lane', null, 'www.newmexicann.org', 87505);
 
-
+-- San Miguel County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Las Vegas', 'info@newmexicann.org', 'New Mexican Natural Medicine, Inc', 505-349-4783, 'NM', '615 Lincoln Avenue', null, 'www.newmexicann.org', 87701);
 
-
+-- Sandoval County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Bernalillo', 'bernalillo@ultrahealth.com', 'New Mexico Top Organics - Ultra Health', 505-867-2504, 'NM', '255 Camino Don Tomas', null, 'www.ultrahealth.com', 87004);
 
@@ -147,11 +147,11 @@ VALUES (null, 'Bernalillo', 'bernalillo@ultrahealth.com', 'New Mexico Top Organi
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Placitas', 'info@cgcorrigan.org', 'C.G. Corrigan, Inc', 505-933-5599, 'NM', '30 East Frontage RD Suite D', null, 'www.cgcorrigan.org', 87043);
 
-
+-- Taos County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Taos', 'info@newmexicann.org', 'New Mexican Natural Medicine', 575-201-2457, 'NM', '1033 Paseo Del Pueblo Sur Unit A', null, 'www.newmexicann.org', 87571);
 
-
+-- Valencia County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Los Lunas', 'info@naturalrxnm.com', 'Natural RX, Inc', 505-916-0816, 'NM', '3414-C State Highway 47', null, 'www.naturalrxnm.com', 87031);
 
@@ -159,9 +159,15 @@ VALUES (null, 'Los Lunas', 'info@naturalrxnm.com', 'Natural RX, Inc', 505-916-08
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Los Lunas', null, 'Minerva Canna Group, Inc', 505-865-7809, 'NM', '336 Main Street NW', null, 'www.minervacanna.com', 87031);
 
-
+-- San Juan County
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Farmington', 'nmaltcare@gmail.com', 'New Mexico Alternative Care', 505-258-4952, 'NM', '220 Browning Parkway', null, 'www.newmexicoalternativecare.com', 87401);
+
+
+
+
+
+
 
 
 
