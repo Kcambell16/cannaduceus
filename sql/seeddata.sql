@@ -163,8 +163,6 @@ VALUES (null, 'Los Lunas', null, 'Minerva Canna Group, Inc', 505-865-7809, 'NM',
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Farmington', 'nmaltcare@gmail.com', 'New Mexico Alternative Care', 505-258-4952, 'NM', '220 Browning Parkway', null, 'www.newmexicoalternativecare.com', 87401);
 
--- dispensary seed data ends here
-
 -- Contact Producers for Distribution/Delivery Options
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
@@ -173,3 +171,6 @@ VALUES (null, 'Grants', 'gggi@gandggeneticsinc.org', 'G & G Genetics, Inc', 505-
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, null, 'bernalillo@ultrahealth.com', 'New Mexico Top Organics', 505-867-2504, 'NM', null, null, 'www.ultrahealth.com', null);
+
+-- dispensary seed data ends here
+
