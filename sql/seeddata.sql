@@ -181,7 +181,7 @@ INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescript
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Bubba Kush', 'Indica', 20, 0.4, 'Not Available');
+VALUES ('Bubba Kush', 'Indica', 20, 0.4, 'So Good');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
