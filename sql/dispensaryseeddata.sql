@@ -120,7 +120,20 @@ INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, di
 VALUES (null, 'Española', 'info@newmexicann.org', 'New Mexicann Natural Medicine, Inc', 505-982-2621, 'NM', '908 N. Riverside Dr. Suite 3 & S', null, 'www.newmexicann.org', 87533);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES ('Jaum Barron', 'Santa Fe', 'fruitoftheearthorganics@gmail.com', 'Fruit of the Earth Organics', 505-310-7917, 'NM', '901 Early Street', null, 'www.fruitoftheearthorganics.com', 87505);
 
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Santa Fe', 'admin@sacredgardennm.com', 'Sacred Garden', 505-216-9686, 'NM', '1300 Luisa Street Suite 1', null, 'www.sacredgardennm.com', 87505);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Santa Fe', 'santafe@ultrahealth.com', 'New Mexico Top Organics - Ultra Health', 505-216-0898, 'NM', '1907 St Michaels Dr Suite F', null, 'www.ultrahealth.com', 87502);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Santa Fe', 'info@newmexicann.org', 'New Mexicann Natural Medicine', 505-982-2621, 'NM', '1592 San Mateo Lane', null, 'www.newmexicann.org', 87505);
 
 
 
