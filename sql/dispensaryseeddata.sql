@@ -152,7 +152,12 @@ INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, di
 VALUES (null, 'Taos', 'info@newmexicann.org', 'New Mexican Natural Medicine', 575-201-2457, 'NM', '1033 Paseo Del Pueblo Sur Unit A', null, 'www.newmexicann.org', 87571);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Los Lunas', 'info@naturalrxnm.com', 'Natural RX, Inc', 505-916-0816, 'NM', '3414-C State Highway 47', null, 'www.naturalrxnm.com', 87031);
 
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Los Lunas', null, 'Minerva Canna Group, Inc', 505-865-7809, 'NM', '336 Main Street NW', null, 'www.minervacanna.com', 87031);
 
 
 
