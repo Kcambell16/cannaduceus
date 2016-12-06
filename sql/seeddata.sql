@@ -189,7 +189,12 @@ VALUES ('Hindi Kush', 'Indica', 18.64, 0.21, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('', 'Indica', 20, 0.4, 'Not Available');
+VALUES ('Kush White Russian', 'Indica', 18.6, 0.13, 'Not Available');
+
+
+
+
+
 
 
 
@@ -202,9 +207,32 @@ INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescript
 VALUES ('Skunk', 'Sativa', 20.0, 0.4, 'Not Available');
 
 
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Sour Amnesia', 'Sativa', 18.96 , 0.11, 'Not Available');
+
+
+
 
 
 
 
 
 -- Hybrid Strains
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('K-Shark', 'Hybrid', 18.37 , 0.50, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Alaskan Thunder Funk', 'Hybrid', 23.53 , 0.18, 'Not Available');
+
+
+
+
+
+-- CBD Strains
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Cannatonic', 'CBD', 7.0 , 16.0, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Nordle', 'CBD', 7.0 , 16.0, 'Not Available');
