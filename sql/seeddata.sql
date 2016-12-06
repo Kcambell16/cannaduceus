@@ -271,6 +271,14 @@ INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescript
 VALUES ('K-Shark', 'Hybrid', 18.37 , 0.50, 'Not Available');
 
 
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Shiskaberry', 'Hybrid', 15.00 , 00.00, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Lemon Sour Diesel', 'Hybrid', 14.00 , 00.00, 'Not Available');
+
+
 
 
 
@@ -279,11 +287,19 @@ VALUES ('K-Shark', 'Hybrid', 18.37 , 0.50, 'Not Available');
 
 -- CBD Strains
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('AK-47', 'CBD', 8.00 , 7.00, 'Description');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Cannatonic', 'CBD', 7.0 , 16.0, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Nordle', 'CBD', 7.0 , 16.0, 'Not Available');
+VALUES ('Nordle', 'CBD', 7.0 , 6.0, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Wow', 'CBD', 8.00 , 7.0, 'Not Available');
 
 
 
