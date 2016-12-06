@@ -136,6 +136,10 @@ INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, di
 VALUES (null, 'Santa Fe', 'info@newmexicann.org', 'New Mexicann Natural Medicine', 505-982-2621, 'NM', '1592 San Mateo Lane', null, 'www.newmexicann.org', 87505);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Las Vegas', 'info@newmexicann.org', 'New Mexican Natural Medicine, Inc', 505-349-4783, 'NM', '615 Lincoln Avenue', null, 'www.newmexicann.org', 87701);
+
+
 
 
 
