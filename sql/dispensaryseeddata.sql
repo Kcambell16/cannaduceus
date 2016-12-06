@@ -160,6 +160,10 @@ INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, di
 VALUES (null, 'Los Lunas', null, 'Minerva Canna Group, Inc', 505-865-7809, 'NM', '336 Main Street NW', null, 'www.minervacanna.com', 87031);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Farmington', 'nmaltcare@gmail.com', 'New Mexico Alternative Care', 505-258-4952, 'NM', '220 Browning Parkway', null, 'www.newmexicoalternativecare.com', 87401);
+
+
 
 
 
