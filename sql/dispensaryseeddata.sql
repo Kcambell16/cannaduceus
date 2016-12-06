@@ -148,6 +148,13 @@ INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, di
 VALUES (null, 'Placitas', 'info@cgcorrigan.org', 'C.G. Corrigan, Inc', 505-933-5599, 'NM', '30 East Frontage RD Suite D', null, 'www.cgcorrigan.org', 87043);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Taos', 'info@newmexicann.org', 'New Mexican Natural Medicine', 575-201-2457, 'NM', '1033 Paseo Del Pueblo Sur Unit A', null, 'www.newmexicann.org', 87571);
+
+
+
+
+
 
 
 
