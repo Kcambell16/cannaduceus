@@ -189,16 +189,16 @@ class DispensaryLeafRating implements \JsonSerializable {
 	 */
 	public function delete(\PDO $pdo) {
 		//enforce the dispensaryLeafRating is not null (i.e., don't delete a dispensary leaf rating that hasn't been inserted)
-		if($this->dispensaryLeafRatingRating === null) {
+		if(empty($this->dispensaryLeafRatingDispensaryId) || empty($this->dispensaryLeafRatingProfileId)) {
 			throw(new \PDOException("unable to delete a dispensary leaf rating that does not exist"));
 		}
 
 		//Create Query Template
-		$query = "DELETE FROM dispensaryLeafRating WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating";
+		$query = "DELETE FROM dispensaryLeafRating WHERE dispensaryLeafRatingDispensaryId = :dispensaryLeafRatingDispensaryId AND dispensaryLeafRatingProfileId = :dispensaryLeafRatingProfileId";
 		$statement = $pdo->prepare($query);
 
 		//Bind the member variables to the place holder in the template
-		$parameters = ["dispensaryLeafRatingRating" => $this->dispensaryLeafRatingRating];
+		$parameters = ["dispensaryLeafRatingDispensaryId" => $this->dispensaryLeafRatingDispensaryId, "dispensaryLeafRatingProfileId" => $this->dispensaryLeafRatingProfileId];
 		$statement->execute($parameters);
 	}	//Delete
 
@@ -233,20 +233,24 @@ class DispensaryLeafRating implements \JsonSerializable {
 	 * @return null | \SplFixedArray array of Dispensaries with the same $dispensaryLeafRatingRating or null if not found
 	 */
 
-	public static function getDispensaryLeafRatingByDispensaryLeafRatingRating(\PDO $pdo, int $dispensaryLeafRatingRating) {
+	public static function getDispensaryLeafRatingsByDispensaryLeafRatingRating(\PDO $pdo, int $dispensaryLeafRatingRating) {
 		//  check validity of $dispensaryLeafRating
-		$dispensaryLeafRating = filter_input($dispensaryLeafRatingRating, FILTER_SANITIZE_NUMBER_INT);
-		if($dispensaryLeafRating <= 0) {
-			throw(new \InvalidArgumentException("Dispensary Leaf Rating is not valid."));
+		$dispensaryLeafRatingRating = filter_var($dispensaryLeafRatingRating, FILTER_SANITIZE_NUMBER_INT);
+
+		if($dispensaryLeafRatingRating <= 0 || $dispensaryLeafRatingRating > 5) {
+			throw(new \RangeException("Dispensary Leaf Rating is not valid."));
 		}
-		if($dispensaryLeafRating === null) {
-			throw(new \RangeException("Dispensary name does not exist."));
+
+		if($dispensaryLeafRatingRating === null) {
+			throw(new \InvalidArgumentException("Dispensary rating does not exist."));
 		}
+
 		// prepare query
 		$query = "SELECT dispensaryLeafRatingRating, dispensaryLeafRatingDispensaryId, dispensaryLeafRatingProfileId FROM dispensaryLeafRating WHERE dispensaryLeafRatingRating = :dispensaryLeafRatingRating";
 		$statement = $pdo->prepare($query);
-		$parameters = array("dispensaryLeafRating" => $dispensaryLeafRating);
+		$parameters = array("dispensaryLeafRatingRating" => $dispensaryLeafRatingRating);
 		$statement->execute($parameters);
+
 		//  build an array of dispensaries based on dispensaryLeafRating
 		$dispensaryLeafRatings = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);

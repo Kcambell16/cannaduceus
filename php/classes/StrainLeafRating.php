@@ -189,16 +189,17 @@ class StrainLeafRating implements \JsonSerializable {
 	 */
 	public function delete(\PDO $pdo) {
 		//enforce the strainLeafRating is not null (i.e., don't delete a strain leaf rating that hasn't been inserted)
-		if($this->strainLeafRatingRating === null) {
+		if(empty($this->strainLeafRatingStrainId) || empty($this->strainLeafRatingProfileId)) {
 			throw(new \PDOException("unable to delete a strain leaf rating that does not exist"));
 		}
 
 		//Create Query Template
-		$query = "DELETE FROM strainLeafRating WHERE strainLeafRatingRating = :strainLeafRatingRating";
+		$query = "DELETE FROM strainLeafRating WHERE strainLeafRatingStrainId = :strainLeafRatingStrainId AND strainLeafRatingProfileId = :strainLeafRatingProfileId";
 		$statement = $pdo->prepare($query);
 
 		//Bind the member variables to the place holder in the template
-		$parameters = ["strainLeafRatingRating" => $this->strainLeafRatingRating];
+		$parameters = ["strainLeafRatingStrainId" => $this->strainLeafRatingStrainId,
+		"strainLeafRatingProfileId" => $this->strainLeafRatingProfileId];
 		$statement->execute($parameters);
 	}	//Delete
 
@@ -218,8 +219,8 @@ class StrainLeafRating implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the place holders in the template
-		$parameteres = ["strainLeafRatingRating" => $this->strainLeafRatingRating, "strainLeafRatingStrainId" => $this->strainLeafRatingStrainId, "strainLeafRatingProfileId" => $this->strainLeafRatingProfileId];
-		$statement->execute($parameteres);
+		$parameters = ["strainLeafRatingRating" => $this->strainLeafRatingRating, "strainLeafRatingStrainId" => $this->strainLeafRatingStrainId, "strainLeafRatingProfileId" => $this->strainLeafRatingProfileId];
+		$statement->execute($parameters);
 	}//update
 
 	/**
@@ -235,18 +236,20 @@ class StrainLeafRating implements \JsonSerializable {
 
 	public static function getStrainLeafRatingByStrainLeafRatingRating(\PDO $pdo, int $strainLeafRatingRating) {
 		//  check validity of $strainLeafRating
-		$strainLeafRating = filter_input($strainLeafRatingRating, FILTER_SANITIZE_NUMBER_INT);
-		if($strainLeafRating <= 0) {
-			throw(new \InvalidArgumentException("Strain Leaf Rating is not valid."));
+		$strainLeafRatingRating = filter_var($strainLeafRatingRating, FILTER_SANITIZE_NUMBER_INT);
+
+		if($strainLeafRatingRating <= 0 || $strainLeafRatingRating > 5) {
+			throw(new \RangeException("Strain Leaf Rating is not valid."));
 		}
-		if($strainLeafRating === null) {
+		if($strainLeafRatingRating === null) {
 			throw(new \RangeException("Strain name does not exist."));
 		}
 		// prepare query
 		$query = "SELECT strainLeafRatingRating, strainLeafRatingStrainId, strainLeafRatingProfileId FROM strainLeafRating WHERE strainLeafRatingRating = :strainLeafRatingRating";
 		$statement = $pdo->prepare($query);
-		$parameters = array("strainLeafRating" => $strainLeafRating);
+		$parameters = array("strainLeafRating" => $strainLeafRatingRating);
 		$statement->execute($parameters);
+
 		//  build an array of dispensaries based on strainLeafRating
 		$strainLeafRatings = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);

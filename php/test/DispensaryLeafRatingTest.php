@@ -24,7 +24,7 @@ class DispensaryLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest
 	 * valid dispensary leaf rating rating 0
 	 * @var int $VALID_DISPENSARYLEAFRATINGRATING0
 	 */
-	protected $VALID_DISPENSARYLEAFRATINGRATING0 = 1;
+	protected $VALID_DISPENSARYLEAFRATINGRATING0 = 3;
 
 	/**
 	 * valid dispensary leaf rating rating 1
@@ -98,8 +98,45 @@ class DispensaryLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest
 	}
 
 	/**
-	 * test creating a dispensaryLeafRating and deleting it
+	 * test inserting a dispensaryLeafRating, editing it and then updating it
 	 */
+	public function testUpdateDispensaryLeafRating() {
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("dispensaryLeafRating");
+
+		//create a new dispensaryLeafRating and insert it into mySQL
+		$dispensaryLeafRating = new DispensaryLeafRating($this->VALID_DISPENSARYLEAFRATINGRATING0, $this->dispensary->getDispensaryId(), $this->profile->getProfileId());
+		$dispensaryLeafRating->insert($this->getPDO());
+
+		//edit the strain and update it in mySQL
+		$dispensaryLeafRating->setDispensaryLeafRatingRating($this->VALID_DISPENSARYLEAFRATINGRATING0);
+		$dispensaryLeafRating->setDispensaryLeafRatingDispensaryId($this->dispensary->getDispensaryId());
+		$dispensaryLeafRating->setDispensaryLeafRatingProfileId($this->profile->getProfileId());
+		$dispensaryLeafRating->update($this->getPDO());
+
+		// retrieve the data from mySQL and enforce the fields watch our expectations
+		$pdoDispensaryLeafRating = $dispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingDispensaryIdAndDispensaryLeafRatingProfileId($this->getPDO(), $this->dispensary->getDispensaryId(), $this->profile->getProfileId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryLeafRating"));
+		$this->assertEquals($pdoDispensaryLeafRating->getDispensaryLeafRatingDispensaryId(), $this->dispensary->getDispensaryId());
+		$this->assertEquals($pdoDispensaryLeafRating->getDispensaryLeafRatingProfileId(), $this->profile->getProfileId());
+
+	}
+
+	/**
+	 * test updating a dispensaryLeafRating that does not exist
+	 *
+	 * @expectedException \PDOException
+	 */
+	public function testUpdateInvalidDispensaryLeafRating() {
+		//create a dispensaryLeafRating and try to update it without inserting
+		$dispensaryLeafRating = new DispensaryLeafRating($this->VALID_DISPENSARYLEAFRATINGRATING0, $this->dispensary->getDispensaryId(), $this->profile->getProfileId());
+		var_dump($dispensaryLeafRating);
+		$dispensaryLeafRating->update($this->getPDO());
+	}
+
+	/**
+	 * test creating a dispensaryLeafRating and deleting it
+	 **/
 	public function testDeleteValidDispensaryLeafRating() {
 		//count the number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("dispensaryLeafRating");
@@ -114,14 +151,13 @@ class DispensaryLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest
 
 		//grab the data from mySQL and enforce the dispensaryLeafRating does not exist
 		$pdoDispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingDispensaryIdAndDispensaryLeafRatingProfileId($this->getPDO(),
-		$this->profile->getProfileId(),
-		$this->dispensary->getDispensaryId());
+			$this->profile->getProfileId(),
+			$this->dispensary->getDispensaryId());
 
 		$this->assertNull($pdoDispensaryLeafRating);
 		$this->assertEquals($numRows, $this->getConnection()->getRowCount("dispensaryLeafRating"));
 
 	}
-
 
 	/**
 	 * test inserting a dispensaryLeafRating and retrieving it from mySQL
@@ -146,7 +182,7 @@ class DispensaryLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest
 	 **/
 	public function testGetInvalidDispensaryLeafRatingByDispensaryLeafRatingDispensaryIdAndDispensaryLeafRatingProfileId() {
 		// grab a dispensary leaf dispensary id and profile id that exceeds the maximum allowable dispensary id and profile id
-		$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingDispensaryIdAndDispensaryLeafRatingProfileId($this->getPDO(), \Edu\Cnm\Cannaduceus\Test\CannaduceusTest::INVALID_KEY, \Edu\Cnm\Cannaduceus\Test\CannaduceusTest::INVALID_KEY);
+		$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingDispensaryIdAndDispensaryLeafRatingProfileId($this->getPDO(), CannaduceusTest::INVALID_KEY, CannaduceusTest::INVALID_KEY);
 		$this->assertNull($dispensaryLeafRating);
 	}
 
@@ -175,7 +211,7 @@ class DispensaryLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest
 	 **/
 	public function testGetInvalidDispensaryLeafRating() {
 		// grab a dispensary id that exceeds the maximum allowable dispensary id
-		$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingDispensaryId($this->getPDO(), \Edu\Cnm\Cannaduceus\Test\CannaduceusTest::INVALID_KEY);
+		$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingDispensaryId($this->getPDO(), CannaduceusTest::INVALID_KEY);
 		$this->assertCount(0, $dispensaryLeafRating);
 	}
 
@@ -208,7 +244,40 @@ class DispensaryLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest
 	 **/
 	public function testGetInvalidDispensaryLeafRatingByProfileId() {
 		// grab a dispensaryLeafRating id that exceeds the maximum allowable profile id
-		$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingProfileId($this->getPDO(), \Edu\Cnm\Cannaduceus\Test\CannaduceusTest::INVALID_KEY);
+		$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingProfileId($this->getPDO(), CannaduceusTest::INVALID_KEY);
+		$this->assertCount(0, $dispensaryLeafRating);
+	}
+
+	/**
+	 * test grabbing a dispensaryLeafRating by dispensaryLeafRatingRating
+	 */
+	public function testGetDispensaryLeafRatingByDispensaryLeafRatingRating() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("dispensaryLeafRating");
+
+		//create a new dispensaryLeafRating and insert into mySQL
+		$dispensaryLeafRating = new DispensaryLeafRating($this->VALID_DISPENSARYLEAFRATINGRATING0, $this->dispensary->getDispensaryId(), $this->profile->getProfileId());
+		$dispensaryLeafRating->insert($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$results = DispensaryLeafRating::getDispensaryLeafRatingsByDispensaryLeafRatingRating($this->getPDO(), $this->VALID_DISPENSARYLEAFRATINGRATING0);
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("dispensaryLeafRating"));
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus\\DispensaryLeafRating", $results);
+
+		// grab the result from the array and validate it
+		$pdoDispensaryLeafRating = $results[0];
+		$this->assertEquals($pdoDispensaryLeafRating->getDispensaryLeafRatingRating(), $this->VALID_DISPENSARYLEAFRATINGRATING0);
+		$this->assertEquals($pdoDispensaryLeafRating->getDispensaryLeafRatingProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoDispensaryLeafRating->getDispensaryLeafRatingDispensaryId(), $this->dispensary->getDispensaryId());
+	}
+
+	/**
+	 * test grabbing a dispensaryLeafRating by a dispensaryLeafRatingRating that does not exist
+	 **/
+	public function testGetInvalidDispensaryLeafRatingByDispensaryLeafRatingRating() {
+		// grab a dispensaryLeafRating id that exceeds the maximum allowable profile id
+		$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingsByDispensaryLeafRatingRating($this->getPDO(), $this->VALID_DISPENSARYLEAFRATINGRATING0);
 		$this->assertCount(0, $dispensaryLeafRating);
 	}
 
