@@ -211,13 +211,14 @@ class StrainReviewTest extends CannaduceusTest {
 		$strainReview->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$pdoStrainReview = StrainReview::getStrainReviewsByStrainReviewStrainId($this->getPDO(), $strainReview->getStrainReviewId());
-		foreach($pdoStrainReview as $review) {
-			if($review->getStrainReviewsByStrainReviewStrainId === $strainReview->getStrainReviewStrainId()) {
+		$pdoStrainReviews = StrainReview::getStrainReviewsByStrainReviewStrainId($this->getPDO(), $strainReview->getStrainReviewId());
+		foreach($pdoStrainReviews as $pdoStrainReview) {
+			if($pdoStrainReview->getStrainReviewStrainId() === $strainReview->getStrainReviewStrainId()) {
 				$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("strainReview"));
 				$this->assertEquals($pdoStrainReview->getStrainReviewProfileId(), $this->profile->getProfileId());
 				$this->assertEquals($pdoStrainReview->getStrainReviewTxt(), $this->VALID_STRAINREVIEWTXT);
 				$this->assertEquals($pdoStrainReview->getStrainReviewDateTime()->format("Y-m-d H:i:s"), $this->VALID_STRAINREVIEWDATETIME);
+				$this->assertEquals($pdoStrainReview->getStrainReviewStrainId(), $this->strain->getStrainId());
 			}
 		}
 	}

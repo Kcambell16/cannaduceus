@@ -37,6 +37,7 @@ try {
 
 	//stores the Primary Key for the GET, DELETE, and PUT methods in $id. This key will come in the URL sent by the front end. If no key is present, $id will remain empty. Note that the input is filtered.
 	$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+	$profileUserName = filter_input(INPUT_GET, "profileUserName", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES); // added dec 5
 
 
 	//Here we check and make sure that we have the Primary Key for the DELETE and PUT requests. If the request is a PUT or DELETE and no key is present in $id, An Exception is thrown.
@@ -51,7 +52,7 @@ try {
 
 		if($method === "GET") {
 			//set XSRF cookie
-			setXsrfCookie("/");
+			setXsrfCookie("/"); // not sure if this is the problem or not but on the tweet example they dont have ("/") they have () dec 5
 
 			// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested Profile by Profile ID from the DataBase and store it in $profile.
 			if(empty($profileId) === false) {
@@ -61,19 +62,19 @@ try {
 					// here we store the $profile in the $reply->data state variable
 				}
 			} else if(empty($profileUsername) === false) {
-				$profile = Profile::getProfileByProfileUserName($pdo, $id);
+				$profile = Profile::getProfileByProfileUserName($pdo, $profileUserName); // changed from id to profileUserName dec 5
 				if($profile !== null) {
-					$reply->data = $profile;
+					$reply->data = $profile->toArray(); // added dec 5
 				}
 			}
 		}
-	} elseif($method === "PUT") {
+	} else if($method === "PUT") {
 		verifyXsrf();
 		$requestContent = file_get_contents("php://input");
 		$requestObject = json_decode($requestContent);
 
 		// make sure that profileId is available!
-		if (empty($requestObject->profileId) == true) {
+		if(empty($requestObject->profileId) == true) {
 			throw(new \InvalidArgumentException("no content for profile id", 405));
 		}
 		// make sure that the profileUserName is available!
@@ -97,7 +98,7 @@ try {
 		$reply->message = "The profile is updated";
 
 
-		// determins if the request is a DELETE request.
+		// determines if the request is a DELETE request.
 	} else if($method === "DELETE") {
 		verifyXsrf();
 
@@ -119,7 +120,7 @@ try {
 		// stores the "profile deleted OK" message in the $reply->message state variable.
 		$reply->message = "profile deleted OK";
 	} else {
-		throw (new InvalidArgumentException("Invalid HTTP Method Request"));
+		throw (new InvalidArgumentException("Invalid HTTP Method Request", 405));
 		// If the method request is not GET, PUT, POST, an exception is thrown
 	}
 
@@ -127,7 +128,7 @@ try {
 } catch(Exception $exception) {
 	$reply->status = $exception->getCode();
 	$reply->message = $exception->getMessage();
-	$reply->trace = $exception->getTraceAsString();
+	//$reply->trace = $exception->getTraceAsString(); // changed dec 5
 } catch(TypeError $typeError) {
 	$reply->status = $typeError->getCode();
 	$reply->message = $typeError->getMessage();
@@ -140,6 +141,8 @@ header("Content-type: application/json");
 if($reply->data === null) {
 	unset($reply->data);
 }
+// encode and return reply to front end caller
+echo json_encode($reply);
 
 
 

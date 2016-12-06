@@ -1,10 +1,10 @@
 <?php
 require_once dirname(__DIR__, 3) . "/php/classes/autoloader.php";
 require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
-require_once "/etc/apache2/cannaduceus/encrypted-config.php";
+require_once "/etc/apache2/capstone-mysql/encrypted-config.php";
 
 
-use Edu\Cnm\cannaduceus;
+use Edu\Cnm\Cannaduceus\DispensaryFavorite;
 
 /**
 * * api for profile class
@@ -50,28 +50,28 @@ try {
 
 		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested dispensaryFavorite by dispensaryFavorite ID from the DataBase and store it in $dispensaryFavorite.
 		if(empty($dispensaryFavoriteProfileId) === false) {
-			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteProfileId($pdo, $Id);
+			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteProfileId($pdo, $id);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 				// Here, we store the retrieved dispensaryFavorite in the $reply->data state variable.
 			}
 		} else if(empty($dispensaryFavoriteProfileId)) {
-			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $Id);
+			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $id);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 			}
 		} else if(empty($dispensaryFavoriteDispensaryId)) {
-			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteDispensaryId($pdo, $Id);
+			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteDispensaryId($pdo, $id);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 			}
 		} else if(empty($dispensaryFavoriteDispensaryId)) {
-			$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($pdo, $Id);
+			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($pdo, $id);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 			}
 		} else if(empty($dispensaryFavoriteProfileId ($dispensaryFavoriteDispensaryId))) ;
-		$dispensaryFavorite = dispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId($pdo, $Id);
+		$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId($pdo, $id);
 		if($dispensaryFavorite !== null) {
 			$reply->data = $dispensaryFavorite;
 		}
