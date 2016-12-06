@@ -191,7 +191,15 @@ VALUES ('Catarac Kush', 'Indica', 26.00 , 00.00, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Darkstar', 'Indica', 18.00 , 00.00, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Hindi Kush', 'Indica', 18.64, 0.21, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Holy Grail', 'Indica', 20.00 , 00.00, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
@@ -200,6 +208,10 @@ VALUES ('Kush White Russian', 'Indica', 18.6, 0.13, 'Not Available');
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Rare Darkness', 'Indica', 26.7, 1.0, 'Deep sedating, night time sleep aid');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Silver Kush', 'Indica', 20.00 , 00.00, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
