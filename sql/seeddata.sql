@@ -177,10 +177,6 @@ VALUES (null, null, 'bernalillo@ultrahealth.com', 'New Mexico Top Organics', 505
 -- Strain seed data starts here
 -- Indica Strains
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-	VALUES ('Rare Darkness', 'Indica', 26.7, 1.0, 'Deep sedating, night time sleep aid');
-
-
-INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Bubba Kush', 'Indica', 20, 0.4, 'So Good');
 
 
@@ -190,6 +186,9 @@ VALUES ('Hindi Kush', 'Indica', 18.64, 0.21, 'Not Available');
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Kush White Russian', 'Indica', 18.6, 0.13, 'Not Available');
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Rare Darkness', 'Indica', 26.7, 1.0, 'Deep sedating, night time sleep aid');
 
 
 
@@ -201,6 +200,18 @@ VALUES ('Kush White Russian', 'Indica', 18.6, 0.13, 'Not Available');
 -- Sativa Strains
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Cannatonic', 'Sativa', 7.0 , 16.0, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('G13xHaze', 'Sativa', 20.14 , 0.15, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Ghost Train Haze', 'Sativa', 21.95 , 0.17, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Larry OG', 'Sativa', 19.77 , 0.16, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
@@ -219,11 +230,21 @@ VALUES ('Sour Amnesia', 'Sativa', 18.96 , 0.11, 'Not Available');
 
 -- Hybrid Strains
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('K-Shark', 'Hybrid', 18.37 , 0.50, 'Not Available');
+VALUES ('Alaskan Thunder Funk', 'Hybrid', 23.53 , 0.18, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Alaskan Thunder Funk', 'Hybrid', 23.53 , 0.18, 'Not Available');
+VALUES ('Hash Skunk', 'Hybrid', 18.64, 0.21, 'Not Available');
+
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Kahuna Shark', 'Hybrid', 19.26 , 0.63, 'Not Available');
+
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('K-Shark', 'Hybrid', 18.37 , 0.50, 'Not Available');
+
+
+
 
 
 
@@ -236,3 +257,14 @@ VALUES ('Cannatonic', 'CBD', 7.0 , 16.0, 'Not Available');
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
 VALUES ('Nordle', 'CBD', 7.0 , 16.0, 'Not Available');
+
+
+
+
+-- Template
+INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
+VALUES ('Name', 'Type', 00.00 , 00.00, 'Description');
+
+
+
+-- Strain Seed Data Ends Here
