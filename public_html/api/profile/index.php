@@ -52,7 +52,7 @@ try {
 
 		if($method === "GET") {
 			//set XSRF cookie
-			setXsrfCookie("/");
+			setXsrfCookie("/"); // not sure if this is the problem or not but on the tweet example they dont have ("/") they have () dec 5
 
 			// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested Profile by Profile ID from the DataBase and store it in $profile.
 			if(empty($profileId) === false) {
@@ -68,7 +68,7 @@ try {
 				}
 			}
 		}
-	} elseif($method === "PUT") {
+	} else if($method === "PUT") {
 		verifyXsrf();
 		$requestContent = file_get_contents("php://input");
 		$requestObject = json_decode($requestContent);
