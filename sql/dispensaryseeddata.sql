@@ -1,4 +1,4 @@
-
+-- dispensary seed data starts here
 
 INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 	VALUES (null, 'Albuquerque', 'support@cannaceutics.org', 'Cannaceutics Inc', 505-672-8734, 'NM', 'P.O.Box 95705', null, 'www.cannaceutics.org', 87199);
@@ -140,6 +140,15 @@ INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, di
 VALUES (null, 'Las Vegas', 'info@newmexicann.org', 'New Mexican Natural Medicine, Inc', 505-349-4783, 'NM', '615 Lincoln Avenue', null, 'www.newmexicann.org', 87701);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Bernalillo', 'bernalillo@ultrahealth.com', 'New Mexico Top Organics - Ultra Health', 505-867-2504, 'NM', '255 Camino Don Tomas', null, 'www.ultrahealth.com', 87004);
+
+
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Placitas', 'info@cgcorrigan.org', 'C.G. Corrigan, Inc', 505-933-5599, 'NM', '30 East Frontage RD Suite D', null, 'www.cgcorrigan.org', 87043);
 
 
 
+
+
+-- dispensary seed data ends here
