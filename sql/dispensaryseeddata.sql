@@ -100,11 +100,16 @@ INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, di
 VALUES (null, 'Hobbs', 'hobbs@ultrahealth.com', 'New Mexico Top Organics - Ultra Health', 575-964-1500, 'NM', '3211 N Dal Paso Ste B', null, 'www.ultrahealth.com', 88240);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Roswell', 'info@pecosvalleypharmaceuticals.com', 'Compassionate Distributors, Inc', 575-258-1087, 'NM', '117 West Walnut St', null, 'www.compassionatedistributors.com', 87110);
 
 
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Hobbs', 'hobbs@ultrahealth.com', 'New Mexico Top Organics - Ultra Health', 575-964-1500, 'NM', '3211 N Dal Paso Ste B', null, 'www.ultrahealth.com', 88240);
 
 
-
+INSERT INTO DISPENSARY (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Ruidoso', 'customerservice@compassionatedistributors.com', 'Compassionate Distributors, Inc', 575-258-1087, 'NM', '1216 Meachem Dr Ste 2', null, 'www.compassionatedistributors.com', 888350);
 
 
 
