@@ -179,7 +179,7 @@ VALUES (null, null, 'bernalillo@ultrahealth.com', 'New Mexico Top Organics', 505
 
 -- Indica Strains
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Berry Kush', 'Indica', 17.00 , 00.00, 'Description');
+VALUES ('Berry Kush', 'Indica', 17.00 , 00.00, 'CBD Content Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
@@ -187,15 +187,15 @@ VALUES ('Bubba Kush', 'Indica', 20, 0.4, 'So Good');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Catarac Kush', 'Indica', 26.00 , 00.00, 'Not Available');
+VALUES ('Catarac Kush', 'Indica', 26.00 , 00.00, 'CBD Content Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Darkstar', 'Indica', 18.00 , 00.00, 'Not Available');
+VALUES ('Darkstar', 'Indica', 18.00 , 00.00, 'CBD Content Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Exteme OG', 'Indica', 15.83 , 0.15, 'Description');
+VALUES ('Exteme OG', 'Indica', 15.83 , 0.15, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
@@ -207,7 +207,7 @@ VALUES ('Hindi Kush', 'Indica', 18.64, 0.21, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Holy Grail', 'Indica', 20.00 , 00.00, 'Not Available');
+VALUES ('Holy Grail', 'Indica', 20.00 , 00.00, 'CBD Content Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
@@ -219,18 +219,18 @@ VALUES ('Rare Darkness', 'Indica', 26.7, 1.0, 'Deep sedating, night time sleep a
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Silver Kush', 'Indica', 20.00 , 00.00, 'Not Available');
+VALUES ('Silver Kush', 'Indica', 20.00 , 00.00, 'CBD Content Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Skywalker OG', 'Indica', 25.00 , 00.00, 'Not Available');
+VALUES ('Skywalker OG', 'Indica', 25.00 , 00.00, 'CBD Content Not Available');
 
 
 
 
 -- Sativa Strains
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Amnesia', 'Sativa', 20.00 , 00.00, 'Not Available');
+VALUES ('Amnesia', 'Sativa', 20.00 , 00.00, 'CBD Content Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
@@ -242,7 +242,7 @@ VALUES ('B*witched', 'Sativa', 16.69 , 0.09, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Buddha Tahoe OG', 'Sativa', 23.00 , 00.00, 'Not Available');
+VALUES ('Buddha Tahoe OG', 'Sativa', 23.00 , 00.00, 'CBD Content Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
@@ -250,11 +250,11 @@ VALUES ('Cannatonic', 'Sativa', 7.0 , 16.0, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Chocolope', 'Sativa', 15.00 , 00.00, 'Not Available');
+VALUES ('Chocolope', 'Sativa', 15.00 , 00.00, 'CBD Content Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Critical Super Silver Haze', 'Sativa', 19.00 , 00.00, 'Not Available');
+VALUES ('Critical Super Silver Haze', 'Sativa', 19.00 , 00.00, 'CBD Content Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
@@ -286,7 +286,7 @@ VALUES ('Sour Amnesia', 'Sativa', 18.96 , 0.11, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Super Lemon Haze', 'Sativa', 19.00 , 00.00, 'Not Available');
+VALUES ('Super Lemon Haze', 'Sativa', 19.00 , 00.00, 'CBD Content Not Available');
 
 
 
@@ -316,18 +316,18 @@ VALUES ('K-Shark', 'Hybrid', 18.37 , 0.50, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Shiskaberry', 'Hybrid', 15.00 , 00.00, 'Not Available');
+VALUES ('Shiskaberry', 'Hybrid', 15.00 , 00.00, 'CBD Content Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('Lemon Sour Diesel', 'Hybrid', 14.00 , 00.00, 'Not Available');
+VALUES ('Lemon Sour Diesel', 'Hybrid', 14.00 , 00.00, 'CBD Content Not Available');
 
 
 
 
 -- CBD Strains
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
-VALUES ('AK-47', 'CBD', 8.00 , 7.00, 'Description');
+VALUES ('AK-47', 'CBD', 8.00 , 7.00, 'Not Available');
 
 
 INSERT INTO STRAIN (strainName, strainType, strainThc, strainCbd, strainDescription)
