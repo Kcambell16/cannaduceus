@@ -38,15 +38,17 @@ try {
 	//stores the Primary Key for the GET, DELETE, and PUT methods in $id. This key will come in the URL sent by the front end. If no key is present, $id will remain empty. Note that the input is filtered.
 	$id = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
 	$profileUserName = filter_input(INPUT_GET, "profileUserName", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES); // added dec 5
+	$profileEmail = filter_input(INPUT_GET, "profileEmail",FILTER_SANITIZE_EMAIL, FILTER_FLAG_NO_ENCODE_QUOTES);
 
 
 	//Here we check and make sure that we have the Primary Key for the DELETE and PUT requests. If the request is a PUT or DELETE and no key is present in $id, An Exception is thrown.
-	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true || $id < 0)) {
-		throw(new InvalidArgumentException("id cannot be empty or negative", 405));
-	}
-
-	if((empty($_SESSION["profile"]) === false) && (($_SESSION ["profile"]->getProfileId()) === $id)) { //i have a feeling this is the problem
-	}
+//	if(($method === "PUT") && (empty($_SESSION ["profile"] === true))) {
+//		throw(new RuntimeException("please log in", 401));
+//	}
+//
+//	if(($method === "PUT") && (($_SESSION ["profile"]->getProfileId()) !== $id) || $id <= 0) {
+//		throw (new InvalidArgumentException("please log in!", 401));
+//	}
 
 // Here, we determine if the reques received is a GET request
 	if($method === "GET") {
@@ -54,19 +56,23 @@ try {
 		setXsrfCookie();
 
 		// get a specific profile
-		if(empty($profile) === false) {
-			$profile = Profile::getProfileByProfileId($pdo, $profileId);
+		if(empty($id) === false) {
+			$profile = Profile::getProfileByProfileId($pdo, $id);
 			if($profile !== null) {
 				$reply->data = $profile;
 			}
 
-		}elseif(empty($profile) === false) {
+		}elseif(empty($profileUserName) === false) {
 			$profile = Profile::getProfileByProfileUserName($pdo, $profileUserName);
 			if($profile !== null) {
-				$reply->data = $profile->toArray();
+				$reply->data = $profile;
+			}
+		}else if (empty($profileEmail) === false) {
+			$profile = Profile::getProfileByProfileEmail($pdo, $profileEmail);
+			if($profile !== null) {
+				$reply->data = $profile;
 			}
 		}
-
 	} else if($method === "PUT") {
 		verifyXsrf();
 		$requestContent = file_get_contents("php://input");
@@ -85,6 +91,9 @@ try {
 			throw(new \InvalidArgumentException("no content for profile email", 405));
 		}
 		$profile = Profile::getProfileByProfileId($pdo, $id);
+		if(empty($profile) === true) {
+			throw(new \InvalidArgumentException("profile not found:(", 404));
+		}
 
 		// now retrieve the profile that will be updated in this PUT!
 		$profile->setProfileId($requestObject->profileId);
@@ -98,26 +107,6 @@ try {
 
 
 		// determines if the request is a DELETE request.
-	} else if($method === "DELETE") {
-		verifyXsrf();
-
-		// retrieve the Profile to be deleted
-		$profile = Profile::getProfileByProfileId($pdo, $id);
-		// If the request is DELETE, the requested profile is pulled from the database using the Key in $id and stored in $profile
-
-
-		// make sure that the requested  is valid by checking to see if $profile is null.
-		if($profile === null) {
-			throw(new RuntimeException("Profile does not exist", 404));
-		}
-
-
-		// calls the DELETE method on the retrieved Profile. This deletes the profile from the database.
-		$profile->delete($pdo);
-
-
-		// stores the "profile deleted OK" message in the $reply->message state variable.
-		$reply->message = "profile deleted OK";
 	} else {
 		throw (new InvalidArgumentException("Invalid HTTP Method Request", 405));
 		// If the method request is not GET, PUT, POST, an exception is thrown

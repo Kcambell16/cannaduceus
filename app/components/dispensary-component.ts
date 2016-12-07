@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 
 @Component({
-	templateUrl: "./templates/index.php"
+	templateUrl: "./templates/dispensary.php"
 })
 
 export class DispensaryComponent { }
