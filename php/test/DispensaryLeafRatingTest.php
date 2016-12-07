@@ -123,18 +123,6 @@ class DispensaryLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest
 	}
 
 	/**
-	 * test updating a dispensaryLeafRating that does not exist
-	 *
-	 * @expectedException \PDOException
-	 */
-	public function testUpdateInvalidDispensaryLeafRating() {
-		//create a dispensaryLeafRating and try to update it without inserting
-		$dispensaryLeafRating = new DispensaryLeafRating($this->VALID_DISPENSARYLEAFRATINGRATING0, $this->dispensary->getDispensaryId(), $this->profile->getProfileId());
-		var_dump($dispensaryLeafRating);
-		$dispensaryLeafRating->update($this->getPDO());
-	}
-
-	/**
 	 * test creating a dispensaryLeafRating and deleting it
 	 **/
 	public function testDeleteValidDispensaryLeafRating() {

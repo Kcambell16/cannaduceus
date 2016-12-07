@@ -234,7 +234,7 @@ class StrainLeafRating implements \JsonSerializable {
 	 * @return null | \SplFixedArray array of Dispensaries with the same $strainLeafRatingRating or null if not found
 	 */
 
-	public static function getStrainLeafRatingByStrainLeafRatingRating(\PDO $pdo, int $strainLeafRatingRating) {
+	public static function getStrainLeafRatingsByStrainLeafRatingRating(\PDO $pdo, int $strainLeafRatingRating) {
 		//  check validity of $strainLeafRating
 		$strainLeafRatingRating = filter_var($strainLeafRatingRating, FILTER_SANITIZE_NUMBER_INT);
 
@@ -242,12 +242,12 @@ class StrainLeafRating implements \JsonSerializable {
 			throw(new \RangeException("Strain Leaf Rating is not valid."));
 		}
 		if($strainLeafRatingRating === null) {
-			throw(new \RangeException("Strain name does not exist."));
+			throw(new \InvalidArgumentException("Strain rating does not exist."));
 		}
 		// prepare query
 		$query = "SELECT strainLeafRatingRating, strainLeafRatingStrainId, strainLeafRatingProfileId FROM strainLeafRating WHERE strainLeafRatingRating = :strainLeafRatingRating";
 		$statement = $pdo->prepare($query);
-		$parameters = array("strainLeafRating" => $strainLeafRatingRating);
+		$parameters = array("strainLeafRatingRating" => $strainLeafRatingRating);
 		$statement->execute($parameters);
 
 		//  build an array of dispensaries based on strainLeafRating
