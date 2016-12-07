@@ -98,6 +98,44 @@ class StrainLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest {
 	}
 
 	/**
+	 * test inserting a strainLeafRating, editing it and then updating it
+	 */
+	public function testUpdateStrainLeafRating() {
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("strainLeafRating");
+
+		//create a new strainLeafRating and insert it into mySQL
+		$strainLeafRating = new StrainLeafRating($this->VALID_DISPENSARYLEAFRATINGRATING0, $this->strain->getStrainId(), $this->profile->getProfileId());
+		$strainLeafRating->insert($this->getPDO());
+
+		//edit the strain and update it in mySQL
+		$strainLeafRating->setStrainLeafRatingRating($this->VALID_DISPENSARYLEAFRATINGRATING0);
+		$strainLeafRating->setStrainLeafRatingStrainId($this->strain->getStrainId());
+		$strainLeafRating->setStrainLeafRatingProfileId($this->profile->getProfileId());
+		$strainLeafRating->update($this->getPDO());
+
+		// retrieve the data from mySQL and enforce the fields watch our expectations
+		$pdoStrainLeafRating = $strainLeafRating::getStrainLeafRatingByStrainLeafRatingStrainIdAndStrainLeafRatingProfileId($this->getPDO(), $this->strain->getStrainId(), $this->profile->getProfileId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("strainLeafRating"));
+		$this->assertEquals($pdoStrainLeafRating->getStrainLeafRatingStrainId(), $this->strain->getStrainId());
+		$this->assertEquals($pdoStrainLeafRating->getStrainLeafRatingProfileId(), $this->profile->getProfileId());
+
+	}
+
+	/**
+	 * test updating a strainLeafRating that does not exist
+	 *
+	 * @expectedException \PDOException
+	 */
+	public function testUpdateInvalidStrainLeafRating() {
+		//create a strainLeafRating and try to update it without inserting
+		$strainLeafRating = new StrainLeafRating($this->VALID_STRAINLEAFRATINGRATING0, $this->strain->getStrainId(), $this->profile->getProfileId());
+		var_dump($strainLeafRating);
+		$strainLeafRating->update($this->getPDO());
+	}
+
+
+	/**
 	 * test creating a strainLeafRating and deleting it
 	 */
 	public function testDeleteValidStrainLeafRating() {
@@ -209,6 +247,39 @@ class StrainLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest {
 	public function testGetInvalidStrainLeafRatingByProfileId() {
 		// grab a strainLeafRating id that exceeds the maximum allowable profile id
 		$strainLeafRating = StrainLeafRating::getStrainLeafRatingByStrainLeafRatingProfileId($this->getPDO(), \Edu\Cnm\Cannaduceus\Test\CannaduceusTest::INVALID_KEY);
+		$this->assertCount(0, $strainLeafRating);
+	}
+
+	/**
+	 * test grabbing a strainLeafRating by strainLeafRatingRating
+	 */
+	public function testGetStrainLeafRatingByStrainLeafRatingRating() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("strainLeafRating");
+
+		//create a new strainLeafRating and insert into mySQL
+		$strainLeafRating = new StrainLeafRating($this->VALID_STRAINLEAFRATINGRATING0, $this->strain->getStrainId(), $this->profile->getProfileId());
+		$strainLeafRating->insert($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$results = StrainLeafRating::getStrainLeafRatingsByStrainLeafRatingRating($this->getPDO(), $this->VALID_STRAINLEAFRATINGRATING0);
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("strainLeafRating"));
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesOf("Edu\\Cnm\\Cannaduceus\\StrainLeafRating", $results);
+
+		// grab the result from the array and validate it
+		$pdoStrainLeafRating = $results[0];
+		$this->assertEquals($pdoStrainLeafRating->getStrainLeafRatingRating(), $this->VALID_STRAINLEAFRATINGRATING0);
+		$this->assertEquals($pdoStrainLeafRating->getStrainLeafRatingProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoStrainLeafRating->getStrainLeafRatingStrainId(), $this->strain->getStrainId());
+	}
+
+	/**
+	 * test grabbing a strainLeafRating by a strainLeafRatingRating that does not exist
+	 **/
+	public function testGetInvalidStrainLeafRatingByStrainLeafRatingRating() {
+		// grab a strainLeafRating id that exceeds the maximum allowable profile id
+		$strainLeafRating = StrainLeafRating::getStrainLeafRatingsByStrainLeafRatingRating($this->getPDO(), $this->VALID_STRAINLEAFRATINGRATING0);
 		$this->assertCount(0, $strainLeafRating);
 	}
 

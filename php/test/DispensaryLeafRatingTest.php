@@ -249,8 +249,8 @@ class DispensaryLeafRatingTest extends \Edu\Cnm\Cannaduceus\Test\CannaduceusTest
 	}
 
 	/**
-	 * test grabbing a dispensaryLeafRating by dispensaryLeafRatingRating
-	 */
+ * test grabbing a dispensaryLeafRating by dispensaryLeafRatingRating
+ */
 	public function testGetDispensaryLeafRatingByDispensaryLeafRatingRating() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("dispensaryLeafRating");
