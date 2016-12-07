@@ -45,29 +45,28 @@ try {
 		throw(new InvalidArgumentException("id cannot be empty or negative", 405));
 	}
 
-	if((empty($_SESSION["profile"]) === false) && (($_SESSION ["profile"]->getProfileId()) === $id)) {
-
+	if((empty($_SESSION["profile"]) === false) && (($_SESSION ["profile"]->getProfileId()) === $id)) { //i have a feeling this is the problem
+	}
 
 // Here, we determine if the reques received is a GET request
+	if($method === "GET") {
+		//set dat XSRF cookie
+		setXsrfCookie();
 
-		if($method === "GET") {
-			//set XSRF cookie
-			setXsrfCookie("/"); // not sure if this is the problem or not but on the tweet example they dont have ("/") they have () dec 5
+		// get a specific profile
+		if(empty($profile) === false) {
+			$profile = Profile::getProfileByProfileId($pdo, $profileId);
+			if($profile !== null) {
+				$reply->data = $profile;
+			}
 
-			// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested Profile by Profile ID from the DataBase and store it in $profile.
-			if(empty($profileId) === false) {
-				$profile = Profile::getProfileByProfileId($pdo, $id);
-				if($profile !== null) {
-					$reply->data = $profile;
-					// here we store the $profile in the $reply->data state variable
-				}
-			} else if(empty($profileUsername) === false) {
-				$profile = Profile::getProfileByProfileUserName($pdo, $profileUserName); // changed from id to profileUserName dec 5
-				if($profile !== null) {
-					$reply->data = $profile->toArray(); // added dec 5
-				}
+		}elseif(empty($profile) === false) {
+			$profile = Profile::getProfileByProfileUserName($pdo, $profileUserName);
+			if($profile !== null) {
+				$reply->data = $profile->toArray();
 			}
 		}
+
 	} else if($method === "PUT") {
 		verifyXsrf();
 		$requestContent = file_get_contents("php://input");
@@ -128,7 +127,6 @@ try {
 } catch(Exception $exception) {
 	$reply->status = $exception->getCode();
 	$reply->message = $exception->getMessage();
-	//$reply->trace = $exception->getTraceAsString(); // changed dec 5
 } catch(TypeError $typeError) {
 	$reply->status = $typeError->getCode();
 	$reply->message = $typeError->getMessage();
@@ -143,9 +141,3 @@ if($reply->data === null) {
 }
 // encode and return reply to front end caller
 echo json_encode($reply);
-
-
-
-
-
-
