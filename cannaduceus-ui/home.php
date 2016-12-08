@@ -81,21 +81,31 @@
 				<div class="row">
 					<!-- contact section in footer-->
 					<div class="col-xs-6 col-md-4">
-						<a href="/cannaduceus-ui/images/cannaduceus-logo.png"></a>
-						<strong> Contact Us</strong>
+						<a src="/cannaduceus-ui/images/cannaduceus-logo.png" alt="logo"></a>
+						<h4> Contact Us</h4>
 						<p>Email: Admin@Cannaduceus.com</p>
 						<p>Phone: 1(800)555-5555</p>
 						<p href="url...">Privacy Policy</p>
 						<p href="rul...."> Terms of Use</p>
-						<p></p>
 					</div>
-					<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4
+					<div class="col-xs-6 col-sm-4">
+						<strong>Company</strong>
+						<p>About Us</p>
+						<p>Careers</p>
+						<h4>Connect with Cannaduceus</h4>
+						<a class="btn btn-social-icon btn-twitter">
+							<span class="fa fa-twitter"> Twitter</span>
+						</a>
+						<a class="btn btn-social-icon btn-facebook">
+							<span class="fa fa-facebook"> Facebook</span>
+						</a>
+						<a class="btn btn-social-icon btn-instagram">
+							<span class="fa fa-instagram"> Instagram</span>
+						</a>
+						<!-- for additional info if needed-->
 					</div>
-					<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4
+					<div class="col-xs-6 col-sm-4">
 					</div>
-					<!-- Optional: clear the XS cols if their content doesn't match in height -->
-					<div class="clearfix visible-xs-block"></div>
-					<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
 				</div>
 			</div>
 		</footer>
