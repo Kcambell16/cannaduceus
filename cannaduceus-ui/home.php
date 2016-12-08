@@ -34,7 +34,7 @@
 
 	<header>
 	<!-- navbar --->
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-inverse" >
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -66,8 +66,8 @@
 	</header>
 
 	<!-- jumbotron-->
-	<div class="jumbotron">
 		<div class="container">
+	<div class="jumbotron">
 		<h1>Following the green trail just got easier.....</h1>
 			<h2>Cannaduceus </h2>
 		<p> The missing link, connecting the patient and the dispensary</p>
@@ -75,6 +75,30 @@
 	</div>
 	</div>
 
+		<!-- sticky footer inverse --->
+		<footer class="footer navbar-inverse navbar-fixed-bottom">
+			<div class="container">
+				<div class="row">
+					<!-- contact section in footer-->
+					<div class="col-xs-6 col-md-4">
+						<a href="/cannaduceus-ui/images/cannaduceus-logo.png"></a>
+						<strong> Contact Us</strong>
+						<p>Email: Admin@Cannaduceus.com</p>
+						<p>Phone: 1(800)555-5555</p>
+						<p href="url...">Privacy Policy</p>
+						<p href="rul...."> Terms of Use</p>
+						<p></p>
+					</div>
+					<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4
+					</div>
+					<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4
+					</div>
+					<!-- Optional: clear the XS cols if their content doesn't match in height -->
+					<div class="clearfix visible-xs-block"></div>
+					<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+				</div>
+			</div>
+		</footer>
 
 
 
