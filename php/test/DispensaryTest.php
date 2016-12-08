@@ -214,7 +214,7 @@ class DispensaryTest extends CannaduceusTest {
 	/**
 	 * test updating a Dispensary that does not exist
 	 *
-	 * @expectedException PDOException
+	 * @expectedException /PDOException
 	 **/
 	public function testUpdateInvalidDispensary() {
 		//create a Dispensary, try to update it without actually updating it and watch it fail
@@ -266,7 +266,7 @@ public function testDeleteValidDispensary() {
 	/**
 	 * test deleting a Dispensary that does not exist
 	 *
-	 * @expectedException PDOException
+	 * @expectedException /PDOException
 	 **/
 	public function testDeleteInvalidDispensary() {
 		// create a Dispensary and try to delete it without actually inserting it
