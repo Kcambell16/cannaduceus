@@ -26,13 +26,11 @@
 
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-			<title>Cannaduceus Home page </title>
+		<title>Cannaduceus Home page </title>
 		</head>
 
-
 	<body>
-
-	<header>
+		<header>
 	<!-- navbar --->
 	<nav class="navbar navbar-default navbar-inverse" >
 		<div class="container-fluid">
@@ -62,8 +60,7 @@
 	<main>
 		<router-outlet></router-outlet>
 	</main>
-
-	</header>
+		</header>
 
 	<!-- jumbotron-->
 		<div class="container">
@@ -74,13 +71,90 @@
 		<p><a class="btn btn-primary btn-lg" href="#" role="button">Sign in </a></p>
 	</div>
 	</div>
+		<!-- google api start -->
+		<h3>Locate Dispensary</h3>
+		<div id="map"></div>
+		<script>
+			function initMap() {
+				var uluru = {lat: -25.363, lng: 131.044};
+				var map = new google.maps.Map(document.getElementById('map'), {
+					zoom: 4,
+					center: uluru
+				});
+				var marker = new google.maps.Marker({
+					position: uluru,
+					map: map
+				});
+			}
+		</script>
+		<script async defer
+				  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+		</script>
+		</div>
+<!-- end google api--->
+		<!-- Featured dispensaries here using bootstrap carousel -->
+			<carousel>
+				<div id="carousel-generic" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner" role="listbox">
+						<div *ngFor="let url of urls" class="item" [ngClass]="{active: isActive(url)}">
+							<img src="{{url}}" alt="{{url}}">
+						</div>
+					</div>
+
+					<!-- Controls -->
+					<a class="left carousel-control" href="#carousel-generic" role="button" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a>
+					<a class="right carousel-control" href="#carousel-generic" role="button" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+			</carousel>
+
+			<!-- Insert all needed scripts here -->
+			<script>
+				System.import('carousel.js');
+			</script>
+
+		<!-- Google API -->
+		<div class="well well-lg">
+			<style>
+				#map {
+					height: 400px;
+					width: 100%;
+				}
+			</style>
+
+			<h3>Locate Dispensary</h3>
+			<div id="map"></div>
+			<script>
+				function initMap() {
+					var uluru = {lat: -25.363, lng: 131.044};
+					var map = new google.maps.Map(document.getElementById('map'), {
+						zoom: 4,
+						center: uluru
+					});
+					var marker = new google.maps.Marker({
+						position: uluru,
+						map: map
+					});
+				}
+			</script>
+			<script async defer
+					  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+			</script>
+		</div>
+		<!-- google api start -->
+
 
 		<!-- sticky footer inverse --->
 		<footer class="footer navbar-inverse navbar-fixed-bottom">
 			<div class="container">
 				<div class="row">
 					<!-- contact section in footer-->
-					<div class="col-xs-6 col-md-4">
+					<div class="col-xs-12 col-md-6">
 						<a src="/cannaduceus-ui/images/cannaduceus-logo.png" alt="logo"></a>
 						<h4> Contact Us</h4>
 						<p>Email: Admin@Cannaduceus.com</p>
@@ -88,7 +162,7 @@
 						<p href="url...">Privacy Policy</p>
 						<p href="rul...."> Terms of Use</p>
 					</div>
-					<div class="col-xs-6 col-sm-4">
+					<div class="col-xs-12 col-md-6">
 						<strong>Company</strong>
 						<p>About Us</p>
 						<p>Careers</p>
@@ -110,39 +184,6 @@
 			</div>
 		</footer>
 		<!-- end of sticky footer -->
-
-		<!-- Google API -->
-		<div class="well well-lg">
-			<style>
-				#map {
-					height: 400px;
-					width: 100%;
-				}
-			</style>
-
-				<h3>Locate Dispensary</h3>
-				<div id="map"></div>
-				<script>
-					function initMap() {
-						var uluru = {lat: -25.363, lng: 131.044};
-						var map = new google.maps.Map(document.getElementById('map'), {
-							zoom: 4,
-							center: uluru
-						});
-						var marker = new google.maps.Marker({
-							position: uluru,
-							map: map
-						});
-					}
-				</script>
-				<script async defer
-						  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-				</script>
-		</div>
-		<!-- google api start -->
-
-
-
 
 	</body>
 </html>
