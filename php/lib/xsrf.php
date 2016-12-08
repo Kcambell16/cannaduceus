@@ -63,6 +63,7 @@ function verifyXSRF() {
 		throw(new RuntimeException("session not active"));
 	}
 //ask how to get the correct verifyXSRF token dec 8
+
 	// grab the XSRF token sent by Angular, jQuery, or JavaScript in the header
 	$headers = array_change_key_case(apache_request_headers(), CASE_UPPER);
 	if(array_key_exists("X-XSRF-TOKEN", $headers) === false) {
@@ -71,7 +72,7 @@ function verifyXSRF() {
 	$angularHeader = $headers["X-XSRF-TOKEN"];
 
 	// compare the XSRF token from the header with the correct token in the session
-	$correctHeader = $_SESSION["XSRF-TOKEN"];
+	$correctHeader = $_SESSION["XSRF-TOKEN"]; // ask about this too
 	if($angularHeader !== $correctHeader) {
 		throw(new InvalidArgumentException("invalid XSRF-TOKEN", 401));
 	}

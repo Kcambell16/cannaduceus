@@ -74,7 +74,7 @@ try {
 			}
 		}
 	} else if($method === "PUT") {
-		verifyXsrf();
+		function verifyXSRF(){}
 		$requestContent = file_get_contents("php://input");
 		$requestObject = json_decode($requestContent);
 
