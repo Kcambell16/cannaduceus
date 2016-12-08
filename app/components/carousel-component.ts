@@ -1,5 +1,5 @@
-/// <reference path="jquery.d.ts" />
-/// <reference path="boodstrap.d.ts" />
+/// <reference path="jquery.d.ts"/>
+/// <reference path="boot-component.ts"/>
 
 import {Component} from '@angular/core';
 import {Http} from '@angular/http';
