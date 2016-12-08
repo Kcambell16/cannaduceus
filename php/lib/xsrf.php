@@ -57,12 +57,12 @@ function setXsrfCookie($cookiePath = "/") {
  * @throws InvalidArgumentException when tokens do not match
  * @throws RuntimeException if the session is not active
  **/
-function verifyXsrf() {
+function verifyXSRF() {
 	// enforce that the session is active
 	if(session_status() !== PHP_SESSION_ACTIVE) {
 		throw(new RuntimeException("session not active"));
 	}
-
+//ask how to get the correct verifyXSRF token dec 8
 	// grab the XSRF token sent by Angular, jQuery, or JavaScript in the header
 	$headers = array_change_key_case(apache_request_headers(), CASE_UPPER);
 	if(array_key_exists("X-XSRF-TOKEN", $headers) === false) {
@@ -73,6 +73,6 @@ function verifyXsrf() {
 	// compare the XSRF token from the header with the correct token in the session
 	$correctHeader = $_SESSION["XSRF-TOKEN"];
 	if($angularHeader !== $correctHeader) {
-		throw(new InvalidArgumentException("invalid XSRF token", 401));
+		throw(new InvalidArgumentException("invalid XSRF-TOKEN", 401));
 	}
 }
