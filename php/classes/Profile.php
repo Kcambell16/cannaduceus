@@ -108,7 +108,7 @@ class Profile implements \JsonSerializable {
 			return;
 		}
 		// validate that the new profileId is an integer
-		// verify the tweet id is positive
+		// verify the profile id is positive
 		if($newProfileId <= 0) {
 			throw(new \RangeException("profile id is not positive"));
 		}
