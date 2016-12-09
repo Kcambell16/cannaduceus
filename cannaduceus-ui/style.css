@@ -12,3 +12,80 @@ img{
 	top:20px;
 	margin-left:-200px;
 }
+.row {
+	margin-right: -15px;
+	margin-left: -15px;
+	box-sizing: border-box;
+}
+
+.tile {
+	background-color: orange;
+	padding: 1rem;
+	border-radius: 1rem;
+	margin-bottom: 1rem;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	box-sizing: border-box;
+	color: #333;
+	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+	justify-content: flex-start;
+	line-height: 20px;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	-moz-text-size-adjust: 100%;
+
+	/* for proper alignment */
+	/*display: flex;*/
+	/*align-items: center;*/
+	/*justify-content: center;*/
+}
+
+/*.strain-type {*/
+/*align-self: flex-start;*/
+/*}*/
+
+/*.strain-name {*/
+/*align-self: flex-end;*/
+/*}*/
+
+.strain-abbr-title h3 {
+	margin: 1.25rem 0;
+	font-weight: bold;
+
+}
+
+div {
+	display: block;
+}
+
+.col-sm-2 {
+	width: 16.6666667%;
+	position: relative;
+	min-height: 1px;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.strain-abbr-title h3 {
+	margin: 1.25rem 0;
+	font-weight: bold;
+}
+.h3, h3 {
+	font-size: 24px;
+}
+.small, small {
+	font-size: 85%;
+}
+#strain-pics {
+	padding-top: 20px;
+}
+
+
