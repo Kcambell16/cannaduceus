@@ -1,3 +1,3 @@
 export class Dispensary {
-	constructor(public dispensaryId: number, public attribution: string, public dispensary: string, public submitter: string) {}
+	constructor(public dispensaryId: number, public attribution: string, public dispensary: string, public submitter: string, public dispensaryAttention: string, public dispensaryCity:string, public dispensaryEmail:string, public dispensaryName:string, public dispensaryPhone:string, public dispensaryState:string, public dispensaryStreet1:string, public dispensaryStreet2:string, public dispensaryUrl:string, public dispensaryZipCode:string) {}
 }

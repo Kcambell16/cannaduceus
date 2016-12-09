@@ -1,38 +1,24 @@
-import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Params} from "@angular/router";
-import {DispensaryService} from "../services/dispensary-component";
+import {Component, OnInit, ViewChild} from "@angular/core";
+import {DispensaryService} from "../services/dispensary-services";
 import {Dispensary} from "../classes/dispensary";
-import {Status} from "../classes/status";
 import {Router} from "@angular/router";
 
 @Component({
 	templateUrl: "./templates/dispensary.php"
 })
 
-export class DispensaryComponent implements OnInit  {
-	deleted: boolean = false;
-	dispensary: Dispensary = new Dispensary(0, "", "", "");
-	status: Status = null;
+export class DispensaryComponent  implements OnInit {@ViewChild("dispensaryForm") dispensaryForm;
+	dispensary: Dispensary[] = [];
 
-	constructor(private dispensaryService: DispensaryService, private route: ActivatedRoute) {}
+	constructor(private dispensaryService: DispensaryService, private router: Router) {}
 
 	ngOnInit() : void {
-		this.route.params.forEach((params : Params) => {
-			let misquoteId = +params["dispensaryId"];
-			this.dispensaryService.getDispensary(dispensaryId)
-				.subscribe(Dispensary => this.dispensary = dispensary);
-		});
-}
-	deleteDispensary() : void {
-		this.dispensaryService.deleteDispensary(this.dispensary.DispensaryId)
-			.subscribe(status => {
-				this.deleted = true;
-				this.status = status;
-				this.dispensary = new Dispensary(0, "", "", "");
-			});
+		this.reloadDispensaries();
 	}
-	editDispensary() : void {
-		this.dispensaryService.editDispensary(this.dispensary)
-			.subscribe(status => this.status = status);
+
+	reloadDispensaries() : void {
+		this.dispensaryService.getAllDispensaries()
+			.subscribe(dispensaries => this.dispensary = dispensaries);
 	}
 }
+
