@@ -49,7 +49,7 @@ try {
 
 
 		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested strainFavorite by strainFavorite ID from the DataBase and store it in $strainFavorite.
-		if(empty($strainFavoriteProfileId) === false) {
+		if(empty($id) === false) {
 			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($pdo, $id);
 			if($strainFavorite !== null) {
 				$reply->data = $strainFavorite;
@@ -60,8 +60,8 @@ try {
 			if($strainFavorite !== null) {
 				$reply->data = $strainFavorite;
 			}
-		} else if(empty($strainFavoriteProfileId)) {
-			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainId($pdo, $strainId);
+		} else if(empty($strainFavoriteStrainId)) {
+			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainId($pdo, $strainFavoriteStrainId);
 			if($strainFavorite !== null) {
 				$reply->data = $strainFavorite;
 			}
