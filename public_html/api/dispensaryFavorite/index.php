@@ -55,7 +55,12 @@ try {
 				$reply->data = $dispensaryFavorite;
 				// Here, we store the retrieved dispensaryFavorite in the $reply->data state variable.
 			}
-		}  else if(empty($dispensaryFavoriteDispensaryId)) {
+		}  else if(empty($dispensaryFavoriteProfileId)) {
+			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $id); // ask dylan about this one
+			if($dispensaryFavorite !== null) {
+				$reply->data = $dispensaryFavorite;
+			}
+		}else if(empty($dispensaryFavoriteDispensaryId)) {
 			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($pdo, $dispensaryId);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;

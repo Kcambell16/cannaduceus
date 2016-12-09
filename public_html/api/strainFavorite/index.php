@@ -45,15 +45,20 @@ try {
 	if($method === "GET") {
 		//set XSRF cookie
 		setXsrfCookie("/");
-		// handle GET request - if id is present, that dispensaryFavorite is present, that dispensaryFavorite is returned, otherwise all dispensaryFavorites are returned
+		// handle GET request - if id is present, that strainFavorite is present, that strainFavorite is returned, otherwise all strainFavorites are returned
 
 
-		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested dispensaryFavorite by dispensaryFavorite ID from the DataBase and store it in $strainFavorite.
+		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested strainFavorite by strainFavorite ID from the DataBase and store it in $strainFavorite.
 		if(empty($strainFavoriteProfileId) === false) {
 			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($pdo, $profileId);
 			if($strainFavorite !== null) {
 				$reply->data = $strainFavorite;
-				// Here, we store the retrieved dispensaryFavorite in the $reply->data state variable.
+				// Here, we store the retrieved strainFavorite in the $reply->data state variable.
+			}
+		}else if(empty($strainFavoriteProfileId)) {
+			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($pdo, $id); // ask dylan about this one
+			if($strainFavorite !== null) {
+				$reply->data = $strainFavorite;
 			}
 		} else if(empty($strainFavoriteProfileId)) {
 			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId($pdo, $id, $strainId);
