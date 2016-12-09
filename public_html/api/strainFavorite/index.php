@@ -66,11 +66,11 @@ try {
 				$reply->data = $strainFavorite;
 			}
 		}
-	} else if($method === "PUT" || $method === "POST") {
+	} else if($method === "POST") {
 
 		verifyXSRF();
 		$requestContent = file_get_contents("php://input");
-		$requestObject = json_decode($requestObject);
+		$requestObject = json_decode($requestContent); // changed from $requestObject to $requestContent dec 9
 
 		//make sure tweet content is available (required field)
 		if(empty($requestObject->strainFavorite) === true) {
