@@ -73,13 +73,13 @@
 		<div class="col-xs-6 col-sm-2">
 			<div class="tile">
 				<div class="strain-type small">
-					Hybrid
+					Indica
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
+						<h3>Blk</h3>
 						</div>
 				<div class="strain-name text-right small">
-							Cheezy
+							Blueberry Kush
 						</div>
 					</div>
 				</div>
