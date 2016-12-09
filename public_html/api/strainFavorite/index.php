@@ -61,7 +61,7 @@ try {
 				$reply->data = $strainFavorite;
 			}
 		} else if(empty($strainFavoriteStrainId)) {
-			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainId($pdo, $strainFavoriteStrainId);
+			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainId($pdo, $strainId);
 			if($strainFavorite !== null) {
 				$reply->data = $strainFavorite;
 			}
