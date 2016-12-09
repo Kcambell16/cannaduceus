@@ -1,4 +1,4 @@
-/// <reference path="jquery.d.ts"/>
+/// <reference path="jquery-component.ts"/>
 /// <reference path="boot-component.ts"/>
 
 import {Component} from '@angular/core';

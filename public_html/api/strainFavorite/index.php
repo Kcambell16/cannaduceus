@@ -4,18 +4,18 @@ require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
 require_once "/etc/apache2/capstone-mysql/encrypted-config.php";
 
 
-use Edu\Cnm\Cannaduceus\DispensaryFavorite;
+use Edu\Cnm\Cannaduceus\StrainFavorite;
 
 /**
-* * api for dispensaryFavorite class
-*
-* @author Nathan Sanchez <nsanchez121@cnm.com>
-**/
+ * * api for strainFavorite class
+ *
+ * @author Nathan Sanchez <nsanchez121@cnm.com>
+ **/
 
 
 // Check the session status. If it is not active, start the session.
 if(session_status() !== PHP_SESSION_ACTIVE) {
-session_start();
+	session_start();
 }
 
 // prepare an empty reply
@@ -45,36 +45,35 @@ try {
 	if($method === "GET") {
 		//set XSRF cookie
 		setXsrfCookie("/");
-		// handle GET request - if id is present, that dispensaryFavorite is present, that dispensaryFavorite is returned, otherwise all dispensaryFavorites are returned
+		// handle GET request - if id is present, that strainFavorite is present, that strainFavorite is returned, otherwise all strainFavorites are returned
 
 
-		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested dispensaryFavorite by dispensaryFavorite ID from the DataBase and store it in $dispensaryFavorite.
-		if(empty($dispensaryFavoriteProfileId) === false) {
-			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $id);
-			if($dispensaryFavorite !== null) {
-				$reply->data = $dispensaryFavorite;
-				// Here, we store the retrieved dispensaryFavorite in the $reply->data state variable.
+		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested strainFavorite by strainFavorite ID from the DataBase and store it in $strainFavorite.
+		if(empty($id) === false) {
+			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($pdo, $id);
+			if($strainFavorite !== null) {
+				$reply->data = $strainFavorite;
+				// Here, we store the retrieved strainFavorite in the $reply->data state variable.
 			}
-		} else if(empty($dispensaryFavoriteDispensaryId)) {
-			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($pdo, $dispensaryId);
-			if($dispensaryFavorite !== null) {
-				$reply->data = $dispensaryFavorite;
+	} else if(empty($strainFavoriteProfileId)) {
+			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId($pdo, $id, $strainId);
+			if($strainFavorite !== null) {
+				$reply->data = $strainFavorite;
 			}
-		} else if(empty($dispensaryFavoriteProfileId( $dispensaryFavoriteDispensaryId))){
-		$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId($pdo, $profileId, $dispensaryId);
-		if($dispensaryFavorite !== null) {
-			$reply->data = $dispensaryFavorite;
+		} else if(empty($strainFavoriteStrainId)) {
+			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainId($pdo, $strainId);
+			if($strainFavorite !== null) {
+				$reply->data = $strainFavorite;
+			}
 		}
-	}
-
-	}else if($method === "PUT" || $method === "POST") {
+	} else if($method === "POST") {
 
 		verifyXSRF();
 		$requestContent = file_get_contents("php://input");
-		$requestObject = json_decode($requestObject);
+		$requestObject = json_decode($requestContent); // changed from $requestObject to $requestContent dec 9
 
 		//make sure tweet content is available (required field)
-		if(empty($requestObject->dispensaryFavorite) === true) {
+		if(empty($requestObject->strainFavorite) === true) {
 			throw(new \InvalidArgumentException ("no Favorite added", 405));
 		}
 		//  make sure profileId is available
@@ -83,8 +82,8 @@ try {
 		}
 	} else if($method === "POST") {
 		// create a new favorite and insert into the database
-		$dispensaryFavorite = new DispensaryFavorite(null, $requestObject->profileId, $requestObject->dispensaryFavorite, null);
-		$dispensaryFavorite->insert($pdo);
+		$strainFavorite = new StrainFavorite(null, $requestObject->profileId, $requestObject->strainFavorite, null);
+		$strainFavorite->insert($pdo);
 		// update dat reply
 		$reply->message = "favorite has been created";
 	}
@@ -107,6 +106,3 @@ if($reply->data === null) {
 
 // encode and return reply to front end caller
 echo json_encode($reply);
-
-
-
