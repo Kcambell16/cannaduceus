@@ -114,7 +114,7 @@ class StrainFavoriteTest extends CannaduceusTest {
 		$strainFavorite->delete($this->getPDO());
 
 		//grab the data from mySQL
-		$pdoStrainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($this->getPDO(), $this->profile->getProfileId(), $this->strain->getStrainId());
+		$pdoStrainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId($this->getPDO(), $this->profile->getProfileId(), $this->strain->getStrainId());
 		//var_dump($pdoStrainFavorite);
 
 		// assert that its null
