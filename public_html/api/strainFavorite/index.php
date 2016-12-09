@@ -56,19 +56,15 @@ try {
 				// Here, we store the retrieved dispensaryFavorite in the $reply->data state variable.
 			}
 		} else if(empty($strainFavoriteProfileId)) {
-			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId($pdo, $id, $strainFavorite);
+			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId($pdo, $id, $strainId);
 			if($strainFavorite !== null) {
 				$reply->data = $strainFavorite;
 			}
 		} else if(empty($strainFavoriteProfileId)) {
-			$strainFavorite = StrainFavorite::getStrainFavoriteByProfileId($pdo, $profileId);
+			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainId($pdo, $strainId);
 			if($strainFavorite !== null) {
 				$reply->data = $strainFavorite;
 			}
-		} else if(empty($strainFavoriteProfileId( $strainFavoriteStrainId)));
-		$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainId($pdo, $profileId, $strainId, $strainFavorite);
-		if($strainFavorite !== null) {
-			$reply->data = $strainFavorite;
 		}
 	} else if($method === "PUT" || $method === "POST") {
 
