@@ -50,7 +50,7 @@ try {
 
 		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested dispensaryFavorite by dispensaryFavorite ID from the DataBase and store it in $dispensaryFavorite.
 		if(empty($dispensaryFavoriteProfileId) === false) {
-			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $profileId);
+			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $id);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 				// Here, we store the retrieved dispensaryFavorite in the $reply->data state variable.
