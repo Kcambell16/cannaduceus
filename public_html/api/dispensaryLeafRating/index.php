@@ -37,17 +37,17 @@ try {
 	$id = //grab user's profile id from session here
 	$dispensaryId = filter_input(INPUT_GET, "dispensaryId", FILTER_VALIDATE_INT);
 	$profileId = filter_input(INPUT_GET, "profileId", FILTER_VALIDATE_INT);
-	$leafRating = filter_input(INPUT_GET, "leafRating", FILTER_VALIDATE_INT);
+	$dispensaryLeafRatingRating = filter_input(INPUT_GET, "leafRatingRating", FILTER_VALIDATE_INT);
 
 	// For PUT or POST requests, be sure user is logged in
-//	if(($method === "POST") && (empty($_SESSION["profile"] === true))) {
-//		throw(new InvalidArgumentException("Please Log In or SIgn Up", 401));
-//	}
+	//if(($method === "POST") && (empty($_SESSION["profile"] === true))) {
+		//throw(new InvalidArgumentException("Please Log In or SIgn Up", 401));
+	//}
 
 	//Here, we determine if the request received is a GET request
 	if($method === "GET") {
 		//set XSRF cookie
-		setXsrfCookie("/");
+		setXsrfCookie();
 
 		// handle GET request - if id is present, that dispensary is present, that dispensary is returned, otherwise all dispensaries are returned
 
@@ -58,21 +58,21 @@ try {
 				$reply->data = $dispensaryLeafRating;
 			}
 		} elseif((empty($dispensaryId) === false) && (empty($profileId) === false)) {
-			$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingDispensaryId($pdo, $dispensaryId, $profileId);
+			$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingDispensaryId($pdo, $dispensaryId);
 			if($dispensaryLeafRating !== null) {
 				$reply->data = $dispensaryLeafRating;
 			}
 			// get by dispensaryId
 
 		} elseif((empty($dispensaryId) === false) && (empty($profileId) === false)) {
-			$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingProfileId($pdo, $dispensaryId, $profileId);
+			$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingProfileId($pdo,$profileId);
 			if($dispensaryLeafRating !== null) {
 				$reply->data = $dispensaryLeafRating;
 			}
 			//get by profile id
 
 		} elseif((empty($dispensaryId) === false) && (empty($profileId) === false )) {
-			$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingsByDispensaryLeafRatingRating($pdo, $dispensaryId, $profileId);
+			$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingsByDispensaryLeafRatingRating($pdo, $dispensaryLeafRatingRating);
 			if($dispensaryLeafRating !== null) {
 				$reply->data = $dispensaryLeafRating;
 			}
@@ -87,7 +87,7 @@ try {
 
 		verifyXsrf();
 		$requestContent = file_get_contents("php://input");
-		//Retrieves the JSON package that the front ent sent, and stores it in $requestContent. Here we are using file_get_contents("php://input") to get the request from the front ent.  file_get_contents() is a PHP function that reads a file into a string.  The argument for the function, here, is "php://input". This is a read only stream that allows raw data to be read from the front end request which is, in this case, a JSON package
+		//Retrieves the JSON package that the front end sent, and stores it in $requestContent. Here we are using file_get_contents("php://input") to get the request from the front ent.  file_get_contents() is a PHP function that reads a file into a string.  The argument for the function, here, is "php://input". This is a read only stream that allows raw data to be read from the front end request which is, in this case, a JSON package
 
 		$requestObject = json_decode($requestContent);
 		//This line then decodes the JSON package and stores that result in $requestObject
@@ -101,6 +101,10 @@ try {
 		if(empty($requestObject->dispensaryLeafRatingDispensaryId) === true) {
 			throw(new \InvalidArgumentException("Y U no have Dispensary?", 405));
 		}
+
+		//create new dispensaryLeafRating
+		$dispensaryLeafRating = new DispensaryLeafRating($requestObject->dispensaryLeafRatingRaitng, $requestObject->dispensaryLeafDispensaryId, $requestObject->dispensaryLeafProfileId);
+		$dispensaryLeafRating->insert($pdo);
 
 		$dispensaryLeafRating->setDispensaryLeafRatingRating($requestObject->dispensaryLeafRatingRating);
 		$dispensaryLeafRating->setDispensaryLeafRatingDispensaryId($requestObject->dispensaryLeafRatingDispensaryId);
