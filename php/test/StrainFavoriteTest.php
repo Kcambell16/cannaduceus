@@ -92,7 +92,7 @@ class StrainFavoriteTest extends CannaduceusTest {
 		$strainFavorite->insert($this->getPDO(), $this->profile->getProfileId(), $this->strain->getStrainId());
 
 	}
-
+ // herp
 
 
 
