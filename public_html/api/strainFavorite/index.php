@@ -4,7 +4,7 @@ require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
 require_once "/etc/apache2/capstone-mysql/encrypted-config.php";
 
 
-use Edu\Cnm\Cannaduceus\DispensaryFavorite;
+use Edu\Cnm\Cannaduceus\StrainFavorite;
 
 /**
  * * api for strainFavorite class
@@ -56,17 +56,17 @@ try {
 				// Here, we store the retrieved dispensaryFavorite in the $reply->data state variable.
 			}
 		} else if(empty($strainFavoriteProfileId)) {
-			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteProfileId($pdo, $id);
+			$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId($pdo, $id, $strainFavorite);
 			if($strainFavorite !== null) {
 				$reply->data = $strainFavorite;
 			}
-		} else if(empty($strainFavoriteDispensaryId)) {
-			$strainFavorite = StrainFavorite::empty($pdo, $dispensaryId);
+		} else if(empty($strainFavoriteProfileId)) {
+			$strainFavorite = StrainFavorite::getStrainFavoriteByProfileId($pdo, $profileId);
 			if($strainFavorite !== null) {
 				$reply->data = $strainFavorite;
 			}
-		} else if(empty($strainFavoriteProfileId( $strainFavoriteDispensaryId)));
-		$strainFavorite = StrainFavorite::emtpy($pdo, $profileId, $dispensaryId);
+		} else if(empty($strainFavoriteProfileId( $strainFavoriteStrainId)));
+		$strainFavorite = StrainFavorite::getStrainFavoriteByStrainFavoriteStrainId($pdo, $profileId, $strainId, $strainFavorite);
 		if($strainFavorite !== null) {
 			$reply->data = $strainFavorite;
 		}
