@@ -552,22 +552,22 @@ class Dispensary implements \JsonSerializable {
 
 		// bind the member variables to the place holders in the template
 		$parameters = [
-				"dispensaryName" => $this->dispensaryName,
-				"dispensaryAttention" => $this->dispensaryAttention,
-				"dispensaryStreet1" => $this->dispensaryStreet1,
-				"dispensaryStreet2" => $this->dispensaryStreet2,
-				"dispensaryCity" => $this->dispensaryCity,
-				"dispensaryState" => $this->dispensaryState,
-				"dispensaryZipCode" => $this->dispensaryZipCode,
-				"dispensaryEmail" => $this->dispensaryEmail,
-				"dispensaryPhone" => $this->dispensaryPhone,
-				"dispensaryUrl" => $this->dispensaryUrl];
+			"dispensaryName" => $this->dispensaryName,
+			"dispensaryAttention" => $this->dispensaryAttention,
+			"dispensaryStreet1" => $this->dispensaryStreet1,
+			"dispensaryStreet2" => $this->dispensaryStreet2,
+			"dispensaryCity" => $this->dispensaryCity,
+			"dispensaryState" => $this->dispensaryState,
+			"dispensaryZipCode" => $this->dispensaryZipCode,
+			"dispensaryEmail" => $this->dispensaryEmail,
+			"dispensaryPhone" => $this->dispensaryPhone,
+			"dispensaryUrl" => $this->dispensaryUrl];
 		$statement->execute($parameters);
 
-	// update the null dispensary Id with what mysql just gave us
-	$this->dispensaryId = intval($pdo->lastInsertId());
+		// update the null dispensary Id with what mysql just gave us
+		$this->dispensaryId = intval($pdo->lastInsertId());
 
-}
+	}
 
 /**
  * deletes this dispensary from mySQL

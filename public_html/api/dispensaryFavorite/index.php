@@ -41,7 +41,7 @@ try {
 	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true || $id < 0)) {
 		throw(new InvalidArgumentException("id cannot be empty or negative", 405));
 	}
-	// Here, we determine if the reques received is a GET request
+	// Here, we determine if the request received is a GET request
 	if($method === "GET") {
 		//set XSRF cookie
 		setXsrfCookie("/");
@@ -50,34 +50,34 @@ try {
 
 		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested dispensaryFavorite by dispensaryFavorite ID from the DataBase and store it in $dispensaryFavorite.
 		if(empty($dispensaryFavoriteProfileId) === false) {
-			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteProfileId($pdo, $id);
+			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteProfileId($pdo, $profileId);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 				// Here, we store the retrieved dispensaryFavorite in the $reply->data state variable.
 			}
 		} else if(empty($dispensaryFavoriteProfileId)) {
-			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $id);
+			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $profileId);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 			}
 		} else if(empty($dispensaryFavoriteDispensaryId)) {
-			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteDispensaryId($pdo, $id);
+			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteDispensaryId($pdo, $dispensaryId);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 			}
 		} else if(empty($dispensaryFavoriteDispensaryId)) {
-			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($pdo, $id);
+			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($pdo, $dispensaryId);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 			}
-		} else if(empty($dispensaryFavoriteProfileId ($dispensaryFavoriteDispensaryId))) ;
-		$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId($pdo, $id);
+		} else if(empty($dispensaryFavoriteProfileId( $dispensaryFavoriteDispensaryId)));
+		$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId($pdo, $profileId, $dispensaryFavoriteDispensaryId);
 		if($dispensaryFavorite !== null) {
 			$reply->data = $dispensaryFavorite;
 		}
 	} else if($method === "PUT" || $method === "POST") {
 
-		verifyXsrf();
+		verifyXSRF();
 		$requestContent = file_get_contents("php://input");
 		$requestObject = json_decode($requestObject);
 

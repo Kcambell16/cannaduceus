@@ -43,7 +43,7 @@ try {
 
 	//Here we check and make sure that we have the Primary Key for the DELETE and PUT requests. If the request is a PUT or DELETE and no key is present in $id, An Exception is thrown.
 //	if(($method === "PUT") && (empty($_SESSION ["profile"] === true))) {
-//		throw(new RuntimeException("please log in", 401));
+//		throw(new RuntimeException("please log in!", 401));
 //	}
 //
 //	if(($method === "PUT") && (($_SESSION ["profile"]->getProfileId()) !== $id) || $id <= 0) {
@@ -74,7 +74,7 @@ try {
 			}
 		}
 	} else if($method === "PUT") {
-		verifyXsrf();
+		verifyXSRF(); //changed from function verifyXSRF(){}
 		$requestContent = file_get_contents("php://input");
 		$requestObject = json_decode($requestContent);
 
@@ -130,3 +130,5 @@ if($reply->data === null) {
 }
 // encode and return reply to front end caller
 echo json_encode($reply);
+
+//works only after putting 683 at the end of the path
