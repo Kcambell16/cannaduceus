@@ -163,7 +163,7 @@ class DispensaryFavoriteTest extends CannaduceusTest {
 		// create a dummy dispensary favorite
 		$dispensaryFavorite = new DispensaryFavorite($this->profile->getProfileId(), $this->dispensary->getDispensaryId());
 		$dispensaryFavorite->insert($this->getPDO());
-		$results = DispensaryFavorite::getDispensaryFavoriteDispensaryId($this->getPDO(), $this->dispensary->getDispensaryId());
+		$results = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryId($this->getPDO(), $this->dispensary->getDispensaryId());
 
 		$this->assertCount(1, $results);
 
