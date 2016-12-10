@@ -7,8 +7,8 @@ import {Router} from "@angular/router";
 	templateUrl: "./templates/dispensary.php"
 })
 
-export class DispensaryComponent  implements OnInit {@ViewChild("dispensaryForm") dispensaryForm;
-	dispensary: Dispensary[] = [];
+export class DispensaryComponent  implements OnInit{
+	dispensaries: Dispensary[] = [];
 
 	constructor(private dispensaryService: DispensaryService, private router: Router) {}
 
@@ -18,7 +18,7 @@ export class DispensaryComponent  implements OnInit {@ViewChild("dispensaryForm"
 
 	reloadDispensaries() : void {
 		this.dispensaryService.getAllDispensaries()
-			.subscribe(dispensaries => this.dispensary = dispensaries);
+			.subscribe(dispensaries => this.dispensaries = dispensaries);
 	}
 }
 

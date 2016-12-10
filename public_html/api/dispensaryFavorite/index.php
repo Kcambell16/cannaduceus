@@ -49,7 +49,7 @@ try {
 
 
 		// Here, we determine if a Key was sent in the URL by checking $id. If so, we pull the requested dispensaryFavorite by dispensaryFavorite ID from the DataBase and store it in $dispensaryFavorite.
-		if(empty($dispensaryFavoriteProfileId) === false) {
+		if(empty($id) === false) {
 			$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteProfileId($pdo, $id);
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
@@ -60,25 +60,25 @@ try {
 			if($dispensaryFavorite !== null) {
 				$reply->data = $dispensaryFavorite;
 			}
-		} else if(empty($dispensaryFavoriteProfileId( $dispensaryFavoriteDispensaryId))){
+		} else if(empty($dispensaryFavoriteProfileId)){
 		$dispensaryFavorite = DispensaryFavorite::getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId($pdo, $profileId, $dispensaryId);
 		if($dispensaryFavorite !== null) {
 			$reply->data = $dispensaryFavorite;
 		}
 	}
 
-	}else if($method === "PUT" || $method === "POST") {
+	}else if($method === "POST") {
 
 		verifyXSRF();
 		$requestContent = file_get_contents("php://input");
-		$requestObject = json_decode($requestObject);
+		$requestObject = json_decode($requestContent);
 
 		//make sure tweet content is available (required field)
-		if(empty($requestObject->dispensaryFavorite) === true) {
+		if(empty($requestObject->dispensaryFavoriteFavoriteId) === true) {
 			throw(new \InvalidArgumentException ("no Favorite added", 405));
 		}
 		//  make sure profileId is available
-		if(empty($requestObject->profileId) === true) {
+		if(empty($requestObject->profileIdFavoriteFavoriteId) === true) {
 			throw(new \InvalidArgumentException ("No Profile ID.", 405));
 		}
 	} else if($method === "POST") {
