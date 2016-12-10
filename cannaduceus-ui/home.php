@@ -194,32 +194,6 @@
 		</script>
 		</div>
 <!-- end google api--->
-		<!-- Featured dispensaries here using bootstrap carousel -->
-			<carousel>
-				<div id="carousel-generic" class="carousel slide" data-ride="carousel">
-					<div class="carousel-inner" role="listbox">
-						<div *ngFor="let url of urls" class="item" [ngClass]="{active: isActive(url)}">
-							<img src="{{url}}" alt="{{url}}">
-						</div>
-					</div>
-
-					<!-- Controls -->
-					<a class="left carousel-control" href="#carousel-generic" role="button" data-slide="prev">
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="right carousel-control" href="#carousel-generic" role="button" data-slide="next">
-						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-				</div>
-			</carousel>
-
-			<!-- Insert all needed scripts here -->
-			<script>
-				System.import('carousel.js');
-			</script>
-
 		<!-- Google API -->
 		<div class="well well-lg">
 			<style>
