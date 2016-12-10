@@ -74,11 +74,11 @@ try {
 		$requestObject = json_decode($requestContent);
 
 		//make sure tweet content is available (required field)
-		if(empty($requestObject->dispensaryFavorite) === true) {
+		if(empty($requestObject->dispensaryFavoriteFavoriteId) === true) {
 			throw(new \InvalidArgumentException ("no Favorite added", 405));
 		}
 		//  make sure profileId is available
-		if(empty($requestObject->profileId) === true) {
+		if(empty($requestObject->profileIdFavoriteFavoriteId) === true) {
 			throw(new \InvalidArgumentException ("No Profile ID.", 405));
 		}
 	} else if($method === "POST") {

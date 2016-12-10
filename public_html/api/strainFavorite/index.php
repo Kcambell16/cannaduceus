@@ -73,11 +73,11 @@ try {
 		$requestObject = json_decode($requestContent); // changed from $requestObject to $requestContent dec 9
 
 		//make sure tweet content is available (required field)
-		if(empty($requestObject->strainFavorite) === true) {
+		if(empty($requestObject->strainFavoriteFavoriteId) === true) {
 			throw(new \InvalidArgumentException ("no Favorite added", 405));
 		}
 		//  make sure profileId is available
-		if(empty($requestObject->profileId) === true) {
+		if(empty($requestObject->profileIdFavoriteFavoriteId) === true) {
 			throw(new \InvalidArgumentException ("No Profile ID.", 405));
 		}
 	} else if($method === "POST") {
