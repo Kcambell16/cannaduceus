@@ -82,7 +82,7 @@ try {
 		}
 	} else if($method === "POST") {
 		// create a new favorite and insert into the database
-		$strainFavorite = new StrainFavorite(null, $requestObject->profileId, $requestObject->strainFavorite, null);
+		$strainFavorite = new StrainFavorite($requestObject->profileId, $requestObject->strainFavorite); // removing nulls
 		$strainFavorite->insert($pdo);
 		// update dat reply
 		$reply->message = "favorite has been created";
