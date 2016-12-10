@@ -390,9 +390,9 @@
 
 			<div class="col-md-3 col-sm-6 hero-feature">
 				<div class="thumbnail">
-					<img src="http://placehold.it/800x500" alt="">
+					<img src="images/alaskan-thunder-funk.jpeg" alt="bubba-kush">
 					<div class="caption">
-						<h3>Bubbakush</h3>
+						<h3>Alaskan Thunder Funk</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 						<p>
 							<a href="#" class="btn btn-default text-center">Review </a>
@@ -403,9 +403,9 @@
 
 			<div class="col-md-3 col-sm-6 hero-feature">
 				<div class="thumbnail">
-					<img src="http://placehold.it/800x500" alt="">
+					<img src="images/amnesia.jpeg" alt="amnesia">
 					<div class="caption">
-						<h3>Feature Label</h3>
+						<h3>Amnesia</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 						<p>
 							<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
@@ -416,9 +416,9 @@
 
 			<div class="col-md-3 col-sm-6 hero-feature">
 				<div class="thumbnail">
-					<img src="http://placehold.it/800x500" alt="">
+					<img src="images/banana-split.jpeg" alt="banana-split">
 					<div class="caption">
-						<h3>Feature Label</h3>
+						<h3>Banana Split</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 						<p>
 							<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
@@ -429,9 +429,9 @@
 
 			<div class="col-md-3 col-sm-6 hero-feature">
 				<div class="thumbnail">
-					<img src="http://placehold.it/800x500" alt="">
+					<img src="images/berry-kush.jpeg" alt="berry-kush">
 					<div class="caption">
-						<h3>Feature Label</h3>
+						<h3>Berry Kush</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 						<p>
 							<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
@@ -440,6 +440,57 @@
 				</div>
 			</div>
 
+				<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="thumbnail">
+						<img src="images/bewitched.jpeg" alt="bewitched">
+						<div class="caption">
+							<h3>Bewitched</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							<p>
+								<a href="#" class="btn btn-default text-center">Review </a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="thumbnail">
+						<img src="images/bubba-kush.jpeg" alt="bubba-kush">
+						<div class="caption">
+							<h3>Bubba Kush</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							<p>
+								<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="thumbnail">
+						<img src="images/buddha-tahoe.jpeg" alt="buddha-tahoe">
+						<div class="caption">
+							<h3>Buddha Tahoe</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							<p>
+								<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="thumbnail">
+						<img src="images/cannatonic.jpeg" alt="">
+						<div class="caption">
+							<h3>Cannatonic</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							<p>
+								<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+							</p>
+						</div>
+					</div>
+				</div>
 		</div>
 		<!-- /.row -->
 
