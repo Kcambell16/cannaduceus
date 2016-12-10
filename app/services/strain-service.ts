@@ -4,7 +4,7 @@ import {Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {BaseService} from "./base-service";
 import {Strain} from "../classes/Strain";
-
+import {Status} from "../classes/status";
 @Injectable()
 export class StrainService extends BaseService {
 	constructor(protected http: Http) {
@@ -46,6 +46,11 @@ export class StrainService extends BaseService {
 	getStrainByStrainDescription() : Observable<Strain[]> {
 		return(this.http.get(this.strainUrl + strainDescription)
 			.map(this.extractData)
+			.catch(this.handleError));
+	}
+	createStrain(strain: Strain) : Observable<Status> {
+		return(this.http.post(this.strainUrl,strain)
+			.map(this.extractMessage)
 			.catch(this.handleError));
 	}
 }
