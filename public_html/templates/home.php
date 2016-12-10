@@ -71,53 +71,6 @@
 				<p><a class="btn btn-primary btn-lg" href="#" role="button">Sign in </a></p>
 			</div>
 		</div>
-		<!-- google api start
-		<h3>Locate Dispensary</h3>
-		<div id="map">
-		<script>
-			function initMap() {
-				var uluru = {lat: -25.363, lng: 131.044};
-				var map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 4,
-					center: uluru
-				});
-				var marker = new google.maps.Marker({
-					position: uluru,
-					map: map
-				});
-			}
-		</script>
-		</div>
-		<script async defer
-				  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-		</script>
-		</div>
-		<!-- end google api--->
-		<!-- Featured dispensaries here using bootstrap carousel -->
-		<carousel>
-			<div id="carousel-generic" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner" role="listbox">
-					<div *ngFor="let url of urls" class="item" [ngClass]="{active: isActive(url)}">
-						<img src="{{url}}" alt="{{url}}">
-					</div>
-				</div>
-
-				<!-- Controls -->
-				<a class="left carousel-control" href="#carousel-generic" role="button" data-slide="prev">
-					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-					<span class="sr-only">Previous</span>
-				</a>
-				<a class="right carousel-control" href="#carousel-generic" role="button" data-slide="next">
-					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
-				</a>
-			</div>
-		</carousel>
-
-		<!-- Insert all needed scripts here -->
-		<script>
-			System.import('carousel.js');
-		</script>
 
 		<!-- Google API -->
 		<div class="jumbotron">
