@@ -29,7 +29,7 @@ try {
 	//grab the mySQL DataBase Connection
 	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/cannaduceus.ini");
 
-	//determines which HTTP Method needs to be processed and stores the result in $method.
+	//determines which HTTP Method needs to be processed and stores the result in $method
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
 	//stores the Primary Key for the GET, DELETE, and PUT methods in $id. This key will come in the URL sent by the front end. If no key is present, $id will remain empty. Note that the input is filtered.
@@ -37,12 +37,13 @@ try {
 	$id = //grab user's profile id from session here
 	$dispensaryId = filter_input(INPUT_GET, "dispensaryId", FILTER_VALIDATE_INT);
 	$profileId = filter_input(INPUT_GET, "profileId", FILTER_VALIDATE_INT);
-	$dispensaryLeafRatingRating = filter_input(INPUT_GET, "leafRatingRating", FILTER_VALIDATE_INT);
+	$dispensaryLeafRatingRating = filter_input(INPUT_GET, "dispensaryLeafRatingRating", FILTER_VALIDATE_INT);
+
 
 	// For PUT or POST requests, be sure user is logged in
-	//if(($method === "POST") && (empty($_SESSION["profile"] === true))) {
-		//throw(new InvalidArgumentException("Please Log In or SIgn Up", 401));
-	//}
+	if(($method === "POST") && (empty($_SESSION["profile"] === true))) {
+		throw(new InvalidArgumentException("Please Log In or SIgn Up", 401));
+	}
 
 	//Here, we determine if the request received is a GET request
 	if($method === "GET") {
@@ -57,21 +58,21 @@ try {
 			if($dispensaryLeafRating !== null) {
 				$reply->data = $dispensaryLeafRating;
 			}
-		} elseif((empty($dispensaryId) === false) && (empty($profileId) === false)) {
+		} elseif(empty($dispensaryId) === false) {
 			$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingDispensaryId($pdo, $dispensaryId);
 			if($dispensaryLeafRating !== null) {
 				$reply->data = $dispensaryLeafRating;
 			}
 			// get by dispensaryId
 
-		} elseif((empty($dispensaryId) === false) && (empty($profileId) === false)) {
+		} elseif(empty($profileId) === false) {
 			$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingByDispensaryLeafRatingProfileId($pdo,$profileId);
 			if($dispensaryLeafRating !== null) {
 				$reply->data = $dispensaryLeafRating;
 			}
 			//get by profile id
 
-		} elseif((empty($dispensaryId) === false) && (empty($profileId) === false )) {
+		} elseif(empty($dispensaryLeafRatingRating) === false) {
 			$dispensaryLeafRating = DispensaryLeafRating::getDispensaryLeafRatingsByDispensaryLeafRatingRating($pdo, $dispensaryLeafRatingRating);
 			if($dispensaryLeafRating !== null) {
 				$reply->data = $dispensaryLeafRating;
@@ -93,30 +94,25 @@ try {
 		//This line then decodes the JSON package and stores that result in $requestObject
 
 		//Here we check to make sure that there is content for the dispensaryLeafRating.  If $requestObject->dispensaryLeafRatingRating is empty an exception is thrown.  The PUT method will use the new content to UPDATE an existing dispensaryLeafRating and the POST method will use the content to create a new dispensaryLeafRating
-		if(empty($requestObject->dispensaryLeafRatingRating) === true) {
+		if(empty($requestObject->dispensaryLeafRating) === true) {
 			throw(new \InvalidArgumentException("Dispensary hasn't been smoked yet", 405));
 		}
 
 		//check if dispensaryId is available
-		if(empty($requestObject->dispensaryLeafRatingDispensaryId) === true) {
+		if(empty($requestObject->dispensaryId) === true) {
 			throw(new \InvalidArgumentException("Y U no have Dispensary?", 405));
 		}
 
+		//check if dispensaryId is available
+		if(empty($requestObject->profileId) === true) {
+			throw(new \InvalidArgumentException("Y U no have Profile?", 405));
+		}
+
+		$reply->rating = $requestObject->dispensaryLeafRating;
 		//create new dispensaryLeafRating
-		$dispensaryLeafRating = new DispensaryLeafRating($requestObject->dispensaryLeafRatingRaitng, $requestObject->dispensaryLeafDispensaryId, $requestObject->dispensaryLeafProfileId);
+		$dispensaryLeafRating = new DispensaryLeafRating($requestObject->dispensaryLeafRating, $requestObject->dispensaryId, $requestObject->profileId);
 		$dispensaryLeafRating->insert($pdo);
 
-		$dispensaryLeafRating->setDispensaryLeafRatingRating($requestObject->dispensaryLeafRatingRating);
-		$dispensaryLeafRating->setDispensaryLeafRatingDispensaryId($requestObject->dispensaryLeafRatingDispensaryId);
-		$dispensaryLeafRating->setDispensaryLeafRatingProfileId($requestObject->profileId->$id);
-		//set dispensaryId
-		//set profileId to $id
-
-		//create new dispensaryLeafRating
-		$dispensaryLeafRating = new DispensaryLeafRating();
-
-		//calls the dispensaryLeafRatingRating UPDATE function and updates the Database
-		$dispensaryLeafRating->insert($pdo);
 
 		//stores the "DispensaryLeafRating updated OK" message in the $reply->message state variable
 		$reply->message = "Dispensary Rating Created OK";
