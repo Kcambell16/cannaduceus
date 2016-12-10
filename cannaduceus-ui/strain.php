@@ -71,7 +71,7 @@
 			<div class="row">
 
 				<div class="col-xs-6 col-sm-2">
-					<a href="#" class="tile-link">
+					<a href="images/berry-kush.jpeg" class="tile-link">
 						<div class="tile">
 							<div class="strain-type small">
 								Hybrid
@@ -374,11 +374,77 @@
 
 			</div>
 		</div>
-
 		<!-- strain info model ends here -->
 
+		<!-- review section -->
+		<!-- Title -->
+		<div class="row">
+			<div class="col-lg-12">
+				<h3>Strain Review</h3>
+			</div>
+		</div>
+		<!-- /.row -->
+
+		<!-- Page Features -->
+		<div class="row text-center">
+
+			<div class="col-md-3 col-sm-6 hero-feature">
+				<div class="thumbnail">
+					<img src="http://placehold.it/800x500" alt="">
+					<div class="caption">
+						<h3>Bubbakush</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<p>
+							<a href="#" class="btn btn-default text-center">Review </a>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6 hero-feature">
+				<div class="thumbnail">
+					<img src="http://placehold.it/800x500" alt="">
+					<div class="caption">
+						<h3>Feature Label</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<p>
+							<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6 hero-feature">
+				<div class="thumbnail">
+					<img src="http://placehold.it/800x500" alt="">
+					<div class="caption">
+						<h3>Feature Label</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<p>
+							<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-6 hero-feature">
+				<div class="thumbnail">
+					<img src="http://placehold.it/800x500" alt="">
+					<div class="caption">
+						<h3>Feature Label</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<p>
+							<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.row -->
+
 		<!-- footer inverse --->
-		<footer class="footer navbar-inverse navbar-fixed-bottom">
+		<footer class="footer navbar-inverse navbar-bottom">
 			<div class="container">
 				<div class="row">
 					<!-- contact section in footer-->

@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
 	templateUrl: "./templates/dispensary.php"
 })
 
-export class DispensaryComponent  implements OnInit {@ViewChild("dispensaryForm") dispensaryForm;
+export class DispensaryComponent  implements OnInit {@ViewChild("dispensaryForm") dispensaryForm : any;
 	dispensary: Dispensary[] = [];
 
 	constructor(private dispensaryService: DispensaryService, private router: Router) {}
