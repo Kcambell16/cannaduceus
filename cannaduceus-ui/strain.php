@@ -440,6 +440,8 @@
 				</div>
 			</div>
 
+			<div class="row text-center">
+
 				<div class="col-md-3 col-sm-6 hero-feature">
 					<div class="thumbnail">
 						<img src="images/bewitched.jpeg" alt="bewitched">
@@ -481,9 +483,9 @@
 
 				<div class="col-md-3 col-sm-6 hero-feature">
 					<div class="thumbnail">
-						<img src="images/cannatonic.jpeg" alt="">
+						<img src="images/catarac-kush.jpeg" alt="catarac-kush">
 						<div class="caption">
-							<h3>Cannatonic</h3>
+							<h3>Catarac Kush</h3>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 							<p>
 								<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
@@ -491,6 +493,8 @@
 						</div>
 					</div>
 				</div>
+
+
 		</div>
 		<!-- /.row -->
 
