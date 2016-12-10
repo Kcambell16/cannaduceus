@@ -39,17 +39,17 @@
 <div class="container">
 	<div class="row">
 
-		<div class="col-xs-6 col-sm-2">
+		<div *ngFor="let strain of strains" class="col-xs-6 col-sm-2">
 			<a href="images/berry-kush.jpeg" class="tile-link">
 				<div class="tile">
 					<div class="strain-type small">
-						Hybrid
+						{{strain.strainType}}
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
+						<h3>{{strain.strainName}}</h3>
 					</div>
 					<div class="strain-name text-right small">
-						Cheezy
+						{{strain.strainDescription}}
 					</div>
 				</div>
 			</a>
