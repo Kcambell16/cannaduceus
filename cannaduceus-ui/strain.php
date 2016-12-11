@@ -392,7 +392,7 @@
 		<!-- Page Features -->
 		<div class="row text-center">
 
-			<div class="col-md-3 col-sm-6 hero-feature">
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 				<div class="thumbnail">
 					<img src="images/alaskan-thunder-funk.jpeg" alt="bubba-kush">
 					<div class="caption">
@@ -405,7 +405,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-3 col-sm-6 hero-feature">
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 				<div class="thumbnail">
 					<img src="images/amnesia.jpeg" alt="amnesia">
 					<div class="caption">
@@ -418,7 +418,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-3 col-sm-6 hero-feature">
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 				<div class="thumbnail">
 					<img src="images/bananasplit.jpeg" alt="bananasplit">
 					<div class="caption">
@@ -431,7 +431,7 @@
 				</div>
 			</div>
 
-			<div class="col-md-3 col-sm-6 hero-feature">
+			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 				<div class="thumbnail">
 					<img src="images/berrykush.jpeg" alt="berrykush">
 					<div class="caption">
@@ -446,7 +446,7 @@
 
 			<div class="row text-center">
 
-				<div class="col-md-3 col-sm-6 hero-feature">
+				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 					<div class="thumbnail">
 						<img src="images/bewitched.jpeg" alt="bewitched">
 						<div class="caption">
@@ -459,7 +459,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-3 col-sm-6 hero-feature">
+				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 					<div class="thumbnail">
 						<img src="images/bubbakush.jpeg" alt="bubbakush">
 						<div class="caption">
@@ -473,7 +473,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-3 col-sm-6 hero-feature">
+				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 					<div class="thumbnail">
 						<img src="images/buddha-tahoe.jpeg" alt="buddha-tahoe">
 						<div class="caption">
@@ -487,7 +487,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-3 col-sm-6 hero-feature">
+				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 					<div class="thumbnail">
 						<img src="images/cannatonic.jpeg" alt="cannatonic">
 						<div class="caption">
@@ -503,7 +503,7 @@
 
 				<div class="row text-center">
 
-					<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 						<div class="thumbnail">
 							<img src="images/catarac-kush.jpeg" alt="catarac-kush">
 							<div class="caption">
@@ -516,7 +516,7 @@
 						</div>
 					</div>
 
-					<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 						<div class="thumbnail">
 							<img src="images/chocolope.jpeg" alt="chocolope">
 							<div class="caption">
@@ -530,7 +530,7 @@
 						</div>
 					</div>
 
-					<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 						<div class="thumbnail">
 							<img src="images/critical-super-silver-haze.jpeg" alt="critical-super-silver-haze">
 							<div class="caption">
@@ -544,7 +544,7 @@
 						</div>
 					</div>
 
-					<div class="col-md-3 col-sm-6 hero-feature">
+					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 						<div class="thumbnail">
 							<img src="images/dark-shadow-haze.jpeg" alt="dark-shadow-haze">
 							<div class="caption">
@@ -560,7 +560,7 @@
 
 					<div class="row text-center">
 
-						<div class="col-md-3 col-sm-6 hero-feature">
+						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 							<div class="thumbnail">
 								<img src="images/darkstar.jpeg" alt="darkstar">
 								<div class="caption">
@@ -573,7 +573,7 @@
 							</div>
 						</div>
 
-						<div class="col-md-3 col-sm-6 hero-feature">
+						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 							<div class="thumbnail">
 								<img src="images/amnesia.jpeg" alt="extreme-og">
 								<div class="caption">
@@ -587,7 +587,7 @@
 							</div>
 						</div>
 
-						<div class="col-md-3 col-sm-6 hero-feature">
+						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 							<div class="thumbnail">
 								<img src="images/g13-haze.jpeg" alt="g13-haze">
 								<div class="caption">
@@ -601,7 +601,7 @@
 							</div>
 						</div>
 
-						<div class="col-md-3 col-sm-6 hero-feature">
+						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 							<div class="thumbnail">
 								<img src="images/ghost-train-haze.jpeg" alt="ghost-train-haze">
 								<div class="caption">
@@ -617,7 +617,7 @@
 
 						<div class="row text-center">
 
-							<div class="col-md-3 col-sm-6 hero-feature">
+							<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 								<div class="thumbnail">
 									<img src="images/girl-scout-cookies.jpeg" alt="girl-scout-cookies">
 									<div class="caption">
@@ -630,7 +630,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-3 col-sm-6 hero-feature">
+							<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 								<div class="thumbnail">
 									<img src="images/grizzly-kush.jpeg" alt="grizzly-kush">
 									<div class="caption">
@@ -644,7 +644,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-3 col-sm-6 hero-feature">
+							<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 								<div class="thumbnail">
 									<img src="images/hash-skunk.jpeg" alt="hash-skunk">
 									<div class="caption">
@@ -658,7 +658,7 @@
 								</div>
 							</div>
 
-							<div class="col-md-3 col-sm-6 hero-feature">
+							<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 								<div class="thumbnail">
 									<img src="images/hindi-kush.jpeg" alt="hindi-kush">
 									<div class="caption">
@@ -674,7 +674,7 @@
 
 							<div class="row text-center">
 
-								<div class="col-md-3 col-sm-6 hero-feature">
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 									<div class="thumbnail">
 										<img src="images/holy-grail.jpeg" alt="holy-grail">
 										<div class="caption">
@@ -687,7 +687,7 @@
 									</div>
 								</div>
 
-								<div class="col-md-3 col-sm-6 hero-feature">
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 									<div class="thumbnail">
 										<img src="images/kahuna-shark.jpeg" alt="kahuna-shark">
 										<div class="caption">
@@ -702,7 +702,7 @@
 									</div>
 								</div>
 
-								<div class="col-md-3 col-sm-6 hero-feature">
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 									<div class="thumbnail">
 										<img src="images/kush-white-russian.jpeg" alt="kush-white-russian">
 										<div class="caption">
@@ -717,7 +717,7 @@
 									</div>
 								</div>
 
-								<div class="col-md-3 col-sm-6 hero-feature">
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 									<div class="thumbnail">
 										<img src="images/larry-og.jpeg" alt="larry-og">
 										<div class="caption">
@@ -734,7 +734,7 @@
 
 								<div class="row text-center">
 
-									<div class="col-md-3 col-sm-6 hero-feature">
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 										<div class="thumbnail">
 											<img src="images/nordle.jpeg" alt="nordle">
 											<div class="caption">
@@ -747,7 +747,7 @@
 										</div>
 									</div>
 
-									<div class="col-md-3 col-sm-6 hero-feature">
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 										<div class="thumbnail">
 											<img src="images/peaches.jpeg" alt="peaches">
 											<div class="caption">
@@ -762,7 +762,7 @@
 										</div>
 									</div>
 
-									<div class="col-md-3 col-sm-6 hero-feature">
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 										<div class="thumbnail">
 											<img src="images/rare-darkness.jpeg" alt="rare-darkness">
 											<div class="caption">
@@ -777,7 +777,7 @@
 										</div>
 									</div>
 
-									<div class="col-md-3 col-sm-6 hero-feature">
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 										<div class="thumbnail">
 											<img src="images/shiskaberry.jpeg" alt="shiskaberry">
 											<div class="caption">
@@ -794,7 +794,7 @@
 
 									<div class="row text-center">
 
-										<div class="col-md-3 col-sm-6 hero-feature">
+										<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 											<div class="thumbnail">
 												<img src="images/silver-kush.jpeg" alt="silver-kush">
 												<div class="caption">
@@ -807,7 +807,7 @@
 											</div>
 										</div>
 
-										<div class="col-md-3 col-sm-6 hero-feature">
+										<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 											<div class="thumbnail">
 												<img src="images/skunk.jpeg" alt="skunk">
 												<div class="caption">
@@ -822,7 +822,7 @@
 											</div>
 										</div>
 
-										<div class="col-md-3 col-sm-6 hero-feature">
+										<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 											<div class="thumbnail">
 												<img src="images/skywalker-og.jpeg" alt="skywalker-og">
 												<div class="caption">
@@ -837,7 +837,7 @@
 											</div>
 										</div>
 
-										<div class="col-md-3 col-sm-6 hero-feature">
+										<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 											<div class="thumbnail">
 												<img src="images/sour-amnesia.jpeg" alt="sour-amnesia">
 												<div class="caption">
