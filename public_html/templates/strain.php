@@ -65,20 +65,20 @@
 		<!-- /.row -->
 
 		<!-- Page Features -->
-<!--		<div class="row text-center">-->
-<!---->
-<!--			<div class="col-md-3 col-sm-6 hero-feature">-->
-<!--				<div class="thumbnail">-->
-<!--					<img src="http://placehold.it/800x500" alt="">-->
-<!--					<div class="caption">-->
-<!--						<h3>Bubbakush</h3>-->
-<!--						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>-->
-<!--						<p>-->
-<!--							<a href="#" class="btn btn-default text-center">Review </a>-->
-<!--						</p>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
+		<div class="row text-center">
+
+			<div class="col-md-3 col-sm-6 hero-feature">
+				<div class="thumbnail">
+					<img src="http://placehold.it/800x500" alt="">
+					<div class="caption">
+						<h3>{{}}</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<p>
+							<a href="#" class="btn btn-default text-center">Review </a>
+						</p>
+					</div>
+				</div>
+			</div>
 
 			<!-- footer inverse --->
 			<footer class="footer navbar-inverse navbar-bottom">
