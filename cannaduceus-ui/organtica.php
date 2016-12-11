@@ -80,7 +80,7 @@
 
 			<div class="col-md-4">
 				<h3>Organtica</h3>
-				<p>As one of the new dispensaries licensed by the state in 2015 we are the new kid on the block but our experience goes well farther.  We carry some of New Mexico's best premium organic cannabis products. </h3>
+				<p>As one of the new dispensaries licensed by the state in 2015 we are the new kid on the block but our experience goes well farther.  We carry some of New Mexico's best premium organic cannabis products.</p> </h3>
 				<ul>
 					<li>Lorem Ipsum</li>
 					<li>Dolor Sit Amet</li>

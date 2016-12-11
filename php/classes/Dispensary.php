@@ -196,7 +196,12 @@ class Dispensary implements \JsonSerializable {
 	 * @throws \RangeException if $newDispensaryAttentionis > 140 characters
 	 * @throws \TypeError if $newDispensaryAttention is not a string
 	 **/
-	public function setDispensaryAttention(string $newDispensaryAttention) {
+	public function setDispensaryAttention(string $newDispensaryAttention = null) {
+		if($newDispensaryAttention === null) {
+			$this->dispensaryAttention = null;
+			return;
+		}
+
 		// verify the dispensary attention is secure
 		$newDispensaryAttention = trim($newDispensaryAttention);
 		$newDispensaryAttention = filter_var($newDispensaryAttention, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
