@@ -8,7 +8,7 @@ import {Status} from "../classes/status";
 	templateUrl: "./templates/strain.php"
 })
 
-export class strainComponent  implements OnInit{
+export class StrainComponent  implements OnInit {
 	@ViewChild("strainForm") strainForm : any;
 	strains: Strain[] = [];
 	strain: Strain = new Strain (null, "","","","","");
@@ -27,15 +27,15 @@ export class strainComponent  implements OnInit{
 		this.strainService.getAllStrains()
 			.subscribe(strains => this.strains = strains);
 	}
-	createStrain() : void {
-		this.strainService.createStrain(this.strain)
-			.subscribe(status => {
-				this.status = status;
-				if(status.apiStatus === 200) {
-					this.reloadStrains();
-					this.strainForm.reset();
-				}
-			});
+	// createStrain() : void {
+	// 	this.strainService.createStrain(this.strain)
+	// 		.subscribe(status => {
+	// 			this.status = status;
+	// 			if(status.apiStatus === 200) {
+	// 				this.reloadStrains();
+	// 				this.strainForm.reset();
+	// 			}
+	// 		});
 
-	}
+	//}
 }

@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {BaseService} from "./base-service";
-import {Strain} from "../classes/Strain";
+import {Strain} from "../classes/strain";
 import {Status} from "../classes/status";
 @Injectable()
 export class StrainService extends BaseService {
@@ -18,32 +18,32 @@ export class StrainService extends BaseService {
 			.map(this.extractData)
 			.catch(this.handleError));
 	}
-	getStrainByStrainId() : Observable<Strain[]> {
+	getStrainByStrainId(strainId:number) : Observable<Strain[]> {
 		return(this.http.get(this.strainUrl + strainId)
 			.map(this.extractData)
 			.catch(this.handleError));
 	}
-	getStrainByStrainName() : Observable<Strain[]> {
+	getStrainByStrainName(strainName:string) : Observable<Strain[]> {
 		return(this.http.get(this.strainUrl + strainName)
 			.map(this.extractData)
 			.catch(this.handleError));
 	}
-	getStrainByStrainType() : Observable<Strain[]> {
+	getStrainByStrainType(strainType:string) : Observable<Strain[]> {
 		return(this.http.get(this.strainUrl + strainType)
 			.map(this.extractData)
 			.catch(this.handleError));
 	}
-	getStrainByStrainThc() : Observable<Strain[]> {
+	getStrainByStrainThc(strainThc:number) : Observable<Strain[]> {
 		return(this.http.get(this.strainUrl + strainThc)
 			.map(this.extractData)
 			.catch(this.handleError));
 	}
-	getStrainByStrainCbd() : Observable<Strain[]> {
+	getStrainByStrainCbd(strainCbd:number) : Observable<Strain[]> {
 		return(this.http.get(this.strainUrl + strainCbd)
 			.map(this.extractData)
 			.catch(this.handleError));
 	}
-	getStrainByStrainDescription() : Observable<Strain[]> {
+	getStrainByStrainDescription(strainDescription:string) : Observable<Strain[]> {
 		return(this.http.get(this.strainUrl + strainDescription)
 			.map(this.extractData)
 			.catch(this.handleError));
