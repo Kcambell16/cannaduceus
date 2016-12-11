@@ -43,7 +43,7 @@ try {
 
 		// handle GET request - if id is present, that strain is present, that strain is returned, otherwise all strains are returned
 		if(empty($id) === false) {
-			$dispensary = Strain::getStrainByStrainId($pdo, $id);
+			$strain = Strain::getStrainByStrainId($pdo, $id);
 			if($strain !== null) {
 				$reply->data = $strain;
 			}
@@ -78,3 +78,8 @@ if($reply->data === null) {
 
 // encode and return reply to front end caller
 echo json_encode($reply);
+
+
+
+// what else we need is style
+// and where it links to
