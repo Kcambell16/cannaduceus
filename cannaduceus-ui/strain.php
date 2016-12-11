@@ -420,7 +420,7 @@
 
 			<div class="col-md-3 col-sm-6 hero-feature">
 				<div class="thumbnail">
-					<img src="images/banana-split.jpeg" alt="banana-split">
+					<img src="images/bananasplit.jpeg" alt="bananasplit">
 					<div class="caption">
 						<h3>Banana Split</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
