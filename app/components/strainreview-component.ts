@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {StrainReviewService} from "../services/strainReview-service";
+import {StrainReviewService} from "../services/strainreview-service";
 import {StrainService} from "../services/strain-service";
 import {StrainReview} from "../classes/strainReview";
 import {Strain} from "../classes/strain";
@@ -14,6 +14,7 @@ export class StrainReviewComponent  implements OnInit {
 	@ViewChild("strainReviewForm") strainReviewForm : any;
 	strainReviews: StrainReview[] = [];
 	strainReview: StrainReview = new StrainReview (null, "","",null,"");
+	strains: Strain[] = [];
 	status: Status = null;
 
 	constructor(

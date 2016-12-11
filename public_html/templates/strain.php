@@ -67,12 +67,12 @@
 		<!-- Page Features -->
 		<div class="row text-center">
 
-			<div class="col-md-3 col-sm-6 hero-feature">
+			<div *ngFor="let strainReview of strainReviews" class="col-md-3 col-sm-6 hero-feature">
 				<div class="thumbnail">
 					<img src="http://placehold.it/800x500" alt="">
 					<div class="caption">
-						<h3>{{}}</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						<h3>strainName</h3>
+						<p>{{strainReview.strainReviewTxt}}</p>
 						<p>
 							<a href="#" class="btn btn-default text-center">Review </a>
 						</p>
