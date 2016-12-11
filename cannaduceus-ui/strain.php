@@ -429,7 +429,7 @@
 
 			<div class="col-md-3 col-sm-6 hero-feature">
 				<div class="thumbnail">
-					<img src="images/berry-kush.jpeg" alt="berry-kush">
+					<img src="images/berrykush.jpeg" alt="berrykush">
 					<div class="caption">
 						<h3>Berry Kush</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -457,7 +457,7 @@
 
 				<div class="col-md-3 col-sm-6 hero-feature">
 					<div class="thumbnail">
-						<img src="images/bubba-kush.jpeg" alt="bubba-kush">
+						<img src="images/bubbakush.jpeg" alt="bubbakush">
 						<div class="caption">
 							<h3>Bubba Kush</h3>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -493,6 +493,59 @@
 						</div>
 					</div>
 				</div>
+				<div class="row text-center">
+
+					<div class="col-md-3 col-sm-6 hero-feature">
+						<div class="thumbnail">
+							<img src="images/chocolope.jpeg" alt="chocolope">
+							<div class="caption">
+								<h3>Chocolope</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<p>
+									<a href="#" class="btn btn-default text-center">Review </a>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-sm-6 hero-feature">
+						<div class="thumbnail">
+							<img src="images/critical-super-silver-haze.jpeg" alt="critical-super-silver-haze">
+							<div class="caption">
+								<h3>Critical Super Silver Haze</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<p>
+									<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-sm-6 hero-feature">
+						<div class="thumbnail">
+							<img src="images/dark-shadow-haze.jpeg" alt="dark-shadow-haze">
+							<div class="caption">
+								<h3>Dark Shadow Haze</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<p>
+									<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3 col-sm-6 hero-feature">
+						<div class="thumbnail">
+							<img src="images/darkstar.jpeg" alt="darkstar">
+							<div class="caption">
+								<h3>Dark Star</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+								<p>
+									<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+								</p>
+							</div>
+						</div>
+					</div>
 
 
 		</div>
