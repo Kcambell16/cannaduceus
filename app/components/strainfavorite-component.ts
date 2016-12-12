@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute, Params} from "@angular/router";
 import {StrainService} from "../services/strain-service";
-import {StrainReviewService} from "../services/strainreview-service";
+import {StrainFavoriteService} from "../services/strainfavorite-service";
 import {Strain} from "../classes/strain";
 import {Status} from "../classes/status";
 import {StrainFavorite} from "../classes/strainFavorite";
@@ -20,9 +20,8 @@ export class StrainFavoriteComponent  implements OnInit {
 	status: Status = null;
 
 	constructor(
-		private strainService: StrainService,
 		private strainFavoriteService: StrainFavoriteService,
-		private strainReviewService: StrainReviewService,
+		private strainService: StrainService,
 		private activatedRoute:ActivatedRoute
 	) {}
 
