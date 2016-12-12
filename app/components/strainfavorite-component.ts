@@ -13,7 +13,7 @@ import {StrainFavorite} from "../classes/strainFavorite";
 export class StrainFavoriteComponent  implements OnInit {
 	@ViewChild("strainFavoriteForm") strainFavoriteForm : any;
 	strainFavorites: StrainFavorite[] = [];
-	strainFavorite: StrainFavorite = new StrainFavorite (null, "","",null,"");
+	strainFavorite: StrainFavorite = new StrainFavorite (null, "","",null,""); // not sure why new is throwing a error
 	strains: Strain[] = [];
 	strain: Strain = new Strain (null, "","","","","");
 	// strainReview: StrainReview = new StrainReview (null, "", "", null,""); do i have to have strain Reviews in here too?
@@ -25,18 +25,18 @@ export class StrainFavoriteComponent  implements OnInit {
 		private activatedRoute:ActivatedRoute
 	) {}
 
-	ngOnInit() : void {
-		this.reloadStrainFavorites();
-	}
-
-	reloadStrainFavorites() : void {
-		this.strainFavoriteService.getAllStrainFavorites()
-			.subscribe(strainFavorites => {
-				this.strainFavorites = strainFavorites;
-				this.strainFavoriteService.getStrainByStrainId(this.strainFavorite.strainFavoriteId)
-					.subscribe(strains => this.strains=strains);
-			});
-	}
+	// ngOnInit() : void {
+	// 	this.reloadStrainFavorites();
+	// }
+	//
+	// reloadStrainFavorites() : void {
+	// 	this.strainFavoriteService.getAllStrainFavorites() // if we dont have a get all strain Favorites then do we need this? or what would it be changed to? dec 12
+	// 		.subscribe(strainFavorites => {
+	// 			this.strainFavorites = strainFavorites;
+	// 			this.strainFavoriteService.getStrainByStrainId(this.strainFavorite.strainFavoriteId)
+	// 				.subscribe(strains => this.strains=strains);
+	// 		});
+	// }
 
 	// createStrainFavorite() : void {
 	// 	this.strainService.createStrainFavorite(this.strain)
