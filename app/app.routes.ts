@@ -5,9 +5,10 @@ import {DispensaryComponent} from "./components/dispensary-component";
 import {SignupComponent} from "./components/signup-component";
 import {SigninComponent} from "./components/signin-component";
 import {ActivationComponent} from "./components/activation-component";
+import {StrainFavoriteComponent} from "./components/strainfavorite-component";
 
 
-export const allAppComponents = [HomeComponent, StrainComponent, DispensaryComponent, SignupComponent, SigninComponent, ActivationComponent];
+export const allAppComponents = [HomeComponent, StrainComponent, DispensaryComponent, SignupComponent, SigninComponent, ActivationComponent, StrainFavoriteComponent];
 
 export const routes: Routes = [
 	{path: "", component: HomeComponent},
@@ -16,8 +17,6 @@ export const routes: Routes = [
 	{path: "singup", component: SignupComponent},
 	{path: "signin", component: SigninComponent},
 	{path: "activation", component: ActivationComponent}
-	
-
 
 ];
 

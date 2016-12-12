@@ -10,10 +10,10 @@ import {StrainFavorite} from "../classes/strainFavorite";
 	templateUrl: "./templates/strain.php"
 })
 
-export class StrainFavoriteComponent  implements OnInit {
+export class StrainFavoriteComponent implements OnInit {
 	@ViewChild("strainFavoriteForm") strainFavoriteForm : any;
 	strainFavorites: StrainFavorite[] = [];
-	strainFavorite: StrainFavorite = new StrainFavorite (null, "","",null,""); // not sure why new is throwing a error
+	strainFavorite: StrainFavorite = new StrainFavorite (null, null); // changed both to null probably wrong gotta ask about this dec 12
 	strains: Strain[] = [];
 	strain: Strain = new Strain (null, "","","","","");
 	// strainReview: StrainReview = new StrainReview (null, "", "", null,""); do i have to have strain Reviews in here too?
@@ -22,7 +22,7 @@ export class StrainFavoriteComponent  implements OnInit {
 	constructor(
 		private strainFavoriteService: StrainFavoriteService,
 		private strainService: StrainService,
-		private activatedRoute:ActivatedRoute
+		private activatedRoute: ActivatedRoute
 	) {}
 
 	ngOnInit() : void {
@@ -36,7 +36,7 @@ export class StrainFavoriteComponent  implements OnInit {
 	// 			this.strainFavoriteService.getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId(this.strain.strainId.profile.profileId)
 	// 				.subscribe(strains => this.strains=strains);
 	// 		});
-	// }
+	// } old shit code but keeping it just in case
 
 	reloadStrainFavorites() : void {
 		this.activatedRoute.params
@@ -44,7 +44,7 @@ export class StrainFavoriteComponent  implements OnInit {
 			.subscribe(strains => {
 				this.strains = strains;
 
-				this.strainFavoriteService.getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId(this.strain.strainId.profile.profileId)
+				this.strainFavoriteService.getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId(this.strain.strainId, this.profile.profileId)
 					.subscribe(strainFavorites => this.strainFavorites = strainFavorites);
 
 			});

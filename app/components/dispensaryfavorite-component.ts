@@ -1,8 +1,11 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
+import {ActivatedRoute, Params} from "@angular/router";
 import {DispensaryService} from "../services/dispensary-services";
+import {DispensaryFavoriteService} from "../services/dispensaryfavorite-service";
 import {Dispensary} from "../classes/dispensary";
 import {DispensaryFavorite} from "../classes/dispensaryFavorite";
-import {Router} from "@angular/router";
+import {Status} from "../classes/status";
+
 
 
 @Component({
