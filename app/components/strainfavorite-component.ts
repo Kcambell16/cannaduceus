@@ -25,18 +25,18 @@ export class StrainFavoriteComponent  implements OnInit {
 		private activatedRoute:ActivatedRoute
 	) {}
 
-	// ngOnInit() : void {
-	// 	this.reloadStrainFavorites();
-	// }
-	//
-	// reloadStrainFavorites() : void {
-	// 	this.strainFavoriteService.getAllStrainFavorites() // if we dont have a get all strain Favorites then do we need this? or what would it be changed to? dec 12
-	// 		.subscribe(strainFavorites => {
-	// 			this.strainFavorites = strainFavorites;
-	// 			this.strainFavoriteService.getStrainByStrainId(this.strainFavorite.strainFavoriteId)
-	// 				.subscribe(strains => this.strains=strains);
-	// 		});
-	// }
+	ngOnInit() : void {
+		this.reloadStrainFavorites();
+	}
+
+	reloadStrainFavorites() : void {
+		this.strainFavoriteService.getAllStrainFavorites() // if we dont have a get all strain Favorites then do we need this? or what would it be changed to? dec 12
+			.subscribe(strainFavorites => {
+				this.strainFavorites = strainFavorites;
+				this.strainFavoriteService.getStrainByStrainId(this.strainFavorite.strainFavoriteId)
+					.subscribe(strains => this.strains=strains);
+			});
+	}
 
 	// createStrainFavorite() : void {
 	// 	this.strainService.createStrainFavorite(this.strain)
@@ -50,3 +50,5 @@ export class StrainFavoriteComponent  implements OnInit {
 
 	//}
 }
+
+
