@@ -31,7 +31,7 @@ export class DispensaryFavoriteComponent  implements OnInit {
 		this.dispensaryFavoriteService.getAllDispensaryFavorites() // if we dont have a get all strain Favorites then do we need this? or what would it be changed to? dec 12
 			.subscribe(dispensaryFavorites => {
 				this.dispensaryFavorites = dispensaryFavorites;
-				this.dispensaryFavoriteService.getDispensaryByDispensaryId(this.DispensaryFavorite.DispensaryFavoriteId)
+				this.dispensaryFavoriteService.getDispensaryFavoriteByDispensaryFavoriteDispensaryIdAndDispensaryFavoriteProfileId(this.ge)
 					.subscribe(dispensaries => this.dispensaries=dispensaries);
 			});
 	}
