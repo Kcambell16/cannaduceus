@@ -13,10 +13,10 @@ import {StrainFavorite} from "../classes/strainFavorite";
 export class StrainFavoriteComponent  implements OnInit {
 	@ViewChild("strainFavoriteForm") strainFavoriteForm : any;
 	strainFavorites: StrainFavorite[] = [];
-	strainFavorite: StrainFavorite = new StrainFavorite (null, "","","",null,"");
+	strainFavorite: StrainFavorite = new StrainFavorite (null, "","",null,"");
 	strains: Strain[] = [];
 	strain: Strain = new Strain (null, "","","","","");
-	// strainFavorite: StrainFavorite = new StrainFavorite (null, "", "", null,""); do i have to have strain Reviews in here too?
+	// strainReview: StrainReview = new StrainReview (null, "", "", null,""); do i have to have strain Reviews in here too?
 	status: Status = null;
 
 	constructor(
