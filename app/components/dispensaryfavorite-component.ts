@@ -15,7 +15,6 @@ export class DispensaryFavoriteComponent  implements OnInit {
 	dispensaryFavorite: DispensaryFavorite = new DispensaryFavorite (null, "","",null,""); // not sure why new is throwing a error
 	dispensaries: Dispensary[] = [];
 	dispensary: Dispensary = new Dispensary (null, "","","","","");
-	// strainReview: StrainReview = new StrainReview (null, "", "", null,""); do i have to have strain Reviews in here too?
 	status: Status = null;
 
 	constructor(
