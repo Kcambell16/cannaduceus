@@ -23,7 +23,7 @@ export class StrainComponent  implements OnInit {
 	constructor(
 		private strainService: StrainService,
 		private strainReviewService: StrainReviewService,
-		//private strainFavoriteService: StrainFavoriteService, // added strainFavoriteService dec 12
+		//private strainFavoriteService: StrainFavoriteService, // added strainFavoriteService dec 12 ;p
 		private activatedRoute:ActivatedRoute
 	) {}
 
