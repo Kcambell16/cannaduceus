@@ -176,13 +176,16 @@
 
 	</div>
 		<!-- google api start -->
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 		<h1>Find Your Dispensary</h1>
 		<div id="map"></div>
 
 		<script src="custom.js"></script>
 					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeLh4Mvj9fexQtF1is8iP_5vrqMjoYx5s&callback=initMap"
 					async defer></script>
-
+			</div>
+		</div>
 
 		<!-- sticky footer inverse --->
 		<footer class="footer navbar-inverse navbar-bottom">
