@@ -1,0 +1,53 @@
+import {Component, OnInit, ViewChild} from "@angular/core";
+import {ActivatedRoute, Params} from "@angular/router";
+import {StrainService} from "../services/strain-service";
+import {StrainReviewService} from "../services/strainreview-service";
+import {Strain} from "../classes/strain";
+import {Status} from "../classes/status";
+import {StrainFavorite} from "../classes/strainFavorite";
+
+@Component({
+	templateUrl: "./templates/strain.php"
+})
+
+export class StrainFavoriteComponent  implements OnInit {
+	@ViewChild("strainFavoriteForm") strainFavoriteForm : any;
+	strainFavorites: StrainFavorite[] = [];
+	strainFavorite: StrainFavorite = new StrainFavorite (null, "","","","","");
+	strains: Strain[] = [];
+	strain: Strain = new Strain (null, "","","","","");
+	// strainFavorite: StrainFavorite = new StrainFavorite (null, "", "", null,""); do i have to have strain Reviews in here too?
+	status: Status = null;
+
+	constructor(
+		private strainService: StrainService,
+		private strainFavoriteService: StrainFavoriteService,
+		private strainReviewService: StrainReviewService,
+		private activatedRoute:ActivatedRoute
+	) {}
+
+	ngOnInit() : void {
+		this.reloadStrainFavorites();
+	}
+
+	reloadStrainFavorites() : void {
+		this.strainFavoriteService.getAllStrainFavorites()
+			.subscribe(strainFavorites => {
+				this.strainFavorites = strainFavorites;
+				this.strainFavoriteService.getStrainByStrainId(this.strainFavorite.strainFavoriteId)
+					.subscribe(strains => this.strains=strains);
+			});
+	}
+
+	// createStrainFavorite() : void {
+	// 	this.strainService.createStrainFavorite(this.strain)
+	// 		.subscribe(status => {
+	// 			this.status = status;
+	// 			if(status.apiStatus === 200) {
+	// 				this.reloadStrainFavorites();
+	// 				this.strainFavoriteForm.reset();
+	// 			}
+	// 		});
+
+	//}
+}
