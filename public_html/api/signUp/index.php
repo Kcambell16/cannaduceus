@@ -1,7 +1,7 @@
 <?php
-require_once dirname(__DIR__, 2) . "/classes/autoload.php";
-require_once dirname(__DIR__, 2) . "/lib/xsrf.php";
-require_once dirname(__DIR__, 2) . "/lib/sendEmail.php";
+require_once dirname(__DIR__, 3) . "/php/classes/autoload.php";
+require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
+require_once dirname(__DIR__, 3) . "/php/lib/sendEmail.php";
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 use Edu\Cnm\Cannaduceus;
 /**
@@ -45,7 +45,7 @@ try {
 		$salt = bin2hex(random_bytes(32));
 		$hash = hash_pbkdf2("sha512", $password, $salt, 262144);
 		$profileAccessLevel = 0;
-		$profileActivationToken = bin2hex(random_bytes(16));
+		$profileActivation = bin2hex(random_bytes(16));
 		$profile = new Cannaduceus\Profile(null, $profileUserName, $profileEmail,$hash, $salt, $profileActivation);
 		$profile->insert($pdo);
 		$messageSubject = "ABQ Brew Crew Welcomes You! -- Account Activation";

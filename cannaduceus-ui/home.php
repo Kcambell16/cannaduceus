@@ -12,7 +12,7 @@
 			<link type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
 
 			<!-- Custom CSS Goes HERE -->
-			<link rel="stylesheet" href="css/styles.css" type="text/css">
+			<link rel="stylesheet" href="style.css" type="text/css">
 
 			<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 			<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,6 +26,8 @@
 
 			<!-- Latest compiled and minified JavaScript -->
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
 		<title>Cannaduceus Home page </title>
 		</head>
 
@@ -174,59 +176,16 @@
 
 	</div>
 		<!-- google api start -->
-		<h3>Locate Dispensary</h3>
+		<h1>Find Your Dispensary</h1>
 		<div id="map"></div>
-		<script>
-			function initMap() {
-				var uluru = {lat: -25.363, lng: 131.044};
-				var map = new google.maps.Map(document.getElementById('map'), {
-					zoom: 4,
-					center: uluru
-				});
-				var marker = new google.maps.Marker({
-					position: uluru,
-					map: map
-				});
-			}
-		</script>
-		<script async defer
-				  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-		</script>
-		</div>
-<!-- end google api--->
-		<!-- Google API -->
-		<div class="well well-lg">
-			<style>
-				#map {
-					height: 400px;
-					width: 100%;
-				}
-			</style>
 
-			<h3>Locate Dispensary</h3>
-			<div id="map"></div>
-			<script>
-				function initMap() {
-					var uluru = {lat: -25.363, lng: 131.044};
-					var map = new google.maps.Map(document.getElementById('map'), {
-						zoom: 4,
-						center: uluru
-					});
-					var marker = new google.maps.Marker({
-						position: uluru,
-						map: map
-					});
-				}
-			</script>
-			<script async defer
-					  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-			</script>
-		</div>
-		<!-- google api start -->
+		<script src="custom.js"></script>
+					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeLh4Mvj9fexQtF1is8iP_5vrqMjoYx5s&callback=initMap"
+					async defer></script>
 
 
 		<!-- sticky footer inverse --->
-		<footer class="footer navbar-inverse navbar-fixed-bottom">
+		<footer class="footer navbar-inverse navbar-bottom">
 			<div class="container">
 				<div class="row">
 					<!-- contact section in footer-->

@@ -61,7 +61,20 @@ a.tile-link:hover > .tile {
 
 /*
 * Page Layout Styles (not important)
-*/
+
 body {
 	padding: 5rem 0;
+}
+*/
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#map {
+	height: 50%;
+	width: 50%;
 }

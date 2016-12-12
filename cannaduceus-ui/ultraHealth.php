@@ -43,7 +43,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" routerLink="">Cannaduceus - Organtica</a>
+						<a class="navbar-brand" routerLink="">Cannaduceus</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,8 +64,8 @@
 		<!-- Portfolio Item Heading -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Organtica
-					<small>Premiere Organic Cannabis</small>
+				<h1 class="page-header">Ultra Health
+					<small>Most locations throughout New Mexico!</small>
 				</h1>
 			</div>
 		</div>
@@ -75,17 +75,18 @@
 		<div class="row">
 
 			<div class="col-md-8">
-				<img class="img-responsive" src="images/ultraHealth.png" alt="Ultra Health">
+				<img class="img-responsive" src="images/ultraHealth.png" alt="">
 			</div>
 
 			<div class="col-md-4">
-				<h3>Ultra Health</h3>
-				<p>As one of the new dispensaries licensed by the state in 2015 we are the new kid on the block but our experience goes well farther.  We carry some of New Mexico's best premium organic cannabis products.</p> </h3>
+				<h2>Ultra Health</h2>
+				<p>Ultra Health prioritizes health on every spectrum. Whether it be physical, social or mental well-being, Ultra Health does the most for medical cannabis patients. Ultra Health is involved in all aspects of cannabis: production, research, dispensing and advocating. From producing the highest-quality medical grade cannabis, to assisting future and returning patients with onsite physician exams, Ultra Health understands health and premium medicine should be accessible to everyone.</p>
+				<h5>Dispensary Info</h5>
 				<ul>
-					<li>Lorem Ipsum</li>
-					<li>Dolor Sit Amet</li>
-					<li>Consectetur</li>
-					<li>Adipiscing Elit</li>
+					<li>Eddibles</li>
+					<li>Indica, Sativa and Hybrid flowers</li>
+					<li>Topicals and other methods of medicating</li>
+					<li>Concentrates, both Co2 and BHO</li>
 				</ul>
 			</div>
 
@@ -96,28 +97,32 @@
 		<div class="row">
 
 			<div class="col-lg-12">
-				<h3 class="page-header">Ultra Health</h3>
+				<h3 class="page-header">Featured Strains</h3>
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
+				<h3>Star Kush OG</h3>
 				<a href="#">
 					<img class="img-responsive portfolio-item" src="images/organtica1.gif" alt="">
 				</a>
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
+				<h3>Amnesia</h3>
 				<a href="#">
 					<img class="img-responsive portfolio-item" src="images/platinum%20rider.gif" alt="">
 				</a>
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
+				<h3>Berry Kush</h3>
 				<a href="#">
 					<img class="img-responsive portfolio-item" src="images/Hawaii%205-0.gif" alt="">
 				</a>
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
+				<h3>Darkstar</h3>
 				<a href="#">
 					<img class="img-responsive portfolio-item" src="images/headband.gif" alt="">
 				</a>
@@ -127,6 +132,8 @@
 		<!-- /.row -->
 
 		<!-- strain info model ends here -->
+
+
 
 		<!-- footer inverse --->
 		<footer class="footer navbar-inverse">

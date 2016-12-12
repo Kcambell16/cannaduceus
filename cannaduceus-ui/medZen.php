@@ -65,7 +65,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Med Zen
-					<small>Now also in Rio Rancho!</small>
+					<small>West side and Nob Hill locations!</small>
 				</h1>
 			</div>
 		</div>
@@ -80,13 +80,13 @@
 
 			<div class="col-md-4">
 				<h3>Med Zen</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
+				<p>Welcome to Medzen Services Inc., we are a licensed, non-profit medical cannabis producer with a convenient pickup location in the Rio Rancho/Albuquerque metro area. Here at Medzen Services, our main focus is to serve those patients in need, who are licensed by the New Mexico Department of Health Medical Cannabis Program. All of our medication is grown organically, without harmful pesticides.</p>
 				<h3>Dispensary Info</h3>
 				<ul>
-					<li>Lorem Ipsum</li>
-					<li>Dolor Sit Amet</li>
-					<li>Consectetur</li>
-					<li>Adipiscing Elit</li>
+					<li>Eddibles</li>
+					<li>Indica, Sativa and Hybrid flowers</li>
+					<li>Topicals and other methods of medicating</li>
+					<li>Concentrates, both Co2 and BHO</li>
 				</ul>
 			</div>
 
@@ -97,30 +97,31 @@
 		<div class="row">
 
 			<div class="col-lg-12">
-				<h3 class="page-header">Dispensaries</h3>
+				<h3 class="page-header">Featured Strains</h3>
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
+				<h2>Star Kush OG</h2>
 				<a href="#">
-					<img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+					<img class="img-responsive portfolio-item" src="images/organtica1.gif" alt="">
 				</a>
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
 				<a href="#">
-					<img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+					<img class="img-responsive portfolio-item" src="images/platinum%20rider.gif" alt="">
 				</a>
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
 				<a href="#">
-					<img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+					<img class="img-responsive portfolio-item" src="images/Hawaii%205-0.gif" alt="">
 				</a>
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
 				<a href="#">
-					<img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+					<img class="img-responsive portfolio-item" src="images/headband.gif" alt="">
 				</a>
 			</div>
 
