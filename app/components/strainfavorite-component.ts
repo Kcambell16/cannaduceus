@@ -29,13 +29,26 @@ export class StrainFavoriteComponent  implements OnInit {
 		this.reloadStrainFavorites();
 	}
 
+	// reloadStrainFavorites() : void {
+	// 	this.strainFavoriteService.getAllStrainFavorites() // if we don't have a get all strain Favorites then do we need this? or what would it be changed to? dec 12
+	// 		.subscribe(strainFavorites => {
+	// 			this.strainFavorites = strainFavorites;
+	// 			this.strainFavoriteService.getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId(this.strain.strainId.profile.profileId)
+	// 				.subscribe(strains => this.strains=strains);
+	// 		});
+	// }
+
 	reloadStrainFavorites() : void {
-		this.strainFavoriteService.getAllStrainFavorites() // if we dont have a get all strain Favorites then do we need this? or what would it be changed to? dec 12
-			.subscribe(strainFavorites => {
-				this.strainFavorites = strainFavorites;
-				this.strainFavoriteService.getStrainByStrainId(this.strainFavorite.strainFavoriteId)
-					.subscribe(strains => this.strains=strains);
+		this.activatedRoute.params
+			.switchMap((params : Params) => this.strainService.getStrainByStrainId(+params["strainId"]))
+			.subscribe(strains => {
+				this.strains = strains;
+
+				this.strainFavoriteService.getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId(this.strain.strainId.profile.profileId)
+					.subscribe(strainFavorites => this.strainFavorites = strainFavorites);
+
 			});
+
 	}
 
 	// createStrainFavorite() : void {
