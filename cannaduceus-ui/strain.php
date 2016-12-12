@@ -25,7 +25,7 @@
 				  crossorigin="anonymous"></script>
 
 		<!-- Custom JavaScript -->
-		<script src="js/custom.js" type="text/javascript"></script>
+		<script src="custom.js" type="text/javascript"></script>
 
 		<title>Strain</title>
 	</head>

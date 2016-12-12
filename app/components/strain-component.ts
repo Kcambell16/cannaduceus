@@ -16,11 +16,14 @@ export class StrainComponent  implements OnInit {
 	strain: Strain = new Strain (null, "","","","","");
 	strainReviews: StrainReview[] = [];
 	strainReview: StrainReview = new StrainReview (null, "", "", null,"");
+	//strainFavorites: StrainFavorite[] = []; // added strainFavorite dec 12
+	//strainFavorite: StrainFavorite = new StrainFavorite (null, "","","","","");
 	status: Status = null;
 
 	constructor(
 		private strainService: StrainService,
 		private strainReviewService: StrainReviewService,
+		//private strainFavoriteService: StrainFavoriteService, // added strainFavoriteService dec 12 ;p
 		private activatedRoute:ActivatedRoute
 	) {}
 
