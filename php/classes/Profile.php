@@ -46,7 +46,7 @@ class Profile implements \JsonSerializable {
 	 *profile activation token hex
 	 * @var string $profileActivationToken
 	 **/
-	private $profileFActivationToken;
+	private $profileActivationToken;
 
 	/**
 	 * Constructor for the new profile
@@ -57,7 +57,7 @@ class Profile implements \JsonSerializable {
 	 * @param string $newProfileHash the hash for the profile
 	 * @param string $newProfileSalt the salt for the profile
 	 * @param string $newProfileActivation the activation for the profile
-	 * @param string $newProfileActivation string with user token
+	 * @param string $newProfileActivationToken string with user token
 	 * @throws \InvalidArgumentException if data types are not valid
 	 * @throws \RangeException if data values are out of bounds (e.g., strings too long, negative integers)
 	 * @throws \TypeError if data types violate type hints
@@ -299,7 +299,7 @@ class Profile implements \JsonSerializable {
 		if(strlen($newProfileActivationToken) !== 32) {
 			throw(new\RangeException("Profile activation token has to be 32"));
 		}
-		$this->ProfileActivationToken = $newProfileActivationToken;
+		$this->profileActivationToken= $newProfileActivationToken;
 	}
 
 		/**
@@ -533,7 +533,7 @@ class Profile implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT profileId, profileUserName, profileEmail, profileHash, profileSalt, profileActivation FROM profile WHERE profileActivationToken = :profileToken";
+		$query = "SELECT profileId, profileUserName, profileEmail, profileHash, profileSalt, profileActivation FROM profile WHERE profileActivation = :profileActivationToken";
 		$statement = $pdo->prepare($query);
 
 		//bind the id value to the placeholder in the template
