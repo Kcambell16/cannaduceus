@@ -28,7 +28,7 @@ CREATE TABLE dispensary
 	dispensaryAttention VARCHAR(32),
 	dispensaryCity VARCHAR(48) NOT NULL,
 	dispensaryEmail VARCHAR(128),
-	dispensaryName VARCHAR(32) NOT NULL,
+	dispensaryName VARCHAR(64) NOT NULL,
 	dispensaryPhone VARCHAR(32) NOT NULL ,
 	dispensaryState CHAR(2) NOT NULL,
 	dispensaryStreet1 VARCHAR(48) NOT NULL,
