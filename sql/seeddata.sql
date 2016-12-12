@@ -63,7 +63,7 @@ VALUES (null, 'Albuquerque', 'info@rgreenleaf.com', 'R. Greenleaf Organics, Inc 
 INSERT INTO dispensary (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Albuquerque', 'info@sandiabotanicals.com', 'Sandia Botanicals Inc', 505-717-2764, 'NM', '2406 Comanche RD NE', null, 'www.sandiabotanicals.com', 87110);
 
--- C
+
 INSERT INTO dispensary (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Albuquerque', 'info@swopnm.com', 'SWOP Southwest Organic Producers', 505-884-8221, 'NM', '3504 Montgomery', null, 'www.swopnm.com', 87107);
 
@@ -74,6 +74,10 @@ VALUES (null, 'Albuquerque', 'contact@urbanwellness.com', 'Urban Wellness', 505-
 
 INSERT INTO dispensary (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
 VALUES (null, 'Albuquerque', 'info@verdesfoundation.org', 'The Verdes Foundation', 505-510-1717, 'NM', '6005 Coronado NE', null, 'www.rgreenleaf.com', 87109);
+
+
+INSERT INTO dispensary (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
+VALUES (null, 'Albuquerque', 'info@organtica.com', 'Organtica', 505-437-0111, 'NM', '4001 Menaul Blvd NE', null, 'www.organtica.com', 87110);
 
 -- Chaves County
 INSERT INTO dispensary (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
