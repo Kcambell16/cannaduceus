@@ -1,4 +1,4 @@
-<header>
+
 	<!-- navbar --->
 	<nav class="navbar navbar-default navbar-inverse" >
 		<div class="container-fluid">
