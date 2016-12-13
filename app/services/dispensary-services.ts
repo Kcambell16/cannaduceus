@@ -17,4 +17,9 @@ export class DispensaryService extends BaseService {
 			.map(this.extractData)
 			.catch(this.handleError));
 	}
+	getDispensaryByDispensaryId() : Observable<Dispensary[]> {
+		return(this.http.get(this.dispensaryUrl)
+			.map(this.extractData)
+			.catch(this.handleError));
+	}
 }
