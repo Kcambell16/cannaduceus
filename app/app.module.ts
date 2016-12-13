@@ -4,7 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {allAppComponents, appRoutingProviders, routing} from "./app.routes";
-import {DispensaryService} from "./services/dispensary-services";
+import {DispensaryService} from "./services/dispensary-service";
 import {StrainService} from "./services/strain-service";
 
 

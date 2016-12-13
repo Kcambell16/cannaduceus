@@ -17,7 +17,7 @@ export const routes: Routes = [
 	{path: "", component: HomeComponent},
 	{path: "strain", component: StrainComponent},
 	{path: "dispensary", component: DispensaryComponent},
-	{path: "singup", component: SignupComponent},
+	{path: "signup", component: SignupComponent},
 	{path: "signin", component: SigninComponent},
 	{path: "activation", component: ActivationComponent}
 

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {ActivatedRoute, Params} from "@angular/router";
-import {DispensaryService} from "../services/dispensary-services";
+import {DispensaryService} from "../services/dispensary-service";
 import {DispensaryFavoriteService} from "../services/dispensaryfavorite-service";
 import {Dispensary} from "../classes/dispensary";
 import {Status} from "../classes/status";
