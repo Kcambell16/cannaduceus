@@ -44,7 +44,7 @@ export class DispensaryReviewComponent  implements OnInit {
 	// 				this.reloadStrainReviews();
 	// 				this.strainReviewForm.reset();
 	// 			}
-	// 		});
+	// 		}); add me on snapchat @lawnnome
 
 	//}
 }
