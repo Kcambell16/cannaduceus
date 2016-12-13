@@ -25,3 +25,7 @@ body { width: 100%;}
 	background-size: cover;
 	overflow: hidden;
 }
+
+.sebm-google-map-container {
+	height: 300px;
+}

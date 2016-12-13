@@ -5,4 +5,4 @@ import {Router} from "@angular/router";
 	templateUrl: "./templates/home.php"
 })
 
-export class HomeComponent { }
+export class HomeComponent {}

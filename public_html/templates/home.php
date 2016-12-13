@@ -10,7 +10,13 @@
 </div>
 
 <!-- Google API -->
-<div class="jumbotron">
+
+<div class="container">
+<sebm-google-map [latitude]="lat" [longitude]="lng">
+	<sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+</sebm-google-map>
+</div>
+<!--<div class="jumbotron">
 
 	<h3>Locate Dispensary</h3>
 	<div id="map"></div>
