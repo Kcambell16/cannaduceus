@@ -51,6 +51,7 @@ try {
 		$messageSubject = "ABQ Brew Crew Welcomes You! -- Account Activation";
 		//building the activation link that can travel to another server and still work. This is the link that will be clicked to confirm the account.
 		// FIXME: make sure URL is /public_html/php/api/activation/$activation
+		//TODO:make sure the basepath is correct
 		$basePath = dirname($_SERVER["SCRIPT_NAME"], 2);
 		$urlGlue = $basePath . "/activation/" . $profileActivationToken;
 		$confirmLink = "https://" . $_SERVER["SERVER_NAME"] . $urlGlue;

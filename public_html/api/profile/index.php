@@ -72,7 +72,11 @@ try {
 			if($profile !== null) {
 				$reply->data = $profile;
 			}
-		}
+		}else if (empty($profileActivation) === false) {
+			$profile = Profile::getProfileByProfileActivation($pdo, $profileActivation);
+			if($profile !== null) {
+				$reply->data = $profile;
+			}
 	} else if($method === "PUT") {
 		verifyXSRF(); //changed from function verifyXSRF(){}
 		$requestContent = file_get_contents("php://input");
@@ -113,6 +117,7 @@ try {
 	}
 
 	// update reply with exception information
+}
 } catch(Exception $exception) {
 	$reply->status = $exception->getCode();
 	$reply->message = $exception->getMessage();

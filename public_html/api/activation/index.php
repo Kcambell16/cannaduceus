@@ -50,13 +50,13 @@ try {
 			throw(new \RangeException ("No ActivationToken Code"));
 		}
 
-		$Profile = Profile::getProfileByProfileActivationToken($pdo, $emailActivationToken);
+		$Profile = Profile::getProfileByProfileActivation($pdo, $emailActivationToken);
 
 		if(empty($Profile)) {
-			throw(new \InvalidArgumentException ("no Profile for activation token"));
+			throw(new \InvalidArgumentException ("no soup for you"));
 		}
 
-		$Profile->setProfileActivationToken(null);
+		$Profile->setProfileActivation(null);
 		$Profile->update($pdo);
 
 		// ToDo header("Location: ../../../");  send t5o login add generic message Angular will handle this
