@@ -1,7 +1,7 @@
 -- dispensary seed data starts here
 -- Bernalillo County
 INSERT INTO dispensary (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)
-	VALUES (null, 'Albuquerque', 'support@cannaceutics.org', 'Cannaceutics Inc', 505-672-8734, 'NM', 'P.O.Box 95705', null, 'www.cannaceutics.org', 87199);
+	VALUES (null, 'Albuquerque', 'support@cannaceutics.org', 'Cannaceutics Inc', 5056728734, 'NM', 'P.O.Box 95705', null, 'www.cannaceutics.org', 87199);
 
 
 INSERT INTO dispensary (dispensaryAttention, dispensaryCity, dispensaryEmail, dispensaryName, dispensaryPhone, dispensaryState, dispensaryStreet1, dispensaryStreet2, dispensaryUrl, dispensaryZipCode)

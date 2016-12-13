@@ -16,3 +16,8 @@ body { width: 100%;}
 .sfooter-content {
 	flex: 1 0 auto;
 }
+
+.jumbotron {
+	background-image: url(/img/homepagepic.jpg);
+	background-size: cover;
+	height: 100%;}
