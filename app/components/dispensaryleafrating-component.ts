@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
 import {DispensaryLeafRatingService} from "../services/dispensaryleafrating-service";
-import {DispensaryService} from "../services/dispensary-services";
+import {DispensaryService} from "../services/dispensary-service";
 import {DispensaryLeafRating} from "../classes/dispensaryLeafRating";
 import {Dispensary} from "../classes/dispensary";
 import {Router} from "@angular/router";
@@ -37,3 +37,4 @@ export class DispensaryLeafRatingComponent  implements OnInit {
 			});
 	}
 }
+//Written by Nathan Sanchez @nsanchez121@cnm.edu

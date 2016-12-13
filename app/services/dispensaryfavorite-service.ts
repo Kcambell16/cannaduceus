@@ -28,3 +28,4 @@ export class DispensaryFavoriteService extends BaseService {
 			.catch(this.handleError));
 	}
 }
+//Written by Nathan Sanchez @nsanchez121@cnm.edu
