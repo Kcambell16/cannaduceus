@@ -10,12 +10,6 @@
 
 <!-- Google API -->
 <div class="jumbotron">
-	<style>
-		#map {
-			height: 400px;
-			width: 100%;
-		}
-	</style>
 
 	<h3>Locate Dispensary</h3>
 	<div id="map"></div>

@@ -23,7 +23,8 @@
 							<li><a routerLink="">Home</a></li>
 							<li><a routerLink="/strain">Strain</a></li>
 							<li><a routerLink="/dispensary">Dispensary</a></li>
-							<li><a routerLink="/signup">Signin</a></li>
+							<li><a routerLink="/signup">SignUp</a></li>
+							<li><a routerLink="/signin">Signin</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container-fluid -->
