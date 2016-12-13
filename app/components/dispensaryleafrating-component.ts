@@ -3,8 +3,9 @@ import {DispensaryLeafRatingService} from "../services/dispensaryleafrating-serv
 import {DispensaryService} from "../services/dispensary-service";
 import {DispensaryLeafRating} from "../classes/dispensaryLeafRating";
 import {Dispensary} from "../classes/dispensary";
-import {Router} from "@angular/router";
+import {Router, Params, ActivatedRoute} from "@angular/router";
 import {Status} from "../classes/status";
+import 'rxjs/add/operator/switchMap';
 
 @Component({
 	templateUrl: "./templates/dispensary.php"
@@ -13,7 +14,7 @@ import {Status} from "../classes/status";
 export class DispensaryLeafRatingComponent  implements OnInit {
 	@ViewChild("dispensaryLeafRatingForm") dispensaryLeafRatingForm : any;
 	dispensaryLeafRatings: DispensaryLeafRating[] = [];
-	dispensaryLeafRating: DispensaryLeafRating = new DispensaryLeafRating (null,null); // not to sure why new is throwing a error ask about this tomorrow dec 12
+	dispensaryLeafRating: DispensaryLeafRating = new DispensaryLeafRating (null, null, null); // not to sure why new is throwing a error ask about this tomorrow dec 12
 	dispensaries: Dispensary[] = [];
 	dispensary:Dispensary = new Dispensary(null, "", "", "", "", "", "", "", "", "", "", "", "", "");
 	status: Status = null;
@@ -21,7 +22,8 @@ export class DispensaryLeafRatingComponent  implements OnInit {
 	constructor(
 		private dispensaryLeafRatingService: DispensaryLeafRatingService,
 		private dispensaryService: DispensaryService,
-		private router: Router
+		private router: Router,
+		private activatedRoute: ActivatedRoute
 	) {}
 
 	ngOnInit() : void {
@@ -29,12 +31,13 @@ export class DispensaryLeafRatingComponent  implements OnInit {
 	}
 
 	reloadDispensaryLeafRatings() : void {
-		this.dispensaryLeafRatingService.getAllDispensaryLeafRatings()
-			.subscribe(dispensaryLeafRatings => {    // once again ask about these
-				this.dispensaryLeafRatings = dispensaryLeafRatings;
-				this.dispensaryService.getDispensaryByDispensaryId(this.dispensaryLeafRating.$dispensaryLeafRatingRating)
-					.subscribe(dispensaries => this.dispensaries=dispensaries);
-			});
+		this.activatedRoute.params
+			.switchMap((params : Params) => this.dispensaryLeafRatingService.getDispensaryLeafRatingByDispensaryLeafRatingDispensaryId(+params["leafRatingDispensaryId"]))
+				.subscribe(dispensaryLeafRatings => {    // once again ask about these
+					this.dispensaryLeafRatings = dispensaryLeafRatings;
+					this.dispensaryService.getDispensaryByDispensaryId(this.dispensaryLeafRating.$dispensaryLeafRatingRating)
+						.subscribe(dispensaries => this.dispensaries = dispensaries);
+				});
 	}
 }
 //Written by Nathan Sanchez @nsanchez121@cnm.edu

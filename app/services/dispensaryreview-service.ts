@@ -30,14 +30,14 @@ export class DispensaryReviewService extends BaseService {
 			.catch(this.handleError));
 	}
 
-	getDispensaryReviewByDispensaryReviewTxt(dispensaryReviewTxt:number):Observable<DispensaryReview[]> {
+	getDispensaryReviewByDispensaryReviewTxt(dispensaryReviewTxt: string):Observable<DispensaryReview[]> {
 		return (this.http.get(this.dispensaryReviewUrl + dispensaryReviewTxt)
 			.map(this.extractData)
 			.catch(this.handleError));
 	}
 
-	getAllDispensaryReviews(dispensaryReviewDateTime:Date):Observable<DispensaryReview[]> {
-		return (this.http.get(this.dispensaryReviewUrl + dispensaryReviewDateTime)
+	getAllDispensaryReviews():Observable<DispensaryReview[]> {
+		return (this.http.get(this.dispensaryReviewUrl)
 			.map(this.extractData)
 			.catch(this.handleError));
 	}
