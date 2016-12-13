@@ -35,15 +35,6 @@ export class StrainReviewComponent  implements OnInit {
 					.subscribe(strains => this.strains=strains);
 			});
 	}
-	// createStrainReview() : void {
-	// 	this.strainReviewService.createStrainReview(this.strainReview)
-	// 		.subscribe(status => {
-	// 			this.status = status;
-	// 			if(status.apiStatus === 200) {
-	// 				this.reloadStrainReviews();
-	// 				this.strainReviewForm.reset();
-	// 			}
-	// 		});
 
-	//}
 }
+//Written by Nathan Sanchez @nsanchez121@cnm.edu

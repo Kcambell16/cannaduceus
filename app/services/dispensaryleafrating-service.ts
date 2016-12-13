@@ -34,3 +34,4 @@ export class DispensaryLeafRatingService extends BaseService {
 	}
 
 }
+//Written by Nathan Sanchez @nsanchez121@cnm.edu

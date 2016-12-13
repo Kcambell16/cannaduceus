@@ -56,3 +56,4 @@ export class StrainComponent  implements OnInit {
 
 	//}
 }
+//Written by Nathan Sanchez @nsanchez121@cnm.edu

@@ -40,18 +40,6 @@ export class DispensaryFavoriteComponent  implements OnInit {
 					.subscribe(dispensaryFavorites => this.dispensaryFavorites = dispensaryFavorites);
 
 			});
-
-		// createStrainFavorite() : void {
-		// 	this.strainService.createStrainFavorite(this.strain)
-		// 		.subscribe(status => {
-		// 			this.status = status;
-		// 			if(status.apiStatus === 200) {
-		// 				this.reloadStrainFavorites();
-		// 				this.strainFavoriteForm.reset();
-		// 			}
-		// 		});
-
-		//}
 	}
 }
-
+//Written by Nathan Sanchez @nsanchez121@cnm.edu

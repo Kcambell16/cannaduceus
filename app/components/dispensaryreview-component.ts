@@ -48,3 +48,4 @@ export class DispensaryReviewComponent  implements OnInit {
 
 	//}
 }
+//Written by Nathan Sanchez @nsanchez121@cnm.edu
