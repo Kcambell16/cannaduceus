@@ -193,7 +193,7 @@
 				<div class="row">
 					<!-- contact section in footer-->
 					<div class="col-xs-12 col-md-6">
-						<a src="/cannaduceus-ui/images/cannaduceus-logo.png" alt="logo"></a>
+						 <img src="/cannaduceus-ui/images/cannaduceus-logo.png" alt="logo">
 						<h4> Contact Us</h4>
 						<p>Email: Admin@Cannaduceus.com</p>
 						<p>Phone: 1(800)555-5555</p>

@@ -36,16 +36,5 @@ export class DispensaryReviewComponent  implements OnInit {
 					.subscribe(dispensaries => this.dispensaries = dispensaries);
 			});
 	}
-	// createStrainReview() : void {
-	// 	this.strainReviewService.createStrainReview(this.strainReview)
-	// 		.subscribe(status => {
-	// 			this.status = status;
-	// 			if(status.apiStatus === 200) {
-	// 				this.reloadStrainReviews();
-	// 				this.strainReviewForm.reset();
-	// 			}
-	// 		}); add me on snapchat @lawnnome
-
-	//}
 }
 //Written by Nathan Sanchez @nsanchez121@cnm.edu

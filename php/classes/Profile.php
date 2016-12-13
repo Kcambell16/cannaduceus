@@ -255,13 +255,13 @@ class Profile implements \JsonSerializable {
 	 **/
 	public function setProfileActivation(string $newProfileActivation = null) {
 		if($newProfileActivation === null) {
-			$this->$newProfileActivation = null;
+			$this->profileActivation = null;
 			return;
 		}
 
 		// verify the profile activation content
-		//$newProfileActivation = trim($newProfileActivation);
-		//$newProfileActivation = strtolower($newProfileActivation);
+		$newProfileActivation = trim($newProfileActivation);
+		$newProfileActivation = strtolower($newProfileActivation);
 
 		if(ctype_xdigit($newProfileActivation) === false) {
 			throw(new \UnexpectedValueException("activation content incorrect"));

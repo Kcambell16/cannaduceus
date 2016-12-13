@@ -2,9 +2,10 @@
 <div class="container">
 	<div class="jumbotron">
 		<h1>Following the green trail just got easier.....</h1>
-		<h2>Cannaduceus </h2>
+		<h2>Cannaduceus</h2>
 		<p> The missing link, connecting the patient and the dispensary</p>
 		<p><a class="btn btn-primary btn-lg" href="#" role="button">Sign in </a></p>
+		<img src="/cannaduceus-ui/images/cannaduceus-logo.png" alt="logo">
 	</div>
 </div>
 
@@ -27,6 +28,6 @@
 		}
 	</script>
 	<script async defer
-			  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+			 <img  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
 	</script>
 </div>

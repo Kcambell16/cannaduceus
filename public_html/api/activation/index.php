@@ -50,7 +50,7 @@ try {
 			throw(new \RangeException ("No ActivationToken Code"));
 		}
 
-		$profile = Profile::getProfileByProfileActivation($pdo, $profileActivationToken)->toArray();
+		$profile = Profile::getProfileByProfileActivation($pdo, $profileActivationToken);
 
 		if(empty($profile)) {
 			throw(new \InvalidArgumentException ("no soup for you"));
@@ -58,29 +58,19 @@ try {
 
 		$profile->setProfileActivation();
 		$profile->update($pdo);
-
+		$reply->message = "Your account is now activated. Welcome to Cannaduceus!";
 		// ToDo header("Location: ../../../");  send t5o login add generic message Angular will handle this
 	} else {
 		throw(new \Exception("Invalid HTTP method"));
 	}
 
 } catch(Exception $exception) {
-
 	$reply->status = $exception->getCode();
 	$reply->message = $exception->getMessage();
-	$reply->trace = $exception->getTraceAsString();
-
-	header("Content-type: application/json");
-
-	echo json_encode($reply);
-
 } catch(\TypeError $typeError) {
-
 	$reply->status = $typeError->getCode();
 	$reply->message = $typeError->getMessage();
-	$reply->trace = $typeError->getTraceAsString();
-
-	header("Content-type: application/json");
-
-	echo json_encode($reply);
 }
+
+header("Content-type: application/json");
+echo json_encode($reply);
