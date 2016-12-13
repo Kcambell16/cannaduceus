@@ -16,7 +16,7 @@ export class StrainLeafRatingComponent  implements OnInit {
 	strainLeafRatings: StrainLeafRating[] = [];
 	strainLeafRating: StrainLeafRating = new StrainLeafRating (null, null, null); // not to sure why new is throwing a error ask about this tomorrow dec 12
 	strains: Strain[] = [];
-	strain:Strain = new Strain(null, "", "", "", "", "", "", "", "", "", "", "", "", "");
+	strain: Strain = new Strain(null, "", "", "", "", "");
 	status: Status = null;
 
 	constructor(
@@ -32,10 +32,10 @@ export class StrainLeafRatingComponent  implements OnInit {
 
 	reloadStrainLeafRatings() : void {
 		this.activatedRoute.params
-			.switchMap((params : Params) => this.StrainLeafRatingService.getDispensaryLeafRatingByDispensaryLeafRatingDispensaryId(+params["leafRatingDispensaryId"]))
+			.switchMap((params : Params) => this.strainLeafRatingService.getStrainLeafRatingByStrainLeafRatingStrainId(+params["leafRatingDispensaryId"]))
 			.subscribe(strainLeafRatings => {    // once again ask about these
 				this.strainLeafRatings = strainLeafRatings;
-				this.strainService.getDispensaryByDispensaryId(this.strainLeafRating.$strainLeafRatingRating)
+				this.strainService.getStrainByStrainId(this.strainLeafRating.$strainLeafRatingRating)
 					.subscribe(strains => this.strains = strains);
 			});
 	}
