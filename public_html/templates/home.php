@@ -1,4 +1,4 @@
-<!-- jumbotron-->
+<!-- jumbotron -->
 <div class="container">
 	<div class="jumbotron">
 		<h1>Following the green trail just got easier.....</h1>
@@ -27,7 +27,5 @@
 			});
 		}
 	</script>
-	<script async defer>
-			 src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
-	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 </div>

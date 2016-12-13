@@ -43,7 +43,7 @@
 			<div class="row">
 				<!-- contact section in footer-->
 				<div class="col-xs-12 col-md-6">
-					<!-- <img src="../app/images/cannaduceus-logo.png" alt="logo" class="img-responsive"> commented out  until resize-->
+					 <img src="../app/images/cannaduceus-sm-logo.png" alt="logo" class="img-responsive">
 					<h4> Contact Us</h4>
 					<p>Email: Admin@Cannaduceus.com</p>
 					<p>Phone: 1(800)555-5555</p>
