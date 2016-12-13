@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 })
 
 export class DispensaryComponent {
-
+	private lat = 35.0856324;
+	private lng = -106.6501996;
 }
 

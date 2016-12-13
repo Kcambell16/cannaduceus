@@ -14,3 +14,4 @@ import 'rxjs';
 import 'jquery';
 import 'bootstrap-loader';
 import 'font-awesome-webpack';
+// import 'angular2-google-maps';

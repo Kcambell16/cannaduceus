@@ -38,7 +38,7 @@
 	</div>
 
 	<!-- footer inverse --->
-	<footer class="footer navbar-inverse navbar-fixed-bottom">
+	<footer class="footer navbar-inverse">
 		<div class="container">
 			<div class="row">
 				<!-- contact section in footer-->
