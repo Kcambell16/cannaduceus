@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 
 		<!-- Our Custom CSS -->
-		<link rel="stylesheet" href="style.css" type="text/css">
+		<link rel="stylesheet" href="app.css" type="text/css">
 
 		<!-- jQuery (required for Bootstap's JS plugins) -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
