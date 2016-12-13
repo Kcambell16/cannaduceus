@@ -44,20 +44,20 @@ try {
 
 //get the Sign Up based on the given field
 
-		$emailActivationToken = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		$profileActivationToken = filter_input(INPUT_GET, "profileActivationToken", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
-		if(empty($emailActivationToken)) {
+		if(empty($profileActivationToken)) {
 			throw(new \RangeException ("No ActivationToken Code"));
 		}
 
-		$Profile = Profile::getProfileByProfileActivation($pdo, $emailActivationToken);
+		$profile = Profile::getProfileByProfileActivation($pdo, $profileActivationToken)->toArray();
 
-		if(empty($Profile)) {
+		if(empty($profile)) {
 			throw(new \InvalidArgumentException ("no soup for you"));
 		}
 
-		$Profile->setProfileActivation(null);
-		$Profile->update($pdo);
+		$profile->setProfileActivation();
+		$profile->update($pdo);
 
 		// ToDo header("Location: ../../../");  send t5o login add generic message Angular will handle this
 	} else {

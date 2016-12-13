@@ -150,7 +150,6 @@ class Profile implements \JsonSerializable {
 		$this->profileUserName = $newProfileUserName;
 	}
 
-
 	/**
 	 * accessor method for ProfileEmail
 	 *
@@ -166,13 +165,11 @@ class Profile implements \JsonSerializable {
 	 * @param  string $newProfileEmail new sting of ProfileEmail
 	 * @throws \UnexpectedValueException if $newProfileEmail is not a string
 	 **/
-
 	public function setProfileEmail(string $newProfileEmail) {
 		$newProfileEmail = filter_var($newProfileEmail, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if($newProfileEmail === false) {
 			throw(new \UnexpectedValueException("Profile Email Invalid"));
 		}
-
 
 		//Convert and store the Profile
 		$this->profileEmail = $newProfileEmail;
@@ -236,7 +233,6 @@ class Profile implements \JsonSerializable {
 		// verify salt is 64
 		if(strlen($newProfileSalt)!== 64 ) {
 			throw (new \RangeException("salt is not 64 characters"));
-
 		}
 		//Convert and store the Profile Salt
 		$this->profileSalt = $newProfileSalt;
@@ -295,21 +291,17 @@ class Profile implements \JsonSerializable {
 		// create query template
 		$query = "INSERT INTO profile(profileUserName, profileEmail, profileHash, profileSalt, profileActivation) VALUES(:profileUserName, :profileEmail, :profileHash, :profileSalt, :profileActivation)";
 
-
 		//prepare is used as an extra means of security
 		$statement = $pdo->prepare($query);
 
 		//bind the member variables to the place holder slots in the template. putting these into an array
 		$parameters = ["profileUserName" => $this->profileUserName, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash, "profileSalt" => $this->profileSalt, "profileActivation" => $this->profileActivation];
 
-
 		//execute the command held in $statement
 		$statement->execute($parameters);
 
 		//update the null profileId. Ask mySQL for the primary key value it assigned to this entry
 		$this->profileId = intval($pdo->lastInsertId());
-
-
 	}// insert
 
 	/**
@@ -345,7 +337,6 @@ class Profile implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 **/
-
 	public function update(\PDO $pdo) {
 		//ensure that this profile is not null (hasn't been entered into SQL). can't update something that doesn't exist
 		if($this->profileId === null) {
@@ -363,8 +354,6 @@ class Profile implements \JsonSerializable {
 		$statement->execute($parameters);
 	}
 
-
-
 	/**
 	 * gets profile by the profile Id
 	 * @param  \PDO $pdo connection object
@@ -374,7 +363,6 @@ class Profile implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @return Profile|null profile or null
 	 **/
-
 	public static function getProfileByProfileId(\PDO $pdo, int $profileId) {
 
 		$profileId = filter_var($profileId);
@@ -453,8 +441,6 @@ class Profile implements \JsonSerializable {
 	 * @return mixed email found or null if not found
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-
-
 	public static function getProfileByProfileEmail(\PDO $pdo, string $profileEmail) {
 	// sanitize the description before searching
 	$profileEmail = trim($profileEmail);
@@ -470,7 +456,6 @@ class Profile implements \JsonSerializable {
 	//bind the id value to the placeholder in the template
 	$parameters = array("profileEmail" => $profileEmail);
 	$statement->execute($parameters);
-
 
 	// grab the ProfileEmail from mySQL
 	try {
@@ -498,13 +483,12 @@ class Profile implements \JsonSerializable {
 	 * @return Profile object
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-
-
 	public static function getProfileByProfileActivation(\PDO $pdo, string $profileActivation) {
 
 		// sanitize the description before searching
 		$profileActivation = trim($profileActivation);
 		$profileActivation = filter_var($profileActivation, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
 		if(empty($profileActivation) === true) {
 			throw(new \PDOException("profile activation is invalid"));
 		}
@@ -517,16 +501,14 @@ class Profile implements \JsonSerializable {
 		$parameters = array("profileActivation" => $profileActivation);
 		$statement->execute($parameters);
 
-		if($statement === false) {
-			throw(new \PDOException("user activation token does not exist"));
-		}
-
-		// get single profile
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		$row = $statement->fetch();
 		try {
+			// get single profile
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			$profile = null;
+			if($row !== false) {
 				$profile = new Profile($row["profileId"], $row["profileUserName"], $row["profileEmail"], $row["profileHash"], $row["profileSalt"], $row["profileActivation"]);
-
+			}
 		} catch(\Exception $exception) {
 			//rethrow the row couldn't be converted, rethrow that sucka foo
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
@@ -545,10 +527,6 @@ class Profile implements \JsonSerializable {
 		unset($fields["profileSalt"]);
 		return ($fields);
 	}
-
-
-
-
 
 }
 

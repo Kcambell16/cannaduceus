@@ -1,15 +1,15 @@
 <phpunit>
 	<testsuites>
 		<testsuite name="Cannaduceus">
-			<file>StrainTest.php</file>
-			<file>StrainReviewTest.php</file>
-			<file>DispensaryReviewTest.php</file>
-			<file>DispensaryTest.php</file>
+			<!--<file>StrainTest.php</file>-->
+			<!--<file>StrainReviewTest.php</file>-->
+			<!--<file>DispensaryReviewTest.php</file>-->
+			<!--<file>DispensaryTest.php</file>-->
 			<file>ProfileTest.php</file>
-			<file>DispensaryLeafRatingTest.php</file>
-			<file>StrainLeafRatingTest.php</file>
-			<file>StrainFavoriteTest.php</file>
-			<file>DispensaryFavoriteTest.php</file>
+			<!--<file>DispensaryLeafRatingTest.php</file>-->
+			<!--<file>StrainLeafRatingTest.php</file>-->
+			<!--<file>StrainFavoriteTest.php</file>-->
+			<!--<file>DispensaryFavoriteTest.php</file>-->
 
 		</testsuite>
 	</testsuites>

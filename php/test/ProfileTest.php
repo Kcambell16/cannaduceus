@@ -367,7 +367,7 @@ class ProfileTest extends CannaduceusTest {
 	/**
 	 * test getting a profile by the profile activation
 	 **/
-	public function testGetProfileByProfileEmail() {
+	public function testGetProfileByProfileActivation() {
 		//get number of initial rows (will be zero) and save it for later
 		$numRows = $this->getConnection()->getRowCount("profile");
 
@@ -377,37 +377,27 @@ class ProfileTest extends CannaduceusTest {
 		//insert the mock profile in SQL
 		$profile->insert($this->getPDO());
 
-		//edit the profile and update it in SQL
-		$profile->setProfileUserName($this->VAILD_PROFILEUSERNAME2);
-		$profile->setProfileEmail($this->VAILD_PROFILEEMAIL2);
-		$profile->setProfileHash($this->VAILD_PROFILEHASH2);
-		$profile->setProfileSalt($this->VAILD_PROFILESALT2);
-		$profile->setProfileActivation($this->VALID_PROFILEACTIVATION2);
-
-		// now call the update PDO method we wrote in the class
-		$profile->update($this->getPDO());
-
 		//now grab the data back out of SQL to make sure it matches what we put in
 
 		//$pdoProfileEmail is new declaration...then we call our PDO get method: getProfileByProfileEmail which requires 2 parameters:
 		//the first is a PDO object, the other is our profileEmail, which we use the accessor method we wrote (getProfileEmail) to get!
 		// $pdoProfileEmail now contains all the information for our dummy profile
 
-		$pdoGetProfileEmail = Profile::getProfileByProfileEmail($this->getPDO(), $profile->getProfileEmail());
+		$pdoGetProfile = Profile::getProfileByProfileActivation($this->getPDO(), $profile->getProfileActivation());
 
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
 
 		//the following will all best testing to match that the data in the database matches the data we thought we put in the database
-		$this->assertEquals($pdoGetProfileEmail->getProfileUserName(),
-			$this->VAILD_PROFILEUSERNAME2);
-		$this->assertSame($pdoGetProfileEmail->getProfileEmail(),
-			$this->VAILD_PROFILEEMAIL2);
-		$this->assertEquals($pdoGetProfileEmail->getProfileHash(),
-			$this->VAILD_PROFILEHASH2);
-		$this->assertEquals($pdoGetProfileEmail->getProfileSalt(),
-			$this->VAILD_PROFILESALT2);
-		$this->assertEquals($pdoGetProfileEmail->getProfileActivation(),
-			$this->VALID_PROFILEACTIVATION2);
+		$this->assertEquals($pdoGetProfile->getProfileUserName(),
+			$this->VAILD_PROFILEUSERNAME1);
+		$this->assertSame($pdoGetProfile->getProfileEmail(),
+			$this->VAILD_PROFILEEMAIL1);
+		$this->assertEquals($pdoGetProfile->getProfileHash(),
+			$this->VAILD_PROFILEHASH1);
+		$this->assertEquals($pdoGetProfile->getProfileSalt(),
+			$this->VAILD_PROFILESALT1);
+		$this->assertEquals($pdoGetProfile->getProfileActivation(),
+			$this->VAILD_PROFILEACTIVATION1);
 	}
 
 
