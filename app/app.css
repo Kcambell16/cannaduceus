@@ -18,6 +18,10 @@ body { width: 100%;}
 }
 
 .jumbotron {
-	background-image: url(/img/homepagepic.jpg);
+	position: relative;
+	background: #000 url("images/homepagepic.jpeg") center center;
+	width: 100%;
+	height: 100%;
 	background-size: cover;
-	height: 100%;}
+	overflow: hidden;
+}
