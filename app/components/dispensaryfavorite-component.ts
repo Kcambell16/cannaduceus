@@ -6,9 +6,6 @@ import {Dispensary} from "../classes/dispensary";
 import {Status} from "../classes/status";
 import {DispensaryFavorite} from "../classes/dispensaryFavorite";
 
-
-
-
 @Component({
 	templateUrl: "./templates/dispensary.php"
 })

@@ -1,4 +1,3 @@
-
 <div class="jumbotron text-center">
 	<h1> Find Your Prefect Strain</h1>
 	<strong> Explore strains and their affects</strong>
@@ -22,7 +21,7 @@
 					</div>
 				</div>
 			</a>
-		</div>
+<!--		</div>-->
 
 		<!-- review section -->
 		<!-- Title -->

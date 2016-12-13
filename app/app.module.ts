@@ -4,9 +4,6 @@ import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {allAppComponents, appRoutingProviders, routing} from "./app.routes";
-import {DispensaryService} from "./services/dispensary-service";
-import {StrainService} from "./services/strain-service";
-
 
 const moduleDeclarations = [AppComponent];
 
@@ -14,6 +11,7 @@ const moduleDeclarations = [AppComponent];
 	imports:      [BrowserModule, FormsModule, HttpModule, routing],
 	declarations: [...moduleDeclarations, ...allAppComponents],
 	bootstrap:    [AppComponent],
-	providers:    [appRoutingProviders, DispensaryService, StrainService]
+	providers:    [appRoutingProviders]
 })
+
 export class AppModule {}

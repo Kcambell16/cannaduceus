@@ -1,7 +1,5 @@
 <div>This is the Dispensary view</div>
 
-
-
 <!-- Portfolio Item Row -->
 <div *ngFor="let dispensary of dispensaries" class="row">
 

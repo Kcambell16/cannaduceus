@@ -4,14 +4,8 @@ import {StrainComponent} from "./components/strain-component";
 import {DispensaryComponent} from "./components/dispensary-component";
 import {SignupComponent} from "./components/signup-component";
 import {SigninComponent} from "./components/signin-component";
-import {ActivationComponent} from "./components/activation-component";
-import {StrainFavoriteComponent} from "./components/strainfavorite-component";
-import {DispensaryFavoriteComponent} from "./components/dispensaryfavorite-component";
-import {DispensaryReviewComponent} from "./components/dispensaryreview-component";
-import {StrainReviewComponent} from "./components/strainreview-component";
 
-
-export const allAppComponents = [HomeComponent, StrainComponent, DispensaryComponent, SignupComponent, SigninComponent, ActivationComponent, StrainFavoriteComponent, DispensaryFavoriteComponent, DispensaryReviewComponent, StrainReviewComponent];
+export const allAppComponents = [HomeComponent, StrainComponent, DispensaryComponent, SignupComponent, SigninComponent];
 
 export const routes: Routes = [
 	{path: "", component: HomeComponent},
@@ -19,7 +13,6 @@ export const routes: Routes = [
 	{path: "dispensary", component: DispensaryComponent},
 	{path: "signup", component: SignupComponent},
 	{path: "signin", component: SigninComponent},
-	{path: "activation", component: ActivationComponent}
 
 ];
 

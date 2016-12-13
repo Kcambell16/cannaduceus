@@ -11,3 +11,4 @@ export class DispensaryService extends BaseService {
 	}
 
 	private dispensaryUrl = "api/signUp/";
+}
