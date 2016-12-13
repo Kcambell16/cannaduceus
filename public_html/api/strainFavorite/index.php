@@ -80,9 +80,12 @@ try {
 		if(empty($requestObject->profileIdFavoriteFavoriteId) === true) {
 			throw(new \InvalidArgumentException ("No Profile ID.", 405));
 		}
+		if(empty($_SESSION["profile"]->getProfileId()) === true) {
+			throw(new \InvalidArgumentException ("Favorite must be linked to the user", 405)); // add this to dispensary Favorite
+		}
 	} else if($method === "POST") {
 		// create a new favorite and insert into the database
-		$strainFavorite = new StrainFavorite($requestObject->profileId, $requestObject->strainFavorite); // removing nulls
+		$strainFavorite = new StrainFavorite($_SESSION["profile"]->getProfileId(),$requestObject->profileId, $requestObject->strainFavorite); // add this to dispensary Favorite
 		$strainFavorite->insert($pdo);
 		// update dat reply
 		$reply->message = "favorite has been created";

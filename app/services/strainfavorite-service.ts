@@ -3,7 +3,6 @@ import {Http} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {BaseService} from "./base-service"; // ask about this not sure
 import {StrainFavorite} from "../classes/strainFavorite";
-// import {Status} from "../classes/status"; commented this out make sure we ask about this dec 12
 @Injectable()
 export class StrainFavoriteService extends BaseService {
 	constructor(protected http: Http) {

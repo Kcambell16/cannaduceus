@@ -16,7 +16,6 @@ export class StrainFavoriteComponent implements OnInit {
 	strainFavorite: StrainFavorite = new StrainFavorite (null, null); // changed both to null probably wrong gotta ask about this dec 12
 	strains: Strain[] = [];
 	strain: Strain = new Strain (null, "","","","","");
-	// strainReview: StrainReview = new StrainReview (null, "", "", null,""); do i have to have strain Reviews in here too?
 	status: Status = null;
 
 	constructor(
@@ -44,7 +43,7 @@ export class StrainFavoriteComponent implements OnInit {
 			.subscribe(strains => {
 				this.strains = strains;
 
-				this.strainFavoriteService.getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId(this.strain.strainId, this.profile.profileId)
+				this.strainFavoriteService.getStrainFavoriteByStrainFavoriteStrainIdAndStrainFavoriteProfileId(this.strain.strainId)
 					.subscribe(strainFavorites => this.strainFavorites = strainFavorites);
 
 			});
