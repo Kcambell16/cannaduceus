@@ -1,7 +1,8 @@
 <?php
 require_once dirname(__DIR__, 3) . "/php/classes/autoload.php";
 require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
-require_once dirname(__DIR__, 3) . "/php/lib/sendEmail.php";
+require_once dirname(__DIR__, 3) . "/vendor/autoload.php";
+//require_once dirname(__DIR__, 3) . "/php/lib/sendEmail.php";
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 use Edu\Cnm\Cannaduceus;
 /**
@@ -48,6 +49,10 @@ try {
 		$profileActivation = bin2hex(random_bytes(16));
 		$profile = new Cannaduceus\Profile(null, $profileUserName, $profileEmail,$hash, $salt, $profileActivation);
 		$profile->insert($pdo);
+
+
+
+		/*
 		$messageSubject = "ABQ Brew Crew Welcomes You! -- Account Activation";
 		//building the activation link that can travel to another server and still work. This is the link that will be clicked to confirm the account.
 		// FIXME: make sure URL is /public_html/php/api/activation/$activation
@@ -66,6 +71,9 @@ EOF;
 		} else {
 			throw(new InvalidArgumentException("Error sending email."));
 		}
+		*/
+
+
 	} else{
 		throw (new InvalidArgumentException("Invalid http request"));
 	}
