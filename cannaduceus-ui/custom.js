@@ -45,21 +45,6 @@ function initMap() {
 		zoom: 6
 	});
 
-	var contentString = '<div id="content">'+
-		'<div id="siteNotice">'+
-		'</div>'+
-		'<h1 id="firstHeading" class="firstHeading">Organtica</h1>'+
-		'<div id="bodyContent">'+
-		'<p><b>Organtica</b>Dispensary Info</p>'+
-		'<p>Attribution: Uluru, <a href="https://organtica.com">'+
-		'https://organtica.com</a></p>'+
-		'</div>'+
-		'</div>';
-
-	var infowindow = new google.maps.InfoWindow({
-		content: contentString
-	});
-
 	var marker = new google.maps.Marker({
 		position: {lat: 35.078967, lng: -106.599227},
 		map: map,
@@ -138,12 +123,6 @@ function initMap() {
 		map: map,
 		label: 'M'
 	});
-
-	marker.addListener('click', function() {
-		infowindow.open(map, maker);
-
-	})
-
 }
 
 

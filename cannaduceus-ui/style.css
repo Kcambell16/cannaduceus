@@ -75,6 +75,6 @@ body {
 }
 
 #map {
-	height: 100vh;
-	widows: inherit;
+	height: 750px;
+	width: 750px;
 }
