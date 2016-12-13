@@ -32,7 +32,7 @@ export class DispensaryFavoriteComponent  implements OnInit {
 
 	reloadDispensaryFavorites():void {
 		this.activatedRoute.params
-			.switchMap((params:Params) => this.dispensaryService.getDispensaryByDispensaryId(+params["dispensaryId"]))
+			.switchMap((params:Params) => this.dispensaryService.getDispensaryByDispensaryId(+params["dispensaryId"])) // ask about this for sure! dec 12
 			.subscribe(dispensaries => {
 				this.dispensaries = dispensaries;
 

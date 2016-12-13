@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from "@angular/core";
-import {DispensaryReviewService} from "../services/strainreview-service";
-import {DispensaryService} from "../services/dispensaryreview-service";
+import {DispensaryReviewService} from "../services/dispensaryreview-service";
+import {DispensaryService} from "../services/dispensary-services";
 import {DispensaryReview} from "../classes/dispensaryreview";
 import {Dispensary} from "../classes/dispensary";
 import {Router} from "@angular/router";
@@ -13,8 +13,9 @@ import {Status} from "../classes/status";
 export class DispensaryReviewComponent  implements OnInit {
 	@ViewChild("dispensaryReviewForm") dispensaryReviewForm : any;
 	dispensaryReviews: DispensaryReview[] = [];
-	dispensaryReview: DispensaryReview = new DispensaryReview (null, "","",null,"");
-	dispensarys: Dispensary[] = [];
+	dispensaryReview: DispensaryReview = new DispensaryReview (null,null); // not to sure why new is throwing a error ask about this tomorrow dec 12
+	dispensaries: Dispensary[] = [];
+	dispensary:Dispensary = new Dispensary(null, "", "", "", "", "", "", "", "", "", "", "", "", "");
 	status: Status = null;
 
 	constructor(
@@ -29,10 +30,10 @@ export class DispensaryReviewComponent  implements OnInit {
 
 	reloadDispensaryReviews() : void {
 		this.dispensaryReviewService.getAllDispensaryReviews()
-			.subscribe(dispensaryReviews => {
+			.subscribe(dispensaryReviews => {    // once again ask about these
 				this.dispensaryReviews = dispensaryReviews;
 				this.dispensaryService.getDispensaryByDispensaryId(this.dispensaryReview.dispensaryReviewId)
-					.subscribe(dispensarys => this.dispensarys=dispensarys);
+					.subscribe(dispensaries => this.dispensaries=dispensaries);
 			});
 	}
 	// createStrainReview() : void {
@@ -43,7 +44,7 @@ export class DispensaryReviewComponent  implements OnInit {
 	// 				this.reloadStrainReviews();
 	// 				this.strainReviewForm.reset();
 	// 			}
-	// 		});
+	// 		}); add me on snapchat @lawnnome
 
 	//}
 }

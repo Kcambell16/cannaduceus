@@ -7,9 +7,11 @@ import {SigninComponent} from "./components/signin-component";
 import {ActivationComponent} from "./components/activation-component";
 import {StrainFavoriteComponent} from "./components/strainfavorite-component";
 import {DispensaryFavoriteComponent} from "./components/dispensaryfavorite-component";
+import {DispensaryReviewComponent} from "./components/dispensaryreview-component";
+import {StrainReviewComponent} from "./components/strainreview-component";
 
 
-export const allAppComponents = [HomeComponent, StrainComponent, DispensaryComponent, SignupComponent, SigninComponent, ActivationComponent, StrainFavoriteComponent, DispensaryFavoriteComponent];
+export const allAppComponents = [HomeComponent, StrainComponent, DispensaryComponent, SignupComponent, SigninComponent, ActivationComponent, StrainFavoriteComponent, DispensaryFavoriteComponent, DispensaryReviewComponent, StrainReviewComponent];
 
 export const routes: Routes = [
 	{path: "", component: HomeComponent},
