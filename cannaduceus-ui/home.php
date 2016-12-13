@@ -182,8 +182,8 @@
 		<div id="map"></div>
 
 		<script src="custom.js"></script>
-					<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeLh4Mvj9fexQtF1is8iP_5vrqMjoYx5s&callback=initMap"
-					async defer></script>
+					<script async defer
+							  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeLh4Mvj9fexQtF1is8iP_5vrqMjoYx5s&callback=initMap"></script>
 			</div>
 		</div>
 
