@@ -10,41 +10,30 @@ import {Status} from "../classes/status";
 	templateUrl: "./templates/dispensary.php"
 })
 
-export class DispensaryReviewComponent  implements OnInit {
-	@ViewChild("dispensaryReviewForm") dispensaryReviewForm : any;
-	dispensaryReviews: DispensaryReview[] = [];
-	dispensaryReview: DispensaryReview = new DispensaryReview (null,null); // not to sure why new is throwing a error ask about this tomorrow dec 12
+export class DispensaryLeafRatingComponent  implements OnInit {
+	@ViewChild("dispensaryLeafRatingForm") dispensaryLeafRatingForm : any;
+	dispensaryLeafRatings: DispensaryLeafRating[] = [];
+	dispensaryLeafRating: DispensaryLeafRating = new DispensaryLeafRating (null,null); // not to sure why new is throwing a error ask about this tomorrow dec 12
 	dispensaries: Dispensary[] = [];
 	dispensary:Dispensary = new Dispensary(null, "", "", "", "", "", "", "", "", "", "", "", "", "");
 	status: Status = null;
 
 	constructor(
-		private dispensaryReviewService: DispensaryReviewService,
+		private dispensaryLeafRatingService: DispensaryLeafRatingService,
 		private dispensaryService: DispensaryService,
 		private router: Router
 	) {}
 
 	ngOnInit() : void {
-		this.reloadDispensaryReviews();
+		this.reloadDispensaryLeafRatings();
 	}
 
-	reloadDispensaryReviews() : void {
-		this.dispensaryReviewService.getAllDispensaryReviews()
-			.subscribe(dispensaryReviews => {    // once again ask about these
-				this.dispensaryReviews = dispensaryReviews;
-				this.dispensaryService.getDispensaryByDispensaryId(this.dispensaryReview.dispensaryReviewId)
+	reloadDispensaryLeafRatings() : void {
+		this.dispensaryLeafRatingService.getAllDispensaryLeafRatings()
+			.subscribe(dispensaryLeafRatings => {    // once again ask about these
+				this.dispensaryLeafRatings = dispensaryLeafRatings;
+				this.dispensaryService.getDispensaryByDispensaryId(this.dispensaryLeafRating.$dispensaryLeafRatingRating)
 					.subscribe(dispensaries => this.dispensaries=dispensaries);
 			});
 	}
-	// createStrainReview() : void {
-	// 	this.strainReviewService.createStrainReview(this.strainReview)
-	// 		.subscribe(status => {
-	// 			this.status = status;
-	// 			if(status.apiStatus === 200) {
-	// 				this.reloadStrainReviews();
-	// 				this.strainReviewForm.reset();
-	// 			}
-	// 		}); add me on snapchat @lawnnome
-
-	//}
 }
