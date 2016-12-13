@@ -2,7 +2,7 @@
 require_once dirname(__DIR__, 3) . "/php/classes/autoload.php";
 require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
 require_once dirname(__DIR__, 3) . "/vendor/autoload.php";
-//require_once dirname(__DIR__, 3) . "/php/lib/sendEmail.php";
+require_once dirname(__DIR__, 3) . "/php/lib/sendMail.php";
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 use Edu\Cnm\Cannaduceus;
 /**
@@ -52,26 +52,26 @@ try {
 
 
 
-		/*
-		$messageSubject = "ABQ Brew Crew Welcomes You! -- Account Activation";
+
+		$messageSubject = "Cannaduceus Welcomes You! -- Account Activation";
 		//building the activation link that can travel to another server and still work. This is the link that will be clicked to confirm the account.
 		// FIXME: make sure URL is /public_html/php/api/activation/$activation
 		//TODO:make sure the basepath is correct
 		$basePath = dirname($_SERVER["SCRIPT_NAME"], 2);
-		$urlGlue = $basePath . "/activation/" . $profileActivationToken;
+		$urlGlue = $basePath . "/activation/" . $profileActivation;
 		$confirmLink = "https://" . $_SERVER["SERVER_NAME"] . $urlGlue;
 		$message = <<< EOF
 <h2>Welcome to Cannaduceus.</h2>
 <p>In order to start rating your favorite local dispensaries please visit the following URL to set a new password and complete the registration process: </p>
 <p><a href="$confirmLink">$confirmLink</a></p>
 EOF;
-		$response = sendEmail($profileUserName, $profileEmail, $messageSubject, $message);
+		$response = sendEmail($profileEmail, $profileUserName, $messageSubject, $message);
 		if($response === "Email sent.") {
 			$reply->message = "Sign up was successful, please check your email for activation message.";
 		} else {
 			throw(new InvalidArgumentException("Error sending email."));
 		}
-		*/
+
 
 
 	} else{

@@ -4,7 +4,7 @@
  * while this is convenient, this may load too much if your composer configuration grows to many classes
  * if this is a concern, load "/vendor/swiftmailer/autoload.php" instead to load just SwiftMailer
  **/
-require_once(dirname(dirname(dirname(__DIR__))) . "/vendor/autoload.php");
+require_once dirname(__DIR__, 2) . "/vendor/autoload.php";
 
 /*
  * function to send email
@@ -12,9 +12,8 @@ require_once(dirname(dirname(dirname(__DIR__))) . "/vendor/autoload.php");
  * @throws RuntimeExcpeption if unable to send email
  */
 
-function sendEmail ($receiverEmail, $firstName, $lastName, $subject, $message) {
+function sendEmail ($receiverEmail, $userName, $subject, $message) {
 
-	try {
 		// create Swift message
 		$swiftMessage = Swift_Message::newInstance();
 
@@ -27,10 +26,8 @@ function sendEmail ($receiverEmail, $firstName, $lastName, $subject, $message) {
 		 * notice this an array that can include or omit the the recipient's real name
 		 * use the recipients' real name where possible; this reduces the probability of the Email being marked as spam
 		 **/
-		$recipients = [$receiverEmail => $firstName . " " . $lastName,
-			"ddkarmabear@gmail.com" => "Deep Dive Capstone",
-			"evansisland1@gmail.com" => "Evan Smith",
-			"geraldjam2004@yahoo.com" => "Gerald Fongwe"];
+		$recipients = [$receiverEmail => $userName,
+			"ninjamedic@mac.com" => "Hector Lozano"];
 		$swiftMessage->setTo($recipients);
 
 		// attach the subject line to the message
@@ -64,13 +61,11 @@ function sendEmail ($receiverEmail, $firstName, $lastName, $subject, $message) {
 		 **/
 		if($numSent !== count($recipients)) {
 			throw(new RuntimeException("unable to send email"));
+		} else {
+			return 'Email sent.';
 		}
 
-		// report a successful send
-		echo "<div class=\"alert alert-success\" role=\"alert\">Email successfully sent.</div>";
-	} catch(Exception $exception) {
-		echo "<div class=\"alert alert-danger\" role=\"alert\"><strong>Oh snap!</strong> Unable to send email: " . 		$exception->getMessage() . "</div>";
-	}
+
 } // sendEamil
 
 
