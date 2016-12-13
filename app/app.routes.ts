@@ -9,9 +9,9 @@ import {StrainFavoriteComponent} from "./components/strainfavorite-component";
 import {DispensaryFavoriteComponent} from "./components/dispensaryfavorite-component";
 import {DispensaryReviewComponent} from "./components/dispensaryreview-component";
 import {StrainReviewComponent} from "./components/strainreview-component";
+import {DispensaryLeafRatingComponent} from "./components/dispensaryleafrating-component";
 
-
-export const allAppComponents = [HomeComponent, StrainComponent, DispensaryComponent, SignupComponent, SigninComponent, ActivationComponent, StrainFavoriteComponent, DispensaryFavoriteComponent, DispensaryReviewComponent, StrainReviewComponent];
+export const allAppComponents = [HomeComponent, StrainComponent, DispensaryComponent, SignupComponent, SigninComponent, ActivationComponent, StrainFavoriteComponent, StrainReviewComponent,DispensaryFavoriteComponent, DispensaryReviewComponent, DispensaryLeafRatingComponent];
 
 export const routes: Routes = [
 	{path: "", component: HomeComponent},
