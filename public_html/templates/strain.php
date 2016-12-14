@@ -25,7 +25,7 @@
 		</div>
 
 		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
+			<a routerLink="/amnesia" class="tile-link">
 				<div class="tile">
 					<div class="strain-type small">
 						Hybrid
