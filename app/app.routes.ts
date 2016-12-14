@@ -21,9 +21,8 @@ export const routes: Routes = [
 	{path: "straindetail", component: StrainDetailComponent},
 	{path: "medzen", component: MedzenComponent},
 	{path: "organtica", component: OrganticaComponent},
-	{path: "ultrahealth", component: UltrahealthComponent}
-	{path: "amnesia", component: AmnesiaComponent},
-
+	{path: "ultrahealth", component: UltrahealthComponent},
+	{path: "amnesia", component: AmnesiaComponent}
 ];
 
 export const appRoutingProviders: any[] = [];
