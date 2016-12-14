@@ -1,7 +1,7 @@
 <?php
 require_once dirname(__DIR__, 3) . "/php/classes/autoload.php";
 require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
-require_once dirname(__DIR__, 3) . "/vendor/autoload.php";
+require_once dirname(__DIR__, 3) . "/php/classes/autoload.php";
 require_once dirname(__DIR__, 3) . "/php/lib/sendMail.php";
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 use Edu\Cnm\Cannaduceus;
@@ -58,10 +58,11 @@ try {
 		// FIXME: make sure URL is /public_html/php/api/activation/$activation
 		//TODO:make sure the basepath is correct
 		$basePath = dirname($_SERVER["SCRIPT_NAME"], 2);
+		var_dump($basePath);
 		$urlGlue = $basePath . "/activation/" . $profileActivation;
 		$confirmLink = "https://" . $_SERVER["SERVER_NAME"] . $urlGlue;
-		$message = <<< EOF
-<h2>Welcome to Cannaduceus.</h2>
+		$message = <<<EOF
+		<h2>Welcome to Cannaduceus.</h2>
 <p>In order to start rating your favorite local dispensaries please visit the following URL to set a new password and complete the registration process: </p>
 <p><a href="$confirmLink">$confirmLink</a></p>
 EOF;
