@@ -609,6 +609,187 @@
 
 					<div class="row text-center">
 
+						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+							<div class="thumbnail">
+								<img src="images/holy-grail.jpeg" alt="holy-grail">
+								<div class="caption">
+									<h3>Holy Grail</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<p>
+										<a href="#" class="btn btn-default text-center">Review </a>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+							<div class="thumbnail">
+								<img src="images/kahuna-shark.jpeg" alt="kahuna-shark">
+								<div class="caption">
+									<h3>Kahuna Shark</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<p>
+										<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
+																											 class="btn btn-default">More
+											Info</a>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+							<div class="thumbnail">
+								<img src="images/kush-white-russian.jpeg" alt="kush-white-russian">
+								<div class="caption">
+									<h3>Kush White Russian</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<p>
+										<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
+																											 class="btn btn-default">More
+											Info</a>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+							<div class="thumbnail">
+								<img src="images/larry-og.jpeg" alt="larry-og">
+								<div class="caption">
+									<h3>Larry OG</h3>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+									<p>
+										<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
+																											 class="btn btn-default">More
+											Info</a>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="row text-center">
+
+							<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+								<div class="thumbnail">
+									<img src="images/nordle.jpeg" alt="nordle">
+									<div class="caption">
+										<h3>Nordle</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+										<p>
+											<a href="#" class="btn btn-default text-center">Review </a>
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+								<div class="thumbnail">
+									<img src="images/peaches.jpeg" alt="peaches">
+									<div class="caption">
+										<h3>Peaches</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+										<p>
+											<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
+																												 class="btn btn-default">More
+												Info</a>
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+								<div class="thumbnail">
+									<img src="images/rare-darkness.jpeg" alt="rare-darkness">
+									<div class="caption">
+										<h3>Rare Darkness</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+										<p>
+											<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
+																												 class="btn btn-default">More
+												Info</a>
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+								<div class="thumbnail">
+									<img src="images/shiskaberry.jpeg" alt="shiskaberry">
+									<div class="caption">
+										<h3>Shiskaberry</h3>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+										<p>
+											<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
+																												 class="btn btn-default">More
+												Info</a>
+										</p>
+									</div>
+								</div>
+							</div>
+
+							<div class="row text-center">
+
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+									<div class="thumbnail">
+										<img src="images/silver-kush.jpeg" alt="silver-kush">
+										<div class="caption">
+											<h3>Silver Kush</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+											<p>
+												<a href="#" class="btn btn-default text-center">Review </a>
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+									<div class="thumbnail">
+										<img src="images/skunk.jpeg" alt="skunk">
+										<div class="caption">
+											<h3>Skunk</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+											<p>
+												<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
+																													 class="btn btn-default">More
+													Info</a>
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+									<div class="thumbnail">
+										<img src="images/skywalker-og.jpeg" alt="skywalker-og">
+										<div class="caption">
+											<h3>Skywalker OG</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+											<p>
+												<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
+																													 class="btn btn-default">More
+													Info</a>
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+									<div class="thumbnail">
+										<img src="images/sour-amnesia.jpeg" alt="sour-amnesia">
+										<div class="caption">
+											<h3>Sour Amnesia</h3>
+											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+											<p>
+												<a href="#" class="btn btn-primary">Buy Now!</a> <a href="#"
+																													 class="btn btn-default">More
+													Info</a>
+											</p>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+
 <!-- strain pics
 <div class="container">
 	<div class="row">
@@ -629,7 +810,7 @@
 			</a>
 <!--		</div>-->
 
-		<!-- review section
+		<!-- review section -->
 		<!-- Title
 		<div class="row">
 			<div class="col-lg-12">
