@@ -62,6 +62,7 @@
 			</main>
 		</header>
 		<!-- Portfolio Item Heading -->
+		<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Ultra Health
@@ -69,9 +70,11 @@
 				</h1>
 			</div>
 		</div>
+		</div>
 		<!-- /.row -->
 
 		<!-- Portfolio Item Row -->
+		<div class="container-fluid">
 		<div class="row">
 
 			<div class="col-md-8">
@@ -91,6 +94,7 @@
 			</div>
 
 		</div>
+			</div>
 		<!-- /.row -->
 
 		<!-- Related Projects Row -->
@@ -173,7 +177,13 @@
 		<!-- strain info model ends here -->
 
 		<!-- googleMap-->
-		<div class="row"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52222.097616764535!2d-106.63424483658382!3d35.10967973003926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87220b6b99359887%3A0x5687f1fae00e63be!2sUltra+Health+Nob+Hill!5e0!3m2!1sen!2sus!4v1481733884352" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52222.097616764535!2d-106.63424483658382!3d35.10967973003926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87220b6b99359887%3A0x5687f1fae00e63be!2sUltra+Health+Nob+Hill!5e0!3m2!1sen!2sus!4v1481733884352" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
 
 
 
