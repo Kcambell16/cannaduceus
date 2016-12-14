@@ -163,4 +163,17 @@ a.tile-link:hover > .tile {
 	display: block;
 }
 
+/*accordion*/
+.dropdown-accordion .panel-heading {
+	padding: 0;
+}
+.dropdown-accordion .panel-heading a {
+	display: block;
+	padding: 10px 15px;
+}
+
+/*staticFooter*/
+#staticFooter {
+	color: whitesmoke;
+}
 

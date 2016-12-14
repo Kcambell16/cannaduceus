@@ -128,15 +128,42 @@
 				</a>
 			</div>
 
-			<div id="weedsMenu">
-			<h1>Current Menu</h1>
+			<!-- accordion -->
 
-						<div class="row">
-						<div class="col-xs-10 col-sm-10 col-md-6 col-lg-6">
-							<img class="img-responsive" src="../app/images/grassMenu.png">
-						</div>
-						</div>
+			<!-- Collapse accordion every time dropdown is shown -->
 
+			<script>
+				$('.dropdown-accordion').on('show.bs.dropdown', function (event) {
+					var accordion = $(this).find($(this).data('accordion'));
+					accordion.find('.panel-collapse.in').collapse('hide');
+				});
+
+				// Prevent dropdown to be closed when we click on an accordion link
+				$('.dropdown-accordion').on('click', 'a[data-toggle="collapse"]', function (event) {
+					event.preventDefault();
+					event.stopPropagation();
+					$($(this).data('parent')).find('.panel-collapse.in').collapse('hide');
+					$($(this).attr('href')).collapse('show');
+				})</script>
+
+			<div class="dropdown dropdown-accordion" data-accordion="#accordion">
+				<a data-toggle="dropdown" href="#" class="btn btn-primary">Menu<span class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					<li>
+						<div class="panel-group" id="accordion">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+											<a href="#"><img class="img-responsive" src="../app/images/grassMenu.png"></a>
+										</a>
+									</h4>
+								</div>
+
+							</div>
+						</div>
+					</li>
+				</ul>
 			</div>
 
 			<div id="googleMap">

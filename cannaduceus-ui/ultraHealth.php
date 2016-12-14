@@ -101,7 +101,7 @@
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
-				<h3>Star Kush OG</h3>
+				<h3>AK-47</h3>
 				<a href="#">
 					<img class="img-responsive portfolio-item" src="images/organtica1.gif" alt="">
 				</a>
@@ -115,7 +115,7 @@
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
-				<h3>Berry Kush</h3>
+				<h3>Cherry</h3>
 				<a href="#">
 					<img class="img-responsive portfolio-item" src="images/Hawaii%205-0.gif" alt="">
 				</a>
@@ -132,6 +132,49 @@
 		<!-- /.row -->
 
 		<!-- strain info model ends here -->
+
+		<!-- accordion -->
+
+		<!-- Collapse accordion every time dropdown is shown -->
+
+		<script>
+			$('.dropdown-accordion').on('show.bs.dropdown', function (event) {
+				var accordion = $(this).find($(this).data('accordion'));
+				accordion.find('.panel-collapse.in').collapse('hide');
+			});
+
+			// Prevent dropdown to be closed when we click on an accordion link
+			$('.dropdown-accordion').on('click', 'a[data-toggle="collapse"]', function (event) {
+				event.preventDefault();
+				event.stopPropagation();
+				$($(this).data('parent')).find('.panel-collapse.in').collapse('hide');
+				$($(this).attr('href')).collapse('show');
+			})</script>
+
+		<div class="dropdown dropdown-accordion" data-accordion="#accordion">
+			<a data-toggle="dropdown" href="#" class="btn btn-primary">Menu<span class="caret"></span></a>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				<li>
+					<div class="panel-group" id="accordion">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+										<a href="#"><img class="img-responsive" src="../app/images/grassMenu.png"></a>
+									</a>
+								</h4>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<!-- strain info model ends here -->
+
+		<!-- googleMap-->
+		<div class="row"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52222.097616764535!2d-106.63424483658382!3d35.10967973003926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87220b6b99359887%3A0x5687f1fae00e63be!2sUltra+Health+Nob+Hill!5e0!3m2!1sen!2sus!4v1481733884352" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+
 
 
 

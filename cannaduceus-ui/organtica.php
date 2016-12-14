@@ -126,11 +126,51 @@
 		</div>
 		<!-- /.row -->
 
+		<!-- accordion -->
+
+		<!-- Collapse accordion every time dropdown is shown -->
+
+		<script>
+			$('.dropdown-accordion').on('show.bs.dropdown', function (event) {
+				var accordion = $(this).find($(this).data('accordion'));
+				accordion.find('.panel-collapse.in').collapse('hide');
+			});
+
+			// Prevent dropdown to be closed when we click on an accordion link
+			$('.dropdown-accordion').on('click', 'a[data-toggle="collapse"]', function (event) {
+				event.preventDefault();
+				event.stopPropagation();
+				$($(this).data('parent')).find('.panel-collapse.in').collapse('hide');
+				$($(this).attr('href')).collapse('show');
+			})</script>
+
+		<div class="dropdown dropdown-accordion" data-accordion="#accordion">
+			<a data-toggle="dropdown" href="#" class="btn btn-primary">Menu<span class="caret"></span></a>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				<li>
+					<div class="panel-group" id="accordion">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+										<a href="#"><img class="img-responsive" src="../app/images/grassMenu.png"></a>
+									</a>
+								</h4>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+
 		<!-- strain info model ends here -->
+
+		<!-- googleMap-->
+		<div class="row"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.8804942765364!2d-106.60115114915507!3d35.10969488023496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87227494a7677495%3A0x8cee4797537a1b28!2sOrgantica!5e0!3m2!1sen!2sus!4v1481733456314" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe></div>
 
 		<!-- footer inverse --->
 		<footer class="footer navbar-inverse">
-			<div class="container">
+			<div class="container" id="staticFooter">
 				<div class="row">
 					<!-- contact section in footer-->
 					<div class="col-xs-12 col-md-6">
