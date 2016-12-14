@@ -35,9 +35,9 @@ body {
 
 #jumboTxt {
 	text-align: center;
-	color: #17466f;
-	-webkit-text-stroke-color: white;
-	-webkit-text-stroke-width: 1px;
+	color: #6eb263;
+	-webkit-text-stroke-color: #2c4628;
+	-webkit-text-stroke-width: 3px;
 }
 
 #signInButton {
@@ -50,9 +50,11 @@ body {
 }
 
 #missingLink {
-	font-size: 2em;
+	font-size: 3em;
 	color: whitesmoke;
 	text-align: center;
+	-webkit-text-stroke-color: black;
+	-webkit-text-stroke-width: 2px;
 }
 
 #footerText {
