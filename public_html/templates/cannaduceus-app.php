@@ -41,16 +41,19 @@
 	<footer class="footer navbar-inverse">
 		<div class="container">
 			<div class="row" id="footerText">
+				<!-- logo on its own row -->
+				<div class="col-xs-12 col-lg-3">
+					<img src="../app/images/cannaduceus-sm-logo.png" alt="logo" class="img-responsive">
+				</div>
 				<!-- contact section in footer-->
-				<div class="col-xs-12 col-md-6">
-					 <img src="../app/images/cannaduceus-sm-logo.png" alt="logo" class="img-responsive">
+				<div class="col-xs-12 col-lg-3">
 					<h4> Contact Us</h4>
 					<p>Email: Admin@Cannaduceus.com</p>
 					<p>Phone: 1(800)555-5555</p>
 					<a href="#">Privacy Policy</a>
 					<a href="#"> Terms of Use</a>
 				</div>
-				<div class="col-xs-12 col-md-6">
+				<div class="col-xs-12 col-lg-3">
 					<strong>Company</strong>
 					<p>About Us</p>
 					<p>Careers</p>
@@ -66,7 +69,7 @@
 					</a>
 					<!-- for additional info if needed-->
 				</div>
-				<div class="col-xs-6 col-sm-4"></div>
+
 			</div>
 		</div>
 	</footer>

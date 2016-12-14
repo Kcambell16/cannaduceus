@@ -24,6 +24,8 @@ body { width: 100%;}
 	height: 100%;
 	background-size: cover;
 	overflow: hidden;
+	padding-top: 48px;
+	padding-bottom: 48px;
 }
 
 #jumboTxt {
@@ -51,3 +53,81 @@ body { width: 100%;}
 #footerText {
 	color: whitesmoke;
 }
+
+/* strain page css */
+
+.tile {
+	background-color: orange;
+	padding: 1.5rem;
+	border-radius: 2rem;
+	margin-bottom: 1.5rem;
+	-webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+}
+
+.strain-abbr-title h3 {
+	margin: 1.25rem 0;
+	font-weight: bold;
+}
+
+/* tile-link styles and hover effects */
+a.tile-link,
+a.tile-link:hover,
+a.tile-link:active,
+a.tile-link:visited {
+	color: #333;
+	display: block;
+	text-decoration: none;
+}
+
+a.tile-link:hover {
+	color: #fff;
+}
+
+a.tile-link:hover > .tile {
+	background-color: darkmagenta;
+	color: #fff;
+	position: relative;
+	top: -1rem;
+}
+
+/*
+* Page Layout Styles (not important)
+
+body {
+	padding: 5rem 0;
+}
+*/
+
+
+/*style for google map*/
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#map {
+	height: 100vh;
+	width: 75vw;
+}
+
+/*style for sign up*/
+.centered-form{
+	margin-top: 60px;
+}
+
+.centered-form .panel{
+	background: rgba(255, 255, 255, 0.8);
+	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
+}
+
+/*style for footer*/
+.footer {
+	color: white;
+}
+
