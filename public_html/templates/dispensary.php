@@ -1,9 +1,9 @@
-<h3>this is the dispensary view</h3>
-
-<div class="jumbotron text-center">
-	<h1>Find Your Perfect Strain</h1>
-	<p class="lead"> Explore strains and their affects</p>
+<div class="jumbotron">
+	<div id="jumboTxt">
+		<h1>Dispensaries</h1>
+	<p class="lead" id="missingLink"> Your Favorite Dispensary at Your Fingertips</p>
 </div>
+	</div>
 
 <!-- review section -->
 <div class="container">
@@ -19,44 +19,44 @@
 
 		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 			<div class="thumbnail">
-				<img src="images/alaskan-thunder-funk.jpeg" alt="bubba-kush">
+				<img src="app/images/dispensaries/organtica1.gif" alt="organtica">
 				<div class="caption">
-					<h3>Alaskan Thunder Funk</h3>
+					<h3>Organtica</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">More Info</a>
+					<a href="https://bootcamp-coders.cnm.edu/~jmontoya306/cannaduceus/public_html/organtica" class="btn btn-default text-center">Organtica</a>
 				</div>
 			</div>
 		</div>
 
 		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 			<div class="thumbnail">
-				<img src="images/amnesia.jpeg" alt="amnesia">
+				<img src="/app/images/dispensaries/ultraHealth.png" alt="Ultra Health">
 				<div class="caption">
-					<h3>Amnesia</h3>
+					<h3>Ultrahealth</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">More Info</a>
+					<a href="https://bootcamp-coders.cnm.edu/~jmontoya306/cannaduceus/public_html/ultrahealth" class="btn btn-default text-center">Ultrahealth</a>
 				</div>
 			</div>
 		</div>
 
 		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 			<div class="thumbnail">
-				<img src="images/bananasplit.jpeg" alt="bananasplit">
+				<img src="app/images/dispensaries/medzen_sign.jpg" alt="Med Zen">
 				<div class="caption">
-					<h3>Banana Split</h3>
+					<h3>Med Zen</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">More Info</a>
+					<a href="https://bootcamp-coders.cnm.edu/~jmontoya306/cannaduceus/public_html/medzen" class="btn btn-default text-center">Med Zen</a>
 				</div>
 			</div>
 		</div>
 
 		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 			<div class="thumbnail">
-				<img src="images/berrykush.jpeg" alt="berrykush">
+				<img src="app/images/dispensaries/newMexicann.png" alt="New Mexicann">
 				<div class="caption">
-					<h3>Berry Kush</h3>
+					<h3>New Mexicann</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">More Info</a>
+					<a href="#" class="btn btn-default text-center">New Mexicann</a>
 				</div>
 			</div>
 		</div>
@@ -67,18 +67,18 @@
 
 		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 			<div class="thumbnail">
-				<img src="images/bewitched.jpeg" alt="bewitched">
+				<img src="app/images/dispensaries/rGreenleaf.png" alt="R. Greenleaf">
 				<div class="caption">
-					<h3>Bewitched</h3>
+					<h3>R. Greenleaf</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">More Info</a>
+					<a href="#" class="btn btn-default text-center">R. Greenleaf</a>
 				</div>
 			</div>
 		</div>
 
 		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
 			<div class="thumbnail">
-				<img src="images/bubbakush.jpeg" alt="bubbakush">
+				<img src="app/images/dispensaries/verdes.png" alt="Verdes">
 				<div class="caption">
 					<h3>Bubba Kush</h3>
 					<h4>Rating</h4>

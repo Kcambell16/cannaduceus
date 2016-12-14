@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container-fluid">
 	<div class="row centered-form">
-		<div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+		<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 col-lg-8 col-lg-offset-2">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Please sign up for Bootsnipp
+					<h3 class="panel-title"><strong>Sign up for Cannaduceus</strong>
 						<small>It's free!</small>
 					</h3>
 				</div>
