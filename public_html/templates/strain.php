@@ -19,7 +19,7 @@
 					</div>
 					<div class="strain-name text-right small">
 						{{strain.strainDescription}}
-					</div>
+					</div>z
 				</div>
 			</a>
 <!--		</div>-->
