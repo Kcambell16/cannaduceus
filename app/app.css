@@ -62,12 +62,19 @@ body {
 }
 
 /* strain page css */
-
+/*
+* Default Tile Styles
+*/
 .tile {
-	background-color: orange;
-	padding: 1.5rem;
+	background-color: #eee;
+	border: 3px solid rgba(0,0,0,0.1);
 	border-radius: 2rem;
+	display: flex;
+	font-weight: bold;
 	margin-bottom: 1.5rem;
+	padding: 1.5rem;
+	position: relative;
+	top: 0;
 	-webkit-transition: all 500ms ease;
 	-moz-transition: all 500ms ease;
 	-ms-transition: all 500ms ease;
@@ -75,12 +82,26 @@ body {
 	transition: all 500ms ease;
 }
 
-.strain-abbr-title h3 {
-	margin: 1.25rem 0;
-	font-weight: bold;
+.strain-type {
+	align-self: flex-start;
 }
 
-/* tile-link styles and hover effects */
+.strain-name {
+	align-self: flex-end;
+}
+
+.strain-abbr-title {
+	align-self: center;
+	flex: 1;
+}
+
+.strain-abbr-title h2 {
+	margin: 1.25rem 0;
+}
+
+/*
+* Tile link styles and hover effects
+*/
 a.tile-link,
 a.tile-link:hover,
 a.tile-link:active,
@@ -90,73 +111,17 @@ a.tile-link:visited {
 	text-decoration: none;
 }
 
-a.tile-link:hover {
-	color: #fff;
-}
-
 a.tile-link:hover > .tile {
-	background-color: darkmagenta;
-	color: #fff;
-	position: relative;
-	top: -1rem;
-}
-
-/* css for strain */
-
-.tile {
-	background-color: orange;
-	padding: 1.5rem;
-	border-radius: 2rem;
-	margin-bottom: 1.5rem;
-	-webkit-transition: all 500ms ease;
-	-moz-transition: all 500ms ease;
-	-ms-transition: all 500ms ease;
-	-o-transition: all 500ms ease;
-	transition: all 500ms ease;
-}
-
-.strain-abbr-title h3 {
-	margin: 1.25rem 0;
-	font-weight: bold;
-}
-
-/* tile-link styles and hover effects */
-a.tile-link,
-a.tile-link:hover,
-a.tile-link:active,
-a.tile-link:visited {
+	background-color: greenyellow;
 	color: #333;
-	display: block;
-	text-decoration: none;
-}
-
-a.tile-link:hover {
-	color: #fff;
-}
-
-a.tile-link:hover > .tile {
-	background-color: darkmagenta;
-	color: #fff;
-	position: relative;
 	top: -1rem;
 }
-
-/* for strain */
 
 .jumbotron {
 	text-align: center;
 	color: #17466f;
 	-webkit-text-stroke-color: white;
 	-webkit-text-stroke-width: 1px
-}
-
-
-
-/*dispensary detail map*/
-#googleMap {
-	width: auto;
-	margin: 1px auto;
-	display: block;
 }
 
 #weedsMenu {
