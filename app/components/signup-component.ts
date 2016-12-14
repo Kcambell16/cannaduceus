@@ -1,5 +1,5 @@
 import {Component, ViewChild, OnInit} from "@angular/core";
-/*import {Router} from "@angular/router";*/
+import {Router} from "@angular/router";
 import {Status} from "../classes/status";
 import {SignUpService} from "../services/signup-service";
 import {Profile} from "../classes/profile";
@@ -15,7 +15,7 @@ export class SignUpComponent implements OnInit{
 	status: Status = null;
 
 
-	constructor(private signupService: SignUpService/*, private router: Router*/){}
+	constructor(private signupService: SignUpService, private router: Router){}
 
 
 	ngOnInit(): void {

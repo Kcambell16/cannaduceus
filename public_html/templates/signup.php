@@ -12,6 +12,7 @@
 							<div class="col-xs-12 col-sm-12 col-md-12">
 								<div class="form-group"
 								[ngClass]="{'has-error': profileUserName.touched && profileUserName.invalid}">
+									<label for="profileUserName">UserName</label>
 									<input type="text" name="profileUserName" id="profileUserName" class="form-control input-sm" placeholder="Username" required [(ngModel)]="profile.profileUserName" #profileUserName="ngModel" maxlength="32">
 								</div>
 								<div [hidden]="profileUserName.valid || profileUserName.pristine"
@@ -25,6 +26,7 @@
 
 						<div class="form-group"
 							  [ngClass]="{'has-error': profileEmail.touched && profileEmail.invalid}">
+							<label for="profileEmail">profileEmail</label>
 							<input type="email" name="profileEmail" id="profileEmail" class="form-control input-sm" placeholder="Email Address" maxlength="128"
 									 required [(ngModel)]="profile.profileEmail" #profileEmail="ngModel">
 						</div>
@@ -39,6 +41,7 @@
 							<div class="col-xs-6 col-sm-6 col-md-6">
 								<div class="form-group"
 									  [ngClass]="{'has-error': password.touched && password.invalid}">
+									<label for="password">password</label>
 									<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password"
 											 required [(ngModel)]="profile.password" #password="ngModel">
 								</div>
@@ -52,6 +55,7 @@
 							<div class="col-xs-6 col-sm-6 col-md-6">
 								<div class="form-group"
 									  [ngClass]="{'has-error': password_confirmation.touched && password_confirmation != profile.password}">
+									<label for="password_confirmation">confirm password</label>
 									<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-sm" placeholder="Confirm Password">
 								</div>
 								<div [hidden]="password_confirmation.valid || password_confirmation.pristine || password_confirmation == profile.password"
