@@ -13,9 +13,9 @@ import {AmnesiaComponent} from "./components/amnesia-component";
 import {DispensaryFavoriteComponent} from "./components/dispensaryfavorite-component";
 import {DispensaryLeafRatingComponent} from "./components/dispensaryleafrating-component";
 import {DispensaryReviewComponent} from "./components/dispensaryreview-component";
+import {HighsignupComponent} from "./components/highsignup-component";
 
-
-export const allAppComponents = [HomeComponent, ActivationComponent, StrainComponent, DispensaryComponent, SignUpComponent, SigninComponent, StrainDetailComponent, MedzenComponent, OrganticaComponent, UltrahealthComponent, AmnesiaComponent,DispensaryFavoriteComponent, DispensaryLeafRatingComponent,DispensaryReviewComponent];
+export const allAppComponents = [HomeComponent, ActivationComponent, StrainComponent, DispensaryComponent, SignUpComponent, SigninComponent, StrainDetailComponent, MedzenComponent, OrganticaComponent, UltrahealthComponent, AmnesiaComponent,DispensaryFavoriteComponent, DispensaryLeafRatingComponent,DispensaryReviewComponent,HighsignupComponent];
 
 export const routes: Routes = [
 	{path: "", component: HomeComponent},
@@ -27,7 +27,9 @@ export const routes: Routes = [
 	{path: "medzen", component: MedzenComponent},
 	{path: "organtica", component: OrganticaComponent},
 	{path: "ultrahealth", component: UltrahealthComponent},
-	{path: "amnesia", component: AmnesiaComponent}
+	{path: "amnesia", component: AmnesiaComponent},
+	{path: "highsignup", component: HighsignupComponent},
+
 ];
 
 export const appRoutingProviders: any[] = [];
