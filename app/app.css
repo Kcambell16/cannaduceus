@@ -44,17 +44,17 @@ body {
 	-webkit-align-content: center;
 
 }
-
+/* test */
 #cannaTitle {
 	font-size: 10em;
 }
 
 #missingLink {
-	font-size: 3em;
-	color: whitesmoke;
+	font-size: 2em;
+	color: #12BFBF;
 	text-align: center;
-	-webkit-text-stroke-color: black;
-	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color:#12BFBF;
+
 }
 
 #footerText {
@@ -68,7 +68,7 @@ body {
 * Default Tile Styles
 */
 .tile {
-	background-color: #eee;
+	background-color: #12BFBF;
 	border: 3px solid rgba(0,0,0,0.1);
 	border-radius: 2rem;
 	display: flex;
@@ -154,8 +154,9 @@ a.btn.btn-primary.btn-lg {
 /*navbar css*/
 
 nav.navbar.navbar-default {
-	margin-bottom: 0;
-}
+	margin-bottom:0;
+	}
+
 
 
 
