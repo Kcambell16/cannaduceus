@@ -16,10 +16,10 @@
 						Hybrid
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Bd</h3>
+						<h3>Bf</h3>
 					</div>
 					<div class="strain-name text-right small">
-						Blue Dream
+						Alaskan Thunder Funk
 					</div>
 				</div>
 			</a>
@@ -32,10 +32,10 @@
 						Hybrid
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
+						<h3>An</h3>
 					</div>
 					<div class="strain-name text-right small">
-						Cheezy
+						Amnesia
 					</div>
 				</div>
 			</a>
@@ -48,10 +48,10 @@
 						Hybrid
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
+						<h3>Bs</h3>
 					</div>
 					<div class="strain-name text-right small">
-						Cheezy
+						Banana Spilt
 					</div>
 				</div>
 			</a>
@@ -64,10 +64,10 @@
 						Hybrid
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
+						<h3>Bk</h3>
 					</div>
 					<div class="strain-name text-right small">
-						Cheezy
+						Berry Kush
 					</div>
 				</div>
 			</a>
@@ -80,10 +80,10 @@
 						Hybrid
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
+						<h3>Bw</h3>
 					</div>
 					<div class="strain-name text-right small">
-						Cheezy
+						Bewtiched
 					</div>
 				</div>
 			</a>
@@ -93,116 +93,13 @@
 			<a href="#" class="tile-link">
 				<div class="tile">
 					<div class="strain-type small">
-						Hybrid
+						Sativa
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
+						<h3>Bk</h3>
 					</div>
 					<div class="strain-name text-right small">
-						Cheezy
-					</div>
-				</div>
-			</a>
-		</div>
-
-	</div>
-</div>
-
-
-<div class="container">
-	<div class="row">
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Hybrid
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Cheezy
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Hybrid
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Cheezy
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Hybrid
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Cheezy
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Hybrid
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Cheezy
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Hybrid
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Cheezy
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Hybrid
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Cheezy
+						Bubba Kush
 					</div>
 				</div>
 			</a>
@@ -219,13 +116,45 @@
 			<a href="#" class="tile-link">
 				<div class="tile">
 					<div class="strain-type small">
-						Hybrid
+						Sativa
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
+						<h3>BT</h3>
 					</div>
 					<div class="strain-name text-right small">
-						Cheezy
+						Buddha Tahoe
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="col-xs-6 col-sm-2">
+			<a href="#" class="tile-link">
+				<div class="tile">
+					<div class="strain-type small">
+						Indica
+					</div>
+					<div class="strain-abbr-title text-center">
+						<h3>Cc</h3>
+					</div>
+					<div class="strain-name text-right small">
+						Cannatonic
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="col-xs-6 col-sm-2">
+			<a href="#" class="tile-link">
+				<div class="tile">
+					<div class="strain-type small">
+						Indica
+					</div>
+					<div class="strain-abbr-title text-center">
+						<h3>Ck</h3>
+					</div>
+					<div class="strain-name text-right small">
+						Catarac Kush
 					</div>
 				</div>
 			</a>
@@ -238,10 +167,81 @@
 						Hybrid
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
+						<h3>Cl</h3>
 					</div>
 					<div class="strain-name text-right small">
-						Cheezy
+						Chocolope
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="col-xs-6 col-sm-2">
+			<a href="#" class="tile-link">
+				<div class="tile">
+					<div class="strain-type small">
+						Indica
+					</div>
+					<div class="strain-abbr-title text-center">
+						<h3>CssH</h3>
+					</div>
+					<div class="strain-name text-right small">
+						Critical Super Silver Haze
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="col-xs-6 col-sm-2">
+			<a href="#" class="tile-link">
+				<div class="tile">
+					<div class="strain-type small">
+						Sativa
+					</div>
+					<div class="strain-abbr-title text-center">
+						<h3>DsH</h3>
+					</div>
+					<div class="strain-name text-right small">
+						Dark Shadow Haze
+					</div>
+				</div>
+			</a>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="container">
+	<div class="row">
+
+		<div class="col-xs-6 col-sm-2">
+			<a href="#" class="tile-link">
+				<div class="tile">
+					<div class="strain-type small">
+						Sativa
+					</div>
+					<div class="strain-abbr-title text-center">
+						<h3>Ds</h3>
+					</div>
+					<div class="strain-name text-right small">
+						Dark Star
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="col-xs-6 col-sm-2">
+			<a href="#" class="tile-link">
+				<div class="tile">
+					<div class="strain-type small">
+						Indica
+					</div>
+					<div class="strain-abbr-title text-center">
+						<h3>EOG</h3>
+					</div>
+					<div class="strain-name text-right small">
+						Extreme OG
 					</div>
 				</div>
 			</a>
@@ -254,10 +254,42 @@
 						Hybrid
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
+						<h3>GH</h3>
 					</div>
 					<div class="strain-name text-right small">
-						Cheezy
+						G13 Haze
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="col-xs-6 col-sm-2">
+			<a href="#" class="tile-link">
+				<div class="tile">
+					<div class="strain-type small">
+						Sativa
+					</div>
+					<div class="strain-abbr-title text-center">
+						<h3>GTH</h3>
+					</div>
+					<div class="strain-name text-right small">
+						Ghost Train Haze
+					</div>
+				</div>
+			</a>
+		</div>
+
+		<div class="col-xs-6 col-sm-2">
+			<a href="#" class="tile-link">
+				<div class="tile">
+					<div class="strain-type small">
+						Sativa
+					</div>
+					<div class="strain-abbr-title text-center">
+						<h3>GSC</h3>
+					</div>
+					<div class="strain-name text-right small">
+						Gril Scout Cookies
 					</div>
 				</div>
 			</a>
@@ -270,42 +302,10 @@
 						Hybrid
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
+						<h3>Gk</h3>
 					</div>
 					<div class="strain-name text-right small">
-						Cheezy
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Hybrid
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Cheezy
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Hybrid
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Cheezy
+						Grizzly Kush
 					</div>
 				</div>
 			</a>
@@ -332,10 +332,8 @@
 			<img src="images/alaskan-thunder-funk.jpeg" alt="bubba-kush">
 			<div class="caption">
 				<h3>Alaskan Thunder Funk</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				<p>
+				<h4>Rating</h4>
 					<a href="#" class="btn btn-default text-center">Review </a>
-				</p>
 			</div>
 		</div>
 	</div>

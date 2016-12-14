@@ -6,6 +6,7 @@ import {AppComponent} from "./app.component";
 import {allAppComponents, appRoutingProviders, routing} from "./app.routes";
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
+
 const moduleDeclarations = [AppComponent];
 
 @NgModule({
