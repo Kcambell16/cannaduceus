@@ -5,7 +5,7 @@
 </div>
 
 
-<!-- strain pics
+<!-- strain pics -->
 <div class="container">
 	<div class="row">
 
@@ -315,61 +315,62 @@
 </div>
 <!-- strain info model ends here -->
 
-<!-- review section
-<!-- Title
-<div class="row">
-	<div class="col-lg-12">
-		<h3>Strain Review</h3>
+<!-- review section -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<h3>Strain Review</h3>
+		</div>
 	</div>
 </div>
-<!-- /.row -->
 
-<!-- Page Features
-<div class="row text-center">
+<div class="container">
+	<div class="row text-center">
 
-	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-		<div class="thumbnail">
-			<img src="images/alaskan-thunder-funk.jpeg" alt="bubba-kush">
-			<div class="caption">
-				<h3>Alaskan Thunder Funk</h3>
-				<h4>Rating</h4>
-				<a href="#" class="btn btn-default text-center">Check Stock </a>
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/alaskan-thunder-funk.jpeg" alt="bubba-kush">
+				<div class="caption">
+					<h3>Alaskan Thunder Funk</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-		<div class="thumbnail">
-			<img src="images/amnesia.jpeg" alt="amnesia">
-			<div class="caption">
-				<h3>Amnesia</h3>
-				<h4>Rating</h4>
-				<a href="#" class="btn btn-default text-center">Check Stock </a>
-
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/amnesia.jpeg" alt="amnesia">
+				<div class="caption">
+					<h3>Amnesia</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-		<div class="thumbnail">
-			<img src="images/bananasplit.jpeg" alt="bananasplit">
-			<div class="caption">
-				<h3>Banana Split</h3>
-				<h4>Rating</h4>
-				<a href="#" class="btn btn-default text-center">Check Stock </a>
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/bananasplit.jpeg" alt="bananasplit">
+				<div class="caption">
+					<h3>Banana Split</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-		<div class="thumbnail">
-			<img src="images/berrykush.jpeg" alt="berrykush">
-			<div class="caption">
-				<h3>Berry Kush</h3>
-				<h4>Rating</h4>
-				<a href="#" class="btn btn-default text-center">Check Stock </a>
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/berrykush.jpeg" alt="berrykush">
+				<div class="caption">
+					<h3>Berry Kush</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
+				</div>
 			</div>
 		</div>
+
 	</div>
 
 	<div class="row text-center">
@@ -417,121 +418,126 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<div class="row text-center">
+	<div class="row text-center">
 
-			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-				<div class="thumbnail">
-					<img src="images/catarac-kush.jpeg" alt="catarac-kush">
-					<div class="caption">
-						<h3>Catarac Kush</h3>
-						<h4>Rating</h4>
-						<a href="#" class="btn btn-default text-center">Check Stock </a>
-					</div>
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/catarac-kush.jpeg" alt="catarac-kush">
+				<div class="caption">
+					<h3>Catarac Kush</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
 				</div>
 			</div>
+		</div>
 
-			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-				<div class="thumbnail">
-					<img src="images/chocolope.jpeg" alt="chocolope">
-					<div class="caption">
-						<h3>Chocolope</h3>
-						<h4>Rating</h4>
-						<a href="#" class="btn btn-default text-center">Check Stock </a>
-					</div>
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/chocolope.jpeg" alt="chocolope">
+				<div class="caption">
+					<h3>Chocolope</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
 				</div>
 			</div>
+		</div>
 
-			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-				<div class="thumbnail">
-					<img src="images/critical-super-silver-haze.jpeg" alt="critical-super-silver-haze">
-					<div class="caption">
-						<h3>Critical Super Silver Haze</h3>
-						<h4>Rating</h4>
-						<a href="#" class="btn btn-default text-center">Check Stock </a>
-					</div>
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/critical-super-silver-haze.jpeg" alt="critical-super-silver-haze">
+				<div class="caption">
+					<h3>Critical Super Silver Haze</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
 				</div>
 			</div>
+		</div>
 
-			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-				<div class="thumbnail">
-					<img src="images/dark-shadow-haze.jpeg" alt="dark-shadow-haze">
-					<div class="caption">
-						<h3>Dark Shadow Haze</h3>
-						<h4>Rating</h4>
-						<a href="#" class="btn btn-default text-center">Check Stock </a>
-					</div>
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/dark-shadow-haze.jpeg" alt="dark-shadow-haze">
+				<div class="caption">
+					<h3>Dark Shadow Haze</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
 				</div>
 			</div>
+		</div>
+	</div>
 
-			<div class="row text-center">
+	<div class="row text-center">
 
-				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-					<div class="thumbnail">
-						<img src="images/darkstar.jpeg" alt="darkstar">
-						<div class="caption">
-							<h3>Dark Star</h3>
-							<h4>Rating</h4>
-							<a href="#" class="btn btn-default text-center">Check Stock </a>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-					<div class="thumbnail">
-						<img src="images/amnesia.jpeg" alt="extreme-og">
-						<div class="caption">
-							<h3>Extreme OG</h3>
-							<h4>Rating</h4>
-							<a href="#" class="btn btn-default text-center">Check Stock </a>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-					<div class="thumbnail">
-						<img src="images/g13-haze.jpeg" alt="g13-haze">
-						<div class="caption">
-							<h3>G13 Haze</h3>
-							<h4>Rating</h4>
-							<a href="#" class="btn btn-default text-center">Check Stock </a>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-					<div class="thumbnail">
-						<img src="images/ghost-train-haze.jpeg" alt="ghost-train-haze">
-						<div class="caption">
-							<h3>Ghost Train Haze</h3>
-							<h4>Rating</h4>
-							<a href="#" class="btn btn-default text-center">Check Stock </a>
-						</div>
-					</div>
-				</div>
-
-				<div class="row text-center">
-
-					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-						<div class="thumbnail">
-							<img src="images/girl-scout-cookies.jpeg" alt="girl-scout-cookies">
-							<div class="caption">
-								<h3>Girl Scout Cookies</h3>
-								<h4>Rating</h4>
-								<a href="#" class="btn btn-default text-center">Check Stock </a>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
-						<div class="thumbnail">
-							<img src="images/grizzly-kush.jpeg" alt="grizzly-kush">
-							<div class="caption">
-								<h3>Grizzly Kush</h3>
-								<h4>Rating</h4>
-								<a href="#" class="btn btn-default text-center">Check Stock </a>
-							</div>
-						</div>
-					</div>
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/darkstar.jpeg" alt="darkstar">
+				<div class="caption">
+					<h3>Dark Star</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
 				</div>
 			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/amnesia.jpeg" alt="extreme-og">
+				<div class="caption">
+					<h3>Extreme OG</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/g13-haze.jpeg" alt="g13-haze">
+				<div class="caption">
+					<h3>G13 Haze</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/ghost-train-haze.jpeg" alt="ghost-train-haze">
+				<div class="caption">
+					<h3>Ghost Train Haze</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row text-center">
+
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/girl-scout-cookies.jpeg" alt="girl-scout-cookies">
+				<div class="caption">
+					<h3>Girl Scout Cookies</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
+			<div class="thumbnail">
+				<img src="images/grizzly-kush.jpeg" alt="grizzly-kush">
+				<div class="caption">
+					<h3>Grizzly Kush</h3>
+					<h4>Rating</h4>
+					<a href="#" class="btn btn-default text-center">Check Stock </a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- Page Features -->
