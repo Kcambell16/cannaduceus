@@ -125,7 +125,7 @@
 				<div class="caption">
 					<h3>Alaskan Thunder Funk</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">More Info</a>
+					<a routerLink="/straindetail" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
