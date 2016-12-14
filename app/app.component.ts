@@ -10,9 +10,6 @@ import {Component} from "@angular/core";
 
 export class AppComponent {
 	navCollapse = true;
-	title: string = 'angular2-google-maps project';
-	lat: number = 35.0856004;
-	lng: number = -106.6493274;
 
 	toggleCollapse() {
 		this.navCollapse = !this.navCollapse;
