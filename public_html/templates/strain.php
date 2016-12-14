@@ -15,7 +15,7 @@
 						Hybrid
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Bf</h3>
+						<h3>AtF</h3>
 					</div>
 					<div class="strain-name text-right small">
 						Alaskan Thunder Funk
