@@ -1,4 +1,3 @@
-<!-- -->
 <div class="container">
 	<div class="row centered-form">
 		<div class="col-xs-12 col-sm-8 col-md-10 col-sm-offset-2 col-md-offset-1">
@@ -7,7 +6,7 @@
 					<h3 class="panel-title">Sign Up With Cannaduceus<small>It's free!</small></h3>
 				</div>
 				<div class="panel-body">
-					<form #sighUpForm="ngForm" name="signUpForm" id="signUpForm" class="form-vertical well"
+					<form #signUpForm="ngForm" name="signUpForm" id="signUpForm" class="form-vertical well"
 					(ngSubmit)="createProfile();">
 						<div class="row">
 							<div class="col-xs-12 col-sm-12 col-md-12">
@@ -64,7 +63,7 @@
 							</div>
 						</div>
 
-						<input type="submit" value="Sign Up" class="btn btn-info btn-block">
+						<button type="submit" value="Sign Up" class="btn btn-info btn-block"></button>
 
 					</form>
 				</div>

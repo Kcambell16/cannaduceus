@@ -40,4 +40,4 @@ export class DispensaryLeafRatingComponent  implements OnInit {
 				});
 	}
 }
-//Written by Nathan Sanchez @nsanchez121@cnm.edu
+/**Written by Nathan Sanchez @nsanchez121@cnm.edu*/

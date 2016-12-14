@@ -1,8 +1,9 @@
 import {Component, ViewChild, OnInit} from "@angular/core";
-import {Router} from "@angular/router";
+/*import {Router} from "@angular/router";*/
 import {Status} from "../classes/status";
 import {SignUpService} from "../services/signup-service";
-import {SignUp} from "../classes/signUp";
+import {Profile} from "../classes/profile";
+
 @Component({
 	templateUrl: "./templates/signup.php",
 	selector: "signup-component"
@@ -10,11 +11,11 @@ import {SignUp} from "../classes/signUp";
 
 export class SignUpComponent implements OnInit{
 	@ViewChild("signUpForm") signUpForm : any;
-	newUser: SignUp = new SignUp ("", "", "");
+	newUser: Profile = new Profile ("", "", "");
 	status: Status = null;
 
 
-	constructor(private signupService: SignUpService, private router: Router){}
+	constructor(private signupService: SignUpService/*, private router: Router*/){}
 
 
 	ngOnInit(): void {
@@ -24,7 +25,8 @@ export class SignUpComponent implements OnInit{
 			.subscribe(status => {
 				this.status = status;
 				if(status.status === 200) {
-					this.signUpForm.reset()
+					this.signUpForm.reset();
+					console.log("submitted");
 				}
 			})
 	}
