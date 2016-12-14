@@ -10,17 +10,16 @@
 	<div class="row">
 
 		<div class="col-xs-6 col-sm-2">
-			<<<<<<< Updated upstream
-			<a href="images/berry-kush.jpeg" class="tile-link">
+			<a href="#" class="tile-link">
 				<div class="tile">
 					<div class="strain-type small">
 						Hybrid
 					</div>
 					<div class="strain-abbr-title text-center">
-						<h3>Chz</h3>
+						<h3>Bd</h3>
 					</div>
 					<div class="strain-name text-right small">
-						Cheezy
+						Blue Dream
 					</div>
 				</div>
 			</a>
