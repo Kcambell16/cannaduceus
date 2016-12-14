@@ -97,7 +97,7 @@
 
 		<p>MaryJane Verde is new to the medical cannabis community and wants to learn more about medical cannabis</p>
 
-		<!-- Bill Stoner-->
+		<!-- Bill Stoner is cool-->
 
 		<h4> Use Case</h4>
 

@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="row">
 
-		<div *ngFor="let strain of strains" class="col-xs-6 col-sm-2">
+		<div *ngFor= class="col-xs-6 col-sm-2">
 			<a href="images/berry-kush.jpeg" class="tile-link">
 				<div class="tile">
 					<div class="strain-type small">
@@ -19,7 +19,7 @@
 					</div>
 					<div class="strain-name text-right small">
 						{{strain.strainDescription}}
-					</div>z
+					</div>
 				</div>
 			</a>
 <!--		</div>-->

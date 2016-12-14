@@ -20,7 +20,6 @@
 		<li>Needs/Frustration: chronic pain being new to the area not knowing where to go</li>
 
 	</ol>
-
 	<h2>Use Story</h2>
 
 	<p>
