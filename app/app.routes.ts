@@ -8,8 +8,9 @@ import {StrainDetailComponent} from "./components/straindetail-component";
 import {MedzenComponent} from "./components/medzen-component";
 import {OrganticaComponent} from "./components/organtica-component";
 import {UltrahealthComponent} from "./components/ultrahealth-component";
+import {AmnesiaComponent} from "./components/amnesia-component";
 
-export const allAppComponents = [HomeComponent, StrainComponent, DispensaryComponent, SignUpComponent, SigninComponent, StrainDetailComponent, MedzenComponent, OrganticaComponent, UltrahealthComponent];
+export const allAppComponents = [HomeComponent, StrainComponent, DispensaryComponent, SignUpComponent, SigninComponent, StrainDetailComponent, MedzenComponent, OrganticaComponent, UltrahealthComponent, AmnesiaComponent];
 
 export const routes: Routes = [
 	{path: "", component: HomeComponent},
@@ -21,6 +22,8 @@ export const routes: Routes = [
 	{path: "medzen", component: MedzenComponent},
 	{path: "organtica", component: OrganticaComponent},
 	{path: "ultrahealth", component: UltrahealthComponent}
+	{path: "amnesia", component: AmnesiaComponent},
+
 ];
 
 export const appRoutingProviders: any[] = [];
