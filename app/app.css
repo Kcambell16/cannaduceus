@@ -151,6 +151,16 @@ a.tile-link:hover > .tile {
 
 
 /*dispensary detail map*/
+#googleMap {
+	width: auto;
+	margin: 1px auto;
+	display: block;
+}
 
+#weedsMenu {
+	width: auto;
+	margin: 1px auto;
+	display: block;
+}
 
 
