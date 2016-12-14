@@ -22,7 +22,7 @@
 							</div>
 						</div>
 
-						<input type="submit" value="Register" class="btn btn-info btn-block">
+						<input type="submit" value="Sign In" class="btn btn-info btn-block">
 
 					</form>
 				</div>

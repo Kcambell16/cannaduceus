@@ -108,22 +108,38 @@
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
+				<h2>Platnium Rider</h2>
 				<a href="#">
 					<img class="img-responsive portfolio-item" src="images/platinum%20rider.gif" alt="">
 				</a>
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
+				<h2>Hawaii 5-0</h2>
 				<a href="#">
 					<img class="img-responsive portfolio-item" src="images/Hawaii%205-0.gif" alt="">
 				</a>
 			</div>
 
 			<div class="col-sm-3 col-xs-6">
+				<h2>Headband</h2>
 				<a href="#">
 					<img class="img-responsive portfolio-item" src="images/headband.gif" alt="">
 				</a>
 			</div>
+
+			<div>
+			<h1>Current Menu</h1>
+					<div id="grassMenu">
+						<div class="row">
+						<div class="col-xs-10 col-sm-10 col-md-6 col-lg-6">
+							<img class="img-responsive" src="/app/images/grassMenu.png">
+						</div>
+						</div>
+					</div>
+			</div>
+
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13060.444707699147!2d-106.5992402!3d35.0789548!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x4d976774ee601ff7!2sMedzen+Services!5e0!3m2!1sen!2sus!4v1481695831651" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 
 		</div>
 		<!-- /.row -->

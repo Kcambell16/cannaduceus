@@ -5,7 +5,7 @@
 </div>
 
 
-<!-- strain pics -->
+<!-- strain pics
 <div class="container">
 	<div class="row">
 
@@ -315,8 +315,8 @@
 </div>
 <!-- strain info model ends here -->
 
-<!-- review section -->
-<!-- Title -->
+<!-- review section
+<!-- Title
 <div class="row">
 	<div class="col-lg-12">
 		<h3>Strain Review</h3>
@@ -324,7 +324,7 @@
 </div>
 <!-- /.row -->
 
-<!-- Page Features -->
+<!-- Page Features
 <div class="row text-center">
 
 	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 hero-feature">
