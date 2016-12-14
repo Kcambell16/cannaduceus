@@ -179,4 +179,8 @@ a.tile-link:hover > .tile {
 	color: whitesmoke;
 }
 
+/*weed menu button*/
+a.btn.btn-primary.btn-lg {
+	padding: 10px 100px;
+}
 

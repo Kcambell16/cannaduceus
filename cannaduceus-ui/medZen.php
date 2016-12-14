@@ -146,8 +146,8 @@
 					$($(this).attr('href')).collapse('show');
 				})</script>
 
-			<div class="dropdown dropdown-accordion" data-accordion="#accordion">
-				<a data-toggle="dropdown" href="#" class="btn btn-primary">Menu<span class="caret"></span></a>
+			<div class="dropdown dropdown-accordion text-center" data-accordion="#accordion">
+				<a data-toggle="dropdown" href="#" class="btn btn-primary btn-lg">Menu<span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 					<li>
 						<div class="panel-group" id="accordion">
