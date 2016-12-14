@@ -3,9 +3,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Organtica
-					<small>Premiere Organic Cannabis</small>
-				</h1>
+				<h1 class="page-header">Alaskan Thunder Funk</h1>
 			</div>
 		</div>
 	</div>
@@ -16,17 +14,19 @@
 		<div class="row">
 
 			<div class="col-md-8">
-				<img class="img-responsive" src="images/organticaMain.png" alt="Organtica">
+				<img class="img-responsive" src="../app/images/strains/AtFunkheader.jpeg" alt="Atf">
 			</div>
 
 			<div class="col-md-4">
-				<h3>Organtica</h3>
-				<p>As one of the new dispensaries licensed by the state in 2015 we are the new kid on the block but our experience goes well farther.  We carry some of New Mexico's best premium organic cannabis products.</p>
+				<h3>Alaskan Thunder Funk</h3>
+				<p>Alaskan Thunder Fuck (also referred to as ATF, Matanuska Thunder Fuck or Matanuska Tundra) is a legendary sativa-dominant strain originating in the Matanuska Valley area of Alaska.  According to the legend, it was originally a Northern California sativa crossed with a Russian ruderalis, but sometime in the late 70s it was crossed with Afghani genetics to make it heartier.  ATF usually presents large, beautifully frosted buds with incredibly strong odors of pine, lemon, menthol, and skunk.  Known for possessing a relaxing yet intensely euphoric high, it is also described as having a “creeper” effect as well as pronounced appetite enhancement.</p>
 				<ul>
-					<li>Lorem Ipsum</li>
-					<li>Dolor Sit Amet</li>
-					<li>Consectetur</li>
-					<li>Adipiscing Elit</li>
+					<h4> Strain Attributes</h4>
+					<li>Happy</li>
+					<li>Euphoric</li>
+					<li>Uplifted</li>
+					<li>Energetic</li>
+					<li>Relaxed</li>
 				</ul>
 			</div>
 
@@ -47,25 +47,6 @@
 					<img class="img-responsive portfolio-item" src="images/organtica1.gif" alt="">
 				</a>
 			</div>
-
-			<div class="col-sm-3 col-xs-6">
-				<a href="#">
-					<img class="img-responsive portfolio-item" src="images/platinum%20rider.gif" alt="">
-				</a>
-			</div>
-
-			<div class="col-sm-3 col-xs-6">
-				<a href="#">
-					<img class="img-responsive portfolio-item" src="images/Hawaii%205-0.gif" alt="">
-				</a>
-			</div>
-
-			<div class="col-sm-3 col-xs-6">
-				<a href="#">
-					<img class="img-responsive portfolio-item" src="images/headband.gif" alt="">
-				</a>
-			</div>
-
 		</div>
 	</div>
 	<!-- /.row -->
