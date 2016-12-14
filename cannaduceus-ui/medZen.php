@@ -12,7 +12,7 @@
 		<link type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
 
 		<!-- Custom CSS Goes HERE -->
-		<link rel="stylesheet" href="/app/app.css" type="text/css"/>
+		<link rel="stylesheet" href="../app/app.css" type="text/css"/>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -176,7 +176,7 @@
 		<!-- strain info model ends here -->
 
 		<!-- footer inverse --->
-		<footer class="footer navbar-inverse">
+		<footer id="footerText">
 			<div class="container">
 				<div class="row">
 					<!-- contact section in footer-->
@@ -203,8 +203,6 @@
 							<span class="fa fa-instagram"> Instagram</span>
 						</a>
 						<!-- for additional info if needed-->
-					</div>
-					<div class="col-xs-6 col-sm-4">
 					</div>
 				</div>
 			</div>

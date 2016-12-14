@@ -56,7 +56,9 @@ body {
 }
 
 #footerText {
+	background: black;
 	color: whitesmoke;
+
 }
 
 /* strain page css */
@@ -176,4 +178,5 @@ a.tile-link:hover > .tile {
 #staticFooter {
 	color: whitesmoke;
 }
+
 

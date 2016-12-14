@@ -12,7 +12,7 @@
 		<link type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
 
 		<!-- Custom CSS Goes HERE -->
-		<link rel="stylesheet" href="css/styles.css" type="text/css">
+		<link rel="stylesheet" href="../app/app.css" type="text/css">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -62,6 +62,7 @@
 			</main>
 		</header>
 		<!-- Portfolio Item Heading -->
+		<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">Organtica
@@ -69,9 +70,11 @@
 				</h1>
 			</div>
 		</div>
+		</div>
 		<!-- /.row -->
 
 		<!-- Portfolio Item Row -->
+		<div class="container-fluid">
 		<div class="row">
 
 			<div class="col-md-8">
@@ -90,9 +93,11 @@
 			</div>
 
 		</div>
+			</div>
 		<!-- /.row -->
 
 		<!-- Related Projects Row -->
+		<div class="container-fluid">
 		<div class="row">
 
 			<div class="col-lg-12">
@@ -124,6 +129,7 @@
 			</div>
 
 		</div>
+			</div>
 		<!-- /.row -->
 
 		<!-- accordion -->
@@ -144,8 +150,8 @@
 				$($(this).attr('href')).collapse('show');
 			})</script>
 
-		<div class="dropdown dropdown-accordion" data-accordion="#accordion">
-			<a data-toggle="dropdown" href="#" class="btn btn-primary">Menu<span class="caret"></span></a>
+		<div class="dropdown dropdown-accordion text-center" data-accordion="#accordion">
+			<a data-toggle="dropdown" href="#" class="btn btn-primary btn-lg">Menu<span class="caret"></span></a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 				<li>
 					<div class="panel-group" id="accordion">
@@ -166,11 +172,17 @@
 		<!-- strain info model ends here -->
 
 		<!-- googleMap-->
-		<div class="row"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.8804942765364!2d-106.60115114915507!3d35.10969488023496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87227494a7677495%3A0x8cee4797537a1b28!2sOrgantica!5e0!3m2!1sen!2sus!4v1481733456314" width="800" height="600" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-12">
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.8804942765364!2d-106.60115114915507!3d35.10969488023496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87227494a7677495%3A0x8cee4797537a1b28!2sOrgantica!5e0!3m2!1sen!2sus!4v1481733456314" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
 
 		<!-- footer inverse --->
-		<footer class="footer navbar-inverse">
-			<div class="container" id="staticFooter">
+		<footer id="footerText">
+			<div class="container">
 				<div class="row">
 					<!-- contact section in footer-->
 					<div class="col-xs-12 col-md-6">
@@ -196,8 +208,6 @@
 							<span class="fa fa-instagram"> Instagram</span>
 						</a>
 						<!-- for additional info if needed-->
-					</div>
-					<div class="col-xs-6 col-sm-4">
 					</div>
 				</div>
 			</div>
