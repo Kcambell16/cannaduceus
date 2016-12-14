@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 	<head>
-		<meta charset="UTF-8" />
+		<meta charset="UTF-8"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+				integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 		<!-- Font Awesome -->
-		<link type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" />
+		<link type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+				rel="stylesheet"/>
 
 		<!-- Custom CSS Goes HERE -->
 		<link rel="stylesheet" href="../app/app.css" type="text/css">
@@ -25,18 +27,21 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+				  integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+				  crossorigin="anonymous"></script>
 		<title>Cannaduceus Dispensary page </title>
 
 	<body>
 
 		<header>
 			<!-- navbar --->
-			<nav class="navbar navbar-default navbar-inverse" >
+			<nav class="navbar navbar-default navbar-inverse">
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+								  data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -63,73 +68,75 @@
 		</header>
 		<!-- Portfolio Item Heading -->
 		<div class="container-fluid">
-		<div class="row">
-			<div class="col-lg-12">
-				<h1 class="page-header">Organtica
-					<small>Premiere Organic Cannabis</small>
-				</h1>
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">Organtica
+						<small>Premiere Organic Cannabis</small>
+					</h1>
+				</div>
 			</div>
-		</div>
 		</div>
 		<!-- /.row -->
 
 		<!-- Portfolio Item Row -->
 		<div class="container-fluid">
-		<div class="row">
+			<div class="row">
 
-			<div class="col-md-8">
-				<img class="img-responsive" src="images/organticaMain.png" alt="Organtica">
+				<div class="col-md-8">
+					<img class="img-responsive" src="images/organticaMain.png" alt="Organtica">
+				</div>
+
+				<div class="col-md-4">
+					<h3>Organtica</h3>
+					<p>As one of the new dispensaries licensed by the state in 2015 we are the new kid on the block but our
+						experience goes well farther. We carry some of New Mexico's best premium organic cannabis
+						products.</p> </h3>
+					<ul>
+						<li>Lorem Ipsum</li>
+						<li>Dolor Sit Amet</li>
+						<li>Consectetur</li>
+						<li>Adipiscing Elit</li>
+					</ul>
+				</div>
+
 			</div>
-
-			<div class="col-md-4">
-				<h3>Organtica</h3>
-				<p>As one of the new dispensaries licensed by the state in 2015 we are the new kid on the block but our experience goes well farther.  We carry some of New Mexico's best premium organic cannabis products.</p> </h3>
-				<ul>
-					<li>Lorem Ipsum</li>
-					<li>Dolor Sit Amet</li>
-					<li>Consectetur</li>
-					<li>Adipiscing Elit</li>
-				</ul>
-			</div>
-
 		</div>
-			</div>
 		<!-- /.row -->
 
 		<!-- Related Projects Row -->
 		<div class="container-fluid">
-		<div class="row">
+			<div class="row">
 
-			<div class="col-lg-12">
-				<h3 class="page-header">Organtica</h3>
+				<div class="col-lg-12">
+					<h3 class="page-header">Organtica</h3>
+				</div>
+
+				<div class="col-sm-3 col-xs-6">
+					<a href="#">
+						<img class="img-responsive portfolio-item" src="images/organtica1.gif" alt="">
+					</a>
+				</div>
+
+				<div class="col-sm-3 col-xs-6">
+					<a href="#">
+						<img class="img-responsive portfolio-item" src="images/platinum%20rider.gif" alt="">
+					</a>
+				</div>
+
+				<div class="col-sm-3 col-xs-6">
+					<a href="#">
+						<img class="img-responsive portfolio-item" src="images/Hawaii%205-0.gif" alt="">
+					</a>
+				</div>
+
+				<div class="col-sm-3 col-xs-6">
+					<a href="#">
+						<img class="img-responsive portfolio-item" src="images/headband.gif" alt="">
+					</a>
+				</div>
+
 			</div>
-
-			<div class="col-sm-3 col-xs-6">
-				<a href="#">
-					<img class="img-responsive portfolio-item" src="images/organtica1.gif" alt="">
-				</a>
-			</div>
-
-			<div class="col-sm-3 col-xs-6">
-				<a href="#">
-					<img class="img-responsive portfolio-item" src="images/platinum%20rider.gif" alt="">
-				</a>
-			</div>
-
-			<div class="col-sm-3 col-xs-6">
-				<a href="#">
-					<img class="img-responsive portfolio-item" src="images/Hawaii%205-0.gif" alt="">
-				</a>
-			</div>
-
-			<div class="col-sm-3 col-xs-6">
-				<a href="#">
-					<img class="img-responsive portfolio-item" src="images/headband.gif" alt="">
-				</a>
-			</div>
-
 		</div>
-			</div>
 		<!-- /.row -->
 
 		<!-- accordion -->
@@ -137,13 +144,13 @@
 		<!-- Collapse accordion every time dropdown is shown -->
 
 		<script>
-			$('.dropdown-accordion').on('show.bs.dropdown', function (event) {
+			$('.dropdown-accordion').on('show.bs.dropdown', function(event) {
 				var accordion = $(this).find($(this).data('accordion'));
 				accordion.find('.panel-collapse.in').collapse('hide');
 			});
 
 			// Prevent dropdown to be closed when we click on an accordion link
-			$('.dropdown-accordion').on('click', 'a[data-toggle="collapse"]', function (event) {
+			$('.dropdown-accordion').on('click', 'a[data-toggle="collapse"]', function(event) {
 				event.preventDefault();
 				event.stopPropagation();
 				$($(this).data('parent')).find('.panel-collapse.in').collapse('hide');
@@ -175,7 +182,9 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.8804942765364!2d-106.60115114915507!3d35.10969488023496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87227494a7677495%3A0x8cee4797537a1b28!2sOrgantica!5e0!3m2!1sen!2sus!4v1481733456314" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.8804942765364!2d-106.60115114915507!3d35.10969488023496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87227494a7677495%3A0x8cee4797537a1b28!2sOrgantica!5e0!3m2!1sen!2sus!4v1481733456314"
+						width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>
 				</div>
 			</div>
 		</div>
@@ -213,7 +222,6 @@
 			</div>
 		</footer>
 		<!-- end of sticky footer -->
-
 
 
 	</body>
