@@ -35,7 +35,7 @@ body {
 
 #jumboTxt {
 	text-align: center;
-	color: #6eb263;
+	color: #337ab7;
 	-webkit-text-stroke-color: #2c4628;
 	-webkit-text-stroke-width: 3px;
 }
@@ -51,9 +51,9 @@ body {
 
 #missingLink {
 	font-size: 2em;
-	color: #12BFBF;
+	color: black;
 	text-align: center;
-	-webkit-text-stroke-color:#12BFBF;
+	-webkit-text-stroke-color:black;
 
 }
 
