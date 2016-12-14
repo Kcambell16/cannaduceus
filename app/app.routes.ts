@@ -1,5 +1,6 @@
 import {RouterModule, Routes} from "@angular/router";
 import {HomeComponent} from "./components/home-component";
+import {ActivationComponent} from "./components/activation-component";
 import {StrainComponent} from "./components/strain-component";
 import {DispensaryComponent} from "./components/dispensary-component";
 import {SignUpComponent} from "./components/signup-component";
@@ -9,8 +10,12 @@ import {MedzenComponent} from "./components/medzen-component";
 import {OrganticaComponent} from "./components/organtica-component";
 import {UltrahealthComponent} from "./components/ultrahealth-component";
 import {AmnesiaComponent} from "./components/amnesia-component";
+import {DispensaryFavoriteComponent} from "./components/dispensaryfavorite-component";
+import {DispensaryLeafRatingComponent} from "./components/dispensaryleafrating-component";
+import {DispensaryReviewComponent} from "./components/dispensaryreview-component";
 
-export const allAppComponents = [HomeComponent, StrainComponent, DispensaryComponent, SignUpComponent, SigninComponent, StrainDetailComponent, MedzenComponent, OrganticaComponent, UltrahealthComponent, AmnesiaComponent];
+
+export const allAppComponents = [HomeComponent, ActivationComponent, StrainComponent, DispensaryComponent, SignUpComponent, SigninComponent, StrainDetailComponent, MedzenComponent, OrganticaComponent, UltrahealthComponent, AmnesiaComponent,DispensaryFavoriteComponent, DispensaryLeafRatingComponent,DispensaryReviewComponent];
 
 export const routes: Routes = [
 	{path: "", component: HomeComponent},

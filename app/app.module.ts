@@ -21,7 +21,7 @@ import {StrainReviewService} from "./services/strainreview-service";
 const moduleDeclarations = [AppComponent];
 
 @NgModule({
-	imports:      [BrowserModule, FormsModule, HttpModule, routing, /*AgmCoreModule.forRoot({
+	imports:      [BrowserModule, FormsModule, HttpModule, routing/*, AgmCoreModule.forRoot({
 		apiKey: 'AIzaSyCgfh9-g1KsIZeuXd1HsJutdkvKaUzgUoc'
 	})*/],
 	declarations: [...moduleDeclarations, ...allAppComponents],
