@@ -24,7 +24,30 @@ body { width: 100%;}
 	height: 100%;
 	background-size: cover;
 	overflow: hidden;
-	color: whitesmoke;
 }
 
+#jumboTxt {
+	text-align: center;
+	color: #17466f;
+	-webkit-text-stroke-color: white;
+	-webkit-text-stroke-width: 1px;
+}
 
+#signInButton {
+	-webkit-align-content: center;
+
+}
+
+#cannaTitle {
+	font-size: 10em;
+}
+
+#missingLink {
+	font-size: 2em;
+	color: whitesmoke;
+	text-align: center;
+}
+
+#footerText {
+	color: whitesmoke;
+}

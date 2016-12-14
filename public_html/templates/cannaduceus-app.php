@@ -40,7 +40,7 @@
 	<!-- footer inverse --->
 	<footer class="footer navbar-inverse">
 		<div class="container">
-			<div class="row">
+			<div class="row" id="footerText">
 				<!-- contact section in footer-->
 				<div class="col-xs-12 col-md-6">
 					 <img src="../app/images/cannaduceus-sm-logo.png" alt="logo" class="img-responsive">
