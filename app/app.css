@@ -139,6 +139,15 @@ a.tile-link:hover > .tile {
 	top: -1rem;
 }
 
+/* for strain */
+
+.jumbotron {
+	text-align: center;
+	color: #17466f;
+	-webkit-text-stroke-color: white;
+	-webkit-text-stroke-width: 1px
+}
+
 
 
 
