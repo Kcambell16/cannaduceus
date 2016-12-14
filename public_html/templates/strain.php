@@ -5,6 +5,7 @@
 
 <!-- strain pics -->
 <div class="container">
+	<h3>New Featured Strains</h3>
 	<div class="row">
 
 		<div class="col-xs-6 col-sm-2">
@@ -106,218 +107,11 @@
 	</div>
 </div>
 
-
-<div class="container">
-	<div class="row">
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Sativa
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>BT</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Buddha Tahoe
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Indica
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Cc</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Cannatonic
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Indica
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Ck</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Catarac Kush
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Hybrid
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Cl</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Chocolope
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Indica
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>CssH</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Critical Super Silver Haze
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Sativa
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>DsH</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Dark Shadow Haze
-					</div>
-				</div>
-			</a>
-		</div>
-
-	</div>
-</div>
-
-
-<div class="container">
-	<div class="row">
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Sativa
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Ds</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Dark Star
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Indica
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>EOG</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Extreme OG
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Hybrid
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>GH</h3>
-					</div>
-					<div class="strain-name text-right small">
-						G13 Haze
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Sativa
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>GTH</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Ghost Train Haze
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Sativa
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>GSC</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Gril Scout Cookies
-					</div>
-				</div>
-			</a>
-		</div>
-
-		<div class="col-xs-6 col-sm-2">
-			<a href="#" class="tile-link">
-				<div class="tile">
-					<div class="strain-type small">
-						Hybrid
-					</div>
-					<div class="strain-abbr-title text-center">
-						<h3>Gk</h3>
-					</div>
-					<div class="strain-name text-right small">
-						Grizzly Kush
-					</div>
-				</div>
-			</a>
-		</div>
-
-	</div>
-</div>
-<!-- strain info model ends here -->
-
 <!-- review section -->
 <div class="container">
 	<div class="row">
 		<div class="col-lg-12">
-			<h3>Strain Review</h3>
+			<h3>Reviews</h3>
 		</div>
 	</div>
 </div>
@@ -331,7 +125,7 @@
 				<div class="caption">
 					<h3>Alaskan Thunder Funk</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">Check Stock </a>
+					<a href="#" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
@@ -342,7 +136,7 @@
 				<div class="caption">
 					<h3>Amnesia</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">Check Stock </a>
+					<a href="#" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
@@ -353,7 +147,7 @@
 				<div class="caption">
 					<h3>Banana Split</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">Check Stock </a>
+					<a href="#" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
@@ -364,7 +158,7 @@
 				<div class="caption">
 					<h3>Berry Kush</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">Check Stock </a>
+					<a href="#" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
@@ -379,7 +173,7 @@
 				<div class="caption">
 					<h3>Bewitched</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">Check Stock </a>
+					<a href="#" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
@@ -390,7 +184,7 @@
 				<div class="caption">
 					<h3>Bubba Kush</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">Check Stock </a>
+					<a href="#" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
@@ -401,7 +195,7 @@
 				<div class="caption">
 					<h3>Buddha Tahoe</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">Check Stock </a>
+					<a href="#" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
@@ -412,7 +206,7 @@
 				<div class="caption">
 					<h3>Cannatonic</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">Check Stock </a>
+					<a href="#" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
@@ -426,7 +220,7 @@
 				<div class="caption">
 					<h3>Catarac Kush</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">Check Stock </a>
+					<a href="#" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
@@ -437,7 +231,7 @@
 				<div class="caption">
 					<h3>Chocolope</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">Check Stock </a>
+					<a href="#" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
@@ -448,7 +242,7 @@
 				<div class="caption">
 					<h3>Critical Super Silver Haze</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">Check Stock </a>
+					<a href="#" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
@@ -459,7 +253,7 @@
 				<div class="caption">
 					<h3>Dark Shadow Haze</h3>
 					<h4>Rating</h4>
-					<a href="#" class="btn btn-default text-center">Check Stock </a>
+					<a href="#" class="btn btn-default text-center">More Info</a>
 				</div>
 			</div>
 		</div>
